@@ -1,0 +1,87 @@
+html {font-size:10px}
+body{min-width:1060px;font-size:1.8em;
+     font-family: Roboto, sans-serif;}
+a {text-decoration:none;}
+* {box-sizing:border-box;} 
+
+
+.container {background:white;
+            position:relative;
+            margin:0 auto;
+            padding:0 20px; 
+            max-width:1400px;}
+
+.container2 {background:white;
+            position:relative;
+            margin:0 auto;
+            padding:0 20px; 
+            max-width:1300px;}
+.container2:after{content:"";
+                  display:block;
+                  clear:both;}
+
+/* header */
+.Header {background:#1A3F69;
+         height:90px;
+         padding:15px 0 10px;}
+
+.logo {position:absolute;
+       top:32px;
+       left:100px;
+       margin:0;
+       color:white;}
+.logo:after{content:"";
+                  display:block;
+                  clear:both;}
+.list:after{content:"";
+                  display:block;
+                  clear:both;}
+.list2:after{content:"";
+                  display:block;
+                  clear:both;}
+
+.list {position:absolute; text_align:center;
+       top:25px;
+       right:160px;
+       margin:20px 50px;}
+.list2 {position:absolute;
+       top:25px;
+       right:50px;
+       margin:15px 50px 15px 0;
+       }
+
+.list-item {display:inline;
+            font-size:1.6rem;
+            font-weight:700;
+            padding:30px}
+.list-item_log{display:inline;
+               font-size:1.6rem;
+               font-weight:700;
+               padding:30px;}
+.list-item_log>a {color:white;
+                    width:100px;
+                    color:#486587;
+                    background:white;
+                    padding:6px 20px;
+                    margin:0 auto;
+                    text-align:center;
+                    font-size:1.6rem;}
+.list-item_log>a:hover{background:#D1D9E1;}
+.list-item>a{color:#D1D9E1;}
+.list-item>a:hover{color:white;}
+.formS {position:relative;display:inline;}
+.formL {position:relative;display:inline;}
+input[type='text']{
+                    border-radius:1px solid;
+                    #border-color:#CFE3DC;
+                    height:30px;
+                    }
+input[type="submit"]{position:absolute;
+                     top:0%;
+                     right:10px;
+                     border:0;
+                     background:transparent;
+                     cursor:pointer;
+                     font-weight:500;
+                     }
+

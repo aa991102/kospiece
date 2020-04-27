@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>실시간검색만들기</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+<style type='text/css'>
+#SpecialRolling {border:0px solid red; text-align: center; width: 617px; height: 28px; overflow: hidden; position: relative; font-weight: bold; color: #1E96DD; z-index: 0;}
+#SpecialRolling div {border:1px solid blue; width: 617px; height: 20px; padding-top: 8px; position: relative;}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript" language="javascript">
+$(function() {
+ var vPrev = "Prev";
+ var vNext = "Next";
+  var maxcnt = 5;
+  RollingText(vPrev, vNext, 1);
+ function RollingText(P, N, idx)
+ {
+  var Prev = "#"+P+idx
+  var Next = "#"+N+idx
+
+  var pos1 = $(Prev).css("top").replace("px", "")
+  var pos2 = $(Next).css("top").replace("px", "")
+  //alert('111');
+  if (pos1 <= -28)
+  {
+   $(Prev).css("top", "28px");
+  }
+
+  if (pos2 <= -56)
+  {
+   $(Next).css("top", "0px");
+  }
+  fn_Next(idx);
+  $(Prev).delay(2000).animate({top: "-=28px"}, 1000, function(){
+  });
+  $(Next).delay(2000).animate({top: "-=28px"}, 1000, function(){
+   fn_Prev(idx);
+   idx++;
+   if(idx > maxcnt){
+    RollingText(P, N, 1);
+   }else{
+    RollingText(P, N, idx);
+   }
+  });
+
+ }
+ //다음 순위 불러오는 함수 처리 Ajax
+ function fn_Next(val){
+  var text = val+"순위";
+  var NextVal = "#"+vNext+val
+  $(NextVal).empty().append(text);
+ }
+ //다음이 지나가고 이전꺼에 다음 순위 불러오는 처리 Ajax
+ function fn_Prev(val){
+  var text = (val+1)+"순위";
+  var PrevVal = "#"+vPrev+val
+  $(PrevVal).empty().append(text);
+ }
+});
+</script>
+</head>
+<body>
+<div id="SpecialRolling">
+<div id="Prev1">111111111111위위위위위위</div>
+<div id="Next1">222222222222위위위위위위</div>
+</div>
+<div id="SpecialRolling" style="display:none">
+<div id="Prev2">111111111111위위위위위위</div>
+<div id="Next2">222222222222위위위위위위</div>
+</div>
+<div id="SpecialRolling" style="display:none">
+<div id="Prev3">111111111111위위위위위위</div>
+<div id="Next3">222222222222위위위위위위</div>
+</div>
+<div id="SpecialRolling" style="display:none">
+<div id="Prev4">111111111111위위위위위위</div>
+<div id="Next4">222222222222위위위위위위</div>
+</div>
+<div id="SpecialRolling" style="display:none">
+<div id="Prev5">111111111111위위위위위위</div>
+<div id="Next5">222222222222위위위위위위</div>
+</div>
+
+</body>
+</html>
