@@ -1,0 +1,8 @@
+.admin-main p{padding:40px;font-size:20px;font-weight:bold;}
+.site-statistics{width:600px;height:200px;background:pink;margin:0 auto;}
+.managemant-list{display:flex;margin:20px;justify-content:center;text-align:center;font-weight:bold}
+	.user-management{width:200px;height:200px;margin:20px;border:2px solid blue;border-radius:20px;}
+	.posts-management{width:200px;height:200px;margin:20px;border:2px solid blue;border-radius:20px;}
+	.service-management{width:200px;height:200px;margin:20px;border:2px solid blue;border-radius:20px;}
+	
+.managemant-list img{width:100px;height:100px;margin:20px 20px;}
