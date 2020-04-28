@@ -5,18 +5,18 @@
 <head>
     <meta charset="UTF-8">
     <title>KOSPIECE</title>
-    <link rel="stylesheet" href="/css/normalize.css">
-    <link rel="stylesheet" href="/css/kospiece.css">
-    <link rel="stylesheet" href="/css/admin.css">
-    <link rel="stylesheet" href="/css/user.css">
-    <link rel="stylesheet" href="/css/board.css">
-    <link rel="stylesheet" href="/css/service.css">
-    <link rel="stylesheet" href="/css/mypage.css">
+    <link rel="stylesheet" href="<%= request.getContextPath()%>/css/normalize.css">
+    <link rel="stylesheet" href="<%= request.getContextPath()%>/css/kospiece.css">
+    <link rel="stylesheet" href="<%= request.getContextPath()%>/css/admin.css">
+    <link rel="stylesheet" href="<%= request.getContextPath()%>/css/user.css">
+    <link rel="stylesheet" href="<%= request.getContextPath()%>/css/board.css">
+    <link rel="stylesheet" href="<%= request.getContextPath()%>/css/service.css">
+    <link rel="stylesheet" href="<%= request.getContextPath()%>/css/mypage.css">
     <!--웹 폰트 사용-->
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&display=swap" rel="stylesheet">
     <!-- 자바스크립트 -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="../js/header_sub.js"></script>
+    <script src="<%= request.getContextPath()%>/js/header_sub.js"></script>
 </head>
 <body>
 
@@ -24,7 +24,7 @@
 <header class="header">
 
     <!-- LOGO -->
-    <h1><a href="../main.jsp" class="logo" >KOSPIECE</a></h1>
+    <h1><a href="<%= request.getContextPath()%>/main.jsp" class="logo" >KOSPIECE</a></h1>
 
     <!-- 상단메뉴바 -->
     <nav class="nav">
@@ -50,7 +50,7 @@
                 </ul>
             </li>
             <li class="list-item">
-                <a class="my" id="my" href="..\mypage\mypage.jsp">MYPAGE</a>
+                <a class="my" id="my" href="<%= request.getContextPath()%>\mypage\mypage.jsp">MYPAGE</a>
                 <ul class="sub-list-my">
                     <li class="sub-item-my"><a href="#" class="a-item">관심주식</a></li>
                     <li class="sub-item-my"><a href="#" class="a-item">내 게시글</a></li>
