@@ -5,24 +5,13 @@
 <head>
     <meta charset="UTF-8">
     <title>KOSPIECE</title>
-    <!-- 
-    * 4.28수정사항
-    1. css 파일 경로에 ContextPath추가(프로젝트 진행 시 server.xml의 수정을 고려하여 css파일 적용할 수 있게 하기 위함)
-    request.getContextPath() : 컨텍스트패스를 리턴
-    2. style 외부파일 적용 시 type태그 추가
-    출처 1 : https://aboooks.tistory.com/147
-    출처 2 : https://www.w3schools.com/tags/tag_link.asp
-    css파일의 경우 type="text/css"
-	js파일의 경우 type="text/javascript"
-	xml파일의 경우 type="application/xml"
-    -->
-    <link rel="stylesheet" href="<%= request.getContextPath()%>/css/normalize.css" type="text/css">
-    <link rel="stylesheet" href="<%= request.getContextPath()%>/css/kospiece.css" type="text/css">
-    <link rel="stylesheet" href="<%= request.getContextPath()%>/css/admin.css" type="text/css">
-    <link rel="stylesheet" href="<%= request.getContextPath()%>/css/user.css" type="text/css">
-    <link rel="stylesheet" href="<%= request.getContextPath()%>/css/board.css" type="text/css">
-    <link rel="stylesheet" href="<%= request.getContextPath()%>/css/service.css" type="text/css">
-    <link rel="stylesheet" href="<%= request.getContextPath()%>/css/mypage.css" type="text/css">
+    <link rel="stylesheet" href="<%= request.getContextPath()%>/css/normalize.css">
+    <link rel="stylesheet" href="<%= request.getContextPath()%>/css/kospiece.css">
+    <link rel="stylesheet" href="<%= request.getContextPath()%>/css/admin.css">
+    <link rel="stylesheet" href="<%= request.getContextPath()%>/css/user.css">
+    <link rel="stylesheet" href="<%= request.getContextPath()%>/css/board.css">
+    <link rel="stylesheet" href="<%= request.getContextPath()%>/css/service.css">
+    <link rel="stylesheet" href="<%= request.getContextPath()%>/css/mypage.css">
     <!--웹 폰트 사용-->
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&display=swap" rel="stylesheet">
     <!-- 자바스크립트 -->
