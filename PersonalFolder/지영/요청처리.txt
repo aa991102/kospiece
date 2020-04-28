@@ -1,0 +1,15 @@
+*회원가입 폼 요청
+요청주소 : http://localhost/board/join.jsp
+담당 컨트롤러: member.command.JoinHandler
+파라미터:
+뷰: /view/member/joinForm.jsp
+
+
+*회원가입 처리
+요청주소 : http://localhost/board/login.jsp
+담당 컨트롤러: auth.command.LoginHandler
+파라미터: 아이디/이름/암호
+뷰: /view/member/joinSuccess.jsp
+
+
+*

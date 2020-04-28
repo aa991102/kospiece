@@ -1,0 +1,184 @@
+html {font-size:10px}
+body{min-width:1060px;font-size:1.8em;
+     font-family: Roboto, sans-serif;}
+a {text-decoration:none;}
+* {box-sizing:border-box;} /* 모든 요소를 컨텐츠박스가 아닌 보더 박스로 지정 */
+
+
+.container {background:white;
+            position:relative;
+            margin:0 auto;
+            padding:0 20px; /* padding 위아래 0 좌우 20px*/
+            max-width:1400px;}
+
+.container2 {background:white;
+            position:relative;
+            margin:0 auto;
+            padding:0 20px; /* padding 위아래 0 좌우 20px*/
+            max-width:1300px;}
+/* float가 지정된 부모영역이 나타나지 않는 경우 - 가상요소를 준 후 clear 해준다. */
+.container2:after{content:"";
+                  display:block;
+                  clear:both;}
+
+/* header 영역 */
+.Header {background:white;
+         height:80px;
+         padding:15px 0 10px;
+         border-bottom-style:double;
+         border-color:#D1D9E1;
+         border-weight:0.5px;}
+
+.logo {position:absolute;
+       top:22px;
+       left:50px;
+       margin:0;
+       color:#1A3F69;}
+.nav {text-align:left;}
+.list {position:absolute; text_align:center;
+       top:15px;
+       left:200px;
+       margin:20px 50px;}
+.list2 {position:absolute;
+       top:15px;
+       right:100px;
+       margin:15px 50px;}
+.list-item {display:inline;
+            font-size:1.6rem;
+            font-weight:700;
+            padding:30px}
+.list-item_search{display:inline;
+               font-size:1.6rem;
+               font-weight:700;
+               padding:30px 160px 30px 0px;}
+.list-item_log{display:block;
+               font-size:1.6rem;
+               font-weight:700;
+               padding:30px;}
+.list-item_log> a {color:white;
+                    width:100px;
+                    position:absolute;
+                    top:0px;
+                    right:30px;
+                    color:#1A3F69;
+                    background:white;
+                    padding:6px 20px;
+                    margin:0 auto;
+                    text-align:center;
+                    font-size:1.6rem;}
+.list-item_log>a:hover{color:#768CA5;}
+.list-item>a{color:#1A3F69;}
+.list-item>a:hover{color:#768CA5;}
+.formS {position:relative;display:inline;}
+input[type='text']{
+                    border-radius:1px solid;
+                    #border-color:#CFE3DC;
+                    height:30px;
+                    }
+input[type="submit"]{position:absolute;
+                     top:0%;
+                     right:10px;
+                     border:0;
+                     background:transparent;
+                     cursor:pointer;
+                     font-weight:500;
+                     }
+
+
+/* #D1D9E1 */
+/* main 영역 */
+.Main {background:white;}
+
+.hero-section {background:white;
+               text-align: center;
+               padding:30px 20px;
+               margin:0 auto;
+               position:relative;
+               border-bottom:1px solid #C9F0DD;}
+.hero-section h1 {background:#44B78B;
+                  padding:70px 0;;
+                  margin:10px;
+                  }
+.hero-section h1>a {color:#C9F0DD;
+                    font-size:3rem;}
+.intro {color:#0C3C26;
+        font-size:3.5rem;
+        font-weight:300;
+        width:700px;
+        margin:50px auto;}
+.cta {width:300px;
+      display:block;
+      color:white;
+      border-radius: 5px;
+      background:#44B78B;
+      padding:20px 40px;
+      margin:0 auto;
+      font-size:2rem;
+      font-weight:500;}
+.cta:hover {background:#44C08B}
+/* 가상요소...연습...
+.hero-section h1:before {content:"?"}
+.hero-section h1:after {content:"#"}*/
+
+
+.main-content {background:white;
+               float:left;
+               width:65%;
+               margin-right:5%;}
+.mailing {float:left;
+          width:48%;
+          background:white;}
+.mailing:first-child{margin-right:4%;}
+.mailing-layout::after{content:"";
+                       display:block;
+                       clear:both;}
+.main-title{font-weight:500;
+            color:#0C3C26;}
+.mailing-title{font-weight:500;}
+.mailing>h3>a {font-weight:500;
+               color:#20AA76;}
+.mailing>p {font-size:1.5rem;
+            color:#0C3C26;}
+
+.mailing>p>a {text-decoration-color:#20AA76;}
+.main-content>p {font-family:"Times New Roman";
+                 color:#0C3C26;}
+.main-end {font-family:"Times New Roman";
+           color:#0C3C26;}
+.form1 {position:relative;}
+
+
+
+
+.side-content {/*background:pink;*/
+               float:right;
+               width:30%;}
+.container-side-cta {text-align:center;
+                     }
+.cta.side-cta{padding:20px 30px;
+              width:400px;
+              font-size:1.7rem;}
+.more{display:block;
+      color:#44B78B;
+      text-align:center;
+      padding:5px;
+      font-size:1.3rem;
+      font-weight:700;}
+.more:after{content:" >";}
+.infos-title{border-bottom:1px solid #C9F0DD;
+             margin:3.5rem 0 1rem 0;}
+.infos-title {font-size:2rem;
+              color:#0C3C26;
+              font-weight:500;}
+.news-title {font-size:1.7rem;
+             color:#20AA76;}
+
+
+
+/* footer 영역 */
+.content-info {/*background:#44B78B;*/clear:both}
+.links.container {background:#44B78B;}
+.links {}
+.footer {background:#0C4B33;}
+.footer.container {background:#0C4B33;}
+
