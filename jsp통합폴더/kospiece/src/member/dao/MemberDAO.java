@@ -28,7 +28,7 @@ public class MemberDAO {
 	    pstmt.setString(1, userVO.getId());      
 	    pstmt.setString(2, userVO.getPw());
 	    pstmt.setString(3, userVO.getName());
-	    pstmt.setString(4, userVO.getMail()); //5.3 email -> Mail 오타수정
+	    pstmt.setString(4, userVO.getEmail());
 	    pstmt.setString(5, userVO.getNickname());
 	    pstmt.setString(6, userVO.getPhone());
 	    result = pstmt.executeUpdate();
