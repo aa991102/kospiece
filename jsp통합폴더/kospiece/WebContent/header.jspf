@@ -24,6 +24,8 @@
     <link rel="stylesheet" href="<%= request.getContextPath()%>/css/service.css" type="text/css">
     <link rel="stylesheet" href="<%= request.getContextPath()%>/css/mypage.css" type="text/css">
     <link rel="stylesheet" href="<%= request.getContextPath()%>/css/include.css" type="text/css">
+    <link rel="stylesheet" href="<%= request.getContextPath()%>/css/rank.css" type="text/css">
+    <link rel="stylesheet" href="<%= request.getContextPath()%>/css/notice.css" type="text/css">
     <!--웹 폰트 사용-->
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&display=swap" rel="stylesheet">
     <!-- 자바스크립트 -->
