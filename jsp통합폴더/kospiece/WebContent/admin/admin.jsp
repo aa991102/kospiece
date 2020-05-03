@@ -1,23 +1,31 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<div class="admin-main">
-	<p>관리자 페이지</p>
+<!-- 1.방문자수 회원수 게시글수 구하는 식 추가하기 -->
+
+<div class="admin">
+	<a href="admin.jsp" class="admin-logo">관리자 페이지</a>
 	<div class="site-statistics">
-		통계자료
+		<div class="left-statistics">
+			today<br/>
+			방문자 수:0명<br/>
+			신규 회원 수:0명<br/>
+			신규 게시글 수:0개<br/>
+		</div>
+		<div class="right-statistics">
+			total<br/>
+			전체 회원 수:0명<br/>
+			전체 게시글 수:0개<br/>
+		</div>
 	</div>
 	<div class="managemant-list">
-		<a href="userManagement.jsp" class="user-management">
-		<img src="img/user.png"><br/>
+		<a href="userManage.jsp" class="user-management">
+		<img src="../img/user.png"><br/>
 		회원관리
 		</a>
-		<a href="postManagement.jsp" class="posts-management">
-		<img src="img/paper.png"><br/>
+		<a href="noticeManage.jsp" class="posts-management">
+		<img src="../img/paper.png"><br/>
 		게시글관리
-		</a>
-		<a href="serviceManagement.jsp" class="service-management">
-		<img src="img/star.png"><br/>
-		서비스관리
 		</a>
 	</div>
 </div>
