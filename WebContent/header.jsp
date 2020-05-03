@@ -19,10 +19,11 @@
     <link rel="stylesheet" href="<%= request.getContextPath()%>/css/normalize.css" type="text/css">
     <link rel="stylesheet" href="<%= request.getContextPath()%>/css/kospiece.css" type="text/css">
     <link rel="stylesheet" href="<%= request.getContextPath()%>/css/admin.css" type="text/css">
-    <link rel="stylesheet" href="<%= request.getContextPath()%>/css/user.css" type="text/css">
+    <link rel="stylesheet" href="<%= request.getContextPath()%>/css/member.css" type="text/css">
     <link rel="stylesheet" href="<%= request.getContextPath()%>/css/board.css" type="text/css">
     <link rel="stylesheet" href="<%= request.getContextPath()%>/css/service.css" type="text/css">
     <link rel="stylesheet" href="<%= request.getContextPath()%>/css/mypage.css" type="text/css">
+    <link rel="stylesheet" href="<%= request.getContextPath()%>/css/include.css" type="text/css">
     <!--웹 폰트 사용-->
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&display=swap" rel="stylesheet">
     <!-- 자바스크립트 -->
@@ -42,19 +43,19 @@
         <!-- 맵, 실시간순위, 자유게시판, 공지사항, 가상투자, 마이페이지 -->
         <ul class="list">
             <li class="list-item">
-                <a href="../main.jsp">맵</a>
+                <a href="<%= request.getContextPath()%>/main.jsp">맵</a>
             </li>
             <li class="list-item">
-                <a href="../rank/rank.jsp">실시간순위</a>
+                <a href="<%= request.getContextPath()%>/rank/rank.jsp">실시간순위</a>
             </li>
             <li class="list-item">
-                <a href="../board/board.jsp">자유게시판</a>
+                <a href="<%= request.getContextPath()%>/board/board.jsp">자유게시판</a>
             </li>
             <li class="list-item">
-                <a href="../column/column.jsp">공지사항</a>
+                <a href="<%= request.getContextPath()%>/notice/notice.jsp">공지사항</a>
             </li>
             <li class="list-item">
-                <a class="virtual" id="virtual" href="../virtual/invest.jsp">가상투자</a>
+                <a class="virtual" id="virtual" href="<%= request.getContextPath()%>/virtual/invest.jsp">가상투자</a>
                 <ul class="sub-list-virtual">
                     <li class="sub-item-virtual"><a href="#" class="a-item">보유주식</a></li>
                     <li class="sub-item-virtual"><a href="#" class="a-item">주식주문</a></li>
@@ -63,9 +64,9 @@
             <li class="list-item">
                 <a class="my" id="my" href="<%= request.getContextPath()%>\mypage\mypage.jsp">MYPAGE</a>
                 <ul class="sub-list-my">
-                    <li class="sub-item-my"><a href="#" class="a-item">관심주식</a></li>
-                    <li class="sub-item-my"><a href="#" class="a-item">내 게시글</a></li>
-                    <li class="sub-item-my"><a href="#" class="a-item">내 정보 관리</a></li>
+                    <li class="sub-item-my"><a href="<%= request.getContextPath()%>\mypage\myFavorite" class="a-item">관심주식</a></li>
+                    <li class="sub-item-my"><a href="<%= request.getContextPath()%>\mypage\myPost" class="a-item">내 게시글</a></li>
+                    <li class="sub-item-my"><a href="<%= request.getContextPath()%>\mypage\myInfo" class="a-item">내 정보 관리</a></li>
                 </ul>
             </li>
         </ul>
@@ -80,7 +81,7 @@
                 </div>
             </li>
             <li class="list-item_log">
-                <a href="#" target="_blank" rel="noopener">🚪&nbsp;&nbsp;login</a>
+                <a href="<%= request.getContextPath()%>/member/login.jsp" rel="noopener">🚪&nbsp;&nbsp;login</a>
             </li>
         </ul>
 
