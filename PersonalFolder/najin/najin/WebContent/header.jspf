@@ -1,0 +1,119 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+<!-- "추가해야 될 사항"
+1.마이페이지 jsp추가하고 경로 변경 (지영님)
+2.가상투자-로그인상태면 해당회원의 주식리스트, 비로그인상태면 로그인페이지 이동할건지 alert 띄우기 +main.js-loginCheck()에 추가
+3.마이페이지- 로그인상태면 마이페이지 홈, 비로그인상태면 로그인페이지 이동할건지 alert 띄우기 +main.js-loginCheck()에 추가
+4.로그아웃 누르면 로그아웃처리하는 로직으로 링크 추가하기
+5.포인트랭킹 js 추가하기
+ -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>KOSPIECE</title>
+    <!-- 
+    * 4.28수정사항
+    1. css 파일 경로에 ContextPath추가(프로젝트 진행 시 server.xml의 수정을 고려하여 css파일 적용할 수 있게 하기 위함)
+    request.getContextPath() : 컨텍스트패스를 리턴
+    2. style 외부파일 적용 시 type태그 추가
+    출처 1 : https://aboooks.tistory.com/147
+    출처 2 : https://www.w3schools.com/tags/tag_link.asp
+    css파일의 경우 type="text/css"
+	js파일의 경우 type="text/javascript"
+	xml파일의 경우 type="application/xml"
+    -->
+    <link rel="stylesheet" href="<%= request.getContextPath()%>/css/normalize.css" type="text/css">
+    <link rel="stylesheet" href="<%= request.getContextPath()%>/css/kospiece.css" type="text/css">
+    <link rel="stylesheet" href="<%= request.getContextPath()%>/css/admin.css" type="text/css">
+    <link rel="stylesheet" href="<%= request.getContextPath()%>/css/member.css" type="text/css">
+    <link rel="stylesheet" href="<%= request.getContextPath()%>/css/board.css" type="text/css">
+    <link rel="stylesheet" href="<%= request.getContextPath()%>/css/service.css" type="text/css">
+    <link rel="stylesheet" href="<%= request.getContextPath()%>/css/mypage.css" type="text/css">
+    <link rel="stylesheet" href="<%= request.getContextPath()%>/css/include.css" type="text/css">
+    <link rel="stylesheet" href="<%= request.getContextPath()%>/css/rank.css" type="text/css">
+    <link rel="stylesheet" href="<%= request.getContextPath()%>/css/notice.css" type="text/css">
+    <!--웹 폰트 사용-->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&display=swap" rel="stylesheet">
+    <!-- 자바스크립트 -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="<%= request.getContextPath()%>/js/header_sub.js"></script>
+    <script src="<%= request.getContextPath()%>/js/main.js"></script>
+    <script src="<%= request.getContextPath()%>/js/admin.js"></script>
+</head>
+<body>
+
+<!-- 헤더 -->
+<header class="header">
+
+    <!-- LOGO -->
+    <h1><a href="<%= request.getContextPath()%>/main.jsp" class="logo" >KOSPIECE</a></h1>
+
+    <!-- 상단메뉴바 -->
+    <nav class="nav">
+        <!-- 맵, 실시간순위, 자유게시판, 공지사항, 가상투자, 마이페이지 -->
+        <ul class="list">
+            <li class="list-item">
+                <a href="<%= request.getContextPath()%>/main.jsp">맵</a>
+            </li>
+            <li class="list-item">
+                <a href="<%= request.getContextPath()%>/rank/rank.jsp">실시간순위</a>
+            </li>
+            <li class="list-item">
+                <a href="<%= request.getContextPath()%>/board/board.jsp">자유게시판</a>
+            </li>
+            <li class="list-item">
+                <a href="<%= request.getContextPath()%>/notice/notice.jsp">공지사항</a>
+            </li>
+            <li class="list-item">
+                <a class="virtual" id="virtual" href='javascript:void(0);' onclick="LoginCheck('invest',${!empty AUTHUSER})">가상투자</a>
+                <ul class="sub-list-virtual">
+                    <li class="sub-item-virtual"><a href='javascript:void(0);' onclick="LoginCheck('invest',${!empty AUTHUSER})" class="a-item">보유주식</a></li>
+                    <li class="sub-item-virtual"><a href='javascript:void(0);' onclick="LoginCheck('invest',${!empty AUTHUSER})" class="a-item">주식주문</a></li>
+                </ul>
+            </li>
+            <li class="list-item">
+                <a class="my" id="my" href="<%= request.getContextPath()%>\mypage\mypage.jsp">MYPAGE</a>
+                <ul class="sub-list-my">
+                    <li class="sub-item-my"><a href="<%= request.getContextPath()%>\mypage\mypage.jsp" class="a-item">관심주식</a></li>
+                    <li class="sub-item-my"><a href="<%= request.getContextPath()%>\mypage\mypage.jsp" class="a-item">내 게시글</a></li>
+                    <li class="sub-item-my"><a href="<%= request.getContextPath()%>\mypage\mypage.jsp" class="a-item">내 정보 관리</a></li>
+                </ul>
+            </li>
+            <!-- 관리자로 로그인했을 경우 nav-admin 보여주기 -->
+            <c:if test="${AUTHUSER.nickname=='관리자1'||AUTHUSER.nickname=='관리자2'||AUTHUSER.nickname=='관리자3'||AUTHUSER.nickname=='관리자4'
+            	||AUTHUSER.nickname=='관리자5'||AUTHUSER.nickname=='관리자6'}">
+	            <li class="list-item">
+	            	<a class="nav-admin" href="<%= request.getContextPath()%>/admin.do">ADMIN</a>
+	            </li>
+            </c:if>
+        </ul>
+
+        <!-- 포인트랭킹 -->
+        <ul class="list2">
+            <li class="list-item2">
+                <div class="rank">
+                    <a class="rankNum">1</a>
+                    &nbsp;&nbsp;
+                    <a class="rankNick">인생은 한방</a>
+                </div>
+            </li>
+            <li class="list-item_log">
+            	<!-- 로그인상태면 로그아웃표시 로그아웃상태면 로그인표시하기 -->
+            	<c:if test="${empty AUTHUSER}">
+                	<a href="<%= request.getContextPath()%>/member/login.jsp" rel="noopener">🚪&nbsp;&nbsp;login</a>
+                </c:if>
+                <c:if test="${!empty AUTHUSER}">
+                	<a href="<%= request.getContextPath()%>/member/login.jsp" rel="noopener">🚪&nbsp;logout</a>
+                </c:if>
+            </li>
+        </ul>
+
+    </nav>
+
+
+</header>
+<div class="clear"></div>
+<div class="main">
