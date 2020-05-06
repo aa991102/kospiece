@@ -12,9 +12,9 @@
 	<form>
 		<div class="moveFavorite">
 			<div class="inlineDiv">
-				<div class="btn-up">▲</div>
-				<div class="btn-down">▼</div>
-				<div class="btn-del">삭제</div>
+				<input type="button" class="btn-up" value="▲"/>
+				<input type="button" class="btn-down" value="▼"/>
+				<input type="button" class="btn-del" value="삭제"/>
 			</div>
 		</div>
 		
@@ -39,7 +39,7 @@
 				<th>가상투자</th>
 			</tr>
 			<tr>
-				<td align="center";><input type="checkbox"></td>
+				<td align="center"><input type="checkbox"></td>
 				<td></td>
 				<td></td>
 				<td></td>

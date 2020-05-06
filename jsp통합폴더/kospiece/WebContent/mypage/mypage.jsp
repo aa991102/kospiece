@@ -11,7 +11,7 @@
 <div class="title">마이페이지</div>
 
 <div class="my">
-	<div class="TH" style=" cursor: pointer;" onclick="location.href='myFavorite.jsp';" >
+	<div class="TH" style=" cursor: pointer;" onclick="location.href='myInterest.jsp';" >
 		<a>관심주식 더보기</a>
 	</div>
 	<table class="myT">
