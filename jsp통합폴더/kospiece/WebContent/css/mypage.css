@@ -61,7 +61,11 @@ td {border:1px solid #1A3F69;
 						  padding:0 40px;
 						  text-align:left;
 						  }
-
+.toMyPointBtn {
+							 border:1px solid #1A3F69;
+							 color:#1A3F69;
+							 padding:5px;
+						 	 }
 .infoBtn-wrapper {
 				  text-align:center;
 				  }
@@ -77,33 +81,15 @@ td {border:1px solid #1A3F69;
 				  font-size:1.5rem;
 				  font-weight:bold;
 				  }
-.myPointBtn {
-						 
-						 }
 		  
 /* 관심주식 페이지*/
 .moveFavorite {
 			   margin:10px 0;
 			   float:left;
 			   }
-.btn-up {display:inline-block;
-	   	 border:1px solid black;
-	   	 width:30px;
-	   	 height:25px;
-	   	 text-align:center;
-	   	 }
-.btn-down {display:inline-block;
-		   border:1px solid black;
-		   width:30px;
-		   height:25px;
-		   text-align:center;
-	   	   }
-.btn-del{display:inline-block;
-		 border:1px solid black;
-		 width:60px;
-		 height:25px;
-	   	 text-align:center;
-	   	 }
+.btn-up {}
+.btn-down {}
+.btn-del{}
 
 .insertFavorite {
 				 margin:10px 0;
