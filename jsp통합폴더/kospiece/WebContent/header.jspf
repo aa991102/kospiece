@@ -68,7 +68,7 @@
                 <ul class="sub-list-my">
                     <li class="sub-item-my"><a href="<%= request.getContextPath()%>\mypage\myFavorite" class="a-item">관심주식</a></li>
                     <li class="sub-item-my"><a href="<%= request.getContextPath()%>\mypage\myPost" class="a-item">내 게시글</a></li>
-                    <li class="sub-item-my"><a href="<%= request.getContextPath()%>\mypage\myInfo" class="a-item">내 정보 관리</a></li>
+                    <li class="sub-item-my"><a href="<%= request.getContextPath()%>\mypage\myInfo" class="a-item">내 정보</a></li>
                 </ul>
             </li>
         </ul>

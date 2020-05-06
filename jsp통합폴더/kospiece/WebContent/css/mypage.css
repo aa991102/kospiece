@@ -1,16 +1,16 @@
 th {border:1px solid #1A3F69;
-	border-collapse: collapse;
-	background-color:#dae1e7;
-	padding:3px;
-	font-size:1.5rem;
-	}
+		border-collapse: collapse;
+		background-color:#dae1e7;
+		padding:3px;
+		font-size:1.5rem;
+		}
 td {border:1px solid #1A3F69;
-	border-collapse: collapse;
-	padding:1px;
-	}
+		border-collapse: collapse;
+		padding:1px;
+		}
 
 
-/* 마이페이지 페이지*/
+/* 마이페이지 페이지 */
 .TH {border:1px solid #1A3F69;
      border-collapse: collapse;
      background-color:#1A3F69;
@@ -18,65 +18,68 @@ td {border:1px solid #1A3F69;
      padding:7px;
      }
 .TH > a {color:white;
-	     font-weight:bold;
-	     font-size:1.7rem;
-	     }
+		     font-weight:bold;
+		     font-size:1.7rem;
+		     }
      
 .my {margin:0 auto;
      width:800px;
      }
 .myT {border:1px solid #1A3F69;
-	  border-collapse: collapse;
-	  width:100%;
-	  margin:0 0 20px 0;
-	  text-align:center;
-	  font-size:1.5rem;
-	  }  
+		  border-collapse: collapse;
+		  width:100%;
+		  margin:0 0 20px 0;
+		  text-align:center;
+		  font-size:1.5rem;
+		  }  
 					  
 .myInfo {
-		 border:1px solid #173F5F;
-		 width:800px;
-		 margin:0 auto 20px;
-		 align:center;
-		 text-align:center;
-		 padding:30px;
-		 background-color:#1A3F69;
-		 }
+				 border:1px solid #173F5F;
+				 width:800px;
+				 margin:0 auto 20px;
+				 align:center;
+				 text-align:center;
+				 padding:30px;
+				 background-color:#1A3F69;
+				 }
 .myInfo > a {font-weight:bold;
-			 color:white;}
+			 			 color:white;}
 
 
  /* 내 정보 페이지 */
 .myDiv {margin:0 auto;
-	    width:600px;
+	    	width:600px;
 	    }
 .infoH {
- 		width:20%;
- 		padding:20px;
- 		background-color:#dae1e7;
- 		color:#1A3F69;
- 		}
+		 		width:25%;
+		 		padding:20px;
+		 		background-color:#dae1e7;
+		 		color:#1A3F69;
+		 		}
  		
 .infoContent {
-			  padding:0 40px;
-			  text-align:left;
-			  }
+						  padding:0 40px;
+						  text-align:left;
+						  }
 
 .infoBtn-wrapper {
 				  text-align:center;
 				  }
 .infoBtn {display:inline-block;
-		  border:1px solid #173F5F;
-		  background-color:#1A3F69;
-		  color:white;
-		  width:155px;
-		  height:60px;
-		  margin:20px;
-		  padding:20px;
-		  text-align:center;
-		  font-size:1.5rem;
-		  font-weight:bold;
-		  }
+				  border:1px solid #173F5F;
+				  background-color:#1A3F69;
+				  color:white;
+				  width:157px;
+				  height:60px;
+				  margin:20px;
+				  padding:20px;
+				  text-align:center;
+				  font-size:1.5rem;
+				  font-weight:bold;
+				  }
+.myPointBtn {
+						 
+						 }
 		  
 /* 관심주식 페이지*/
 .moveFavorite {

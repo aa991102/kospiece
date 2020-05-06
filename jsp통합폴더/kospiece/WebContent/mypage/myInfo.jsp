@@ -8,27 +8,36 @@
 </head>
 <body>
 <div class="title">내 정보</div>
+
 <div class="myDiv">
 	<table class="myT">
 		<tr>
 			<th class="infoH">아이디</th>
-			<td class="infoContent">홍길동</td>
+			<td class="infoContent">hongid</td>
 		</tr>
 		<tr>
 			<th class="infoH">이름</th>
-			<td></td>
+			<td class="infoContent">홍길동</td>
 		</tr>
 		<tr>
 			<th class="infoH">닉네임</th>
-			<td></td>
+			<td class="infoContent">대박이야</td>
+		</tr>
+		<tr>
+			<th class="infoH">보유 포인트</th>
+			<td class="infoContent">100000
+				<span  style="float:right">
+					<input type="button" value="자세히" class="myPointBtn"/>
+				</span>
+			</td>
 		</tr>
 		<tr>
 			<th class="infoH">이메일</th>
-			<td></td>
+			<td class="infoContent"></td>
 		</tr>
 		<tr>
 			<th class="infoH">전화번호</th>
-			<td></td>
+			<td class="infoContent"></td>
 		</tr>
 	</table>
 	<div class="infoBtn-wrapper">
