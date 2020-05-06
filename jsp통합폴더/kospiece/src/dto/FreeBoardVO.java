@@ -5,6 +5,9 @@ import java.sql.Date;
 public class FreeBoardVO {
 	private int fno; //글번호(fno)
 	private String id; //회원ID(fmemid)
+	
+	//5.6 수정사항 DB FreeBoard에 닉네임 추가
+	private String nick; //회원닉네임()
 	private String title; //제목(ftitle)
 	private String content; //내용(fcontent)
 	private Date uploaddate; //작성일(fdate)

@@ -43,7 +43,9 @@
     
     <servlet>
     	<servlet-name>ControllerUsingURI</servlet-name>
-    	<servlet-class>mvc.command.ControllerUsingURI</servlet-class>
+    	<!-- 경로변경 5.6 -->
+    	<!-- <servlet-class>mvc.command.ControllerUsingURI</servlet-class> 에서-->
+    	<servlet-class>controller.ControllerUsingURI</servlet-class>
     	<init-param>
     		<param-name>configFile</param-name>
     		<param-value>/WEB-INF/commandHandlerURI.properties</param-value>
@@ -62,5 +64,18 @@
  		<include-coda>/footer.jspf</include-coda>
  	</jsp-property-group>
  </jsp-config>
+<!-- 
+5.6 수정사항
+후 로그인체크기능만들기, 
+loginhandler, joinhandler가 선행으로 완성되어야 가능
+<filter>
+	<filter-name>LoginCheckFilter</filter-name>
+	<filter-class>filter.LoginCheckFilter</filter-class>
+</filter>
+<filter-mapping>
+	<filter-name>LoginCheckFilter</filter-name>
+	<url-pattern>/board/write.do</url-pattern>
+</filter-mapping>
 
-</web-app>
+ -->
+ </web-app>

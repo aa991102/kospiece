@@ -12,6 +12,7 @@
  	자유게시판 
  	</div>
  	<div class="" id="1-2">
+ 		<table border=1>
  			<tr>
  				<th>글번호</th>
  				<th>제목</th>
@@ -30,7 +31,9 @@
  	</div>
  	
  	<div class="" id="1-3">
- 		<< < 1 2 3 4 5 6 7 8 9 > >> <input type="button" value="글쓰기"/>
+ 		<< < 1 2 3 4 5 6 7 8 9 > >> 
+ 		<a href="<%= request.getContextPath()%>/board/boardWrite.jsp">
+ 		<input type="button" value="글쓰기"/></a>
  	</div>
  </div>
 </body>
