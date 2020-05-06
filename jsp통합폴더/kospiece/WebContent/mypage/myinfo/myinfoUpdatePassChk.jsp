@@ -23,6 +23,10 @@
 			</td>
 		</tr>
 	</table>
+	<div class="infoBtn-wrapper">
+		<div class="infoBtn" style="cursor: pointer;" onclick="location.href='myInfo/myinfoUpdateForm.jsp';">수정</div>
+		<div class="infoBtn" style="cursor: pointer;" onclick="location.href='#';">취소</div>
+	</div>
 </div>
 </body>
 </html>

@@ -41,7 +41,7 @@
 		</tr>
 	</table>
 	<div class="infoBtn-wrapper">
-		<div class="infoBtn" style="cursor: pointer;" onclick="location.href='myInfo/myInfoUpdateForm.jsp';">정보 수정</div>
+		<div class="infoBtn" style="cursor: pointer;" onclick="location.href='myInfo/myinfoUpdatePassChk.jsp';">정보 수정</div>
 		<div class="infoBtn" style="cursor: pointer;" onclick="location.href='myInfo/passwordUpdateForm.jsp';">비밀번호 변경</div>
 		<div class="infoBtn" style="cursor: pointer;" onclick="location.href='myInfo/withdrawalForm.jsp';">탈퇴하기</div>
 	</div>
