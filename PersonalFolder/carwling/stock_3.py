@@ -4,17 +4,17 @@ from bs4 import BeautifulSoup
 from selenium import webdriver
 import pymysql as my
 #업종,WICS업종,주식코드번호 수집하기위한 파이썬
-conn=my.connect(host='192.168.56.66',user='taekyoung',password='1234',db='project',charset='utf8')
+conn=my.connect(host='192.168.56.66',user='taekyoung',password='1234',db='kospiece_ex2',charset='utf8')
 cur=conn.cursor()
 #
 #삽입쿼리
-# sql='''insert into kospi200(company,field,field_WICS)
-#         values(%s,%s,%s)'''
+sql='''insert into Stock(sno,sname,sfield,sdetail)
+        values(%s,%s,%s,%s)'''
 
 #수정쿼리
-sql='''update kospi200
-        set company=%s, field=%s, field_WICS=%s, jno=%s
-        where company=%s'''
+# sql='''update Stock
+#         set company=%s, field=%s, field_WICS=%s, jno=%s
+#         where company=%s'''
 driver = webdriver.Chrome('chromedriver.exe')
 #
 url = 'https://finance.daum.net/domestic/kospi200'
@@ -54,26 +54,26 @@ for k in range(0,3,1):
 
             #기업이름
             com_link = driver.find_elements_by_css_selector('#boxDashboard > span > div > span:nth-child(1) > span:nth-child(1) >span:nth-child(1)')
-            company=com_link[0].text[1:-6]
-            jno=com_link[0].text[-6:]
+            sname=com_link[0].text[1:-6]
+            sno=com_link[0].text[-6:]
 
 
             #업종,WICS
             kind = driver.find_element_by_css_selector(
                 '#boxDashboard > div > div > span.txtB > dl > dd:nth-child(6) > p')
-            field = kind.text
+            sfield = kind.text
             kind_WICS = driver.find_element_by_css_selector(
                 '#boxDashboard > div > div > span.txtB > dl > dd:nth-child(11) > p > cite')
-            field_WICS = kind_WICS.text
+            sdetail = kind_WICS.text
 
             number+=1
-            print(number, company, field,field_WICS,jno,comf)
+            print(number, sno, sname, sfield, sdetail,comf)
 
             # 삽입실행
-            # cur.execute(sql, (company,field,field_WICS))
+            cur.execute(sql, (sno,sname,sfield,sdetail))
 
             # 수정실행
-            cur.execute(sql, (company,field,field_WICS,jno,company))
+            # cur.execute(sql, (company,field,field_WICS,jno,company))
 
             driver.back()
             time.sleep(1)

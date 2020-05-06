@@ -7,7 +7,7 @@ import pymysql as my
 # 업종,세부업종,코드넘버 (상수들) 제외
 
 
-conn=my.connect(host='192.168.56.66',user='taekyoung',password='1234',db='project',charset='utf8')
+conn=my.connect(host='192.168.56.66',user='taekyoung',password='1234',db='kospiece_ex2',charset='utf8')
 cur=conn.cursor()
 
 # 삽입쿼리
@@ -15,9 +15,9 @@ cur=conn.cursor()
 #         values(%s,%s,%s,%s,%s,%s,%s,%s)'''
 
 # 수정쿼리
-sql='''update kospi200
-        set company=%s, price=%s, dayRate=%s, changeRate=%s, amount=%s, dealPrice=%s, total=%s, price52=%s
-        where company=%s'''
+sql='''update Stock
+        set sname=%s, sprice=%s, sdayrate=%s, schangerate=%s, svolume=%s, sdealprice=%s, stotal=%s, shigh52=%s
+        where sname=%s'''
 
 driver = webdriver.Chrome('chromedriver.exe')
 
@@ -32,30 +32,35 @@ for k in range(0,3,1):
         div = soup.find("div", {"id": "boxEntryChange"})
         tr = div.find_all('tr')
         for i in range(1, len(tr)):
-            company = tr[i].find('th').text
+            sname = tr[i].find('th').text
             com = tr[i].find_all('td')
-            price = com[0].text
-            dayRate = com[1].text
-            changeRate = com[2].text
-            amount = com[3].text
-            dealPrice = com[4].text
-            total = com[5].text
-            price52 = com[6].text
+            sprice = com[0].text
+            sdayrate = com[1].text
+            schangerate = com[2].text
+            svolume = com[3].text
+            sdealprice = com[4].text
+            stotal = com[5].text
+            shigh52 = com[6].text
 
-            total=total.replace(",","")
-            total=int(total)
-            changeRate = changeRate.replace("%", "")
-            changeRate=float(changeRate)
+            stotal=stotal.replace(",","")
+            stotal=int(stotal)
+            sdayrate=sdayrate.replace("▲", "")
+            sdayrate=sdayrate.replace("▼", "-")
+            sdayrate=sdayrate.replace(",","")
+            sprice = sprice.replace(",", "")
+
+            schangerate = schangerate.replace("%", "")
+            schangerate=float(schangerate)
 
             # 프롬프트 확인
-            print(number,company, price, dayRate, changeRate, amount, dealPrice, total, price52)
+            print(number,sname, sprice, sdayrate, schangerate, svolume, sdealprice, stotal, shigh52)
             number=number+1
 
             # 삽입실행문
             # cur.execute(sql, (company, price, dayRate, changeRate, amount, dealPrice, total, price52))
 
             #수정실행문
-            cur.execute(sql, (company, price, dayRate, changeRate, amount, dealPrice, total, price52, company))
+            cur.execute(sql, (sname, sprice, sdayrate, schangerate, svolume, sdealprice, stotal, shigh52, sname))
 
             if k == 2:
                 break

@@ -1,0 +1,354 @@
+-- 실시간주식정보
+CREATE TABLE `Stock` (
+	`sno`         VARCHAR(20) NOT NULL DEFAULT 111, -- 회사코드번호
+	`sname`       VARCHAR(50) NULL,     -- 회사명
+	`sfield`      VARCHAR(50) NULL,     -- 업종
+	`sdetail`     VARCHAR(50) NULL,     -- 세부업종
+	`sprice`      INT(255)    NULL,     -- 현재가
+	`sdayrate`    VARCHAR(50) NULL,     -- 전일비
+	`schangerate` FLOAT       NULL,     -- 등락률
+	`svolume`     VARCHAR(50) NULL,     -- 거래량
+	`sdealprice`  VARCHAR(50) NULL,     -- 거래대금(백만)
+	`stotal`      INT(255)    NULL,     -- 시가총액(억)
+	`shigh52`     VARCHAR(50) NULL      -- 52주고가
+);
+
+-- 실시간주식정보
+ALTER TABLE `Stock`
+	ADD CONSTRAINT `Stock_sno_p` -- 실시간주식정보 기본키
+		PRIMARY KEY (
+			`sno` -- 회사코드번호
+		);
+
+-- 회원
+CREATE TABLE `Member` (
+	`mno`      INT(11)     NOT NULL, -- 회원번호
+	`mid`      VARCHAR(30) NOT NULL, -- 회원ID
+	`mnick`    VARCHAR(50) NOT NULL, -- 닉네임
+	`mpw`      VARCHAR(30) NOT NULL, -- 비밀번호
+	`mname`    VARCHAR(30) NOT NULL, -- 이름
+	`mmail`    VARCHAR(50) NOT NULL, -- 이메일
+	`mphone`   VARCHAR(50) NOT NULL, -- 전화번호
+	`mdate`    DATE        NOT NULL DEFAULT CURDATE(), -- 가입일
+	`mdeposit` INT(255)    NULL     DEFAULT 10000000, -- 예수금포인트
+	`masset`   INT(255)    NULL     DEFAULT 10000000 -- 자산포인트(예수금+보유주식수량*보유주식현재가)
+);
+
+-- 회원
+ALTER TABLE `Member`
+	ADD CONSTRAINT `Member_mno_p` -- 회원 기본키
+		PRIMARY KEY (
+			`mno` -- 회원번호
+		);
+
+-- 회원_아이디유니크
+CREATE UNIQUE INDEX `Member_mid_u`
+	ON `Member` ( -- 회원
+		`mid` ASC -- 회원ID
+	);
+
+-- 회원_이메일유니크
+CREATE UNIQUE INDEX `Member_mmail_u`
+	ON `Member` ( -- 회원
+		`mmail` ASC -- 이메일
+	);
+
+-- 회원_닉네임유니크
+CREATE UNIQUE INDEX `Member_mnick_u`
+	ON `Member` ( -- 회원
+		`mnick` ASC -- 닉네임
+	);
+
+-- 회원_전화번호유니크
+CREATE UNIQUE INDEX `Member_mphone_u`
+	ON `Member` ( -- 회원
+		`mphone` ASC -- 전화번호
+	);
+
+ALTER TABLE `Member`
+	MODIFY COLUMN `mno` INT(11) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `Member`
+	AUTO_INCREMENT = 1;
+
+-- 관심주식
+CREATE TABLE `Interest` (
+	`ino` INT(11)     NOT NULL, -- 관심주식번호
+	`mno` INT(11)     NULL,     -- 회원번호
+	`sno` VARCHAR(20) NULL     DEFAULT 111 -- 회사코드번호
+);
+
+-- 관심주식
+ALTER TABLE `Interest`
+	ADD CONSTRAINT `Interest_ino_p` -- 관심주식
+		PRIMARY KEY (
+			`ino` -- 관심주식번호
+		);
+
+ALTER TABLE `Interest`
+	MODIFY COLUMN `ino` INT(11) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `Interest`
+	AUTO_INCREMENT = 1;
+
+-- 자유게시판
+CREATE TABLE `Freeboard` (
+	`fno`      INT(255)     NOT NULL, -- 글번호
+	`fmemid`   VARCHAR(50)  NULL,     -- 회원ID
+	`ftitle`   VARCHAR(50)  NULL,     -- 제목
+	`fcontent` VARCHAR(255) NULL,     -- 내용
+	`fdate`    DATE         NULL,     -- 작성일
+	`fhit`     INT(255)     NULL      -- 조회수
+);
+
+-- 자유게시판
+ALTER TABLE `Freeboard`
+	ADD CONSTRAINT `Freeboard_fno_p` -- 자유게시판 기본키
+		PRIMARY KEY (
+			`fno` -- 글번호
+		);
+
+ALTER TABLE `Freeboard`
+	MODIFY COLUMN `fno` INT(255) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `Freeboard`
+	AUTO_INCREMENT = 1;
+
+-- 공지사항
+CREATE TABLE `Notice` (
+	`nno`      INT(11)      NOT NULL, -- 글번호
+	`ntitle`   VARCHAR(50)  NULL,     -- 제목
+	`ncontent` VARCHAR(255) NULL,     -- 내용
+	`ndate`    DATE         NULL,     -- 작성일
+	`nhit`     INT(255)     NULL      -- 조회수
+);
+
+-- 공지사항
+ALTER TABLE `Notice`
+	ADD CONSTRAINT `Notice_nno_p` -- 공지사항 기본키
+		PRIMARY KEY (
+			`nno` -- 글번호
+		);
+
+ALTER TABLE `Notice`
+	MODIFY COLUMN `nno` INT(11) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `Notice`
+	AUTO_INCREMENT = 1;
+
+-- 자유게시판댓글
+CREATE TABLE `FreeComment` (
+	`fcno`    INT(11)     NOT NULL, -- 자유게시판댓글번호
+	`fcmemid` VARCHAR(50) NULL,     -- 회원ID
+	`fno`     INT(255)    NULL,     -- 글번호
+	`fcdate`  DATE        NULL      -- 작성일
+);
+
+-- 자유게시판댓글
+ALTER TABLE `FreeComment`
+	ADD CONSTRAINT `FreeComment_fcno_p` -- 자유게시판댓글 기본키
+		PRIMARY KEY (
+			`fcno` -- 자유게시판댓글번호
+		);
+
+ALTER TABLE `FreeComment`
+	MODIFY COLUMN `fcno` INT(11) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `FreeComment`
+	AUTO_INCREMENT = 1;
+
+-- 공지사항댓글
+CREATE TABLE `NoticeComment` (
+	`ncno`    INT(11)     NOT NULL, -- 공지사항댓글번호
+	`ncmemid` VARCHAR(50) NULL,     -- 회원ID
+	`nno`     INT(11)     NULL,     -- 글번호
+	`ncdate`  DATE        NULL      -- 작성일
+);
+
+-- 공지사항댓글
+ALTER TABLE `NoticeComment`
+	ADD CONSTRAINT `NoticeComment_ncno_p` -- 공지사항댓글 기본키
+		PRIMARY KEY (
+			`ncno` -- 공지사항댓글번호
+		);
+
+ALTER TABLE `NoticeComment`
+	MODIFY COLUMN `ncno` INT(11) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `NoticeComment`
+	AUTO_INCREMENT = 1;
+
+-- 모의투자
+CREATE TABLE `Simulation` (
+	`sino`       INT(11)     NOT NULL, -- 모의투자번호
+	`mno`        INT(11)     NULL,     -- 회원번호
+	`sno`        VARCHAR(20) NULL     DEFAULT 111, -- 회사코드번호
+	`siquantity` INT(255)    NULL,     -- 수량
+	`siprice`    INT(255)    NULL,     -- 가격
+	`sidate`     DATE        NULL      -- 거래날짜
+);
+
+-- 모의투자
+ALTER TABLE `Simulation`
+	ADD CONSTRAINT `Simulation_sino_p` -- 모의투자 기본키
+		PRIMARY KEY (
+			`sino` -- 모의투자번호
+		);
+
+ALTER TABLE `Simulation`
+	MODIFY COLUMN `sino` INT(11) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `Simulation`
+	AUTO_INCREMENT = 1;
+
+-- 일자별주식정보(차트)
+CREATE TABLE `DateStock` (
+	`dno`    INT(11)     NOT NULL, -- 일자별주식정보id
+	`sno`    VARCHAR(20) NULL     DEFAULT 111, -- 회사코드번호
+	`ddate`  DATE        NULL,     -- 일자
+	`dstart` INT(255)    NULL,     -- 시가
+	`dend`   INT(255)    NULL      -- 종가
+);
+
+-- 일자별주식정보(차트)
+ALTER TABLE `DateStock`
+	ADD CONSTRAINT `DateStock_dno_p` -- 일자별주식정보(차트) 기본키
+		PRIMARY KEY (
+			`dno` -- 일자별주식정보id
+		);
+
+ALTER TABLE `DateStock`
+	MODIFY COLUMN `dno` INT(11) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `DateStock`
+	AUTO_INCREMENT = 1;
+
+-- 자유게시판댓글좋아요
+CREATE TABLE `LikeBoard` (
+	`lno`    INT(11)     NOT NULL, -- 좋아요번호
+	`fcno`   INT(11)     NULL,     -- 자유게시판댓글번호
+	`lmemid` VARCHAR(50) NULL      -- 회원ID
+);
+
+-- 자유게시판댓글좋아요
+ALTER TABLE `LikeBoard`
+	ADD CONSTRAINT `LikeBoard_lno_p` -- 자유게시판댓글좋아요 기본키
+		PRIMARY KEY (
+			`lno` -- 좋아요번호
+		);
+
+ALTER TABLE `LikeBoard`
+	MODIFY COLUMN `lno` INT(11) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `LikeBoard`
+	AUTO_INCREMENT = 1;
+
+-- 자유게시판댓글싫어요
+CREATE TABLE `HateBoard` (
+	`hno`    INT(11)     NOT NULL, -- 싫어요번호
+	`fcno`   INT(11)     NULL,     -- 자유게시판댓글번호
+	`hmemid` VARCHAR(50) NULL      -- 회원ID
+);
+
+-- 자유게시판댓글싫어요
+ALTER TABLE `HateBoard`
+	ADD CONSTRAINT `HateBoard_hno_p` -- 자유게시판댓글싫어요 기본키
+		PRIMARY KEY (
+			`hno` -- 싫어요번호
+		);
+
+ALTER TABLE `HateBoard`
+	MODIFY COLUMN `hno` INT(11) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `HateBoard`
+	AUTO_INCREMENT = 1;
+
+-- 관심주식
+ALTER TABLE `Interest`
+	ADD CONSTRAINT `Interest_mno_f` -- 회원 -> 관심주식
+		FOREIGN KEY (
+			`mno` -- 회원번호
+		)
+		REFERENCES `Member` ( -- 회원
+			`mno` -- 회원번호
+		);
+
+-- 관심주식
+ALTER TABLE `Interest`
+	ADD CONSTRAINT `Interest_sno_f` -- 실시간주식정보 -> 관심주식
+		FOREIGN KEY (
+			`sno` -- 회사코드번호
+		)
+		REFERENCES `Stock` ( -- 실시간주식정보
+			`sno` -- 회사코드번호
+		);
+
+-- 자유게시판댓글
+ALTER TABLE `FreeComment`
+	ADD CONSTRAINT `FreeComment_fcno_f` -- 자유게시판 -> 자유게시판댓글
+		FOREIGN KEY (
+			`fno` -- 글번호
+		)
+		REFERENCES `Freeboard` ( -- 자유게시판
+			`fno` -- 글번호
+		);
+
+-- 공지사항댓글
+ALTER TABLE `NoticeComment`
+	ADD CONSTRAINT `NoticeComment_ncno_f` -- 공지사항 -> 공지사항댓글
+		FOREIGN KEY (
+			`nno` -- 글번호
+		)
+		REFERENCES `Notice` ( -- 공지사항
+			`nno` -- 글번호
+		);
+
+-- 모의투자
+ALTER TABLE `Simulation`
+	ADD CONSTRAINT `Simulation_mno_f` -- 회원 -> 모의투자
+		FOREIGN KEY (
+			`mno` -- 회원번호
+		)
+		REFERENCES `Member` ( -- 회원
+			`mno` -- 회원번호
+		);
+
+-- 모의투자
+ALTER TABLE `Simulation`
+	ADD CONSTRAINT `Simulation_sno_f` -- 실시간주식정보 -> 모의투자
+		FOREIGN KEY (
+			`sno` -- 회사코드번호
+		)
+		REFERENCES `Stock` ( -- 실시간주식정보
+			`sno` -- 회사코드번호
+		);
+
+-- 일자별주식정보(차트)
+ALTER TABLE `DateStock`
+	ADD CONSTRAINT `DateStock_sno_f` -- 실시간주식정보 -> 일자별주식정보(차트)
+		FOREIGN KEY (
+			`sno` -- 회사코드번호
+		)
+		REFERENCES `Stock` ( -- 실시간주식정보
+			`sno` -- 회사코드번호
+		);
+
+-- 자유게시판댓글좋아요
+ALTER TABLE `LikeBoard`
+	ADD CONSTRAINT `LikeBoard_lno_f` -- 자유게시판댓글 -> 자유게시판댓글좋아요
+		FOREIGN KEY (
+			`fcno` -- 자유게시판댓글번호
+		)
+		REFERENCES `FreeComment` ( -- 자유게시판댓글
+			`fcno` -- 자유게시판댓글번호
+		);
+
+-- 자유게시판댓글싫어요
+ALTER TABLE `HateBoard`
+	ADD CONSTRAINT `HateBoard_hno_f` -- 자유게시판댓글 -> 자유게시판댓글싫어요
+		FOREIGN KEY (
+			`fcno` -- 자유게시판댓글번호
+		)
+		REFERENCES `FreeComment` ( -- 자유게시판댓글
+			`fcno` -- 자유게시판댓글번호
+		);
