@@ -1,6 +1,6 @@
 package dto;
 
-public class LikeBoard {
+public class LikeBoardVO {
 	private int lno; //좋아요 번호(lno)
 	private int fcno; //자유게시판 댓글 번호(fcno)
 	private String lmemid; //회원ID(lmemid)

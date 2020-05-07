@@ -4,6 +4,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import controller.command.CommandHandler;
+import dto.MemberVO;
+import member.service.JoinService;
 
 //p597
 //GET방식으로  요청이 들어오면  폼(/view/member/joinForm.jsp)을 보여주기
@@ -14,24 +16,14 @@ import controller.command.CommandHandler;
 public class JoinHandler implements CommandHandler {
 
 	//View지정(p598 16)
-	private static final String FORM_VIEW = "/view/member/joinForm.jsp";
+	private static final String FORM_VIEW = "/member/join.jsp";
 	private JoinService joinService = new JoinService();
 	
 	@Override
 	public String process(HttpServletRequest request, 
 						  HttpServletResponse response) throws Exception {
 		System.out.println("JoinHandler 진입성공");
-		
-		//할일
-		//1.요청파라미터 받기
-		
-		//2.비즈니스로직수행(<->Service<->DAO<->DB)
-		
-		//3.Model
-		
-		//4.View지정
-		//p598 21~
-		//GET방식으로  요청이 들어오면
+
 		if(request.getMethod().equalsIgnoreCase("GET")) {
 			System.out.println("joinForm.jsp의 method방식="+request.getMethod());
 			return processForm(request,response);
@@ -58,22 +50,22 @@ public class JoinHandler implements CommandHandler {
 		//할일
 		//1.요청파라미터 받기
 		//JoinRequest는 유저가 입력한 폼의 내용을 객체로 묶어서 처리
-		JoinRequest joinReq = new JoinRequest();
+		MemberVO member = new MemberVO();
 		
-		joinReq.setId(request.getParameter("id"));
-		joinReq.setName(request.getParameter("name"));
-		joinReq.setPassword(request.getParameter("password"));
-		joinReq.setConfirmPassword(request.getParameter("confirmPassword"));
-	
-		//P598 42~49 입력하세요
+		member.setId(request.getParameter("id"));
+		member.setNickname(request.getParameter("nickname"));
+		member.setPw(request.getParameter("pw"));
+		member.setName(request.getParameter("name"));
+		member.setMail(request.getParameter("email1")+"@"+request.getParameter("email2"));
+		member.setPhone(request.getParameter("phone1")+"-"+request.getParameter("phone2")+"-"+request.getParameter("phone3"));
 		
-		
+
 		//2.비즈니스로직수행(<->Service<->DAO<->DB)
-		joinService.join(joinReq);
+		joinService.join(member);
 		
 		//3.Model
 		//4.View지정
-		return "/view/member/joinSuccess.jsp";
+		return "/member/joinSuccess.jsp";
 		
 	}
 	

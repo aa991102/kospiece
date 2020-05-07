@@ -5,9 +5,9 @@
 <!-- 2.등록누르면 해당 공지사항의 내용 변경하기 -->
 
 <div class="admin-notice">
-	<a href="admin.jsp" class="admin-logo">관리자 페이지</a>	
-	<a href="userManage.jsp" class="user-button">회원관리</a>
-	<a href="noticeManage.jsp" class="notice-button">공지사항</a><br/>
+	<a href="<%= request.getContextPath()%>/admin.do" class="admin-logo">관리자 페이지</a>	
+	<a href="<%= request.getContextPath()%>/admin/userManage.jsp" class="user-button">회원관리</a>
+	<a href="<%= request.getContextPath()%>/admin/noticeManage.jsp" class="notice-button">공지사항</a><br/>
 	<div class="notice-write">
 		<p>공지사항 변경</p>
 		<form name="notice-write">

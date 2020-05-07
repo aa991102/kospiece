@@ -2,7 +2,7 @@ package dto;
 
 import java.sql.Date;
 
-public class FreeComment {
+public class FreeCommentVO {
 	private int fcno; //자유게시판 댓글번호(fcno)
 	private String id; //회원 ID(fcmemid)
 	private String fno; //글번호(fno)

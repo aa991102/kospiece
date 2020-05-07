@@ -5,9 +5,9 @@
 <!-- 2.입력한 포인트를 회원의 포인트 수에 더하는 로직 추가 -->
 
 <div class="admin-user">
-	<a href="admin.jsp" class="admin-logo">관리자 페이지</a>	
-	<a href="userManage.jsp" class="user-button">회원관리</a>
-	<a href="noticeManage.jsp" class="notice-button">공지사항</a><br/>
+	<a href="<%= request.getContextPath()%>/admin.do" class="admin-logo">관리자 페이지</a>	
+	<a href="<%= request.getContextPath()%>/admin/userManage.jsp" class="user-button">회원관리</a>
+	<a href="<%= request.getContextPath()%>/admin/noticeManage.jsp" class="notice-button">공지사항</a><br/>
 	<div class="point-box">
 		<form name="point-form">
 			<p>포인트 충전</p>

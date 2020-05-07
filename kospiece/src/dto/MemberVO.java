@@ -18,6 +18,12 @@ public class MemberVO {
 	private int asset; //자산포인트(masset)
 
 	public MemberVO() {}
+	
+	public MemberVO(String id,String nickname, String pw) {
+		this.id=id;
+		this.nickname=nickname;
+		this.pw=pw;
+	}
 
 	public int getMno() {
 		return mno;
@@ -104,6 +110,10 @@ public class MemberVO {
 		return "MemberVO [mno=" + mno + ", id=" + id + ", nickname=" + nickname + ", pw=" + pw + ", name=" + name
 				+ ", mail=" + mail + ", phone=" + phone + ", regdate=" + regdate + ", deposit=" + deposit + ", asset="
 				+ asset + "]";
+	}
+
+	public boolean matchPassword(String password) {
+		return pw.contentEquals(password);
 	}
 
 	

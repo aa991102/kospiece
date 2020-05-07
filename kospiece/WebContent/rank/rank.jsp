@@ -21,8 +21,8 @@
 			<th>순위</th>
 			<th>업종</th>
 			<th>회사명</th>
-			<th>등락률<img src="../img/down.png"></th>
-			<th>시가총액<img src="../img/down.png"></th>
+			<th>등락률<img src="<%= request.getContextPath()%>/img/down.png"></th>
+			<th>시가총액<img src="<%= request.getContextPath()%>/img/down.png"></th>
 			<th>현재가</th>
 			<th>전일비</th>
 			<th>거래량</th>
