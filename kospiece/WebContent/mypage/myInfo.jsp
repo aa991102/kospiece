@@ -24,12 +24,12 @@
 			<td class="infoContent">대박이야</td>
 		</tr>
 		<tr>
-			<th class="infoH">보유 자산<br>포인트</th>
-			<td class="infoContent">100000
-				<span  style="float:right">
-					<input type="button" value="자세히" class="toMyPointBtn"/>
-				</span>
-			</td>
+			<th class="infoH">예수금 포인트</th>
+			<td class="infoContent">100,000 p</td>
+		</tr>
+		<tr>
+			<th class="infoH">자산 포인트</th>
+			<td class="infoContent">2,100,000 p</td>
 		</tr>
 		<tr>
 			<th class="infoH">이메일</th>
