@@ -4,14 +4,14 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
-import dao.AdminDAO;
+import dao.MemberDAO;
 import dto.MemberVO;
 import jdbc.JdbcUtil;
 import jdbc.connection.ConnectionProvider;
 
 public class UserListService {
 	
-	AdminDAO adminDao=new AdminDAO();
+	MemberDAO adminDao=new MemberDAO();
 	List<MemberVO> memberlist=null;
 	
 	public List<MemberVO> service() {

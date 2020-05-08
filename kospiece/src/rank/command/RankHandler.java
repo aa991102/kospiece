@@ -1,28 +1,24 @@
-package admin.command;
+package rank.command;
 
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import admin.Statistics;
-import admin.service.AdminService;
-import admin.service.UserListService;
 import controller.command.CommandHandler;
-import dto.MemberVO;
+import dto.StockVO;
+import rank.service.RankService;
 
-public class UserListHandler implements CommandHandler{
-	private static final String FORM_VIEW = "/admin/userManage.jsp";
+public class RankHandler implements CommandHandler {
 	
-	AdminService adminService= new AdminService();
-	UserListService userlistService=new UserListService();
-	Statistics statistics= new Statistics();
-	List<MemberVO> memberList=null;
-	
+	private static final String FORM_VIEW = "/rank/rank.jsp";
+	RankService rankService=new RankService();
+	List<StockVO> stockList=null;
+
 	@Override
 	public String process(HttpServletRequest request, 
 						  HttpServletResponse response) throws Exception {
-		System.out.println("AdminHandler 진입성공");
+		System.out.println("RankHandler 진입성공");
 
 		
 		if(request.getMethod().equalsIgnoreCase("GET")) {
@@ -38,10 +34,13 @@ public class UserListHandler implements CommandHandler{
 	private String processTotalList(HttpServletRequest request, HttpServletResponse response) {
 		//파라미터 없을때 실행하는 로직. 전체 회원리스트를 출력한다.
 		System.out.println("파라미터없을때");
-		memberList=userlistService.service();
+		
+		stockList=rankService.service();
 		
 		//페이지에서 출력할 데이터 request객체에 담아보내기
-		request.setAttribute("memberList",memberList);
+		request.setAttribute("stockList",stockList);
+		
+		System.out.println(stockList);
 		
 		return FORM_VIEW;
 		
@@ -52,5 +51,4 @@ public class UserListHandler implements CommandHandler{
 		return FORM_VIEW;
 		
 	}
-	
 }

@@ -3,13 +3,13 @@ package admin.service;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-import dao.AdminDAO;
+import dao.MemberDAO;
 import jdbc.JdbcUtil;
 import jdbc.connection.ConnectionProvider;
 
 public class UserDeleteService {
 	
-	AdminDAO adminDao=new AdminDAO();
+	MemberDAO adminDao=new MemberDAO();
 
 	public void service(String id) {
 

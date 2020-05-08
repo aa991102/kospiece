@@ -59,7 +59,7 @@
                 <a href="<%= request.getContextPath()%>/main.jsp">맵</a>
             </li>
             <li class="list-item">
-                <a href="<%= request.getContextPath()%>/rank/rank.jsp">실시간순위</a>
+                <a href="<%= request.getContextPath()%>/rank.do">실시간순위</a>
             </li>
             <li class="list-item">
                 <a href="<%= request.getContextPath()%>/board/board.jsp">자유게시판</a>

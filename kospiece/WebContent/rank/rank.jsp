@@ -31,19 +31,21 @@
 			<th>가상투자</th>
 			<th>관심주식</th>
 		</tr>
-		<tr>
-			<td>1</td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-		</tr>
+		<c:forEach var="stock" items="${stockList}">
+	        <tr>
+						<td>순위</td>
+						<td>${stock.field}</td>
+						<td>${stock.name}</td>
+						<td>${stock.changerate}</td>
+						<td>${stock.total}</td>
+						<td>${stock.price}</td>
+						<td>${stock.dayrate}</td>
+						<td>${stock.volume}</td>
+						<td>${stock.dealprice}</td>
+						<td>${stock.high52}</td>
+						<td>가상투자</td>
+						<td>관심주식</td>
+	        </tr>
+     </c:forEach>
 	</table>
 </div>
