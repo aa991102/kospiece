@@ -67,4 +67,29 @@ public class StockDAO {
 			return Collections.emptyList();
 		}
 	}
+
+	public StockVO selectByName(Connection conn, String sname) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT * FROM stock WHERE sname=?";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, sname);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				return stockResultSet(rs);
+				
+			}else {
+				return null;
+			}
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+
 }

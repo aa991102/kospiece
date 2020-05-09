@@ -40,22 +40,20 @@ public class MemberDAO {
 		
 		System.out.println("MemberDAO-selectById(id)호출="+id);
 		
-		String sql = "SELECT  mid,mnick,mpw " + 
-					 "	FROM 	member " + 
-					 "	WHERE	mid=?";
+		String sql = "SELECT * FROM member WHERE mid = ?";
 
 		pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, id);
-		
 		rs = pstmt.executeQuery();
-		
-		if( rs.next() ) { 
-			
+		if( rs.next() ) {
+			int mno = rs.getInt("mno");
 			String memberid = rs.getString("mid");
-			String name     = rs.getString("mnick");
+			String mnick    = rs.getString("mnick");
 			String password = rs.getString("mpw");
-			
-			member = new MemberVO(memberid,name,password);	
+			String mname 	= rs.getString("mname");
+			int deposit		= rs.getInt("mdeposit");
+			int asset		= rs.getInt("masset");
+			member = new MemberVO(mno, memberid,mnick,password,mname,deposit,asset);	
 		}
 		return member;
 	}

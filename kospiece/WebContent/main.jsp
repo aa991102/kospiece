@@ -76,5 +76,6 @@
 				<td colspan="3">00</td>
 			</tr>
 		</table>
+		<a href="./simulationlist.do">가상투자 test 경로</a>
 	</div>
 </div>

@@ -80,6 +80,25 @@ public class StockVO {
 	public void setHigh52(String high52) {
 		this.high52 = high52;
 	}
+	
+	
+	public StockVO() {}
+	
+	
+	public StockVO(String no, String name, String field, String detail, int price, String dayrate, float changerate,
+			String volume, String dealprice, int total, String high52) {
+		this.no = no;
+		this.name = name;
+		this.field = field;
+		this.detail = detail;
+		this.price = price;
+		this.dayrate = dayrate;
+		this.changerate = changerate;
+		this.volume = volume;
+		this.dealprice = dealprice;
+		this.total = total;
+		this.high52 = high52;
+	}
 	@Override
 	public String toString() {
 		return "StockVO [no=" + no + ", name=" + name + ", field=" + field + ", detail=" + detail + ", price=" + price
