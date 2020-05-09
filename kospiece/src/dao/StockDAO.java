@@ -33,12 +33,26 @@ public class StockDAO {
 		return stockvo;
 	}
 	
-	//주식정보 전부 불러오기
-	public List<StockVO> selectAllStock(Connection conn) throws SQLException {
-	
-		String sql = "select * from stock";
+	//전체 주식정보를 특정컬럼을 기준으로 정렬해서 불러오기
+	public List<StockVO> selectAllStock
+	(Connection conn,String field,String column,String orderBy) throws SQLException {
+
+		String sql="";
 		
-		pstmt = conn.prepareStatement(sql);
+		System.out.println(field);
+		
+		if(field=="all"||field.contentEquals("all")) {
+			sql = "select * from stock order by "+column+" "+orderBy;
+			pstmt = conn.prepareStatement(sql);
+		}else {
+			sql = "select * from stock where sfield=? order by "+column+" "+orderBy;
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, field);
+			System.out.println(pstmt);
+		}
+		
+		
+		
 		rs=pstmt.executeQuery();
 		
 		if(rs.next()) {

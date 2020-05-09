@@ -14,7 +14,7 @@ public class RankHandler implements CommandHandler {
 	private static final String FORM_VIEW = "/rank/rank.jsp";
 	RankService rankService=new RankService();
 	List<StockVO> stockList=null;
-
+	
 	@Override
 	public String process(HttpServletRequest request, 
 						  HttpServletResponse response) throws Exception {
@@ -32,15 +32,30 @@ public class RankHandler implements CommandHandler {
 	}
 	
 	private String processTotalList(HttpServletRequest request, HttpServletResponse response) {
-		//파라미터 없을때 실행하는 로직. 전체 회원리스트를 출력한다.
-		System.out.println("파라미터없을때");
+		//get방식
 		
-		stockList=rankService.service();
+		//정렬을 하고싶은 컬럼명과 정렬방식을 파라미터로 받아온다
+		String field=request.getParameter("select");
+		String type=request.getParameter("column");
+		String sort=request.getParameter("orderBy");
+		
+		//처음 실시간순위 페이지에 들어올때 기본값으로 등락률과 내림차순을 셋팅한다.
+		if(type==null) {
+			type="schangerate";
+		}
+		if(sort==null) {
+			sort="desc";
+		}
+		if(field==null) {
+			field="all";
+		}
+		stockList=rankService.service(field,type,sort);
 		
 		//페이지에서 출력할 데이터 request객체에 담아보내기
+		request.setAttribute("field",field);
+		request.setAttribute("sort",sort);
+		request.setAttribute("type",type);
 		request.setAttribute("stockList",stockList);
-		
-		System.out.println(stockList);
 		
 		return FORM_VIEW;
 		

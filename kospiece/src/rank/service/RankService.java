@@ -15,13 +15,13 @@ public class RankService {
 	StockDAO stockDao=new StockDAO();
 	List<StockVO> stocklist=new ArrayList<StockVO>();
 	
-	public List<StockVO> service() {
+	public List<StockVO> service(String field,String column,String orderBy) {
 		Connection conn = null;
 		try {
 			conn = ConnectionProvider.getConnection();
 			conn.setAutoCommit(false);//트랜잭션 시작
-
-			stocklist=stockDao.selectAllStock(conn);
+			
+			stocklist=stockDao.selectAllStock(conn,field,column,orderBy);
 			
 			conn.commit(); //트랙잭션 반영
 			
