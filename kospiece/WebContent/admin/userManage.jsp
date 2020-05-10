@@ -6,14 +6,14 @@
 
 <div class="admin-user">
 	<a href="<%= request.getContextPath()%>/admin.do" class="admin-logo">관리자 페이지</a>	
-	<a href="<%= request.getContextPath()%>/admin/userManage.jsp" class="user-button">회원관리</a>
-	<a href="<%= request.getContextPath()%>/admin/noticeManage.jsp" class="notice-button">공지사항</a><br/>
+	<a href="<%= request.getContextPath()%>/userList.do" class="user-button">회원관리</a>
+	<a href="<%= request.getContextPath()%>/noticeList.do" class="notice-button">공지사항</a><br/>
 	
-	<form name="user-search" method ="post" class="user-search">
+	<form action="<%= request.getContextPath()%>/userList.do"name="user-search" method ="post" class="user-search">
 	    <select name="search">
-    		<option value="total" selected>전체</option>	
-	        <option value="nickname">닉네임</option>
-	        <option value="id">아이디</option> 
+    		<option value=""selected>전체</option>	
+	        <option value="mnick">닉네임</option>
+	        <option value="mid">아이디</option> 
 	    </select>
 	    <input type="text" name="user-inform" />
 	    <input type="submit" value="검색"/>
@@ -44,7 +44,7 @@
 	        	<td>${admin.name}</td>
 	        	<td>${admin.mail}</td>
 	        	<td>${admin.regdate}</td>
-	        	<td>${admin.deposit}<input type="button" onclick="pointCharge()" value="충전"></td>
+	        	<td>${admin.deposit}<input type="button" value="충전"></td>
 	        	<td></td>
 	        </tr>
         </c:if>
@@ -61,9 +61,13 @@
 	        	<td>${member.name}</td>
 	        	<td>${member.mail}</td>
 	        	<td>${member.regdate}</td>
-	        	<td>${member.deposit}<a href="<c:url value="/pointCharge.do"><c:param name="id" value="${member.id}"></c:param> </c:url>">충전</a></td>
-	        	<td><a href="<c:url value="/memberDelete.do"><c:param name="id" value="${member.id }"></c:param> </c:url>">탈퇴하기</a></td>
-	        	
+	        	<td>${member.deposit}<input type="button" value="충전"></td>
+	        	<td>
+	        	<form name="deleteUser" method="post" action="/checkAdminPw.do">
+		        	<input type="hidden" name="id" value="${member.id}">
+		        	<input type="submit" value="탈퇴" onclick="checkPW()">
+	        	</form>
+	        	</td>
 	        </tr>
         </c:if>
 		

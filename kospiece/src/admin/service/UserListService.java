@@ -14,14 +14,18 @@ public class UserListService {
 	MemberDAO adminDao=new MemberDAO();
 	List<MemberVO> memberlist=null;
 	
-	public List<MemberVO> service() {
+	public List<MemberVO> userListService(String column,String value) {
 		Connection conn = null;
 		try {
 			
 			conn = ConnectionProvider.getConnection();
 			conn.setAutoCommit(false);//트랜잭션 시작
-
-			memberlist=adminDao.selectAllMember(conn);
+			System.out.print(column+value);
+			if(column==""||value==""||column.equals("total")) {
+				memberlist=adminDao.selectAllMember(conn);
+			}else {
+				memberlist=adminDao.selectedMember(conn,column,value);
+			}
 			
 			conn.commit(); //트랙잭션 반영
 			
@@ -34,4 +38,5 @@ public class UserListService {
 		}
 		
 	}
+	
 }

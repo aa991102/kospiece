@@ -5,8 +5,8 @@
 
 <div class="admin-notice">
 	<a href="<%= request.getContextPath()%>/admin.do" class="admin-logo">관리자 페이지</a>	
-	<a href="<%= request.getContextPath()%>/admin/userManage.jsp" class="user-button">회원관리</a>
-	<a href="<%= request.getContextPath()%>/admin/noticeManage.jsp" class="notice-button">공지사항</a><br/>
+	<a href="<%= request.getContextPath()%>/admin/userList.do" class="user-button">회원관리</a>
+	<a href="<%= request.getContextPath()%>/admin/noticeList.do" class="notice-button">공지사항</a><br/>
 	<div class="notice-write">
 		<p>공지사항 작성</p>
 		<form name="notice-write" action="noticeWrite.do">

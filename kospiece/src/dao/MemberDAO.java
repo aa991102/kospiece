@@ -84,12 +84,9 @@ public class MemberDAO {
 			
 			Date now=Date.valueOf(today);
 			
-			System.out.println(now);
 			pstmt.setDate(1, now);
 			rs=pstmt.executeQuery();
-			System.out.println(rs);
 			rs.next();
-			System.out.println(rs.getInt(1));
 			return rs.getInt(1);
 	}
 	
@@ -129,6 +126,25 @@ public class MemberDAO {
 	}
 
 	//지정한 조건의 회원만 보기
+	public List<MemberVO> selectedMember(Connection conn, String column, String value) throws SQLException {
+		String sql = "select mnick,mid,mname,mmail,mdate,mdeposit from member where "+column+"= ?";
+		
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, value);
+		rs=pstmt.executeQuery();
+		
+		if(rs.next()) {
+			
+			List<MemberVO> memberlist=new ArrayList<MemberVO>();
+			
+			do{
+				memberlist.add(memberListResultSet(rs));
+			}while(rs.next());
+			return memberlist;
+		}else {
+			return Collections.emptyList();
+		}
+	}
 	
 	//관리자가 회원 강제탈퇴시키기
 	public void deleteMember(Connection conn,String id) {
@@ -142,6 +158,8 @@ public class MemberDAO {
 			e.printStackTrace();
 		}
 	}
+
+	
 }
 
 
