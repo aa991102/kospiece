@@ -13,14 +13,18 @@ public class NoticeListService {
 	NoticeDAO noticeDao=new NoticeDAO();
 	List<NoticeVO> noticelist=null;
 	
-	public List<NoticeVO> service() {
+	public List<NoticeVO> noticeListService(String column, String value) {
 		Connection conn = null;
 		try {
 			
 			conn = ConnectionProvider.getConnection();
 			conn.setAutoCommit(false);//트랜잭션 시작
-
-			noticelist=noticeDao.selectAllNotice(conn);
+			
+			if(column==""||value==""||column==null||value==null) {
+				noticelist=noticeDao.selectAllNotice(conn);
+			}else {
+				noticelist=noticeDao.selectedNotice(conn,column,value);
+			}
 			
 			conn.commit(); //트랙잭션 반영
 			
@@ -33,4 +37,6 @@ public class NoticeListService {
 		}
 		
 	}
+
+
 }

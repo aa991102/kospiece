@@ -49,8 +49,8 @@ public class UserListHandler implements CommandHandler{
 	private String processSelectedList(HttpServletRequest request, HttpServletResponse response) {
 		//파라미터 있을때 실행하는 로직. 선택된 조건의 회원리스트만 출력한다.
 		
-		String column=request.getParameter("search");
-		String value=request.getParameter("user-inform");
+		column=request.getParameter("search");
+		value=request.getParameter("user-inform");
 		
 		memberList=userlistService.userListService(column,value);
 		

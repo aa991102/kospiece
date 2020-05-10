@@ -17,6 +17,8 @@ public class NoticeListHandler implements CommandHandler {
 	
 	NoticeListService noticeListService = new NoticeListService(); //서비스객체 생성
 	List<NoticeVO> noticeList=new ArrayList<NoticeVO>();
+	String column="";
+	String value="";
 	
 	@Override
 	public String process(HttpServletRequest request, 
@@ -39,7 +41,7 @@ public class NoticeListHandler implements CommandHandler {
 	private String processTotalNotice(HttpServletRequest request, HttpServletResponse response) {
 		//파라미터 없을때 실행하는 로직. 전체 공지사항 리스트를 출력
 		
-		noticeList=noticeListService.service();
+		noticeList=noticeListService.noticeListService(column,value);
 		
 		request.setAttribute("noticeList",noticeList);
 		//페이지에서 출력할 공지사항 객체 arrayList를 request속성에 담아보내기
@@ -49,7 +51,15 @@ public class NoticeListHandler implements CommandHandler {
 		
 	}
 	private String processSelectedNotice(HttpServletRequest request, HttpServletResponse response) {
-
+		
+		column=request.getParameter("search");
+		value=request.getParameter("notice-inform");
+		
+		noticeList=noticeListService.noticeListService(column,value);
+		request.setAttribute("noticeList",noticeList);
+		//페이지에서 출력할 공지사항 객체 arrayList를 request속성에 담아보내기
+		//<1번글객체,2번글객체.....>
+		
 		return FORM_VIEW;
 		
 	}

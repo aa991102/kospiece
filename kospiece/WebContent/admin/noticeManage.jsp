@@ -9,13 +9,13 @@
 	<a href="<%= request.getContextPath()%>/userList.do" class="user-button">회원관리</a>
 	<a href="<%= request.getContextPath()%>/noticeList.do" class="notice-button">공지사항</a><br/>
 	
-	<form name="user-search" method ="post" class="notice-search">
+	<form name="notice-search" method ="post" class="notice-search">
 	    <select name="search">
-  	        <option value="total" selected>전체보기</option>
-	        <option value="title">제목</option>
-	        <option value="contents">내용</option> 
+  	        <option value="" selected>전체보기</option>
+	        <option value="ntitle">제목</option>
+	        <option value="ncontent">내용</option> 
 	    </select>
-	    <input type="text" name="user-inform" />
+	    <input type="text" name="notice-inform" />
 	    <input type="submit" value="검색"/>
 	</form>
 	<table border="1" width="1000" align="center">
@@ -38,5 +38,6 @@
         </tr>
         </c:forEach>
      </table>
+     <a href="<%= request.getContextPath()%>/admin/noticeWrite.jsp">공지사항작성</a>
 
 </div>

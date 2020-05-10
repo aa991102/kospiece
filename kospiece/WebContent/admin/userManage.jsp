@@ -33,18 +33,20 @@
         </tr>
         
      <!-- 멤버 중 관리자인 회원을 최 상단에 출력 -->
-	 <c:forEach var="admin" items="${memberList}">
- 	 <c:set var="adminOK" value="${admin.nickname=='관리자1'||admin.nickname=='관리자2'||admin.nickname=='관리자3'||admin.nickname=='관리자4'
-           	||admin.nickname=='관리자5'||admin.nickname=='관리자6'}"/>
+	 <c:forEach var="member" items="${memberList}">
+ 	 <c:set var="adminOK" value="${member.nickname=='관리자1'||member.nickname=='관리자2'||member.nickname=='관리자3'||member.nickname=='관리자4'
+           	||member.nickname=='관리자5'||member.nickname=='관리자6'}"/>
   		<c:if test='${adminOK}'>
 	        <tr class="admin-list">
-	        	<td>${admin.nickname}</td>
-	        	<td>${admin.id}</td>
+	        	<td>${member.nickname}</td>
+	        	<td>${member.id}</td>
 	        	<c:set var="id" value="${admin.id}"/>
-	        	<td>${admin.name}</td>
-	        	<td>${admin.mail}</td>
-	        	<td>${admin.regdate}</td>
-	        	<td>${admin.deposit}<input type="button" value="충전"></td>
+	        	<td>${member.name}</td>
+	        	<td>${member.mail}</td>
+	        	<td>${member.regdate}</td>
+	        	<td>${member.deposit}
+	        	<a href="<%= request.getContextPath()%>/pointCharge.do">충전</a>
+	        	</td>
 	        	<td></td>
 	        </tr>
         </c:if>
@@ -61,7 +63,7 @@
 	        	<td>${member.name}</td>
 	        	<td>${member.mail}</td>
 	        	<td>${member.regdate}</td>
-	        	<td>${member.deposit}<input type="button" value="충전"></td>
+	        	<td>${member.deposit}<a href="<%= request.getContextPath()%>/pointCharge.do">충전</a></td>
 	        	<td>
 	        	<form name="deleteUser" method="post" action="/checkAdminPw.do">
 		        	<input type="hidden" name="id" value="${member.id}">

@@ -41,7 +41,7 @@ public class MemberDAO {
 		System.out.println("MemberDAO-selectById(id)호출="+id);
 		
 		String sql = "SELECT * FROM member WHERE mid = ?";
-
+		
 		pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, id);
 		rs = pstmt.executeQuery();
@@ -127,10 +127,11 @@ public class MemberDAO {
 
 	//지정한 조건의 회원만 보기
 	public List<MemberVO> selectedMember(Connection conn, String column, String value) throws SQLException {
-		String sql = "select mnick,mid,mname,mmail,mdate,mdeposit from member where "+column+"= ?";
-		
+		String sql = "select mnick,mid,mname,mmail,mdate,mdeposit from member where "+column+" like ?";
+		value="%"+value+"%";
 		pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, value);
+		System.out.println(pstmt);
 		rs=pstmt.executeQuery();
 		
 		if(rs.next()) {
@@ -147,8 +148,18 @@ public class MemberDAO {
 	}
 	
 	//관리자가 회원 강제탈퇴시키기
-	public void deleteMember(Connection conn,String id) {
+	public void deleteMember(Connection conn,String id) throws SQLException {
 		String sql = "delete from member where mid=?";
+		
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, id);
+		pstmt.executeUpdate();
+		
+	}
+
+	//관리자가 회원 포인트 충전
+	public void pointCharge(Connection conn, int point) {
+			String sql = "update";
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
