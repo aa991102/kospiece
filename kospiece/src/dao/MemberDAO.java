@@ -147,6 +147,28 @@ public class MemberDAO {
 		}
 	}
 	
+	//관리자 비밀번호 맞는지 확인
+			public Boolean checkPw(Connection conn,String id, String pw) throws SQLException {
+				
+				String sql = "select mpw from member where mid=?";
+				
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, id);
+				rs=pstmt.executeQuery();
+				
+				if(rs.next()) {
+					System.out.print("진짜 번호는 "+rs.getString("mpw"));
+					if(rs.getString("mpw").equals(pw)) {
+						return true;
+					}else {
+						return false;
+					}
+					
+				}else {
+					return false;
+				}
+			}
+	
 	//관리자가 회원 강제탈퇴시키기
 	public void deleteMember(Connection conn,String id) throws SQLException {
 		String sql = "delete from member where mid=?";
