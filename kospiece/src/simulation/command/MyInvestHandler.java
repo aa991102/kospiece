@@ -1,74 +1,82 @@
 package simulation.command;
 
-import java.sql.Connection;
-import java.sql.SQLException;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import controller.command.CommandHandler;
-import dao.StockDAO;
+import dto.MemberVO;
 import dto.MyStockVO;
-import dto.Stock;
-import jdbc.connection.ConnectionProvider;
+import simulation.service.MyInvestListService;
+import simulation.service.MyInvestService;
 
-public class MyInvestHandler implements CommandHandler {
+public class MyInvestHandler implements CommandHandler{
 
+	HttpSession session = null;
 	
-	private static final String FORM_INVEST ="/virtual/investing.jsp"; 
-	
+	private static final String FORM_INVEST ="/virtual/investing.jsp";
 	
 	@Override
-	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
-		if(req.getMethod().equalsIgnoreCase("GET")) {   //equalsIgnoreCase  -> 대소문자 상관없이 동일여부 확인
-			return processForm(req, res);
-		}else if(req.getMethod().equalsIgnoreCase("POST")) {
-			return processSubmit(req, res);
+	public String process(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		String sname = request.getParameter("sname");
+		session = request.getSession();
+		
+		if(session == null) {
+			return "/member/login.jsp";
+		}
+		
+		if(sname==null) {   //equalsIgnoreCase  -> 대소문자 상관없이 동일여부 확인
+			return processForm(request, response);
+		}else if(sname!=null) {
+			return processSubmit(request, response);
 		}else {
-			res.setStatus(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
+			response.setStatus(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
 			return null;
 		}
-	}
-
-	private String processForm(HttpServletRequest req, HttpServletResponse res) {
-		return FORM_INVEST;
-	}
-	
-	
-	private String processSubmit(HttpServletRequest req, HttpServletResponse res) {
 		
-		Connection conn = null;
+	}//process() end
+	
+	private String processForm(HttpServletRequest request, HttpServletResponse response) {
 		
 		//파라미터
-		String sname = req.getParameter("sname");
-		int totalquantity = 0;
-		System.out.println("여기는 오니?");
-		try {
-		 totalquantity = Integer.parseInt(req.getParameter("totalquantity"));
-		}catch(NumberFormatException e) {
+		String sname = request.getParameter("sname");
+		session = request.getSession();
+		String mid = "22";//(Integer)session.getAttribute("a");//회원 아이디 가져오기
 		
-			
-		}
+		//비즈니스 수행
+		//service 시행
+		MyInvestService searchService = new MyInvestService();
+		MyStockVO mystockVO = searchService.getMyStock(mid, sname);
+					
+		//model
+		request.setAttribute("MyStock", mystockVO);
 		
-		
-		
-		//비즈니스
-		//1. sname으로 지정된 종목 정보를 MyStockVO로 저장
-		try {
-			StockDAO stockDAO = new StockDAO();
-			Stock stock = stockDAO.selectByName(conn = ConnectionProvider.getConnection(), sname);
-			MyStockVO myStock = new MyStockVO(totalquantity, stock);
-			req.setAttribute("MyStock", myStock);
-			return FORM_INVEST;
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-		
-		
+		//view
 		return FORM_INVEST;
 	}
 
-
+	private String processSubmit(HttpServletRequest request, HttpServletResponse response) {
+		
+		//파라미터 가져오기
+		String sname = request.getParameter("sname");
+		session = request.getSession();
+		String mid = "22";//(Integer)session.getAttribute("a");//회원 아이디 가져오기
+		
+		//비즈니스 수행		
+		MyInvestService searchService = new MyInvestService();
+		MyInvestListService service = new MyInvestListService();
+		MyStockVO mystockVO = searchService.getMyStock(mid, sname);
+		MemberVO member = service.getMemberVOById(mid);
+					
+		//model 
+		request.setAttribute("MyStock", mystockVO);
+		request.setAttribute("Member",member);
+		
+		//view 지정
+		return FORM_INVEST;
+		
+	}
+	
+	
 }

@@ -1,19 +1,15 @@
 package simulation.command;
 
-import java.sql.Connection;
 import java.util.ArrayList;
-import java.util.Comparator;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import controller.command.CommandHandler;
-import dao.SimulationDAO;
 import dto.MemberVO;
 import dto.MyStockVO;
-import jdbc.connection.ConnectionProvider;
-import member.dao.MemberDAO;
+import simulation.service.MyInvestListService;
 
 public class MyInvestListHandler implements CommandHandler{
 	
@@ -28,10 +24,10 @@ public class MyInvestListHandler implements CommandHandler{
 	
 	private static final String FORM_LOGIN ="/member/login.jsp";  // 로그인페이지
 	private static final String FORM_MYSTOCK = "/virtual/myinvestList.jsp";  //내 주식 페이지
-		
+	
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
-
+		
 		//session 정보 가져오기
 		session = req.getSession();
 		if(session == null) {//user session 정보가 없으면 login.jsp로 강제이동
@@ -49,21 +45,28 @@ public class MyInvestListHandler implements CommandHandler{
 
 	//로그인 했을때 
 	private String processSubmit(HttpServletRequest req, HttpServletResponse res) {
-	
+		
+		//파라미터
 		session = req.getSession();
-		int mno = 1;//(Integer)session.getAttribute("a");//회원 아이디 가져오기
-		MemberDAO memberDAO = new MemberDAO();
+		String mid = "1";//(Integer)session.getAttribute("a");//회원 아이디 가져오기
+		
 		try {
-			Connection conn = ConnectionProvider.getConnection();
-			MemberVO member = memberDAO.getMemberVO(conn, mno);
 			
-			//내가 모의투자 업체 목록을 ArrayList에 담기
-			SimulationDAO simulationdao = new SimulationDAO();
-			ArrayList<MyStockVO> mysimulationList = simulationdao.getMySimulationList(conn, mno);
+			/* 비즈니스
+			 * 1. 내가 가지고 있는 현재포인트 가져오기
+			 * 2. 내가 보유한 가상투자 주식의 목록 및 업체별 보유량 가져오기
+			 */
+			
+			MyInvestListService myInvestService = new MyInvestListService();
+			MemberVO member = myInvestService.getMemberVOById(mid);
+			ArrayList<MyStockVO> mysimulationList = myInvestService.getMyList(member.getMno());
+			
+			//model
 			req.setAttribute("member", member);
 			req.setAttribute("mysumlationList", mysimulationList);
+			
+			//view
 			return FORM_MYSTOCK;
-				
 			
 		} catch (Exception e) {
 			e.printStackTrace();

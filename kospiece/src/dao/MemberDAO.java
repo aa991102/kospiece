@@ -163,13 +163,32 @@ public class MemberDAO {
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, id);
+			//pstmt.setString(1, id);
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 
+	//회원정보 업데이트
+	public void update(Connection conn, MemberVO member2) {
+		
+		PreparedStatement pstmt = null;
+		String sql = "UPDATE member SET mpw=?, mname=?, mdeposit=?";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, member2.getPw());
+			pstmt.setString(2, member2.getName());
+			pstmt.setInt(3, member2.getDeposit());
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("update 에러발생");
+			e.printStackTrace();
+		}
+		
+	}
+	
 	
 }
 

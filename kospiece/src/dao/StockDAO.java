@@ -17,7 +17,7 @@ public class StockDAO {
 	
 	
 	//stock객체를 셋팅
-	private StockVO stockResultSet(ResultSet rs) throws SQLException{
+	public StockVO stockResultSet(ResultSet rs) throws SQLException{
 		StockVO stockvo=new StockVO();
 		stockvo.setNo(rs.getString("sno"));
 		stockvo.setName(rs.getString("sname"));
