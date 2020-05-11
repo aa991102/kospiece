@@ -1,5 +1,6 @@
 package rank.command;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,16 +15,21 @@ public class RankHandler implements CommandHandler {
 	private static final String FORM_VIEW = "/rank/rank.jsp";
 	RankService rankService=new RankService();
 	List<StockVO> stockList=null;
+	List<String> field=new ArrayList<String>();
 	
 	@Override
 	public String process(HttpServletRequest request, 
 						  HttpServletResponse response) throws Exception {
-		System.out.println("RankHandler 진입성공");
+		System.out.print("RankHandler 진입 ");
 
+		field=rankService.fieldFind();
+		request.setAttribute("fieldName",field);
 		
 		if(request.getMethod().equalsIgnoreCase("GET")) {
+			System.out.print("get방식 처음 실시간순위 들어왔을 때 화면");
 			return processTotalList(request,response);//파라미터가 없으면
 		}else if(request.getMethod().equalsIgnoreCase("POST")) {
+			System.out.print("post방식 파라미터를 받음-");
 			return processSelectedList(request,response);//파라미터가 있으면
 		}else {
 			response.setStatus(HttpServletResponse.SC_METHOD_NOT_ALLOWED); 
@@ -32,8 +38,17 @@ public class RankHandler implements CommandHandler {
 	}
 	
 	private String processTotalList(HttpServletRequest request, HttpServletResponse response) {
-		//get방식
+		//get방식 - 폼만 보여주기
+		stockList=rankService.service("all","schangerate","desc");
+		request.setAttribute("type","schangerate");
+		request.setAttribute("sort","desc");
+		request.setAttribute("field","all");
+		request.setAttribute("stockList",stockList);
+		return FORM_VIEW;
 		
+	}
+	private String processSelectedList(HttpServletRequest request, HttpServletResponse response) {
+	
 		//정렬을 하고싶은 컬럼명과 정렬방식을 파라미터로 받아온다
 		String field=request.getParameter("select");
 		String type=request.getParameter("column");
@@ -49,6 +64,9 @@ public class RankHandler implements CommandHandler {
 		if(field==null) {
 			field="all";
 		}
+		
+		System.out.print("선택한 업종:"+field+",정렬할 컬럼:"+type+",정렬방식:"+sort);
+		
 		stockList=rankService.service(field,type,sort);
 		
 		//페이지에서 출력할 데이터 request객체에 담아보내기
@@ -57,12 +75,6 @@ public class RankHandler implements CommandHandler {
 		request.setAttribute("type",type);
 		request.setAttribute("stockList",stockList);
 		
-		return FORM_VIEW;
-		
-	}
-	private String processSelectedList(HttpServletRequest request, HttpServletResponse response) {
-		System.out.println("파라미터있을때");
-
 		return FORM_VIEW;
 		
 	}

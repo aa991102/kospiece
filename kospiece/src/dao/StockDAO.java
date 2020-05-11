@@ -39,8 +39,6 @@ public class StockDAO {
 
 		String sql="";
 		
-		System.out.println(field);
-		
 		if(field=="all"||field.contentEquals("all")) {
 			sql = "select * from stock order by "+column+" "+orderBy;
 			pstmt = conn.prepareStatement(sql);
@@ -48,11 +46,7 @@ public class StockDAO {
 			sql = "select * from stock where sfield=? order by "+column+" "+orderBy;
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, field);
-			System.out.println(pstmt);
 		}
-		
-		
-		
 		rs=pstmt.executeQuery();
 		
 		if(rs.next()) {
@@ -67,7 +61,31 @@ public class StockDAO {
 			return Collections.emptyList();
 		}
 	}
+	
+	//업종 종류 가져오기
+	public List<String> selectField(Connection conn) throws SQLException {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT DISTINCT sfield FROM stock";
+		
+		pstmt = conn.prepareStatement(sql);
+		rs=pstmt.executeQuery();
+		
+		if(rs.next()) {
+			
+			List<String> field=new ArrayList<String>();
+			
+			do{
+				field.add(rs.getString("sfield"));
+			}while(rs.next());
+			return field;
+		}else {
+			return Collections.emptyList();
+		}
+	}
 
+	//특정 회사이름을 이용한 회사정보검색
 	public StockVO selectByName(Connection conn, String sname) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -91,5 +109,7 @@ public class StockDAO {
 		
 		return null;
 	}
+
+	
 
 }

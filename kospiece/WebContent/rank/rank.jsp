@@ -10,12 +10,13 @@
 <div class="rank">
 	<div class="field-search">
 		업종별
-		<form action="rank.do" method="get" name="fieldForm" onChange="javascript:fieldForm.submit();">
+		<form action="rank.do" method="post" name="fieldForm" onChange="javascript:fieldForm.submit();">
 			<select name="select">
 				<option value="all"selected>전체보기</option>
-				<option value="화학" ${field == "화학" ? "selected" :"" }>화학</option>
-				<option value="운수장비" ${field == "운수장비" ? "selected" :"" }>운수장비</option>
-				<option value="의약품" ${field == "의약품" ? "selected" :"" }>의약품</option>
+				<c:set var="rank" value="0"/>
+				<c:forEach var="fieldName" items="${fieldName}">
+				<option value="${fieldName}">${fieldName}</option>
+				</c:forEach>
 			</select>
 		</form>
 	</div>
@@ -25,7 +26,7 @@
 			<th>업종</th>
 			<th>회사명</th>
 			<th>
-			<form action="rank.do" method="get" name="changeRateForm">
+			<form action="rank.do" method="post" name="changeRateForm">
 				<a href="javascript:changeRateForm.submit();">등락률</a>
 				<input type="hidden" name="column" value="schangerate">
 				<c:if test="${type=='schangerate'&&sort=='desc'}">
@@ -40,7 +41,7 @@
 			</form>
 			</th>
 			<th>
-			<form action="rank.do" method="get" name="totalForm">
+			<form action="rank.do" method="post" name="totalForm">
 				<a href="javascript:totalForm.submit();">시가총액</a>
 				<input type="hidden" name="column" value="stotal">
 				<c:if test="${type=='stotal'&&sort=='desc'}">
@@ -75,7 +76,12 @@
 						<td>${stock.volume}</td>
 						<td>${stock.dealprice}</td>
 						<td>${stock.high52}</td>
-						<td>가상투자</td>
+						<td>
+						<form name="simulation" method="post" action="simulation.do">
+							<input type="hidden" name="sname" value="${stock.name}"/>
+							<input type="submit" value="투자하기">
+						</form>
+						</td>
 						<td>관심주식</td>
 	        </tr>
      </c:forEach>
