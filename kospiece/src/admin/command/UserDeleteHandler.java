@@ -33,10 +33,11 @@ public class UserDeleteHandler  implements CommandHandler {
 	//회원 강제탈퇴는 무조건 회원id파라미터를 받는다.그러므로 메서드 하나만 생성
 	private String processDelete(HttpServletRequest request, HttpServletResponse response) {
 
-		String id=request.getParameter("id"); //해당 회원 id를 파라미터로 받음
+		String id=(String) request.getAttribute("userId"); //해당 회원 id를 파라미터로 받음
+		System.out.println(id);
 		userDeleteService.service(id); //회원 id를 가지고 서비스 진행
 		
-		System.out.println(id+"강제탈퇴완료");
+		System.out.print(id+"강제탈퇴완료");
 		
 		return FORM_VIEW;
 		

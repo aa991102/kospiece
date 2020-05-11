@@ -52,7 +52,7 @@
         </c:if>
      </c:forEach>
      <!-- 일반회원을 아래로 나열 -->
-     <c:forEach var="member" items="${memberList}">
+     <c:forEach var="member" items="${memberList}" varStatus="status">
       	 <c:set var="adminOK" value="${member.nickname=='관리자1'||member.nickname=='관리자2'||member.nickname=='관리자3'||member.nickname=='관리자4'
            	||member.nickname=='관리자5'||member.nickname=='관리자6'}"/>
          <c:if test='${!adminOK}'>
@@ -65,9 +65,12 @@
 	        	<td>${member.regdate}</td>
 	        	<td>${member.deposit}<a href="<%= request.getContextPath()%>/pointCharge.do">충전</a></td>
 	        	<td>
-	        	<form name="deleteUser" method="post" action="/checkAdminPw.do">
-		        	<input type="hidden" name="id" value="${member.id}">
-		        	<input type="submit" value="탈퇴" onclick="checkPW()">
+	        	<form name="deleteUserForm" id="deleteUserForm" method="post" action="<%= request.getContextPath()%>/admin/checkAdminPw.jsp">
+	        		<c:set var="button_id" value="0"/>
+	        		<input type="hidden" name="service" value="deleteMember">
+	        		${button_id}
+		        	<input type="hidden" name="userId" value="${member.id}">
+		        	<input type="button" value="탈퇴" onclick="memberDeleteOk(${member.nickname})">
 	        	</form>
 	        	</td>
 	        </tr>

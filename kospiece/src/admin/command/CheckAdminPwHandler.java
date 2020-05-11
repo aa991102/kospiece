@@ -40,13 +40,28 @@ public class CheckAdminPwHandler implements CommandHandler {
 	private String processCheck(HttpServletRequest request, HttpServletResponse response) {
 		
 		HttpSession session = request.getSession();
+		
+		//세션의 id에 해당하는 비번과 사용자가 입력한 비번이 같은지 확인
 		String id=(String) session.getAttribute("ID");
-		
 		String pw=request.getParameter("adminPw");
+		System.out.print(id+"님이 입력한 비밀번호는 "+pw);
 		
-		checkAdminPwService.check(id,pw);
+		Boolean pwCheck=checkAdminPwService.check(id,pw);
+		System.out.println(pwCheck);
 		
+		if(pwCheck) {//비밀번호가 맞으면 이 페이지를 부른 각 페이지로 리턴
+			String service=request.getParameter("service");
+			String userId=request.getParameter("userId");
+			request.setAttribute("userId",userId);
+			
+			if(service.equals("deleteMember")){
+				
+				return "memberDelete.do";
+			}
+		}else {//비밀번호가 다르면 에러메시지를 가지고 비밀번호 입력 폼으로 이동
+			String error="비밀번호를 다시 입력하세요";
+			request.setAttribute("error", error);
+		}
 		return FORM_VIEW;
-		
 	}
 }
