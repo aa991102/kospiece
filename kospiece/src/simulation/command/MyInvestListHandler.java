@@ -48,7 +48,7 @@ public class MyInvestListHandler implements CommandHandler{
 		
 		//파라미터
 		session = req.getSession();
-		String mid = "1";//(Integer)session.getAttribute("a");//회원 아이디 가져오기
+		String mid = "jun";//(Integer)session.getAttribute("a");//회원 아이디 가져오기
 		
 		try {
 			
