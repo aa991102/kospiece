@@ -17,7 +17,10 @@
      		 가상투자  순서: ?
     		 내 게시글 순서: 최근순 5개
 
-
+  - 요청주소      : http://localhost/kospiece/mypage.do
+  - 담당컨트롤러 : mypage.command.MypageHandler
+  - 파라미터      : id=아이디
+  - 뷰              : /mypage/mypage.jsp
 2) 관심주식
   - 종목 순번변경,추가,삭제
 
