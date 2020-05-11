@@ -43,7 +43,7 @@ public class InvestingHandler implements CommandHandler{
 		//파라미터 가져오기
 		String sname = request.getParameter("sname");
 		session = request.getSession();
-		String mid = "22";//(Integer)session.getAttribute("a");//회원 아이디 가져오기
+		String mid = "jun";//(Integer)session.getAttribute("a");//회원 아이디 가져오기
 		
 		//비즈니스 수행		
 		MyInvestService searchService = new MyInvestService();
@@ -63,7 +63,7 @@ public class InvestingHandler implements CommandHandler{
 		//파라미터 가져오기
 		String sname = request.getParameter("sname");
 		session = request.getSession();
-		String mid = "22";//(Integer)session.getAttribute("a");//회원 아이디 가져오기
+		String mid = "jun";//(Integer)session.getAttribute("a");//회원 아이디 가져오기
 		int quantity = Integer.parseInt(request.getParameter("quantity"));
 		
 		//비즈니스 수행

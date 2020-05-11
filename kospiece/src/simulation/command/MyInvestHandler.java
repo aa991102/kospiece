@@ -42,7 +42,7 @@ public class MyInvestHandler implements CommandHandler{
 		//파라미터
 		String sname = request.getParameter("sname");
 		session = request.getSession();
-		String mid = "22";//(Integer)session.getAttribute("a");//회원 아이디 가져오기
+		String mid = "jun";//(Integer)session.getAttribute("a");//회원 아이디 가져오기
 		
 		//비즈니스 수행
 		//service 시행
@@ -61,7 +61,7 @@ public class MyInvestHandler implements CommandHandler{
 		//파라미터 가져오기
 		String sname = request.getParameter("sname");
 		session = request.getSession();
-		String mid = "22";//(Integer)session.getAttribute("a");//회원 아이디 가져오기
+		String mid = "jun";//(Integer)session.getAttribute("a");//회원 아이디 가져오기
 		
 		//비즈니스 수행		
 		MyInvestService searchService = new MyInvestService();
