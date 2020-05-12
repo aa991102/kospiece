@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import controller.command.CommandHandler;
 import dto.StockVO;
@@ -16,11 +17,20 @@ public class RankHandler implements CommandHandler {
 	RankService rankService=new RankService();
 	List<StockVO> stockList=null;
 	List<String> field=new ArrayList<String>();
+	int mno=0;
 	
 	@Override
 	public String process(HttpServletRequest request, 
 						  HttpServletResponse response) throws Exception {
 		System.out.print("RankHandler 진입 ");
+		
+		HttpSession session = request.getSession();
+		
+		if(session.getAttribute("MNO")!=null) {
+			//세션에 회원정보가 있으면(로그인 상태면) mno에 회원번호 넣어주기
+			//비로그인 상태라면 mno는 0이된다
+			mno=(int) session.getAttribute("MNO");
+		}
 
 		field=rankService.fieldFind();
 		request.setAttribute("fieldName",field);
@@ -39,7 +49,9 @@ public class RankHandler implements CommandHandler {
 	
 	private String processTotalList(HttpServletRequest request, HttpServletResponse response) {
 		//get방식 - 폼만 보여주기
-		stockList=rankService.service("all","schangerate","desc");
+		
+		
+		stockList=rankService.service(mno,"all","schangerate","desc");
 		request.setAttribute("type","schangerate");
 		request.setAttribute("sort","desc");
 		request.setAttribute("field","all");
@@ -55,19 +67,22 @@ public class RankHandler implements CommandHandler {
 		String sort=request.getParameter("orderBy");
 		
 		//처음 실시간순위 페이지에 들어올때 기본값으로 등락률과 내림차순을 셋팅한다.
-		if(type==null) {
-			type="schangerate";
-		}
-		if(sort==null) {
-			sort="desc";
-		}
-		if(field==null) {
-			field="all";
-		}
+				if(type==null) {
+					type="schangerate";
+				}
+				if(sort==null) {
+					sort="desc";
+				}
+				if(field==null) {
+					field="all";
+					
+				}
+				
+		//회원의 회원번호 불러오기
+			
+		System.out.print("회원번호"+mno+"선택한 업종:"+field+",정렬할 컬럼:"+type+",정렬방식:"+sort);
 		
-		System.out.print("선택한 업종:"+field+",정렬할 컬럼:"+type+",정렬방식:"+sort);
-		
-		stockList=rankService.service(field,type,sort);
+		stockList=rankService.service(mno,field,type,sort);
 		
 		//페이지에서 출력할 데이터 request객체에 담아보내기
 		request.setAttribute("field",field);

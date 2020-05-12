@@ -17,13 +17,13 @@ public class RankService {
 	List<String> field=new ArrayList<String>();
 	
 	//조건에맞는 데이터를 검색하는 메서드
-	public List<StockVO> service(String field,String column,String orderBy) {
+	public List<StockVO> service(int mno,String field,String column,String orderBy) {
 		Connection conn = null;
 		try {
 			conn = ConnectionProvider.getConnection();
 			conn.setAutoCommit(false);//트랜잭션 시작
 			
-			stocklist=stockDao.selectAllStock(conn,field,column,orderBy);
+			stocklist=stockDao.selectAllStock(conn,mno,field,column,orderBy);
 			
 			conn.commit(); //트랙잭션 반영
 			

@@ -14,6 +14,9 @@ public class StockVO {
 	private int total;//시가총액[억](stotal)
 	private String high52;//52주고가(shigh52)
 	
+	//해당 회원이 주식을 갖고있는지 여부
+	private int interest;
+	
 	public String getNo() {
 		return no;
 	}
@@ -81,6 +84,12 @@ public class StockVO {
 		this.high52 = high52;
 	}
 	
+	public int getInterest() {
+		return interest;
+	}
+	public void setInterest(int interest) {
+		this.interest = interest;
+	}
 	
 	public StockVO() {}
 	

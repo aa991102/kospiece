@@ -15,7 +15,6 @@ public class StockDAO {
 	PreparedStatement pstmt = null;
 	ResultSet rs  = null;
 	
-	
 	//stock객체를 셋팅
 	public StockVO stockResultSet(ResultSet rs) throws SQLException{
 		StockVO stockvo=new StockVO();
@@ -30,58 +29,65 @@ public class StockDAO {
 		stockvo.setDealprice(rs.getString("sdealprice"));
 		stockvo.setTotal(rs.getInt("stotal"));
 		stockvo.setHigh52(rs.getString("shigh52"));
+		stockvo.setInterest(rs.getInt("mno"));
 		return stockvo;
 	}
 	
 	//회사번호리스트로 주식정보 불러오기
-	public List<StockVO> selectStocks(Connection conn, List<String> snoList) 
-			throws SQLException {
-		System.out.println("StockDAO-selectStocks호출="+snoList);
-		
-		String sql = "SELECT * from stock WHERE sno = ? ";
-		List<StockVO> stocklist= new ArrayList<StockVO>();
-		
-		//snoList 존재하면
-		if(snoList != null) {
-			//snoList의 값 하나씩 접근해 sql문 돌리기
+		public List<StockVO> selectStocks(Connection conn, List<String> snoList) 
+				throws SQLException {
+			System.out.println("StockDAO-selectStocks호출="+snoList);
 			
-			for (String sno : snoList) { 
-				System.out.println("selectStocks-sno="+sno);
+			String sql = "SELECT * from stock WHERE sno = ? ";
+			List<StockVO> stocklist= new ArrayList<StockVO>();
+			
+			//snoList 존재하면
+			if(snoList != null) {
+				//snoList의 값 하나씩 접근해 sql문 돌리기
 				
-				pstmt = conn.prepareStatement(sql);
-				pstmt.setString(1, sno);
-				rs = pstmt.executeQuery();
-				
-				if(rs.next()) {
-					System.out.println("stockResultSet(rs)"+stockResultSet(rs));
-					stocklist.add(stockResultSet(rs));
+				for (String sno : snoList) { 
+					System.out.println("selectStocks-sno="+sno);
+					
+					pstmt = conn.prepareStatement(sql);
+					pstmt.setString(1, sno);
+					rs = pstmt.executeQuery();
+					
+					if(rs.next()) {
+						System.out.println("stockResultSet(rs)"+stockResultSet(rs));
+						stocklist.add(stockResultSet(rs));
+					}
 				}
+				
+				System.out.println("selectStocks-stocklist="+stocklist.toString());
+				
+				return stocklist;
+			
+			//snoList 존재 안하면
+			}else {
+				return Collections.emptyList();
 			}
-			
-			System.out.println("selectStocks-stocklist="+stocklist.toString());
-			
-			return stocklist;
-		
-		//snoList 존재 안하면
-		}else {
-			return Collections.emptyList();
 		}
-	}
 	
 	//전체 주식정보를 특정컬럼을 기준으로 정렬해서 불러오기
 	public List<StockVO> selectAllStock
-	(Connection conn,String field,String column,String orderBy) throws SQLException {
+	(Connection conn,int mno,String field,String column,String orderBy) throws SQLException {
 
-		String sql="";
+		String sql="SELECT s.sno,s.sname,s.sfield,s.sdetail,s.sprice,s.sdayrate,"+
+		" s.schangerate,s.svolume,s.sdealprice,s.stotal,s.shigh52,i.mno"+
+		" FROM stock s"+
+		" LEFT OUTER JOIN"+
+		" (SELECT sno,mno FROM interest WHERE mno=?) AS i"+
+		" ON s.sno=i.sno";
 		
 		if(field=="all"||field.contentEquals("all")) {
-			sql = "select * from stock order by "+column+" "+orderBy;
+			sql = sql+ " order by "+column+" "+orderBy;
 			pstmt = conn.prepareStatement(sql);
 		}else {
-			sql = "select * from stock where sfield=? order by "+column+" "+orderBy;
+			sql = sql+" where sfield=? order by "+column+" "+orderBy;
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, field);
+			pstmt.setString(2, field);
 		}
+		pstmt.setInt(1, mno);
 		rs=pstmt.executeQuery();
 		
 		if(rs.next()) {

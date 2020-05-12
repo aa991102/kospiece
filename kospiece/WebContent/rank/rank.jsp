@@ -82,7 +82,24 @@
 							<input type="submit" value="투자하기">
 						</form>
 						</td>
-						<td>관심주식</td>
+						<td>
+						<c:if test="${stock.interest==0}">
+							<form name="interestPlus" method="post" action="interest.do">
+								<input type="hidden" name="interest" value="plus">
+								<input type="hidden" name="sno" value="${stock.no}">
+								<img src="<%= request.getContextPath()%>/img/star.png"
+									onclick="javascript:interestPlus.submit();">
+							</form>
+						</c:if>
+						<c:if test="${stock.interest!=0}">
+							<form name="interestDelete" method="post" action="interest.do">
+								<input type="hidden" name="interest" value="delete">
+								<input type="hidden" name="sno" value="${stock.no}">
+								<img src="<%= request.getContextPath()%>/img/star-click.png"
+									onclick="javascript:interestDelete.submit();">
+							</form>
+						</c:if>
+						</td>
 	        </tr>
      </c:forEach>
 	</table>
