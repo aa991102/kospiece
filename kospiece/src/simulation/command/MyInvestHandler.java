@@ -40,7 +40,7 @@ public class MyInvestHandler implements CommandHandler{
 	private String processForm(HttpServletRequest request, HttpServletResponse response) {
 		
 		//파라미터
-		String sname = request.getParameter("sname");
+		String sname = "삼성전자";
 		session = request.getSession();
 		String mid = "jun";//(Integer)session.getAttribute("a");//회원 아이디 가져오기
 		

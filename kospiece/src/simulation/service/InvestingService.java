@@ -2,12 +2,14 @@ package simulation.service;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import dao.MemberDAO;
 import dao.SimulationDAO;
 import dao.StockDAO;
 import dto.MemberVO;
 import dto.MyStockVO;
+import dto.StockHistoryVO;
 import dto.StockVO;
 import jdbc.JdbcUtil;
 import jdbc.connection.ConnectionProvider;
@@ -54,7 +56,19 @@ public class InvestingService {
 	}
 	
 	
-	
+	public ArrayList<StockHistoryVO> getMyInvestHistory(ArrayList<StockHistoryVO> historys, String sname){
+		
+		ArrayList<StockHistoryVO> result = null;
+		
+		for(StockHistoryVO history : historys) {
+			if(history.getsname().equals(sname)) {
+				result.add(history);
+			}
+		}
+		
+		return result;
+		
+	}
 	
 	
 	

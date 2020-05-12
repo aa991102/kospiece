@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import controller.command.CommandHandler;
 import dto.MemberVO;
 import dto.MyStockVO;
+import dto.StockHistoryVO;
 import simulation.service.MyInvestListService;
 
 public class MyInvestListHandler implements CommandHandler{
@@ -60,10 +61,12 @@ public class MyInvestListHandler implements CommandHandler{
 			MyInvestListService myInvestService = new MyInvestListService();
 			MemberVO member = myInvestService.getMemberVOById(mid);
 			ArrayList<MyStockVO> mysimulationList = myInvestService.getMyList(member.getMno());
+			ArrayList<StockHistoryVO> history = myInvestService.getMyInvestHistory(member.getMno());
 			
 			//model
 			req.setAttribute("member", member);
 			req.setAttribute("mysumlationList", mysimulationList);
+			req.setAttribute("historys", history);
 			
 			//view
 			return FORM_MYSTOCK;

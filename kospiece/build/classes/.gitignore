@@ -1,2 +1,16 @@
+/admin/
+/auth/
+/board/
+/controller/
 /dao/
+/dto/
+/filter/
+/jdbc/
 /json/
+/main/
+/member/
+/model/
+/mypage/
+/rank/
+/simulation/
+/util/

@@ -1,5 +1,6 @@
 package simulation.command;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -69,6 +70,7 @@ public class InvestingHandler implements CommandHandler{
 		//비즈니스 수행
 		InvestingService service = new InvestingService();
 		MyStockVO myStock = service.insertInfo(mid, sname, quantity);
+		//ArrayList<StockHistoryVO> history = service.getMyInvestHistory(historys, sno)
 		//수행조건이 맞지 않을 경우 null반환
 		if(myStock == null ) {
 			
@@ -79,7 +81,6 @@ public class InvestingHandler implements CommandHandler{
 				
 		//model 
 		request.setAttribute("MyStock", myStock);
-		
 		
 		//view
 		return FORM_INVEST;

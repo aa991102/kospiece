@@ -43,7 +43,6 @@ public class MyInvestService {
 	private int getTotalQuantity(int mno, String sno) {
 		SimulationDAO simulationDAO = new SimulationDAO();
 		int totalquantity=0;
-		System.out.println("이거나와?2");
 		try {
 			conn=ConnectionProvider.getConnection();
 			totalquantity = simulationDAO.getTotalquantity(conn, mno, sno);
@@ -62,16 +61,13 @@ public class MyInvestService {
 	
 	private MemberVO getMemberVO(String id) {
 		MemberDAO memberDAO = new MemberDAO();
-		System.out.println("이거나와?1");
 		try {
 			conn=ConnectionProvider.getConnection();
 			MemberVO memberVO = memberDAO.selectById(conn, id);
-			System.out.println("이거나와?10");	
 			System.out.println(memberVO);
 			return memberVO;
 		} catch (SQLException e) {
 			e.printStackTrace();
-			System.out.println("이거나와?12");
 			return null;
 		}finally {
 			JdbcUtil.close(conn);
@@ -81,15 +77,8 @@ public class MyInvestService {
 	public MyStockVO getMyStock(String id, String sname) {
 		try {
 			
-			int t = getMemberVO(id).getDeposit();
-			System.out.println("t="+t);
-			
-			int q = getTotalQuantity(getMemberVO(id).getMno(), selectBySname(sname).getNo());
-			System.out.println("q="+q);
-			
-			//MyStockVO stock = new MyStockVO(getMemberVO(id).getDeposit(), getTotalQuantity(getMemberVO(id).getMno(), selectBySname(sname).getNo()), selectBySname(sname));
-			MyStockVO stock = new MyStockVO(t, q, selectBySname(sname));
-		return stock;
+			return new MyStockVO(getMemberVO(id).getDeposit(), getTotalQuantity(getMemberVO(id).getMno(), selectBySname(sname).getNo()), selectBySname(sname));
+		
 		}catch(NullPointerException e) {
 			System.out.println("에러 나니?");
 			return null;

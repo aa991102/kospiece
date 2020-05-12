@@ -1,5 +1,6 @@
 package dao;
 
+import java.awt.List;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,6 +10,7 @@ import java.util.Date;
 
 import dto.MyStockVO;
 import dto.SimulationVO;
+import dto.StockHistoryVO;
 import dto.StockVO;
 import jdbc.JdbcUtil;
 
@@ -27,15 +29,12 @@ public class SimulationDAO {
 			pstmt.setInt(1, mno);
 			pstmt.setString(2, sno);
 			rs = pstmt.executeQuery();
-			SimulationVO SimulationVO = null;
 			int totalquantity=0;
 			if(rs.next()) {
 				totalquantity=rs.getInt("sum(siquantity)");
-				System.out.println("totalquantity"+totalquantity);
 			}else {
 				totalquantity = -1;
 			}
-			
 			return totalquantity;
 			
 		}finally {
@@ -46,7 +45,7 @@ public class SimulationDAO {
 	}//getSimulationVO() end
 	
 	
-	//getMySimulationVO(mno)
+	//내 주식정보 리스트 가져오기
 	public ArrayList<MyStockVO> getMySimulationList(Connection conn, int mno) throws Exception{
 	//회원번호를 기준으로 모의투자테이블에서 보유량이 0이상인 정보만 추출해야 한다.
 		//1 보유량이 0 주식들을 ArrayList에 담는다.
@@ -56,14 +55,13 @@ public class SimulationDAO {
 		ResultSet rs2 = null;
 		String sql = "SELECT sno, SUM(siquantity) FROM simulation where mno=? GROUP BY sno ";
 		
-		
-		
 		pstmt = conn.prepareStatement(sql);
 		pstmt.setInt(1, mno);
 		rs = pstmt.executeQuery();
 		
 		ArrayList<MyStockVO> mystockList = new ArrayList();
 		StockDAO stockDAO = new StockDAO();
+		
 		//ArrayList에 MystockList 담기
 		while(rs.next()) {
 			String sno = rs.getString("sno");
@@ -87,6 +85,8 @@ public class SimulationDAO {
 					
 	}//getMySimulationVO() end
 	
+	
+	//가상투자 정보 입력
 	public void insertInfo(Connection conn, int mno, int quantity, StockVO stock) {
 
 		PreparedStatement pstmt = null;
@@ -104,6 +104,58 @@ public class SimulationDAO {
 			e.printStackTrace();
 		}
 		
+	}
+	
+	//내 보유량을 현재가를 기준으로 포인트로 환산하기
+	public int calculateAsset(Connection conn, int mno) {
+		int i = 0;
+		try {
+			for(MyStockVO mystock: getMySimulationList(conn, mno)) {
+				i += mystock.getStock().getPrice()*mystock.getTotalquantity();
+			}
+			return i;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return i;
+		}
+	}//calculateAsset() end
+	
+	
+	//내 주식 기록 가져오기
+	public ArrayList<StockHistoryVO> getMyInvestHistory(Connection conn, int mno){
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT * FROM simulation where mno=?";
+		ArrayList<StockHistoryVO> history = new ArrayList<StockHistoryVO>();
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, mno);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				
+				StockHistoryVO stock = new StockHistoryVO(
+						rs.getDate("sidate"), 
+						rs.getString("sno"), 
+						rs.getInt("siquantity"), 
+						rs.getInt("siprice"), 
+						rs.getInt("siquantity")*rs.getInt("siprice"));
+				
+				
+				history.add(stock);
+				
+			}
+			
+			return history;
+		}catch(Exception e) {
+			System.out.println("DAO error");
+			return null;
+		}finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
 		
 	}
 	
