@@ -79,7 +79,7 @@
 						<td>
 						<form name="simulation" method="post" action="simulation.do">
 							<input type="hidden" name="sname" value="${stock.name}"/>
-							<input type="submit" value="투자하기">
+							<input type="submit" value="투자하기" style="cursor:pointer">
 						</form>
 						</td>
 						<td>
@@ -88,7 +88,7 @@
 								<input type="hidden" name="interest" value="plus">
 								<input type="hidden" name="sno" value="${stock.no}">
 								<img src="<%= request.getContextPath()%>/img/star.png"
-									onclick="javascript:interestPlus.submit();">
+									style="cursor:pointer" onclick="againCheck('interestPlus')">
 							</form>
 						</c:if>
 						<c:if test="${stock.interest!=0}">
@@ -96,10 +96,11 @@
 								<input type="hidden" name="interest" value="delete">
 								<input type="hidden" name="sno" value="${stock.no}">
 								<img src="<%= request.getContextPath()%>/img/star-click.png"
-									onclick="javascript:interestDelete.submit();">
+									style="cursor:pointer">
 							</form>
 						</c:if>
 						</td>
+						
 	        </tr>
      </c:forEach>
 	</table>
