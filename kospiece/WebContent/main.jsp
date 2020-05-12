@@ -1,6 +1,9 @@
+<%@page import="json.data"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
+<script src="https://cdn.anychart.com/releases/v8/js/anychart-core.min.js"></script>
+<script src="https://cdn.anychart.com/releases/v8/js/anychart-treemap.min.js"></script>
+<%@ page import="json.data" %>
 <!-- 나진 파트 -->
 
 <!-- "추가해야 될 사항" 
@@ -19,8 +22,53 @@
   
 <div class="main-map">
 
-	<div class="map">
-	맵
+	<div class="map" id="map">
+	<script>
+      anychart.onDocumentReady(function() {
+		        // create data
+		<% data dd = new data(); %>        
+        var data = <%=dd.raw()%>
+
+        // create a data tree
+        var treeData = anychart.data.tree(eval(data), "as-tree");
+
+        // create a treemap chart visualizing the data tree
+        var chart = anychart.treeMap(treeData);
+		
+        var customColorScale = anychart.scales.ordinalColor();
+        customColorScale.ranges([
+            {less: -3},
+            {from: -3, to: -2},
+            {from: -2, to: -1},
+            {from: -1, to: 1},
+            {from: 1, to: 2},
+            {from: 2, to: 3},
+            {greater: 3}
+        ]);
+        
+        customColorScale.colors(["#f63538", "#bf4045", "#8b444e" ,"#414554", "#35764e", "#2f9e4f", "#30cc5a"]);
+     // set the color scale as the color scale of the chart
+        chart.colorScale(customColorScale);
+
+     
+        chart.maxDepth(3);
+        chart.hintDepth(3);
+        chart.maxHeadersHeight("5%");
+        // add a color range
+        chart.colorRange().enabled(true);
+        chart.colorRange().length("30%");
+        // add a title for the chart
+        chart.title("Kospi 200 Map");
+
+        // specify the container id
+        chart.container("map");
+
+        // draw the chart
+        chart.draw();
+
+        
+      });
+    </script>
 	</div>
 	<div class="map-detail">
 		<form name="company-inform" method ="post" class="company-inform">
@@ -76,6 +124,5 @@
 				<td colspan="3">00</td>
 			</tr>
 		</table>
-		<a href="./simulationlist.do">가상투자 test 경로</a>
 	</div>
 </div>
