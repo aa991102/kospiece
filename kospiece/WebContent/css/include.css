@@ -12,7 +12,6 @@ body{
 	font-family: Roboto, sans-serif;
 	}
 
-
 /*header 디자인*/
 .header {
 	background:#1A3F69;
@@ -80,18 +79,8 @@ body{
 .header .list-item>a{color:#D1D9E1;}
 .header .list-item>a:hover{color:white;}
 
-/*footer 디자인*/
-.footer{text-align:center}
-
-
 /*main 디자인*/
 .main{min-height:750px;}
-	.map{width:700px;height:400px;border:1px solid black;margin:50px auto;}
-	.detail{width:700px;height:200px;border:1px solid black;margin:10px auto;}
 
-
-
-
-
-
-	
+/*footer 디자인*/
+.footer{text-align:center}

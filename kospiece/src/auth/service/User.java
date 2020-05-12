@@ -5,11 +5,11 @@ package auth.service;
 //위 패키지는 로그인정보를 세션에 저장 및 운반하기위한 객체를 선언하기 위해 만듬
 public class User {
 	private String id;
-	private String nickname;
+	private String nick;
 	
-	public User(String id, String nickname) {
+	public User(String id, String nick) {
 		this.id=id;
-		this.nickname=nickname;
+		this.nick=nick;
 	}
 
 	public String getId() {
@@ -17,7 +17,7 @@ public class User {
 	}
 
 	public String getNick() {
-		return nickname;
+		return nick;
 	}
 	
 }

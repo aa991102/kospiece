@@ -3,14 +3,16 @@ package admin.service;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-import dao.MemberDAO;
+import admin.Statistics;
+import dao.AdminDAO;
 import jdbc.JdbcUtil;
 import jdbc.connection.ConnectionProvider;
 
 public class AdminService {
 
-	MemberDAO adminDao = new MemberDAO();
+	AdminDAO adminDao = new AdminDAO();
 	Statistics memberStatistics= new Statistics();
+	int totalMember;
 	
 	public Statistics service() {
 		Connection conn = null;

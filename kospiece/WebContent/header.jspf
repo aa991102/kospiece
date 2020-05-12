@@ -40,6 +40,8 @@
     <!-- 자바스크립트 -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="<%= request.getContextPath()%>/js/header_sub.js"></script>
+    <script src="<%= request.getContextPath()%>/js/main.js"></script>
+    <script src="<%= request.getContextPath()%>/js/admin.js"></script>
 </head>
 <body>
 
@@ -57,7 +59,7 @@
                 <a href="<%= request.getContextPath()%>/main.jsp">맵</a>
             </li>
             <li class="list-item">
-                <a href="<%= request.getContextPath()%>/rank.do">실시간순위</a>
+                <a href="<%= request.getContextPath()%>/rank/rank.jsp">실시간순위</a>
             </li>
             <li class="list-item">
                 <a href="<%= request.getContextPath()%>/board/board.jsp">자유게시판</a>
@@ -66,10 +68,10 @@
                 <a href="<%= request.getContextPath()%>/notice/notice.jsp">공지사항</a>
             </li>
             <li class="list-item">
-                <a class="virtual" id="virtual" href="<%= request.getContextPath()%>/simulation.do">가상투자</a>
+                <a class="virtual" id="virtual" href='javascript:void(0);' onclick="LoginCheck('invest',${!empty AUTHUSER})">가상투자</a>
                 <ul class="sub-list-virtual">
-                    <li class="sub-item-virtual"><a href="<%= request.getContextPath()%>/simulationlist.do" class="a-item">보유주식</a></li>
-                    <li class="sub-item-virtual"><a href="<%= request.getContextPath()%>/simulation.do" class="a-item">주식주문</a></li>
+                    <li class="sub-item-virtual"><a href='javascript:void(0);' onclick="LoginCheck('invest',${!empty AUTHUSER})" class="a-item">보유주식</a></li>
+                    <li class="sub-item-virtual"><a href='javascript:void(0);' onclick="LoginCheck('invest',${!empty AUTHUSER})" class="a-item">주식주문</a></li>
                 </ul>
             </li>
             <li class="list-item">

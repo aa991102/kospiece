@@ -6,10 +6,11 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import auth.service.User;
+import board.model.Writer;
 import board.service.WriteBoardService;
 import board.service.WriteRequest;
 import controller.command.CommandHandler;
-import dto.MemberVO;
 
 public class WriteBoardHandler implements CommandHandler {
 	private static final String FORM_VIEW = "/board/boardWrite.jsp";
@@ -17,14 +18,14 @@ public class WriteBoardHandler implements CommandHandler {
 	
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
-		System.out.println("board/command/WriteBoardHandler.process진입");
+		System.out.println("게시판글쓰기process함수진입");
 		if(req.getMethod().equalsIgnoreCase("GET")) {
-			System.out.println("\nget방식요청");
+			System.out.println("get방식요청");
 			return processForm(req,res);
 		}else if(req.getMethod().equalsIgnoreCase("POST")) {
-			System.out.println("\npost방식요청");
+			System.out.println("post방식요청");
 			System.out.println("제목 : "+req.getParameter("title"));
-			System.out.println("내용 : "+req.getParameter("content"));
+			System.out.println("내용"+req.getParameter("content"));
 			return processSubmit(req,res);
 		}else {
 			System.out.println("요청없음");
@@ -33,28 +34,29 @@ public class WriteBoardHandler implements CommandHandler {
 		}
 	}
 	
+	/*
+	 * get방식으로 들어오면 글쓰기페이지 반환, 여기서 get방식으로 들어오게되는 경로를 설정해야함
+	 * */
 	private String processForm(HttpServletRequest req, HttpServletResponse res) {
-		System.out.println("-> processForm 진입");
 		return FORM_VIEW;
 	}
 	private String processSubmit(HttpServletRequest req, HttpServletResponse res) {
-		System.out.println("-> processSubmit 진입");
-		
 		Map<String, Boolean> errors = new HashMap<>();
 		req.setAttribute("errors", errors);
 		
-	//요청파라미터받기
-		//사용자 정보 확인
-		MemberVO member = (MemberVO)req.getSession(false).getAttribute("AUTHUSER");
-		System.out.println("로그인세션호출 : "+member);
+		/*
+		//현재 사용자 정보 확인(User 객체의 authUser파라미터로)
+		//5.6 코드 작성 중 오류 session관련 현재 사용자정보를 따올 수 없음 - 구현해야함
+		User user = (User)req.getSession(false).getAttribute("authUser");
+		WriteRequest writeReq = createWriteRequest(user, req);
+		writeReq.validate(errors);
+		*/
 		
-		//요청 파라미터 받기
-		//writeReq객체에 서블릿에서 전달받은
-		//사용자의 닉네임, 사용자가 입력한 제목과 내용을 전달한다.
-		WriteRequest writeReq = createWriteRequest(member, req);
+		//사용자 정보 확인 임시 코드
+		User user= new User("Test용id","Test용Nick");
+		WriteRequest writeReq = createWriteRequest(user, req);
 		writeReq.validate(errors);
 		
-		//5.8 제목을 입력 안했을 시 alert문 띄워주는 기능 추가해야함
 		if(!errors.isEmpty()) {
 			return FORM_VIEW;
 		}
@@ -65,8 +67,8 @@ public class WriteBoardHandler implements CommandHandler {
 		return "/board/board.jsp";
 	}
 
-	private WriteRequest createWriteRequest(MemberVO member, HttpServletRequest req) {
-		return new WriteRequest(member.getNickname(),
+	private WriteRequest createWriteRequest(User user, HttpServletRequest req) {
+		return new WriteRequest(new Writer(user.getId(), user.getNick()), 
 				req.getParameter("title"), req.getParameter("content"));
 	}
 

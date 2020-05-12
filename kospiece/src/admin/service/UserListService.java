@@ -4,28 +4,24 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
-import dao.MemberDAO;
+import dao.AdminDAO;
 import dto.MemberVO;
 import jdbc.JdbcUtil;
 import jdbc.connection.ConnectionProvider;
 
 public class UserListService {
 	
-	MemberDAO adminDao=new MemberDAO();
+	AdminDAO adminDao=new AdminDAO();
 	List<MemberVO> memberlist=null;
 	
-	public List<MemberVO> userListService(String column,String value) {
+	public List<MemberVO> service() {
 		Connection conn = null;
 		try {
 			
 			conn = ConnectionProvider.getConnection();
 			conn.setAutoCommit(false);//트랜잭션 시작
-			System.out.print(column+value);
-			if(column==""||value==""||column==null||value==null) {
-				memberlist=adminDao.selectAllMember(conn);
-			}else {
-				memberlist=adminDao.selectedMember(conn,column,value);
-			}
+
+			memberlist=adminDao.selectAllMember(conn);
 			
 			conn.commit(); //트랙잭션 반영
 			
@@ -38,5 +34,4 @@ public class UserListService {
 		}
 		
 	}
-	
 }

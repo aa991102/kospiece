@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,24 +20,19 @@
  				<th>작성일</th>
  				<th>조회</th>
  			</tr>
- 			<c:if test="${freeBoard.hasNoarticles()}">
-	 			<tr>
-	 				<td colspan="4">게시글이 없습니다.</td>
-	 			</tr>		
- 			</c:if>
  			<tr>
- 				<th><%=request.getAttribute("nickname") %></th>
- 				<th>제목</th>
- 				<th>작성자</th>
- 				<th>작성일</th>
- 				<th>조회</th>
+ 				<td>1</td>
+ 				<td>테스트</td>
+ 				<td>유태우</td>
+ 				<td>20-05-03</td>
+ 				<td>cnt</td>
  			</tr>
  		</table>
  	</div>
  	
  	<div class="" id="1-3">
  		<< < 1 2 3 4 5 6 7 8 9 > >> 
- 		<a href="<%= request.getContextPath()%>/board/write.do">
+ 		<a href="<%= request.getContextPath()%>/board/boardWrite.jsp">
  		<input type="button" value="글쓰기"/></a>
  	</div>
  </div>

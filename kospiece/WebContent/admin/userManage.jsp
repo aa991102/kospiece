@@ -6,14 +6,14 @@
 
 <div class="admin-user">
 	<a href="<%= request.getContextPath()%>/admin.do" class="admin-logo">관리자 페이지</a>	
-	<a href="<%= request.getContextPath()%>/userList.do" class="user-button">회원관리</a>
-	<a href="<%= request.getContextPath()%>/noticeList.do" class="notice-button">공지사항</a><br/>
+	<a href="<%= request.getContextPath()%>/admin/userManage.jsp" class="user-button">회원관리</a>
+	<a href="<%= request.getContextPath()%>/admin/noticeManage.jsp" class="notice-button">공지사항</a><br/>
 	
-	<form action="<%= request.getContextPath()%>/userList.do"name="user-search" method ="post" class="user-search">
+	<form name="user-search" method ="post" class="user-search">
 	    <select name="search">
-    		<option value=""selected>전체</option>	
-	        <option value="mnick">닉네임</option>
-	        <option value="mid">아이디</option> 
+    		<option value="total" selected>전체</option>	
+	        <option value="nickname">닉네임</option>
+	        <option value="id">아이디</option> 
 	    </select>
 	    <input type="text" name="user-inform" />
 	    <input type="submit" value="검색"/>
@@ -33,26 +33,24 @@
         </tr>
         
      <!-- 멤버 중 관리자인 회원을 최 상단에 출력 -->
-	 <c:forEach var="member" items="${memberList}">
- 	 <c:set var="adminOK" value="${member.nickname=='관리자1'||member.nickname=='관리자2'||member.nickname=='관리자3'||member.nickname=='관리자4'
-           	||member.nickname=='관리자5'||member.nickname=='관리자6'}"/>
+	 <c:forEach var="admin" items="${memberList}">
+ 	 <c:set var="adminOK" value="${admin.nickname=='관리자1'||admin.nickname=='관리자2'||admin.nickname=='관리자3'||admin.nickname=='관리자4'
+           	||admin.nickname=='관리자5'||admin.nickname=='관리자6'}"/>
   		<c:if test='${adminOK}'>
 	        <tr class="admin-list">
-	        	<td>${member.nickname}</td>
-	        	<td>${member.id}</td>
+	        	<td>${admin.nickname}</td>
+	        	<td>${admin.id}</td>
 	        	<c:set var="id" value="${admin.id}"/>
-	        	<td>${member.name}</td>
-	        	<td>${member.mail}</td>
-	        	<td>${member.regdate}</td>
-	        	<td>${member.deposit}
-	        	<a href="<%= request.getContextPath()%>/pointCharge.do">충전</a>
-	        	</td>
+	        	<td>${admin.name}</td>
+	        	<td>${admin.mail}</td>
+	        	<td>${admin.regdate}</td>
+	        	<td>${admin.deposit}<input type="button" onclick="pointCharge()" value="충전"></td>
 	        	<td></td>
 	        </tr>
         </c:if>
      </c:forEach>
      <!-- 일반회원을 아래로 나열 -->
-     <c:forEach var="member" items="${memberList}" varStatus="status">
+     <c:forEach var="member" items="${memberList}">
       	 <c:set var="adminOK" value="${member.nickname=='관리자1'||member.nickname=='관리자2'||member.nickname=='관리자3'||member.nickname=='관리자4'
            	||member.nickname=='관리자5'||member.nickname=='관리자6'}"/>
          <c:if test='${!adminOK}'>
@@ -63,16 +61,9 @@
 	        	<td>${member.name}</td>
 	        	<td>${member.mail}</td>
 	        	<td>${member.regdate}</td>
-	        	<td>${member.deposit}<a href="<%= request.getContextPath()%>/pointCharge.do">충전</a></td>
-	        	<td>
-	        	<form name="deleteUserForm" id="deleteUserForm" method="post" action="<%= request.getContextPath()%>/admin/checkAdminPw.jsp">
-	        		<c:set var="button_id" value="0"/>
-	        		<input type="hidden" name="service" value="deleteMember">
-	        		${button_id}
-		        	<input type="hidden" name="userId" value="${member.id}">
-		        	<input type="button" value="탈퇴" onclick="memberDeleteOk(${member.nickname})">
-	        	</form>
-	        	</td>
+	        	<td>${member.deposit}<a href="<c:url value="/pointCharge.do"><c:param name="id" value="${member.id}"></c:param> </c:url>">충전</a></td>
+	        	<td><a href="<c:url value="/memberDelete.do"><c:param name="id" value="${member.id }"></c:param> </c:url>">탈퇴하기</a></td>
+	        	
 	        </tr>
         </c:if>
 		

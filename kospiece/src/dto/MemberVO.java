@@ -24,18 +24,6 @@ public class MemberVO {
 		this.nickname=nickname;
 		this.pw=pw;
 	}
-	
-	
-	
-	public MemberVO(int mno, String id, String nickname, String pw, String name, int deposit, int asset) {
-		this.mno = mno;
-		this.id = id;
-		this.nickname = nickname;
-		this.pw = pw;
-		this.name = name;
-		this.deposit = deposit;
-		this.asset = asset;
-	}
 
 	public int getMno() {
 		return mno;

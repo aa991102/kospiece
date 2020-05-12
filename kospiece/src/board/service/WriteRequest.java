@@ -2,22 +2,23 @@ package board.service;
 
 import java.util.Map;
 
+import board.model.Writer;
 
 //게시글을 쓰는데 필요한 데이터를 정의
 //작성자, 제목, 내용이 잘 들어갔는지 유효성검사
 public class WriteRequest {
-	private String nickname;
+	private Writer writer;
 	private String title;
 	private String content;
 
-	public WriteRequest(String nickname, String title, String content) {
-		this.nickname = nickname;
+	public WriteRequest(Writer writer, String title, String content) {
+		this.writer = writer;
 		this.title = title;
 		this.content = content;
 	}
 
-	public String getNickname() {
-		return nickname;
+	public Writer getWriter() {
+		return writer;
 	}
 
 	public String getTitle() {
@@ -34,10 +35,4 @@ public class WriteRequest {
 			errors.put("title",Boolean.TRUE);
 		}
 	}
-
-	@Override
-	public String toString() {
-		return "WriteRequest [nickname=" + nickname + ", title=" + title + ", content=" + content + "]";
-	}
-	
 }
