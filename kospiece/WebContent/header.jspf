@@ -32,7 +32,6 @@
     <link rel="stylesheet" href="<%= request.getContextPath()%>/css/board.css" type="text/css">
     <link rel="stylesheet" href="<%= request.getContextPath()%>/css/service.css" type="text/css">
     <link rel="stylesheet" href="<%= request.getContextPath()%>/css/mypage.css" type="text/css">
-    <link rel="stylesheet" href="<%= request.getContextPath()%>/css/include.css" type="text/css">
     <link rel="stylesheet" href="<%= request.getContextPath()%>/css/rank.css" type="text/css">
     <link rel="stylesheet" href="<%= request.getContextPath()%>/css/notice.css" type="text/css">
     <!--웹 폰트 사용-->
@@ -40,6 +39,7 @@
     <!-- 자바스크립트 -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="<%= request.getContextPath()%>/js/header_sub.js"></script>
+    <script src="<%= request.getContextPath()%>/js/point_rank.js" type="text/javascript"></script>
 </head>
 <body>
 
@@ -75,9 +75,9 @@
             <li class="list-item">
                 <a class="my" id="my" href="<%= request.getContextPath()%>\mypage\mypage.jsp">MYPAGE</a>
                 <ul class="sub-list-my">
-                    <li class="sub-item-my"><a href="<%= request.getContextPath()%>\mypage\myInterest.jsp" class="a-item">관심주식</a></li>
-                    <li class="sub-item-my"><a href="<%= request.getContextPath()%>\mypage\myPost.jsp" class="a-item">내 게시글</a></li>
-                    <li class="sub-item-my"><a href="<%= request.getContextPath()%>\mypage\myInfo.jsp" class="a-item">내 정보</a></li>
+                    <li class="sub-item-my"><a href="<%= request.getContextPath()%>/myInterest.do" class="a-item">관심주식</a></li>
+                    <li class="sub-item-my"><a href="<%= request.getContextPath()%>/mypage/myPost.jsp" class="a-item">내 게시글</a></li>
+                    <li class="sub-item-my"><a href="<%= request.getContextPath()%>/myInfo.do" class="a-item">내 정보</a></li>
                 </ul>
             </li>
             <!-- 관리자로 로그인했을 경우 nav-admin 보여주기 -->
@@ -93,9 +93,18 @@
         <ul class="list2">
             <li class="list-item2">
                 <div class="rank">
-                    <a class="rankNum">1</a>
-                    &nbsp;&nbsp;
-                    <a class="rankNick">인생은 한방</a>
+                	<dl id="rank-list">
+                		<dt>오늘의 포인트 TOP5</dt>
+                		<dd>
+                			<ol>
+                    		<li>&nbsp;&nbsp;<a class="rankNum">1</a>&nbsp;&nbsp;<a class="rankNick">인생은 한방</a></li>
+                    		<li>&nbsp;&nbsp;<a class="rankNum">2</a>&nbsp;&nbsp;<a class="rankNick">대박이야</a></li>
+                    		<li>&nbsp;&nbsp;<a class="rankNum">3</a>&nbsp;&nbsp;<a class="rankNick">눈누난나랄라랄라</a></li>
+                    		<li>&nbsp;&nbsp;<a class="rankNum">4</a>&nbsp;&nbsp;<a class="rankNick">해피데이</a></li>
+                    		<li>&nbsp;&nbsp;<a class="rankNum">5</a>&nbsp;&nbsp;<a class="rankNick">에이요쥐쥐</a></li>
+                			</ol>
+                		</dd>
+               		</dl>
                 </div>
             </li>
             <li class="list-item_log">

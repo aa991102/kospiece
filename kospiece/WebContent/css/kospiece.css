@@ -100,9 +100,9 @@ body{
 }
 .header .rank {position:absolute;
 		top:-6px;
-		left:90px;
+		left:110px;
 		line-height:30px;
-    width:180px;
+    width:160px;
     height:30px;
     color:white;
     border-bottom-style:solid;
@@ -121,6 +121,36 @@ body{
     }
 .header rank.a {text-decoration:none;}
 
+#rank-list {
+				    overflow: hidden;
+				    width: 160px;
+				    height: 20px;
+				    margin: 0;
+						}
+				
+#rank-list dt {
+				    		display: none;
+							}
+				
+#rank-list dd {
+						    position: relative;
+						    margin: 0;
+							}
+				
+#rank-list ol {
+						    position: absolute;
+						    top: 0;
+						    left: 0;
+						    margin: 0;
+						    padding: 0;
+						    list-style-type: none;
+							}
+				
+#rank-list li {
+						    height: 20px;
+						    line-height: 20px;
+							}
+							
 .header .list-item_log{position:absolute;
 		top:0;
 		left:340px;

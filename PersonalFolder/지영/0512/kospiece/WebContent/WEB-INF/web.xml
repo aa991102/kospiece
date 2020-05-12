@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" 
+				xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>pro1</display-name>
+  <welcome-file-list>
+    <welcome-file>main.html</welcome-file>
+    <welcome-file>main.htm</welcome-file>
+    <welcome-file>main.jsp</welcome-file>
+  </welcome-file-list>
+
+  <listener>
+  	<listener-class>jdbc.DBCPInitListener</listener-class>
+  </listener>
+  
+  <context-param>
+  	<param-name>poolConfig</param-name>
+  	<param-value>
+  	jdbcdriver=com.mysql.jdbc.Driver
+  	jdbcUrl=jdbc:mysql://192.168.56.66:3306/kospiece_ex2?characterEncoding=utf8&amp;serverTimezone=UTC
+  	dbUser=root
+  	dbPass=1234
+		validationQuery=select 1
+		minIdel=3
+		maxTotal=30
+		poolName=kospiece
+  	</param-value>
+  </context-param>
+  
+    <filter>
+        <filter-name>encodingFilter</filter-name>
+        <filter-class>util.CharacterEncodingFilter</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>encodingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <!--
+    5.8 유태우
+    	로그인체크필터기능 추가하였습니다. 필요하신분은 밑에 url패턴 추가하시면 됩니다.
+    	아직 로그아웃 기능은 미구현 상태인 것 같습니다 
+    -->
+    <filter>
+        <filter-name>LoginCheckFilter</filter-name>
+        <filter-class>filter.LoginCheckFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>LoginCheckFilter</filter-name>
+        <url-pattern>/board/write.do</url-pattern>
+    </filter-mapping>
+    
+    <servlet>
+    	<servlet-name>ControllerUsingURI</servlet-name>
+    	<servlet-class>controller.ControllerUsingURI</servlet-class>
+    	<init-param>
+    		<param-name>configFile</param-name>
+    		<param-value>/WEB-INF/commandHandlerURI.properties</param-value>
+    	</init-param>
+    </servlet>
+    
+    <servlet-mapping>
+    	<servlet-name>ControllerUsingURI</servlet-name>
+    	<url-pattern>*.do</url-pattern>
+    </servlet-mapping>
+ 
+ <jsp-config>
+ 	<jsp-property-group>
+ 		<url-pattern>*.jsp</url-pattern>
+ 		<include-prelude>/header.jspf</include-prelude>
+ 		<include-coda>/footer.jspf</include-coda>
+ 	</jsp-property-group>
+ </jsp-config>
+
+</web-app>

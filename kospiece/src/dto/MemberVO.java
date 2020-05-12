@@ -36,7 +36,19 @@ public class MemberVO {
 		this.deposit = deposit;
 		this.asset = asset;
 	}
-
+	
+	public MemberVO(int mno, String id, String nickname, String pw, String name, String mail, String phone, int deposit, int asset) {
+		this.mno = mno;
+		this.id = id;
+		this.nickname = nickname;
+		this.pw = pw;
+		this.name = name;
+		this.mail = mail;
+		this.phone = phone;
+		this.deposit = deposit;
+		this.asset = asset;
+	}
+	
 	public int getMno() {
 		return mno;
 	}
@@ -128,5 +140,9 @@ public class MemberVO {
 		return pw.contentEquals(password);
 	}
 
+	//암호변경 관련 기능
+	public void changePassword(String newPw) {
+		this.pw = newPw;
+	}
 	
 }
