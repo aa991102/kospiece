@@ -63,7 +63,7 @@
                 <a href="<%= request.getContextPath()%>/board/board.jsp">자유게시판</a>
             </li>
             <li class="list-item">
-                <a href="<%= request.getContextPath()%>/notice/notice.jsp">공지사항</a>
+                <a href="<%= request.getContextPath()%>/notice.do">공지사항</a>
             </li>
             <li class="list-item">
                 <a class="virtual" id="virtual" href="<%= request.getContextPath()%>/simulation.do">가상투자</a>
