@@ -1,0 +1,41 @@
+관심주식에 회사 하나 추가하면 
+해당 회원번호mno   회사코드번호sno   번호listno=1
+그 다음 추가하면
+해당 회원번호mno   회사코드번호sno   번호listno=2 (    max(lisno)  +1;    )
+
+
+
+현재 변경/추가한 사항
+-mypage폴더 전체 복붙하기
+-dto/MemberVO.java에 암호변경 관련 기능 추가
+-dao/MemberDAO.java에 암호변경 관련 기능 추가
+-member.service패키지에
+ 	ChangePasswordService
+ 	MemberNotFoundException
+ 	InvalidPasswordException
+ 	추가
+-commandHandlerURI.properties에
+	#jiyoung-mypage
+	/changePw.do=member.command.ChangePasswordHandler
+	/withdrawal.do=member.command.WithdrawalHandler
+	추가
+-WEB-INF/lib/web.xml에
+	<filter-mapping>
+        		<filter-name>LoginCheckFilter</filter-name>
+        		<url-pattern>/mypage/mypage.jsp</url-pattern>
+    	</filter-mapping>
+	<filter-mapping>
+        		<filter-name>LoginCheckFilter</filter-name>
+        		<url-pattern>/mypage/myInterest.jsp</url-pattern>
+    	</filter-mapping>
+    	<filter-mapping>
+        		<filter-name>LoginCheckFilter</filter-name>
+        		<url-pattern>/mypage/myInfo.jsp</url-pattern>
+    	</filter-mapping>
+	추가
+-mypgae.jsp수정
+-myInfo.jsp수정
+-member.command에 WithdrawalHandler.jave 생성
+-member.service에 WithdrawalService.java 생성
+-dto에 MyInterestVO.java 생성
+-dao에 MyInterestDAO.java 생성

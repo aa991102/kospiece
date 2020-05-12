@@ -1,0 +1,81 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+  pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>KOSPIECE</title>
+    <link rel="stylesheet" href="/css/normalize.css">
+    <link rel="stylesheet" href="/css/kospiece.css">
+    <link rel="stylesheet" href="/css/admin.css">
+    <link rel="stylesheet" href="/css/user.css">
+    <link rel="stylesheet" href="/css/board.css">
+    <link rel="stylesheet" href="/css/service.css">
+    <link rel="stylesheet" href="/css/mypage.css">
+    <!--웹 폰트 사용-->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&display=swap" rel="stylesheet">
+    <!-- 자바스크립트 -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="../js/header_sub.js"></script>
+</head>
+<body>
+
+<!-- 헤더 -->
+<header class="header">
+
+    <!-- LOGO -->
+    <h1><a href="../main.jsp" class="logo" >KOSPIECE</a></h1>
+
+    <!-- 상단메뉴바 -->
+    <nav class="nav">
+        <!-- 맵, 실시간순위, 자유게시판, 공지사항, 가상투자, 마이페이지 -->
+        <ul class="list">
+            <li class="list-item">
+                <a href="../main.jsp">맵</a>
+            </li>
+            <li class="list-item">
+                <a href="../rank/rank.jsp">실시간순위</a>
+            </li>
+            <li class="list-item">
+                <a href="../board/board.jsp">자유게시판</a>
+            </li>
+            <li class="list-item">
+                <a href="../column/column.jsp">공지사항</a>
+            </li>
+            <li class="list-item">
+                <a class="virtual" id="virtual" href="../virtual/invest.jsp">가상투자</a>
+                <ul class="sub-list-virtual">
+                    <li class="sub-item-virtual"><a href="#" class="a-item">보유주식</a></li>
+                    <li class="sub-item-virtual"><a href="#" class="a-item">주식주문</a></li>
+                </ul>
+            </li>
+            <li class="list-item">
+                <a class="my" id="my" href="..\mypage\mypage.jsp">MYPAGE</a>
+                <ul class="sub-list-my">
+                    <li class="sub-item-my"><a href="#" class="a-item">관심주식</a></li>
+                    <li class="sub-item-my"><a href="#" class="a-item">내 게시글</a></li>
+                    <li class="sub-item-my"><a href="#" class="a-item">내 정보 관리</a></li>
+                </ul>
+            </li>
+        </ul>
+
+        <!-- 포인트랭킹,로그인 -->
+        <ul class="list2">
+            <li class="list-item2">
+                <div class="rank">
+                    <a class="rankNum">1</a>
+                    &nbsp;&nbsp;
+                    <a class="rankNick">인생은 한방</a>
+                </div>
+            </li>
+            <li class="list-item_log">
+                <a href="#" target="_blank" rel="noopener">🚪&nbsp;&nbsp;login</a>
+            </li>
+        </ul>
+
+    </nav>
+
+
+</header>
+<div class="clear"></div>
+<div class="main">
