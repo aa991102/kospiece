@@ -1,5 +1,6 @@
 package board.command;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -7,8 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import board.service.WriteBoardService;
-import board.service.WriteRequest;
 import controller.command.CommandHandler;
+import dto.FreeBoardVO;
 import dto.MemberVO;
 
 public class WriteBoardHandler implements CommandHandler {
@@ -39,36 +40,35 @@ public class WriteBoardHandler implements CommandHandler {
 	}
 	private String processSubmit(HttpServletRequest req, HttpServletResponse res) {
 		System.out.println("-> processSubmit 진입");
+
+	//요청파라미터받기
+		//사용자 정보(세션)
+		MemberVO member = (MemberVO)req.getSession(false).getAttribute("AUTHUSER");
 		
+		//파라미터
+		FreeBoardVO board = ParamToBoard(member, req);		
+		System.out.println("board = "+board);
+		
+		/*//5.8 제목을 입력 안했을 시 alert문 띄워주는 기능 추가해야함	
 		Map<String, Boolean> errors = new HashMap<>();
 		req.setAttribute("errors", errors);
-		
-	//요청파라미터받기
-		//사용자 정보 확인
-		MemberVO member = (MemberVO)req.getSession(false).getAttribute("AUTHUSER");
-		System.out.println("로그인세션호출 : "+member);
-		
-		//요청 파라미터 받기
-		//writeReq객체에 서블릿에서 전달받은
-		//사용자의 닉네임, 사용자가 입력한 제목과 내용을 전달한다.
-		WriteRequest writeReq = createWriteRequest(member, req);
-		writeReq.validate(errors);
-		
-		//5.8 제목을 입력 안했을 시 alert문 띄워주는 기능 추가해야함
 		if(!errors.isEmpty()) {
 			return FORM_VIEW;
 		}
+		*/
 		
-		int newArticleNo = writeService.write(writeReq);
+		int newArticleNo = writeService.write(board);
 		req.setAttribute("newArticleNo", newArticleNo);
 		
 		return "/board/board.jsp";
 	}
 
-	private WriteRequest createWriteRequest(MemberVO member, HttpServletRequest req) {
-		return new WriteRequest(member.getNickname(),
-				req.getParameter("title"), req.getParameter("content"));
+	private FreeBoardVO ParamToBoard(MemberVO member, HttpServletRequest req) {
+		return new FreeBoardVO(
+				member.getNickname(),
+				req.getParameter("title"), 
+				req.getParameter("content"),
+				new Date());
 	}
-
 
 }

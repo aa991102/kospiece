@@ -11,13 +11,13 @@ import java.util.Date;
 import dto.FreeBoardVO;
 import jdbc.JdbcUtil;
 
-public class BoardWriteDAO {
+public class BoardDAO {
 	PreparedStatement pstmt = null;
 	Statement stmt = null;
 	ResultSet rs  = null;
 	FreeBoardVO board = null;
 
-	//5.8 insert문 작성
+	//5.8 insert
 	public void insert(Connection conn,FreeBoardVO board)
 		throws SQLException {
 		System.out.println("BoardWriteDAO.insert()호출");

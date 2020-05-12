@@ -15,7 +15,7 @@ public class FreeBoardVO {
 		this.nickname=nickname;
 		this.title=title;
 		this.content=content;
-		this.uploaddate=uploaddate;
+		this.uploaddate = uploaddate;
 	}
 	
 	public int getFno() {

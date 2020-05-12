@@ -3,8 +3,8 @@ package member.command;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import auth.service.User;
 import controller.command.CommandHandler;
+import dto.MemberVO;
 import member.service.WithdrawalService;
 
 public class WithdrawalHandler implements CommandHandler {
@@ -35,9 +35,19 @@ public class WithdrawalHandler implements CommandHandler {
 	}
 	
 	private String processSubmit(HttpServletRequest request, HttpServletResponse response) {
+		
+		/*5.12 유태우 수정
+		 * 불필요한 파일(id, nickname을 담는 클래스)을 삭제하기 위해(auth.service.User) 코드를 수정했습니다.
+		 * 수정 전 :
+				User user = (User)request.getSession().getAttribute("AUTHUSER");
+				String id = user.getId();
+			수정 후 :
+				MemberVO member = (MemberVO)request.getSession(false).getAttribute("AUTHUSER");
+				String id = member.getId();
 
-		User user = (User)request.getSession().getAttribute("AUTHUSER");
-		String id = user.getId();
+		*/
+		MemberVO member = (MemberVO)request.getSession(false).getAttribute("AUTHUSER");
+		String id = member.getId();
 		System.out.println(id);
 		withdrawalService.service(id);
 		
