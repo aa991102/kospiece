@@ -40,7 +40,6 @@
 	        <tr class="admin-list">
 	        	<td>${member.nickname}</td>
 	        	<td>${member.id}</td>
-	        	<c:set var="id" value="${admin.id}"/>
 	        	<td>${member.name}</td>
 	        	<td>${member.mail}</td>
 	        	<td>${member.regdate}</td>
@@ -59,19 +58,16 @@
 	        <tr class="member-list">
 	        	<td>${member.nickname}</td>
 	        	<td>${member.id}</td>
-	        	<c:set var="id" value="${member.id}"/>
 	        	<td>${member.name}</td>
 	        	<td>${member.mail}</td>
 	        	<td>${member.regdate}</td>
 	        	<td>${member.deposit}<a href="<%= request.getContextPath()%>/pointCharge.do">충전</a></td>
 	        	<td>
-	        	<form name="deleteUserForm" id="deleteUserForm" method="post" action="<%= request.getContextPath()%>/admin/checkAdminPw.jsp">
-	        		<c:set var="button_id" value="0"/>
-	        		<input type="hidden" name="service" value="deleteMember">
-	        		${button_id}
-		        	<input type="hidden" name="userId" value="${member.id}">
-		        	<input type="button" value="탈퇴" onclick="memberDeleteOk(${member.nickname})">
-	        	</form>
+	        	<form name="delete" method="post" action="<%= request.getContextPath()%>/checkAdminPw.do">
+	        		<input type="hidden" name="userId" value="${member.id}"/>
+							<input type="hidden" name="service" value="deleteMember"/>
+							<input type="submit" value="탈퇴">
+						</form>
 	        	</td>
 	        </tr>
         </c:if>

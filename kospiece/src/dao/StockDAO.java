@@ -67,7 +67,7 @@ public class StockDAO {
 		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "SELECT DISTINCT sfield FROM stock";
+		String sql = "SELECT DISTINCT sfield FROM stock order by sfield";
 		
 		pstmt = conn.prepareStatement(sql);
 		rs=pstmt.executeQuery();

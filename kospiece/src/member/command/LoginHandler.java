@@ -55,6 +55,7 @@ public class LoginHandler implements CommandHandler {
 			
 			HttpSession session = request.getSession();
 			session.setAttribute("AUTHUSER", member); //로그인한 회원의 정보를 세션에 저장
+			session.setAttribute("ID", member.getId());
 			
 			//4.View
 			//로그인성공시   index.jsp문서로 sendRedirect를 이용하여 강제이동
