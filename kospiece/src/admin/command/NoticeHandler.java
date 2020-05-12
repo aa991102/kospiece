@@ -21,7 +21,7 @@ public class NoticeHandler implements CommandHandler{
 	@Override
 	public String process(HttpServletRequest request, 
 						  HttpServletResponse response) throws Exception {
-		System.out.print("NoticeListHandler 진입 ");
+		System.out.print("NoticeHandler 진입 ");
 
 		//
 		if(request.getMethod().equalsIgnoreCase("GET")) {
@@ -52,6 +52,8 @@ public class NoticeHandler implements CommandHandler{
 		
 		column=request.getParameter("search");
 		value=request.getParameter("notice-inform");
+		
+		System.out.println(column+"컬럼의 "+value+"가 들어있는 공지사항만 출력");
 		
 		noticeList=noticeListService.noticeListService(column,value);
 		request.setAttribute("noticeList",noticeList);

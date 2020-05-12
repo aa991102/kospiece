@@ -55,6 +55,8 @@ public class NoticeListHandler implements CommandHandler {
 		column=request.getParameter("search");
 		value=request.getParameter("notice-inform");
 		
+		System.out.println(column+"컬럼의 "+value+"가 들어있는 공지사항만 출력");
+		
 		noticeList=noticeListService.noticeListService(column,value);
 		request.setAttribute("noticeList",noticeList);
 		//페이지에서 출력할 공지사항 객체 arrayList를 request속성에 담아보내기
