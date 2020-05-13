@@ -86,7 +86,7 @@
 								method="post" action="interest.do" >
 								<input type="hidden" name="interest" value="plus">
 								<input type="hidden" name="sno" value="${stock.no}">
-								<input type="image" class="star-img" 
+								<input type="image" class=star-img name="PlusImg_${status.index}" 
 									src="<%= request.getContextPath()%>/img/star.png" style="cursor:pointer">
 							</form>
 						</c:if>
@@ -95,7 +95,7 @@
 									method="post" action="interest.do">
 								<input type="hidden" name="interest" value="delete">
 								<input type="hidden" name="sno" value="${stock.no}">
-								<input type="image" class="star-img" 
+								<input type="image" class="star-img" name="DeleteImg_${status.index}"
 									src="<%= request.getContextPath()%>/img/star-click.png" style="cursor:pointer">
 							</form>
 						</c:if>

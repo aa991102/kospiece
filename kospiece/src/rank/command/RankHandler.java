@@ -30,13 +30,14 @@ public class RankHandler implements CommandHandler {
 			//세션에 회원정보가 있으면(로그인 상태면) mno에 회원번호 넣어주기
 			//비로그인 상태라면 mno는 0이된다
 			mno=(int) session.getAttribute("MNO");
+			System.out.print("회원번호:"+mno+",");
 		}
 
 		field=rankService.fieldFind();
 		request.setAttribute("fieldName",field);
 		
 		if(request.getMethod().equalsIgnoreCase("GET")) {
-			System.out.print("get방식 처음 실시간순위 들어왔을 때 화면");
+			System.out.println("get방식 처음 실시간순위 들어왔을 때 화면");
 			return processTotalList(request,response);//파라미터가 없으면
 		}else if(request.getMethod().equalsIgnoreCase("POST")) {
 			System.out.print("post방식 파라미터를 받음-");
@@ -80,7 +81,7 @@ public class RankHandler implements CommandHandler {
 				
 		//회원의 회원번호 불러오기
 			
-		System.out.print("회원번호"+mno+"선택한 업종:"+field+",정렬할 컬럼:"+type+",정렬방식:"+sort);
+		System.out.println("선택한 업종:"+field+",정렬할 컬럼:"+type+",정렬방식:"+sort);
 		
 		stockList=rankService.service(mno,field,type,sort);
 		

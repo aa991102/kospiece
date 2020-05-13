@@ -21,11 +21,10 @@ $(function(){
 	})
 	
 	//실시간 순위 페이지에서 관심주식 추가하는 버튼 눌렀을 때 반응(추가는 로그인,비로그인 상태 모두 가능)
-	/*$("form[id^='interestPlus']").submit(function(){
-		alert("와따")
-		if(login){//로그인 했으면
+	$("input[name^='PlusImg']").click(function(){
+		if(login=='true'){//로그인 했으면
 			alert("관심주식에 추가되었습니다.")
-			$(this).submit();
+			$("form[id=='interestPlus']").submit();
 			return false;
 		}else{//로그인 안했으면
 			result=confirm("로그인 하시겠습니까?")
@@ -36,13 +35,12 @@ $(function(){
 				return false;
 			}
 		}
-	})*/
+	})
 	
 	//실시간 순위 페이지에서 관심주식 삭제하는 버튼 눌렀을 때 반응(삭제는 로그인 한 상태에서만 가능)
-	$("form[id^='interestDelete']").submit(function(){
-		
+	$("input[name^='DeleteImg']").click(function(){
 		alert("관심주식에서 삭제되었습니다.")
-		document.getElementById('interestDelete').submit();
-		
+		$("form[id=='interestPlus']").submit();
+		return false;
 	})
 })
