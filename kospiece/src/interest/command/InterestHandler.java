@@ -44,7 +44,7 @@ public class InterestHandler implements CommandHandler {
 		HttpSession session = request.getSession();
 		int mno=(int) session.getAttribute("MNO");
 		
-		System.out.println("받은 회사명"+sno);
+		System.out.print("받은 회사명"+sno);
 		
 		if(interest.equals("plus")) {
 		interestService.plusService(mno,sno);
