@@ -1,9 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-
-<!-- 1.업종별 리스트 추가 -->
-<!-- 2.클릭하면 화살표 방향 바뀌는 스크립트 추가 -->
-<!-- 3.순위 보여주는 로직 추가 -->
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <div class="title">실시간 순위</div>
 
@@ -77,26 +72,29 @@
 						<td>${stock.dealprice}</td>
 						<td>${stock.high52}</td>
 						<td>
-						<form name="simulation" method="post" action="simulation.do">
+						<form name="simulation" id="simulation" method="post" action="simulation.do">
 							<input type="hidden" name="sname" value="${stock.name}"/>
-							<input type="submit" value="투자하기" style="cursor:pointer">
+							<input type="button" value="투자하기" style="cursor:pointer"
+								onclick="simulationClick(${!empty AUTHUSER})">
 						</form>
 						</td>
 						<td>
 						<c:if test="${stock.interest==0}">
-							<form name="interestPlus" method="post" action="interest.do">
+							<form name="interestPlus" id="interestPlus"
+								method="post" action="interest.do">
 								<input type="hidden" name="interest" value="plus">
 								<input type="hidden" name="sno" value="${stock.no}">
 								<img src="<%= request.getContextPath()%>/img/star.png"
-									style="cursor:pointer" onclick="againCheck('interestPlus')">
+									style="cursor:pointer" onclick="interestPlusClick(${!empty AUTHUSER})">
 							</form>
 						</c:if>
 						<c:if test="${stock.interest!=0}">
-							<form name="interestDelete" method="post" action="interest.do">
+							<form name="interestDelete" id="interestDelete"
+								method="post" action="interest.do">
 								<input type="hidden" name="interest" value="delete">
 								<input type="hidden" name="sno" value="${stock.no}">
 								<img src="<%= request.getContextPath()%>/img/star-click.png"
-									style="cursor:pointer">
+									style="cursor:pointer" onclick="interestDeleteClick()">
 							</form>
 						</c:if>
 						</td>
