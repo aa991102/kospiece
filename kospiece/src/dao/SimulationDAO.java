@@ -46,7 +46,7 @@ public class SimulationDAO {
 	
 	
 	//내 주식정보 리스트 가져오기
-	public ArrayList<MyStockVO> getMySimulationList(Connection conn, int mno) throws Exception{
+	public ArrayList<MyStockVO> getMySimulationList(Connection conn, int mno){
 	//회원번호를 기준으로 모의투자테이블에서 보유량이 0이상인 정보만 추출해야 한다.
 		//1 보유량이 0 주식들을 ArrayList에 담는다.
 		//1-1 보유량 0이상인 주식들 가져오기
@@ -55,33 +55,48 @@ public class SimulationDAO {
 		ResultSet rs2 = null;
 		String sql = "SELECT sno, SUM(siquantity) FROM simulation where mno=? GROUP BY sno ";
 		
-		pstmt = conn.prepareStatement(sql);
-		pstmt.setInt(1, mno);
-		rs = pstmt.executeQuery();
-		
-		ArrayList<MyStockVO> mystockList = new ArrayList();
-		StockDAO stockDAO = new StockDAO();
-		
-		//ArrayList에 MystockList 담기
-		while(rs.next()) {
-			String sno = rs.getString("sno");
-			int sum = rs.getInt("SUM(siquantity)");
-			sql = "SELECT * FROM stock WHERE sno=?";
+		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, sno);
-			rs2 = pstmt.executeQuery();
-			StockVO stock = null;
-			if(rs2.next()) {
-				stock = stockDAO.stockResultSet(rs2);	
+			pstmt.setInt(1, mno);
+			rs = pstmt.executeQuery();
+			ArrayList<MyStockVO> mystockList = new ArrayList();
+			
+			//ArrayList에 MystockList 담기
+			while(rs.next()) {
+				String sno = rs.getString("sno");
+				int sum = rs.getInt("SUM(siquantity)");
+				sql = "SELECT * FROM stock WHERE sno=?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, sno);
+				rs2 = pstmt.executeQuery();
+				StockVO stock = null;
+				if(rs2.next()) {
+					stock = new StockVO(rs2.getString("sno"),
+							rs2.getString("sname"), 
+							rs2.getString("sfield"), 
+							rs2.getString("sdetail"), 
+							rs2.getInt("sprice"), 
+							rs2.getString("sdayrate"), 
+							rs2.getFloat("schangerate"), 
+							rs2.getString("svolume"), 
+							rs2.getString("sdealprice"), 
+							rs2.getInt("stotal"), 
+							rs2.getString("shigh52"));
+					}
+				mystockList.add(new MyStockVO(mno, 0, sum, stock));
 			}
-			mystockList.add(new MyStockVO(mno, 0, sum, stock));
+			
+			return mystockList;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}finally {
+		
+			JdbcUtil.close(rs2);
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+			
 		}
-		
-		JdbcUtil.close(rs2);
-		JdbcUtil.close(rs);
-		JdbcUtil.close(pstmt);
-		
-		return mystockList;
 					
 	}//getMySimulationVO() end
 	
