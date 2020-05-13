@@ -1,10 +1,10 @@
 /admin/
-/auth/
 /board/
 /controller/
 /dao/
 /dto/
 /filter/
+/interest/
 /jdbc/
 /json/
 /main/

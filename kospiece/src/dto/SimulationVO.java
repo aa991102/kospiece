@@ -1,13 +1,14 @@
 package dto;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 public class SimulationVO {
 	int mno, siquantity, siprice;
 	String sno;
-	Date sidate;
+	Timestamp sidate;
 	
-	public SimulationVO(int mno, String sno, int siquantity, int siprice, Date sidate) {
+	public SimulationVO(int mno, String sno, int siquantity, int siprice, Timestamp sidate) {
 		this.mno = mno;
 		this.siquantity = siquantity;
 		this.siprice = siprice;

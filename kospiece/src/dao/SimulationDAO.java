@@ -1,15 +1,15 @@
 package dao;
 
-import java.awt.List;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import dto.MyStockVO;
-import dto.SimulationVO;
 import dto.StockHistoryVO;
 import dto.StockVO;
 import jdbc.JdbcUtil;
@@ -74,7 +74,7 @@ public class SimulationDAO {
 			if(rs2.next()) {
 				stock = stockDAO.stockResultSet(rs2);	
 			}
-			mystockList.add(new MyStockVO(0, sum, stock));
+			mystockList.add(new MyStockVO(mno, 0, sum, stock));
 		}
 		
 		JdbcUtil.close(rs2);
@@ -102,6 +102,8 @@ public class SimulationDAO {
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally {
+			JdbcUtil.close(pstmt);
 		}
 		
 	}
@@ -126,18 +128,18 @@ public class SimulationDAO {
 		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "SELECT * FROM simulation where mno=?";
+		String sql = "SELECT * FROM simulation where mno=? ORDER BY sidate desc";
 		ArrayList<StockHistoryVO> history = new ArrayList<StockHistoryVO>();
+		
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, mno);
 			rs = pstmt.executeQuery();
-			
 			while(rs.next()) {
 				
 				StockHistoryVO stock = new StockHistoryVO(
-						rs.getDate("sidate"), 
+						rs.getTimestamp("sidate"), 
 						rs.getString("sno"), 
 						rs.getInt("siquantity"), 
 						rs.getInt("siprice"), 
@@ -145,9 +147,45 @@ public class SimulationDAO {
 				
 				
 				history.add(stock);
-				
 			}
 			
+			return history;
+		}catch(Exception e) {
+			System.out.println("DAO error");
+			return null;
+		}finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+		
+	}
+	
+	//특정 종목의 내 주식 기록 가져오기
+	public ArrayList<StockHistoryVO> getMyInvestHistory(Connection conn, int mno, String sno){
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT * FROM simulation where mno=? and sno=? order by sidate desc";
+		ArrayList<StockHistoryVO> history = new ArrayList<StockHistoryVO>();
+		
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, mno);
+			pstmt.setString(2, sno);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				
+				StockHistoryVO stock = new StockHistoryVO(
+						rs.getTimestamp("sidate"), 
+						rs.getString("sno"), 
+						rs.getInt("siquantity"), 
+						rs.getInt("siprice"), 
+						rs.getInt("siquantity")*rs.getInt("siprice"));
+				
+				
+				history.add(stock);
+			}
 			return history;
 		}catch(Exception e) {
 			System.out.println("DAO error");

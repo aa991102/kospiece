@@ -26,8 +26,9 @@ public class MyStockVO {
 	public void setStock(StockVO stock) {
 		this.stock = stock;
 	}
-	public MyStockVO(int mdeposit, int totalquantity, StockVO stock) {
-
+	public MyStockVO(int mno, int mdeposit, int totalquantity, StockVO stock) {
+		
+		this.mno = mno;
 		this.mdeposit = mdeposit;
 		this.totalquantity = totalquantity;
 		this.stock = stock;

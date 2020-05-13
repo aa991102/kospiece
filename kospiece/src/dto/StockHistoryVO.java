@@ -18,6 +18,12 @@ public class StockHistoryVO {
 		this.total = total;
 	}
 
+	
+	
+	public void setSname(String sname) {
+		this.sname = sname;
+	}
+
 
 	public Date getDate() {
 		return date;

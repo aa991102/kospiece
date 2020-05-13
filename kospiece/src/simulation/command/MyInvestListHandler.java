@@ -14,54 +14,46 @@ import simulation.service.MyInvestListService;
 
 public class MyInvestListHandler implements CommandHandler{
 	
-	/*내 주식 handler
-	 * 메인페이지에서
-	 * 1. 내정보가 없이 들어올 경우 login 페이지로 이동
-	 * 2. 내정보를 가지고 들어올 경우 내정보를 토대로 모의투자정보와 실시간주식정보를 가지고 온다.
-	 *   해당 정보들을 가지고 주식투자 jsp로 간다.
-	 */
+
+	private HttpSession session = null;
+	private MyInvestListService myInvestService = new MyInvestListService();
 	
-	HttpSession session = null;
-	
-	private static final String FORM_LOGIN ="/member/login.jsp";  // 로그인페이지
-	private static final String FORM_MYSTOCK = "/virtual/myinvestList.jsp";  //내 주식 페이지
 	
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		
-		//session 정보 가져오기
 		session = req.getSession();
-		if(session == null) {//user session 정보가 없으면 login.jsp로 강제이동
-			return processForm(req, res);
-		}else {//user session 정보가 있으면 process 실행
-			return processSubmit(req, res);
+		System.out.println("session="+session);
+		MemberVO user = (MemberVO)session.getAttribute("AUTHUSER");
+		System.out.println("user="+user);
+		if(user== null){return processForm(req, res);
+		}else {return processSubmit(req, res, user);
 		}
 		
 	}//process() end
 	
 	private String processForm(HttpServletRequest req, HttpServletResponse res) {
-		return FORM_LOGIN;
+		return "/member/login.jsp";
 	}//processForm() end
 
 
 	//로그인 했을때 
-	private String processSubmit(HttpServletRequest req, HttpServletResponse res) {
-		
+	private String processSubmit(HttpServletRequest req, HttpServletResponse res, MemberVO user) {
 		//파라미터
-		session = req.getSession();
-		String mid = "jun";//(Integer)session.getAttribute("a");//회원 아이디 가져오기
+		System.out.println("user="+user);
+		String mid = user.getId();
+		//String mid = "jun";
 		
 		try {
 			
-			/* 비즈니스
-			 * 1. 내가 가지고 있는 현재포인트 가져오기
-			 * 2. 내가 보유한 가상투자 주식의 목록 및 업체별 보유량 가져오기
-			 */
-			
-			MyInvestListService myInvestService = new MyInvestListService();
+			System.out.println("user="+user);
+			//비즈니스
 			MemberVO member = myInvestService.getMemberVOById(mid);
 			ArrayList<MyStockVO> mysimulationList = myInvestService.getMyList(member.getMno());
 			ArrayList<StockHistoryVO> history = myInvestService.getMyInvestHistory(member.getMno());
+			
+			System.out.println("mysimulationList="+mysimulationList);
+			System.out.println("history="+history);
 			
 			//model
 			req.setAttribute("member", member);
@@ -69,13 +61,13 @@ public class MyInvestListHandler implements CommandHandler{
 			req.setAttribute("historys", history);
 			
 			//view
-			return FORM_MYSTOCK;
+			return "/virtual/myinvestList.jsp";
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 			
 			//에외 발생 시 일단 로그인화면으로... 
-			return FORM_LOGIN;
+			return "/member/login.jsp";
 		}
 		
 	}//processSubmit() end
