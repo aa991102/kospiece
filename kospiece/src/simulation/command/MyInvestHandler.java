@@ -63,6 +63,8 @@ public class MyInvestHandler implements CommandHandler{
 		session = request.getSession();
 		String mid = "jun";//(Integer)session.getAttribute("a");//회원 아이디 가져오기
 		
+		System.out.println("받은 회사명"+sname);
+		
 		//비즈니스 수행		
 		MyInvestService searchService = new MyInvestService();
 		MyInvestListService service = new MyInvestListService();

@@ -49,7 +49,6 @@ public class MyInterestDAO {
 		}
 	}
 	
-	
 	//관심주식 추가
 	public void insert(Connection conn, int mno, String sno) throws SQLException {
 		System.out.println("MyInterestVO-insert()호출");
@@ -63,4 +62,17 @@ public class MyInterestDAO {
 		
 		pstmt.executeUpdate();
 	}
+	
+	//관심주식 삭제
+		public void delete(Connection conn, int mno, String sno) throws SQLException {
+			System.out.println("MyInterestVO-insert()호출");
+			
+			String sql = "delete from Interest where mno=? and sno=?";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1,mno);
+			pstmt.setString(2,sno);
+			
+			pstmt.executeUpdate();
+		}
 }

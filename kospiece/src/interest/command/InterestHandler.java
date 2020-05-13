@@ -2,12 +2,15 @@ package interest.command;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import controller.command.CommandHandler;
+import interest.service.InterestService;
 
 public class InterestHandler implements CommandHandler {
 	
-	private static final String FORM_VIEW = "/rank/rank.jsp";
+	private static final String FORM_VIEW = "/rank.do";
+	InterestService interestService=new InterestService();
 	
 	@Override
 	public String process(HttpServletRequest request, 
@@ -28,11 +31,29 @@ public class InterestHandler implements CommandHandler {
 	}
 	
 	private String processTotalList(HttpServletRequest request, HttpServletResponse response) {
-		return null;
+		return FORM_VIEW;
 	
 	}
 	private String processSelectedList(HttpServletRequest request, HttpServletResponse response) {
-		return null;
+		
+		//관심주식 추가인지 삭제인지 파라미터로 받아오기
+		String interest=request.getParameter("interest");
+		//해당 회사의 번호 받아오기
+		String sno=request.getParameter("sno");
+		//로그인한 회원번호 불러오기
+		HttpSession session = request.getSession();
+		int mno=(int) session.getAttribute("MNO");
+		
+		System.out.println("받은 회사명"+sno);
+		
+		if(interest.equals("plus")) {
+		interestService.plusService(mno,sno);
+		}
+		if(interest.equals("delete")) {
+		interestService.deleteService(mno,sno);
+		}
+		
+		return FORM_VIEW;
 	
 	}
 }

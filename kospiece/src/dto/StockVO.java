@@ -108,13 +108,12 @@ public class StockVO {
 		this.total = total;
 		this.high52 = high52;
 	}
+	
 	@Override
 	public String toString() {
 		return "StockVO [no=" + no + ", name=" + name + ", field=" + field + ", detail=" + detail + ", price=" + price
 				+ ", dayrate=" + dayrate + ", changerate=" + changerate + ", volume=" + volume + ", dealprice="
-				+ dealprice + ", total=" + total + ", high52=" + high52 + "]";
+				+ dealprice + ", total=" + total + ", high52=" + high52 + ", interest=" + interest + "]";
 	}
-	
-	
 	
 }

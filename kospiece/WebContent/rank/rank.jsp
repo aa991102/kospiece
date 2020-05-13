@@ -2,15 +2,17 @@
 
 <div class="title">실시간 순위</div>
 
+<!-- 로그인 했는지 검사하는 T/F 변수 선언 -->
+<input type="hidden" id="login" value="${!empty AUTHUSER}">
+
 <div class="rank">
 	<div class="field-search">
 		업종별
 		<form action="rank.do" method="post" name="fieldForm" onChange="javascript:fieldForm.submit();">
-			<select name="select">
-				<option value="all"selected>전체보기</option>
-				<c:set var="rank" value="0"/>
+			<select id="select" name="select">
+				<option value="all" <c:if test="${field == 'all'}">selected='selected'</c:if>>전체보기</option>
 				<c:forEach var="fieldName" items="${fieldName}">
-				<option value="${fieldName}">${fieldName}</option>
+				<option value="${fieldName}" <c:if test="${field == fieldName}">selected='selected'</c:if>>${fieldName}</option>
 				</c:forEach>
 			</select>
 		</form>
@@ -59,7 +61,7 @@
 			<th>관심주식</th>
 		</tr>
 		<c:set var="rank" value="0"/>
-		<c:forEach var="stock" items="${stockList}">
+		<c:forEach var="stock" items="${stockList}" varStatus="status">
 	        <tr>
 						<td>${rank=rank+1}</td>
 						<td>${stock.field}</td>
@@ -72,29 +74,29 @@
 						<td>${stock.dealprice}</td>
 						<td>${stock.high52}</td>
 						<td>
-						<form name="simulation" id="simulation" method="post" action="simulation.do">
+						<form name="simulation_${status.index}" id="simulation_${status.index}" 
+							method="post" action="simulation.do">
 							<input type="hidden" name="sname" value="${stock.name}"/>
-							<input type="button" value="투자하기" style="cursor:pointer"
-								onclick="simulationClick(${!empty AUTHUSER})">
+							<input type="submit" value="투자하기" style="cursor:pointer"	>
 						</form>
 						</td>
 						<td>
 						<c:if test="${stock.interest==0}">
-							<form name="interestPlus" id="interestPlus"
-								method="post" action="interest.do">
+							<form name="interestPlus_${status.index}" id="interestPlus_${status.index}"	
+								method="post" action="interest.do" >
 								<input type="hidden" name="interest" value="plus">
 								<input type="hidden" name="sno" value="${stock.no}">
-								<img src="<%= request.getContextPath()%>/img/star.png"
-									style="cursor:pointer" onclick="interestPlusClick(${!empty AUTHUSER})">
+								<input type="image" class="star-img" 
+									src="<%= request.getContextPath()%>/img/star.png" style="cursor:pointer">
 							</form>
 						</c:if>
 						<c:if test="${stock.interest!=0}">
-							<form name="interestDelete" id="interestDelete"
-								method="post" action="interest.do">
+							<form name="interestDelete_${status.index}" id="interestDelete_${status.index}"
+									method="post" action="interest.do">
 								<input type="hidden" name="interest" value="delete">
 								<input type="hidden" name="sno" value="${stock.no}">
-								<img src="<%= request.getContextPath()%>/img/star-click.png"
-									style="cursor:pointer" onclick="interestDeleteClick()">
+								<input type="image" class="star-img" 
+									src="<%= request.getContextPath()%>/img/star-click.png" style="cursor:pointer">
 							</form>
 						</c:if>
 						</td>
