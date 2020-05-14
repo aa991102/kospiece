@@ -48,7 +48,6 @@ public class WriteBoardHandler implements CommandHandler {
 		//파라미터
 		FreeBoardVO board = ParamToBoard(member, req);
 		System.out.println("등록한 BoardVO파라미터 = \n"+board);
-		System.out.println(member.getNickname());
 		/*//5.8 제목을 입력 안했을 시 alert문 띄워주는 기능 추가해야함	
 		Map<String, Boolean> errors = new HashMap<>();
 		req.setAttribute("errors", errors);
