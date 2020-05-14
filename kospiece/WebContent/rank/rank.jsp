@@ -86,6 +86,9 @@
 								method="post" action="interest.do" >
 								<input type="hidden" name="interest" value="plus">
 								<input type="hidden" name="sno" value="${stock.no}">
+								<input type="hidden" name="select" value="${field}">
+								<input type="hidden" name="column" value="${type}">
+								<input type="hidden" name="orderBy" value="${sort}">
 								<input type="image" class=star-img name="PlusImg_${status.index}" 
 									src="<%= request.getContextPath()%>/img/star.png" style="cursor:pointer">
 							</form>
@@ -95,6 +98,9 @@
 									method="post" action="interest.do">
 								<input type="hidden" name="interest" value="delete">
 								<input type="hidden" name="sno" value="${stock.no}">
+								<input type="hidden" name="select" value="${field}">
+								<input type="hidden" name="column" value="${type}">
+								<input type="hidden" name="orderBy" value="${sort}">
 								<input type="image" class="star-img" name="DeleteImg_${status.index}"
 									src="<%= request.getContextPath()%>/img/star-click.png" style="cursor:pointer">
 							</form>
