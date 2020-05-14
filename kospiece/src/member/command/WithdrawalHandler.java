@@ -54,6 +54,7 @@ public class WithdrawalHandler implements CommandHandler {
 			errors.put("checkPw", Boolean.TRUE);
 		}
 		if(!errors.isEmpty()) {
+			request.setAttribute("member", member);
 			return FORM_VIEW;
 		}
 		
