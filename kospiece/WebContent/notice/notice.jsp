@@ -4,14 +4,12 @@
 <div class="title">공지사항</div>
 
 <div class="notice">
-	<form name="notice-search" method ="post" class="notice-search"
-			action="<%= request.getContextPath()%>/notice.do">
+	<form name="notice-search" method ="post" class="notice-search">
 	    <select name="search">
-  	        <option value="total" selected>전체보기</option>
-	        <option value="title">제목</option>
-	        <option value="contents">내용</option> 
+	        <option value="ntitle">제목</option>
+	        <option value="ncontent">내용</option> 
 	    </select>
-	    <input type="text" name="user-inform" />
+	    <input type="text" name="notice-inform" />
 	    <input type="submit" value="검색"/>
 	</form>
 	<table border="1" width="1000" align="center">
@@ -21,7 +19,7 @@
         	<th>작성일</th>
         	<th>조회</th>
         </tr>
-			<c:forEach var="notice" items="${noticeList}">
+			<c:forEach var="notice" items="${noticePage.content}">
         <tr>
         	<td>${notice.nno}</td>
         	<td><a href="noticeDetail.do?no=${notice.nno}">${notice.title}</a></td>
@@ -29,5 +27,31 @@
         	<td>${notice.hit}</td>
         </tr>
         </c:forEach>
+        <c:if test="${noticePage.total==0}">
+					<tr>
+						<th colspan="4">
+							공지사항이 없습니다.
+					</tr>
+				</c:if>
+        <c:if test="${noticePage.total>0}">
+					<tr>
+						<th colspan="4">
+							<%-- [이전prev]출력 --%>
+							<c:if test="${noticePage.currentPage>5}">
+							<a href="noticeList.do?page=${noticePage.startPage-5}">[이전]</a>
+							</c:if>
+							
+							<%-- 페이지출력 [이전] [1] [2] [3] [4] [5] --%>
+							<c:forEach var="pNo" begin="${noticePage.startPage}" end="${noticePage.endPage}">
+							<a href="noticeList.do?page=${pNo}">[${pNo}]</a>
+							</c:forEach>
+							
+							<%-- [다음next]출력 --%>
+							<c:if test="${notice.endPage<notice.totalPages}">
+							<a href="noticeList.do?page=${notice.startPage+5}">[다음]</a>
+							</c:if>
+							</th>
+					</tr>
+				</c:if>
      </table>
 </div>

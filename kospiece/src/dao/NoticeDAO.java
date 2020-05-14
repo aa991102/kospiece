@@ -29,12 +29,29 @@ public class NoticeDAO {
 		return noticevo;
 	}
 	
+	//전체 게시글 수를 구하는 메서드
+		public int selectCount(Connection conn) throws SQLException {
+			sql = "select count(*) from notice";
+			
+			pstmt = conn.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			
+			if(rs.next()) {
+				return rs.getInt(1);
+			}
+			return 0;
+		}
+		
 	// 게시글 관리에서 공지사항 전체보기
-	public List<NoticeVO> selectAllNotice(Connection conn) throws SQLException {
+	public List<NoticeVO> selectAllNotice(Connection conn,int startRow,int size) throws SQLException {
 	
-		sql = "select nno,ntitle,ncontent,ndate,nhit from notice";
+		sql = "select nno,ntitle,ncontent,ndate,nhit from notice "+
+				"order by nno desc "+
+				"limit ?,? ";
 		
 		pstmt = conn.prepareStatement(sql);
+		pstmt.setInt(1, startRow);
+		pstmt.setInt(2, size);
 		rs=pstmt.executeQuery();
 		
 		List<NoticeVO> noticelist=new ArrayList<NoticeVO>();
@@ -50,18 +67,40 @@ public class NoticeDAO {
 			return Collections.emptyList();
 		}
 	}
+	
+	//전체 게시글 수를 구하는 메서드
+	public int selectedCount(Connection conn,String column, String value) throws SQLException {
+			sql = "select count(*) from notice where "+column+" like ? ";
+			
+			value="%"+value+"%"; //해당 조건을 포함하는 조건문으로 설정
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, value);
+			rs=pstmt.executeQuery();
+			
+			if(rs.next()) {
+				return rs.getInt(1);
+			}
+			return 0;
+		}
 
 	//조건이 선택된 공지사항 전체보기
-	public List<NoticeVO> selectedNotice(Connection conn, String column, String value) throws SQLException {
+	public List<NoticeVO> selectedNotice
+		(Connection conn, int startRow, int size, String column, String value) 
+			throws SQLException {
 		
 		List<NoticeVO> noticelist=new ArrayList<NoticeVO>();
 		
-		sql = "select nno,ntitle,ncontent,ndate,nhit from notice where "+column+" like ?";
+		sql = "select nno,ntitle,ncontent,ndate,nhit from notice where "+column+" like ? "+
+				"order by nno desc "+
+				"limit ?,? ";
 		
 		value="%"+value+"%"; //해당 조건을 포함하는 조건문으로 설정
 		
 		pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, value);
+		pstmt.setInt(2, startRow);
+		pstmt.setInt(3, size);
 		rs=pstmt.executeQuery();
 		
 		if(rs.next()) {
@@ -105,8 +144,6 @@ public class NoticeDAO {
 		}
 	}
 	
-	
-	
 	//공지사항 작성
 	public void insertNotice(Connection conn,String title, String content) throws SQLException {
 		
@@ -117,9 +154,4 @@ public class NoticeDAO {
 		pstmt.setString(2, content);
 		pstmt.executeUpdate();
 	}
-
-	
-
-	
-
 }
