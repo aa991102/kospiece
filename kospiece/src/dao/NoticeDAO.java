@@ -14,6 +14,9 @@ public class NoticeDAO {
 	
 	PreparedStatement pstmt = null;
 	ResultSet rs  = null;
+	String sql = null;
+	
+	NoticeVO notice=new NoticeVO();
 	
 	//NoticeVO 셋팅해주는 메서드
 	private NoticeVO noticeListResultSet(ResultSet rs) throws SQLException{
@@ -26,59 +29,97 @@ public class NoticeDAO {
 		return noticevo;
 	}
 	
-	//관리자페이지의 게시글 관리에서 공지사항 전체보기
+	// 게시글 관리에서 공지사항 전체보기
 	public List<NoticeVO> selectAllNotice(Connection conn) throws SQLException {
 	
-		String sql = "select nno,ntitle,ncontent,ndate,nhit from notice";
+		sql = "select nno,ntitle,ncontent,ndate,nhit from notice";
 		
 		pstmt = conn.prepareStatement(sql);
 		rs=pstmt.executeQuery();
 		
+		List<NoticeVO> noticelist=new ArrayList<NoticeVO>();
+		
 		if(rs.next()) {
-			
-			List<NoticeVO> noticelist=new ArrayList<NoticeVO>();
 			
 			do{
 				noticelist.add(noticeListResultSet(rs));
 			}while(rs.next());
+			
 			return noticelist;
 		}else {
 			return Collections.emptyList();
 		}
 	}
 
-	//관리자페이지의 게시글 관리에서 선택된 공지사항 전체보기
+	//조건이 선택된 공지사항 전체보기
 	public List<NoticeVO> selectedNotice(Connection conn, String column, String value) throws SQLException {
-		String sql = "select nno,ntitle,ncontent,ndate,nhit from notice where "+column+" like ?";
-		value="%"+value+"%";
+		
+		List<NoticeVO> noticelist=new ArrayList<NoticeVO>();
+		
+		sql = "select nno,ntitle,ncontent,ndate,nhit from notice where "+column+" like ?";
+		
+		value="%"+value+"%"; //해당 조건을 포함하는 조건문으로 설정
+		
 		pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, value);
 		rs=pstmt.executeQuery();
 		
 		if(rs.next()) {
 			
-			List<NoticeVO> noticelist=new ArrayList<NoticeVO>();
-			
 			do{
 				noticelist.add(noticeListResultSet(rs));
 			}while(rs.next());
+			
 			return noticelist;
 		}else {
 			return Collections.emptyList();
 		}
 	}
 	
-	//관리자페이지의 공지사항 작성
+	//공지사항 상세보기를 하면 조회수를 1회 증가시켜주기
+	public void increaseNoticeHit(Connection conn, int no) throws SQLException {
+		
+		sql = "update notice set nhit=nhit+1 where nno=?";
+		
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setInt(1, no);
+		pstmt.executeUpdate();		
+	}
+	
+	//선택된 공지사항 세부내용 보기
+	public NoticeVO selectNoticeDetail(Connection conn, int no) throws SQLException {
+		
+		sql = "select * from notice where nno=?"; //
+		
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setInt(1, no);
+		rs=pstmt.executeQuery();
+		
+		if(rs.next()) {
+			
+			notice=noticeListResultSet(rs);
+			
+			return notice;
+		}else {
+			return null;
+		}
+	}
+	
+	
+	
+	//공지사항 작성
 	public void insertNotice(Connection conn,String title, String content) throws SQLException {
 		
-		String sql = "insert into notice(ntitle,ncontent) value(?,?)";
+		sql = "insert into notice(ntitle,ncontent) value(?,?)";
 		
 		pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, title);
 		pstmt.setString(2, content);
 		pstmt.executeUpdate();
-		
 	}
 
 	
+
+	
+
 }

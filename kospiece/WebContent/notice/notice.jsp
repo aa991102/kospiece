@@ -24,7 +24,7 @@
 			<c:forEach var="notice" items="${noticeList}">
         <tr>
         	<td>${notice.nno}</td>
-        	<td>${notice.title}</td>
+        	<td><a href="noticeDetail.do?no=${notice.nno}">${notice.title}</a></td>
         	<td>${notice.uploadDate}</td>
         	<td>${notice.hit}</td>
         </tr>

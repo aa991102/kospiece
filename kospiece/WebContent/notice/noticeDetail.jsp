@@ -6,6 +6,10 @@
 <div class="title">공지사항</div>
 
 <div class="noticeDetail">
-	제목:000<br/><br/>
-	상세내용:000
+	글번호:${notice.nno}<br/>
+	제목:${notice.title}<br/>
+	상세내용:${notice.content}<br/>
+	게시일:${notice.uploadDate}<br/>
+	조회수:${notice.hit}<br/>
 </div>
+
