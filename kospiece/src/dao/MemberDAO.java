@@ -301,20 +301,17 @@ public class MemberDAO {
 		
 		PreparedStatement pstmt = null;
 		String sql = "UPDATE member SET mdeposit=? where mno=?";
-		
+		System.out.println("member2="+member2);
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, member2.getDeposit());
 			pstmt.setInt(2, member2.getMno());
 			pstmt.executeUpdate();
 			
-			conn.commit();
 		} catch (SQLException e) {
 			System.out.println("update 에러발생");
 			JdbcUtil.rollback(conn);
 			e.printStackTrace();
-		}finally {
-			
 		}
 		
 	}
