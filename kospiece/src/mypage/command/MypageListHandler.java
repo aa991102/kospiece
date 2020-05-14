@@ -10,9 +10,11 @@ import javax.servlet.http.HttpSession;
 
 import controller.command.CommandHandler;
 import dto.MemberVO;
+import dto.MyStockVO;
 import dto.StockVO;
 import jdbc.connection.ConnectionProvider;
 import mypage.service.MyInterestListService;
+import simulation.service.MyInvestService;
 
 public class MypageListHandler implements CommandHandler {
 
@@ -55,9 +57,8 @@ public class MypageListHandler implements CommandHandler {
 			int mno = member.getMno();
 			myInterestList = myInterestListSvc.myInterestListService(mno);
 			
-			
 			//해당 회원의 관심주식회사가 5개보다 많으면 5개만 가져오기
-			System.out.println("myInterestList.size()="+myInterestList.size());
+			//System.out.println("myInterestList.size()="+myInterestList.size());
 			if(myInterestList.size()>5) {
 				if(myInterestList5.size()<5) {
 					for(int i=0;i<5;i++) {
@@ -67,10 +68,16 @@ public class MypageListHandler implements CommandHandler {
 				if(!myInterestList5.isEmpty()) {
 					request.setAttribute("myInterestList", myInterestList5);
 				}
-				System.out.println("myInterestList5="+myInterestList5);
+				//System.out.println("myInterestList5="+myInterestList5);
 			}else {
 				request.setAttribute("myInterestList", myInterestList);
 			}
+			
+			//해당 회원의 관심주식회사가 없는 경우 없다는 멘트 띄우기
+			if(myInterestList.size()<1) {
+				request.setAttribute("noInterest", Boolean.TRUE);
+			}
+			//ArrayList<MyStockVO> g = MyInvestService.getMyList(mno);
 			return "/mypage/mypage.jsp";
 				
 			

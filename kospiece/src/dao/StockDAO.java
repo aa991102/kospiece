@@ -32,9 +32,12 @@ public class StockDAO {
 		stockvo.setInterest(rs.getInt("mno"));
 		return stockvo;
 	}
+	
 	//stock객체를 셋팅2
 	// (selectStocks()에서 사용할 것! --- MyInterestListService에서 사용
-	// 위의 셋팅1에서  stockvo.setInterest(rs.getInt("mno")); 만 제거
+	// 위의 셋팅1에서  
+	// stockvo.setInterest(rs.getInt("mno")); 
+	// 만 제거
 	public StockVO stockResultSet2(ResultSet rs) throws SQLException{
 		StockVO stockvo=new StockVO();
 		stockvo.setNo(rs.getString("sno"));
@@ -155,17 +158,8 @@ public class StockDAO {
 			pstmt.setString(1, sname);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
-				return new StockVO(rs.getString("sno"),
-						rs.getString("sname"), 
-						rs.getString("sfield"), 
-						rs.getString("sdetail"), 
-						rs.getInt("sprice"), 
-						rs.getString("sdayrate"), 
-						rs.getFloat("schangerate"), 
-						rs.getString("svolume"), 
-						rs.getString("sdealprice"), 
-						rs.getInt("stotal"), 
-						rs.getString("shigh52"));
+				return stockResultSet(rs);
+				
 			}else {
 				return null;
 			}
@@ -176,6 +170,35 @@ public class StockDAO {
 		}
 		
 		return null;
+	}
+
+	
+	//특정 회사이름을 검색하여 회사번호 반환
+	public String selectSnoBySname(Connection conn,String sname) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT sno FROM stock WHERE sname=?";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, sname);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				String sno = rs.getString("sno");
+				//return stockResultSet(rs);
+				
+				return sno;
+			}else {
+				return null;
+			}
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+			return null;			
+		}
 	}
 
 	

@@ -61,13 +61,104 @@ public class MemberDAO {
 		return member;
 	}
 	
-	//비밀번호 변경 기능 구현(일단은 비밀번호만 변경!)
+	//비밀번호 변경 기능
 	public void pwUpdate(Connection conn,MemberVO member) throws SQLException{
-		try(PreparedStatement pstmt = conn.prepareStatement("update member set mpw=? where mid=?")){
+		String sql = "update member set mpw=? where mid=?";
+		
+		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
 			pstmt.setString(1, member.getPw());
 			pstmt.setString(2, member.getId());
 			pstmt.executeUpdate();
 		}
+	}
+	
+	//닉네임,이메일,전화번호 변경 기능
+	public void UpdateInfos(Connection conn,String nick,String mail,String phone,String id) throws SQLException{
+		String sql = "update member set mnick=?,mmail=?,mphone=? where mid=?";
+		
+		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
+			pstmt.setString(1, nick);
+			pstmt.setString(2, mail);
+			pstmt.setString(3, phone);
+			pstmt.setString(4, id);
+			
+			pstmt.executeUpdate();
+		}
+	}
+
+	//닉네임으로 select(동일한 닉네임있는지 체크하기위해)
+	public String selectByNick(Connection conn,String userId,String nick) throws SQLException{
+		PreparedStatement pstmt = null;
+		ResultSet rs  = null;
+		String id = null;
+		
+		String sql = "SELECT mid FROM member WHERE mnick = ? ANd mid!=? ";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, nick);
+			pstmt.setString(2, userId);
+
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				id = rs.getString("mid");
+			}
+		} catch (SQLException e) {
+			System.out.println("selectByNick 에러발생");
+			e.printStackTrace();
+		}
+		return id;
+	}
+	
+	//이메일로 select(동일한 이메일있는지 체크하기위해)
+	public String selectByMail(Connection conn,String userId,String mail) throws SQLException{
+		PreparedStatement pstmt = null;
+		ResultSet rs  = null;
+		String id = null;
+		
+		String sql = "SELECT mid FROM member WHERE mmail = ? ANd mid!=? ";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, mail);
+			pstmt.setString(2, userId);
+
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				id = rs.getString("mid");
+			}
+		} catch (SQLException e) {
+			System.out.println("selectByMail 에러발생");
+			e.printStackTrace();
+		}
+		return id;
+	}
+	
+	//전화번호로 select(동일한 전화번호 있는지 체크하기위해)
+	public String selectByPhone(Connection conn,String userId,String phone) throws SQLException{
+		PreparedStatement pstmt = null;
+		ResultSet rs  = null;
+		String id = null;
+		
+		String sql = "SELECT mid FROM member WHERE mphone = ? ANd mid!=? ";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, phone);
+			pstmt.setString(2, userId);
+
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				id = rs.getString("mid");
+			}
+		} catch (SQLException e) {
+			System.out.println("selectByPhone 에러발생");
+			e.printStackTrace();
+		}
+		return id;
 	}
 	
 	/*1.AdminService(관리자페이지 홈화면)*/

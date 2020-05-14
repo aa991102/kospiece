@@ -139,10 +139,11 @@ public class MemberVO {
 	public boolean matchPassword(String password) {
 		return pw.contentEquals(password);
 	}
-
-	//암호변경 관련 기능
-	public void changePassword(String newPw) {
-		this.pw = newPw;
-	}
 	
+	//닉네임,이메일,전화번호 변경
+	public void changeInfo(String changeNick,String changeMail,String changePhone) {
+		this.nickname = changeNick;
+		this.mail = changeMail;
+		this.phone = changePhone;
+	}
 }

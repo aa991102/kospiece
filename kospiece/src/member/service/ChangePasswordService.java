@@ -28,7 +28,7 @@ public class ChangePasswordService {
 				throw new InvalidPasswordException();
 			}
 			
-			member.changePassword(newPw);
+			member.setPw(newPw);
 			memberDao.pwUpdate(conn, member);
 			conn.commit();
 		}catch(SQLException e) {

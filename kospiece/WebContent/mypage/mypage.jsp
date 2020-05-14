@@ -43,7 +43,7 @@
 				<td>${list.high52}</td>
 			</tr>
     </c:forEach>
-		
+    <c:if test="${noInterest}"><tr><td colspan="100%">관심주식이 없습니다</td></tr></c:if>
 	</table>
 </div>
 

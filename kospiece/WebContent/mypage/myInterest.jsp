@@ -57,7 +57,10 @@
 						<td>${list.dealprice}</td>
 						<td>${list.total}</td>
 						<td>${list.high52}</td>
-						<td><input type="button" value="ㄱㄱ" onclick="location.href='/kospiece/simulation.do'"/></td>
+						<td>
+							<input type="submit" value="ㄱㄱ" formaction="/kospiece/simulation.do" />
+							<input type="hidden" name="sname" value="${list.name}" />
+						</td>
 					</tr>
 		    </c:forEach>
 		</table>
