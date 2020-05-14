@@ -32,41 +32,59 @@ public class StockDAO {
 		stockvo.setInterest(rs.getInt("mno"));
 		return stockvo;
 	}
+	//stock객체를 셋팅2
+	// (selectStocks()에서 사용할 것! --- MyInterestListService에서 사용
+	// 위의 셋팅1에서  stockvo.setInterest(rs.getInt("mno")); 만 제거
+	public StockVO stockResultSet2(ResultSet rs) throws SQLException{
+		StockVO stockvo=new StockVO();
+		stockvo.setNo(rs.getString("sno"));
+		stockvo.setName(rs.getString("sname"));
+		stockvo.setField(rs.getString("sfield"));
+		stockvo.setDetail(rs.getString("sdetail"));
+		stockvo.setPrice(rs.getInt("sprice"));
+		stockvo.setDayrate(rs.getString("sdayrate"));
+		stockvo.setChangerate(rs.getFloat("schangerate"));
+		stockvo.setVolume(rs.getString("svolume"));
+		stockvo.setDealprice(rs.getString("sdealprice"));
+		stockvo.setTotal(rs.getInt("stotal"));
+		stockvo.setHigh52(rs.getString("shigh52"));
+		return stockvo;
+	}
 	
 	//회사번호리스트로 주식정보 불러오기
-		public List<StockVO> selectStocks(Connection conn, List<String> snoList) 
-				throws SQLException {
-			System.out.println("StockDAO-selectStocks호출="+snoList);
+	public List<StockVO> selectStocks(Connection conn, List<String> snoList) 
+			throws SQLException {
+		System.out.println("StockDAO-selectStocks호출="+snoList);
+		
+		String sql = "SELECT * from stock WHERE sno = ? ";
+		List<StockVO> stocklist= new ArrayList<StockVO>();
+		
+		//snoList 존재하면
+		if(snoList != null) {
+			//snoList의 값 하나씩 접근해 sql문 돌리기
 			
-			String sql = "SELECT * from stock WHERE sno = ? ";
-			List<StockVO> stocklist= new ArrayList<StockVO>();
-			
-			//snoList 존재하면
-			if(snoList != null) {
-				//snoList의 값 하나씩 접근해 sql문 돌리기
+			for (String sno : snoList) { 
+				System.out.println("selectStocks-sno="+sno);
 				
-				for (String sno : snoList) { 
-					System.out.println("selectStocks-sno="+sno);
-					
-					pstmt = conn.prepareStatement(sql);
-					pstmt.setString(1, sno);
-					rs = pstmt.executeQuery();
-					
-					if(rs.next()) {
-						System.out.println("stockResultSet(rs)"+stockResultSet(rs));
-						stocklist.add(stockResultSet(rs));
-					}
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, sno);
+				rs = pstmt.executeQuery();
+				
+				if(rs.next()) {
+					System.out.println("stockResultSet2(rs)"+stockResultSet2(rs));
+					stocklist.add(stockResultSet2(rs));
 				}
-				
-				System.out.println("selectStocks-stocklist="+stocklist.toString());
-				
-				return stocklist;
-			
-			//snoList 존재 안하면
-			}else {
-				return Collections.emptyList();
 			}
+			
+			System.out.println("selectStocks-stocklist="+stocklist.toString());
+			
+			return stocklist;
+		
+		//snoList 존재 안하면
+		}else {
+			return Collections.emptyList();
 		}
+	}
 	
 	//전체 주식정보를 특정컬럼을 기준으로 정렬해서 불러오기
 	public List<StockVO> selectAllStock

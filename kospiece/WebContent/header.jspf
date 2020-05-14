@@ -42,6 +42,7 @@
     <script src="<%= request.getContextPath()%>/js/header_sub.js"></script>
     <script src="<%= request.getContextPath()%>/js/point_rank.js" type="text/javascript"></script>
     <script src="<%= request.getContextPath()%>/js/rank.js" type="text/javascript"></script>
+    <script src="<%= request.getContextPath()%>/js/myInterest.js" type="text/javascript"></script>
 </head>
 <body>
 
@@ -75,7 +76,7 @@
                 </ul>
             </li>
             <li class="list-item">
-                <a class="my" id="my" href="<%= request.getContextPath()%>\mypage\mypage.jsp">MYPAGE</a>
+                <a class="my" id="my" href="<%= request.getContextPath()%>/mypage.do">MYPAGE</a>
                 <ul class="sub-list-my">
                     <li class="sub-item-my"><a href="<%= request.getContextPath()%>/myInterest.do" class="a-item">관심주식</a></li>
                     <li class="sub-item-my"><a href="<%= request.getContextPath()%>/mypage/myPost.jsp" class="a-item">내 게시글</a></li>

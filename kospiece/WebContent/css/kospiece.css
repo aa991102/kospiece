@@ -63,6 +63,8 @@ body{
     border-color:#20639B;
     text-align:center;
     width:110px;
+    position:relative;
+    z-index:1;
     }
 .header .sub-list-my {
 		display:block;
@@ -79,6 +81,8 @@ body{
     border-color:#20639B;
     text-align:center;
     width:110px;
+    position:relative;
+    z-index:1;
     }
 .header a.a-item {text-decoration:none; 
 									color:#1A3F69;}
@@ -199,9 +203,9 @@ body{
 
 /*4.home화면 디자인*/
 .map{
-	width:700px;
-	height:400px;
-	border:1px solid black;
+	width:1000px;
+	height:650px;
+	/*border:1px solid black;*/
 	margin:50px auto;
 	}
 .map-detail{

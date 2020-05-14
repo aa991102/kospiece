@@ -18,7 +18,7 @@ public class InterestService {
 			conn = ConnectionProvider.getConnection();
 			conn.setAutoCommit(false);//트랜잭션 시작
 			
-			interestDao.insert(conn,mno,sno);
+			interestDao.insertBySno(conn, mno, sno);
 			
 			conn.commit(); //트랙잭션 반영
 			

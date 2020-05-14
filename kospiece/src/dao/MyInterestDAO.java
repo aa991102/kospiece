@@ -20,12 +20,11 @@ public class MyInterestDAO {
 	StockVO stock = new StockVO();
 	List<String> snoList = null;
 	
-	//회사번호 가져오기
+	//회원번호로 관심 회사번호 목록 가져오기
 	public List<String> selectSno(Connection conn, int mno) 
 			throws SQLException {
-		
 		System.out.println("MyInterestDAO-selectSno호출="+mno);
-		System.out.println("conn="+conn);
+		
 		String sql = "SELECT sno FROM interest WHERE mno = ?";
 		
 		pstmt = conn.prepareStatement(sql);
@@ -49,8 +48,9 @@ public class MyInterestDAO {
 		}
 	}
 	
+	
 	//관심주식 추가
-	public void insert(Connection conn, int mno, String sno) throws SQLException {
+	public void insertBySno(Connection conn, int mno, String sno) throws SQLException {
 		System.out.println("MyInterestVO-insert()호출");
 		
 		String sql = "INSERT INTO Interest(mno,sno) " + 
@@ -63,16 +63,16 @@ public class MyInterestDAO {
 		pstmt.executeUpdate();
 	}
 	
+	
 	//관심주식 삭제
-		public void delete(Connection conn, int mno, String sno) throws SQLException {
-			System.out.println("MyInterestVO-insert()호출");
-			
-			String sql = "delete from Interest where mno=? and sno=?";
-			
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1,mno);
-			pstmt.setString(2,sno);
-			
-			pstmt.executeUpdate();
-		}
+	public void delete(Connection conn,int mno, String sno) throws SQLException {
+		System.out.println("MyInterestVO-delete()호출");
+		
+		String sql = "DELETE FROM interest WHERE mno=? AND sno=?";
+		
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setInt(1, mno);
+		pstmt.setString(2, sno);
+		pstmt.executeUpdate();
+	}
 }
