@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <script src="https://cdn.anychart.com/releases/v8/js/anychart-core.min.js"></script>
 <script src="https://cdn.anychart.com/releases/v8/js/anychart-treemap.min.js"></script>
-<%@ page import="json.data" %>
+<%@ page import="json.data,util.Crawling.*" %>
 <!-- 나진 파트 -->
 
 <!-- "추가해야 될 사항" 
@@ -19,7 +19,9 @@
  2.회원 - 확인용파라미터:회원아이디(관심주식 또는 가상투자로 넘어갈때 회원아이디 넘겨주기)
  3.관심주식
  -->
-  
+<script>
+$(document).ready(function() { <%CrawlingLoad.Load();%> });
+</script>
 <div class="main-map">
 
 	<div class="map" id="map">
