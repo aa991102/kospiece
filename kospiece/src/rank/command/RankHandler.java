@@ -51,7 +51,6 @@ public class RankHandler implements CommandHandler {
 	private String processTotalList(HttpServletRequest request, HttpServletResponse response) {
 		//get방식 - 폼만 보여주기
 		
-		
 		stockList=rankService.service(mno,"all","schangerate","desc");
 		request.setAttribute("type","schangerate");
 		request.setAttribute("sort","desc");
@@ -76,10 +75,7 @@ public class RankHandler implements CommandHandler {
 				}
 				if(field==null) {
 					field="all";
-					
 				}
-				
-		//회원의 회원번호 불러오기
 			
 		System.out.println("선택한 업종:"+field+",정렬할 컬럼:"+type+",정렬방식:"+sort);
 		
