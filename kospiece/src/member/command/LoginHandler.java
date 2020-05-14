@@ -1,4 +1,4 @@
-package member.command;
+﻿package member.command;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -57,7 +57,8 @@ public class LoginHandler implements CommandHandler {
 			session.setAttribute("AUTHUSER", member); //로그인한 회원의 정보를 세션에 저장
 			session.setAttribute("ID", member.getId());
 			session.setAttribute("MNO", member.getMno());
-			
+			session.setAttribute("NICKNAME", member.getNickname()); //5.14 유태우 추가
+
 			//4.View
 			//로그인성공시   index.jsp문서로 sendRedirect를 이용하여 강제이동
 			response.sendRedirect(request.getContextPath()+"/main.jsp");

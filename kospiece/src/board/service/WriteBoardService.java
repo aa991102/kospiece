@@ -19,6 +19,7 @@ public class WriteBoardService {
 		System.out.println("WriteBoardService.write() 호출");
 		
 		// 파라미터 전달
+		String Horsehead = board.getHorsehead();
 		String Nickname = board.getNickname();
 		String Title = board.getTitle();
 		String Content = board.getContent();
@@ -30,15 +31,15 @@ public class WriteBoardService {
 			conn.setAutoCommit(false);
 			
 		//파라미터 전달받기
-			FreeBoardVO freeboardVO = 
-					new FreeBoardVO(Nickname, Title, Content , Uploaddate);
+			FreeBoardVO boardVO = 
+					new FreeBoardVO(Horsehead, Nickname, Title, Content , Uploaddate);
 			
 		//Dao의 insert문 실행
-			boardwriteDao.insert(conn, freeboardVO);
+			boardwriteDao.insert(conn, boardVO);
 			
 			conn.commit();
 			
-			return freeboardVO.getFno();
+			return boardVO.getFno();
 			
 		}catch(SQLException e){
 			JdbcUtil.rollback(conn);

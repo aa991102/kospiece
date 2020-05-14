@@ -18,11 +18,11 @@
 		<form action="<%=request.getContextPath() %>/board/write.do" method="post">
 		<div class="" id="1-3">
 			말머리
-			<select name="말머리">
-			    <option value="storyhead">선택</option>
-			    <option value="normal">일반</option>
-			    <option value="humer">유머</option>
-			    <option value="information">정보</option>
+			<select name="horsehead">
+			    <option value="일반">선택</option>
+			    <option value="일반">일반</option>
+			    <option value="유머">유머</option>
+			    <option value="정보">정보</option>
 			</select><br>
 			제목 <input type="text" name="title" value="${param.title}"/><br>
 			상세내용 <textarea name="content" rows="5" cols="30">${param.content}</textarea>

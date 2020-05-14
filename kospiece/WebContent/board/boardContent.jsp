@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,25 +13,36 @@
 		<div class="" id="1-1">
 			자유게시판
 		</div>
-		<div class="" id="1-2">
-			<input type="button" value="목록" class="목록">
-			<input type="button" value="글쓰기" class="글쓰기">
-			<input type="button" value="수정" class="수정">
-			<input type="button" value="삭제" class="삭제">
+		<div class="" id="1-2"> 
+			<a href="<%= request.getContextPath()%>/board.do?pageNo=${pageNo}">
+				<input type="button" value="목록" class="목록">
+			</a>
+			<a href="<%= request.getContextPath()%>/board/write.do">
+				<input type="button" value="글쓰기" class="글쓰기">
+			</a>
+			<c:if test="${NICKNAME == board.nickname}">
+				<a href="<%= request.getContextPath()%>#">
+					<input type="button" value="수정" class="수정">
+				</a>
+				<a href="<%= request.getContextPath()%>#">
+					<input type="button" value="삭제" class="삭제">
+				</a>
+			</c:if>
+			
 		</div>
 		<div class="" id="1-3">
 			<table style="width=100%" border=1>
 				<tr>
 					<td>제목</td>
-					<td>삼성전자 주식 지금 사야됨?</td>
+					<td>${board.title }</td>
 				</tr>
 				<tr>
 					<td>작성자</td>
-					<td>주식천재</td>
+					<td>${board.nickname }</td>
 				</tr>
 				<tr>
 					<td>상세내용</td>
-					<td>전문가 형들 조언좀</td>
+					<td>${board.content }</td>
 				</tr>
 			</table>
 		</div>
