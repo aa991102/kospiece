@@ -13,8 +13,8 @@
                <th>종목</th>
                <th>현재가</th>
                <th>전일비</th>
-               <th>등략률</th>
-               <th>기사총액</th>
+               <th>등락률</th>
+               <th>시가총액</th>
                <th>보유량</th>
                <th></th>
            </tr>           
@@ -48,7 +48,8 @@
 		
    </div>
    <div>총 자산 : ${member.asset}</div>
-   <table class="rank" border="1">
+   <div class="scroll_div">
+ 		<table class="rank" border="1">
 			<tr>
 				<th>일자</th>
 				<th>종목</th>
@@ -61,13 +62,16 @@
 			</c:if>
 			<c:forEach var="history" items="${historys}">
 				<tr>
-					<td>${history.date}</td>
+					<td width="25%">${history.date}</td>
 					<td>${history.sname}</td>
-					<td>${history.siquantity}</td>
-					<td>${history.siprice}</td>
-					<td>${history.total}</td>
+					<td width="10%">${history.siquantity}</td>
+					<td width="20%">${history.siprice}</td>
+					<td width="20%">${history.total}</td>
 				</tr>
+				<p hidden="hidden">${sum=sum+history.total}</p>
 			</c:forEach>
-		</table>	
+		</table>
+		<div class="side_buttonR">총계 : ${sum }</div>	
+	</div>
 </div>
    

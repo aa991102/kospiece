@@ -47,11 +47,10 @@ public class MyInvestHandler implements CommandHandler{
 		System.out.println("user="+user);
 		//비즈니스 수행		
 		try {
-		
 		MyStockVO myStock = searchService.getMyStock(mid, sname);
 		MemberVO member = service.getMemberVOById(mid);
 		ArrayList<StockHistoryVO> histories = searchService.getMyHistory(member.getMno(), myStock.getStock().getNo(),myStock.getStock().getNo());
-
+		
 		//model 
 		request.setAttribute("MyStock", myStock);
 		request.setAttribute("Member",member);
@@ -61,7 +60,7 @@ public class MyInvestHandler implements CommandHandler{
 			System.out.println("MyInvestHandler processSubmit error");
 			return "/virtual/investing.jsp";
 		}
-		
+								
 		//view 지정
 		return "/virtual/investing.jsp";
 		

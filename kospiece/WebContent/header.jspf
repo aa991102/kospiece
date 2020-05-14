@@ -34,6 +34,7 @@
     <link rel="stylesheet" href="<%= request.getContextPath()%>/css/mypage.css" type="text/css">
     <link rel="stylesheet" href="<%= request.getContextPath()%>/css/rank.css" type="text/css">
     <link rel="stylesheet" href="<%= request.getContextPath()%>/css/notice.css" type="text/css">
+    <link rel="stylesheet" href="<%= request.getContextPath()%>/css/simulation.css" type="text/css">
     <!--웹 폰트 사용-->
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&display=swap" rel="stylesheet">
     <!-- 자바스크립트 -->
@@ -67,7 +68,7 @@
                 <a href="<%= request.getContextPath()%>/notice.do">공지사항</a>
             </li>
             <li class="list-item">
-                <a class="virtual" id="virtual" href="<%= request.getContextPath()%>/simulation.do">가상투자</a>
+                <a class="virtual" id="virtual" href="<%= request.getContextPath()%>/simulationlist.do">가상투자</a>
                 <ul class="sub-list-virtual">
                     <li class="sub-item-virtual"><a href="<%= request.getContextPath()%>/simulationlist.do" class="a-item">보유주식</a></li>
                     <li class="sub-item-virtual"><a href="<%= request.getContextPath()%>/simulation.do" class="a-item">주식주문</a></li>

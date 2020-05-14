@@ -70,8 +70,7 @@ public class MyInvestService {
 	}
 	
 	public MyStockVO getMyStock(String id, String sname) {
-		try {
-			
+		try {	
 			return new MyStockVO(getMemberVO(id).getMno(), getMemberVO(id).getDeposit(), getTotalQuantity(getMemberVO(id).getMno(), selectBySname(sname).getNo()), selectBySname(sname));
 		
 		}catch(NullPointerException e) {
