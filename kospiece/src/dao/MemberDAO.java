@@ -11,6 +11,7 @@ import java.util.Collections;
 import java.util.List;
 
 import dto.MemberVO;
+import jdbc.JdbcUtil;
 
 public class MemberDAO {
 	
@@ -299,17 +300,21 @@ public class MemberDAO {
 	public void update(Connection conn, MemberVO member2) {
 		
 		PreparedStatement pstmt = null;
-		String sql = "UPDATE member SET mpw=?, mname=?, mdeposit=?";
+		String sql = "UPDATE member SET mdeposit=? where mno=?";
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, member2.getPw());
-			pstmt.setString(2, member2.getName());
-			pstmt.setInt(3, member2.getDeposit());
+			pstmt.setInt(1, member2.getDeposit());
+			pstmt.setInt(2, member2.getMno());
 			pstmt.executeUpdate();
+			
+			conn.commit();
 		} catch (SQLException e) {
 			System.out.println("update 에러발생");
+			JdbcUtil.rollback(conn);
 			e.printStackTrace();
+		}finally {
+			
 		}
 		
 	}
