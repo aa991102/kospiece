@@ -22,7 +22,7 @@
 		<img src="<%= request.getContextPath()%>/img/user.png"><br/>
 		회원관리
 		</a>
-		<a href="<%= request.getContextPath()%>/noticeList.do" class="posts-management">
+		<a href="<%= request.getContextPath()%>/noticeManage.do" class="posts-management">
 		<img src="<%= request.getContextPath()%>/img/paper.png"><br/>
 		게시글관리
 		</a>

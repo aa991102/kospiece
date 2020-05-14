@@ -11,5 +11,6 @@
 	상세내용:${notice.content}<br/>
 	게시일:${notice.uploadDate}<br/>
 	조회수:${notice.hit}<br/>
+	<a href="<%= request.getContextPath()%>/noticeList.do">목록</a>
 </div>
 

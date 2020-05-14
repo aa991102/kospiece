@@ -7,9 +7,9 @@
 <div class="admin-user">
 	<a href="<%= request.getContextPath()%>/admin.do" class="admin-logo">관리자 페이지</a>	
 	<a href="<%= request.getContextPath()%>/userList.do" class="user-button">회원관리</a>
-	<a href="<%= request.getContextPath()%>/noticeList.do" class="notice-button">공지사항</a><br/>
+	<a href="<%= request.getContextPath()%>/noticeManage.do" class="notice-button">공지사항</a><br/>
 	
-	<form action="<%= request.getContextPath()%>/userList.do"name="user-search" method ="post" class="user-search">
+	<form action="<%= request.getContextPath()%>/noticeManage.do"name="user-search" method ="post" class="user-search">
 	    <select name="search">
     		<option value=""selected>전체</option>	
 	        <option value="mnick">닉네임</option>

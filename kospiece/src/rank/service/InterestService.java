@@ -1,4 +1,4 @@
-package interest.service;
+package rank.service;
 
 import java.sql.Connection;
 import java.sql.SQLException;

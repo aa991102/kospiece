@@ -4,7 +4,7 @@
 <div class="admin-user">
 	<a href="<%= request.getContextPath()%>/admin.do" class="admin-logo">관리자 페이지</a>	
 	<a href="<%= request.getContextPath()%>/userList.do" class="user-button">회원관리</a>
-	<a href="<%= request.getContextPath()%>/noticeList.do" class="notice-button">공지사항</a><br/>
+	<a href="<%= request.getContextPath()%>/noticeManage.do" class="notice-button">공지사항</a><br/>
 	<div class="checkAdminPw">
 		<form name="adminPwForm" method="post"
 				action="<%= request.getContextPath()%>/checkAdminPw.do">

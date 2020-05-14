@@ -39,6 +39,6 @@ public class NoticeWriteHandler implements CommandHandler {
 		String content=request.getParameter("content");
 		noticeWriteService.service(title,content);//통계값 리턴받아 통계객체에 저장
 		
-		return "/noticeList.do";
+		return "/noticeManage.do";
 	}
 }

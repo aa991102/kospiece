@@ -7,7 +7,7 @@
 <div class="admin-notice">
 	<a href="<%= request.getContextPath()%>/admin.do" class="admin-logo">관리자 페이지</a>	
 	<a href="<%= request.getContextPath()%>/userList.do" class="user-button">회원관리</a>
-	<a href="<%= request.getContextPath()%>/noticeList.do" class="notice-button">공지사항</a><br/>
+	<a href="<%= request.getContextPath()%>/noticeManage.do" class="notice-button">공지사항</a><br/>
 	
 	<form name="notice-search" method ="post" class="notice-search">
 	    <select name="search">
@@ -27,16 +27,40 @@
         	<th>수정</th>
         	<th>삭제</th>
         </tr>
-		<c:forEach var="notice" items="${noticeList}">
+		<c:forEach var="notice" items="${noticePage.content}">
         <tr>
         	<td>${notice.nno}</td>
-        	<td>${notice.title}</td>
+        	<td><a href="noticeRead.do?no=${notice.nno}">${notice.title}</a></td>
         	<td>${notice.uploadDate}</td>
         	<td>${notice.hit}</td>
-        	<td>수정</td>
-        	<td>삭제</td>
         </tr>
         </c:forEach>
+        <c:if test="${noticePage.total==0}">
+					<tr>
+						<th colspan="4">
+							공지사항이 없습니다.
+					</tr>
+				</c:if>
+        <c:if test="${noticePage.total>0}">
+					<tr>
+						<th colspan="4">
+							<%-- [이전prev]출력 --%>
+							<c:if test="${noticePage.currentPage>5}">
+							<a href="noticeManage.do?page=${noticePage.startPage-5}">[이전]</a>
+							</c:if>
+							
+							<%-- 페이지출력 [이전] [1] [2] [3] [4] [5] --%>
+							<c:forEach var="pNo" begin="${noticePage.startPage}" end="${noticePage.endPage}">
+							<a href="noticeManage.do?page=${pNo}">[${pNo}]</a>
+							</c:forEach>
+							
+							<%-- [다음next]출력 --%>
+							<c:if test="${notice.endPage<notice.totalPages}">
+							<a href="noticeManage.do?page=${notice.startPage+5}">[다음]</a>
+							</c:if>
+							</th>
+					</tr>
+				</c:if>
      </table>
      <a href="<%= request.getContextPath()%>/admin/noticeWrite.jsp">공지사항작성</a>
 

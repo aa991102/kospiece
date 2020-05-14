@@ -1,11 +1,11 @@
-package interest.command;
+package rank.command;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import controller.command.CommandHandler;
-import interest.service.InterestService;
+import rank.service.InterestService;
 
 public class InterestHandler implements CommandHandler {
 	
