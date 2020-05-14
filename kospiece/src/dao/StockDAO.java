@@ -137,8 +137,17 @@ public class StockDAO {
 			pstmt.setString(1, sname);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
-				return stockResultSet(rs);
-				
+				return new StockVO(rs.getString("sno"),
+						rs.getString("sname"), 
+						rs.getString("sfield"), 
+						rs.getString("sdetail"), 
+						rs.getInt("sprice"), 
+						rs.getString("sdayrate"), 
+						rs.getFloat("schangerate"), 
+						rs.getString("svolume"), 
+						rs.getString("sdealprice"), 
+						rs.getInt("stotal"), 
+						rs.getString("shigh52"));
 			}else {
 				return null;
 			}
