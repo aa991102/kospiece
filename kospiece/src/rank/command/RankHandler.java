@@ -17,22 +17,12 @@ public class RankHandler implements CommandHandler {
 	RankService rankService=new RankService();
 	List<StockVO> stockList=null;
 	List<String> field=new ArrayList<String>();
-	int mno=0;
 	
 	@Override
 	public String process(HttpServletRequest request, 
 						  HttpServletResponse response) throws Exception {
 		System.out.print("RankHandler 진입 ");
 		
-		HttpSession session = request.getSession();
-		
-		if(session.getAttribute("MNO")!=null) {
-			//세션에 회원정보가 있으면(로그인 상태면) mno에 회원번호 넣어주기
-			//비로그인 상태라면 mno는 0이된다
-			mno=(int) session.getAttribute("MNO");
-			System.out.print("회원번호:"+mno+",");
-		}
-
 		field=rankService.fieldFind();
 		request.setAttribute("fieldName",field);
 		
@@ -51,16 +41,38 @@ public class RankHandler implements CommandHandler {
 	private String processTotalList(HttpServletRequest request, HttpServletResponse response) {
 		//get방식 - 폼만 보여주기
 		
+		HttpSession session = request.getSession();
+		int mno=0;
+		if(session.getAttribute("MNO")!=null) {
+			//세션에 회원정보가 있으면(로그인 상태면) mno에 회원번호 넣어주기
+			//비로그인 상태라면 mno는 0이된다
+			mno=(int)session.getAttribute("MNO");
+			System.out.print("회원번호:"+mno+",");
+		}
+		
+		System.out.println(mno);
 		stockList=rankService.service(mno,"all","schangerate","desc");
 		request.setAttribute("type","schangerate");
 		request.setAttribute("sort","desc");
 		request.setAttribute("field","all");
 		request.setAttribute("stockList",stockList);
+		System.out.println(stockList);
 		return FORM_VIEW;
 		
 	}
 	private String processSelectedList(HttpServletRequest request, HttpServletResponse response) {
 	
+		HttpSession session = request.getSession();
+		
+		int mno=0;
+		
+		if(session.getAttribute("MNO")!=null) {
+			//세션에 회원정보가 있으면(로그인 상태면) mno에 회원번호 넣어주기
+			//비로그인 상태라면 mno는 0이된다
+			mno=(int)session.getAttribute("MNO");
+			System.out.print("회원번호:"+mno+",");
+		}
+		
 		//정렬을 하고싶은 컬럼명과 정렬방식을 파라미터로 받아온다
 		String field=request.getParameter("select");
 		String type=request.getParameter("column");

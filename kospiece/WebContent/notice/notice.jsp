@@ -3,14 +3,14 @@
 
 <div class="title">공지사항</div>
 <div class="notice">
-	<form name="notice-search" method ="post" class="notice-search" 
-		action="<%= request.getContextPath()%>/noticeList.do">
+	<form name="notice-search" id="notice-search" method ="post" class="notice-search" 
+		action="<%= request.getContextPath()%>/noticeList.do" onsubmit="return checkForm();">
 	    <select name="search">
 	        <option value="ntitle">제목</option>
 	        <option value="ncontent">내용</option> 
 	    </select>
-	    <input type="text" name="content" />
-	    <input type="submit" value="검색"/>
+	    <input type="text" name="content" id="notice-content"/>
+	    <input type="submit" name="notice-submit" value="검색"/>
 	</form>
 	<table border="1" width="1000" align="center">
         <tr>
@@ -80,3 +80,4 @@
 				</c:if>
      </table>
 </div>
+

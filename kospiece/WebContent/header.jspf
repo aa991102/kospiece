@@ -43,6 +43,7 @@
     <script src="<%= request.getContextPath()%>/js/point_rank.js" type="text/javascript"></script>
     <script src="<%= request.getContextPath()%>/js/rank.js" type="text/javascript"></script>
     <script src="<%= request.getContextPath()%>/js/myInterest.js" type="text/javascript"></script>
+    <script src="<%= request.getContextPath()%>/js/form.js" type="text/javascript"></script>
 </head>
 <body>
 
