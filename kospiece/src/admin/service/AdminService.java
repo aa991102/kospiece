@@ -3,13 +3,13 @@ package admin.service;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-import dao.MemberDAO;
+import dao.AdminDAO;
 import jdbc.JdbcUtil;
 import jdbc.connection.ConnectionProvider;
 
 public class AdminService {
 
-	MemberDAO adminDao = new MemberDAO();
+	AdminDAO adminDao = new AdminDAO();
 	Statistics memberStatistics= new Statistics();
 	
 	public Statistics service() {
@@ -20,9 +20,13 @@ public class AdminService {
 
 			int totalMember=adminDao.selectTotalMember(conn);
 			int todayMember=adminDao.selectTodayMember(conn);
+			int totalPost=adminDao.selectTotalPost(conn);
+			int todayPost=adminDao.selectTodayPost(conn);
 			
 			memberStatistics.setTotalMember(totalMember);
 			memberStatistics.setTodayMember(todayMember);
+			memberStatistics.setTotalPost(totalPost);
+			memberStatistics.setTodayPost(todayPost);
 			conn.commit(); //트랙잭션 반영
 			
 			return memberStatistics;

@@ -6,7 +6,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
 
@@ -115,13 +114,7 @@ public class MemberDAO {
 			e.printStackTrace();
 			System.out.println();
 		}
-		
-		
-		
-		
 	}
-	
-	
 	
 	//비밀번호 변경 기능
 	public void pwUpdate(Connection conn,MemberVO member) throws SQLException{
@@ -223,39 +216,7 @@ public class MemberDAO {
 		return id;
 	}
 	
-	/*1.AdminService(관리자페이지 홈화면)*/
-	//전체 회원 수 구하는 메서드
-	public int selectTotalMember(Connection conn) throws SQLException {
-		String sql = "select count(*) from member";
-		pstmt = conn.prepareStatement(sql);
-		rs=pstmt.executeQuery();
-		rs.next();
-		return rs.getInt(1);
-	}
-	
-	//신규(오늘 가입한) 회원 수 구하는 메서드
-	public int selectTodayMember(Connection conn) throws SQLException {
-			String sql = "select count(*) from member where mdate=?";
-			
-			pstmt = conn.prepareStatement(sql);
-			
-			Calendar cal = Calendar.getInstance();
-			 
-			//현재 년도, 월, 일
-			int year = cal.get ( Calendar.YEAR );
-			int month = cal.get ( Calendar.MONTH );
-			int date = cal.get ( Calendar.DATE );
-			String today=year+"-"+(month+1)+"-"+(date+1);
-			
-			Date now=Date.valueOf(today);
-			
-			pstmt.setDate(1, now);
-			rs=pstmt.executeQuery();
-			rs.next();
-			return rs.getInt(1);
-	}
-	
-	/*2.UserListService(회원관리 페이지)*/
+	/*UserListService(회원관리 페이지)*/
 	
 	//회원목록 셋팅해주는 메서드
 	private MemberVO memberListResultSet(ResultSet rs) throws SQLException{
@@ -374,10 +335,7 @@ public class MemberDAO {
 			JdbcUtil.rollback(conn);
 			e.printStackTrace();
 		}
-		
 	}
-	
-	
 }
 
 

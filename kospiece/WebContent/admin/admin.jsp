@@ -7,12 +7,13 @@
 	<div class="site-statistics">
 		<div class="left-statistics">
 			today<br/>
-			방문자 수:0명<br/>
+			방문자 수:${stat.todayVisit}명<br/>
 			신규 회원 수:${stat.todayMember}명<br/>
 			신규 게시글 수:${stat.todayPost}개<br/>
 		</div>
 		<div class="right-statistics">
 			total<br/>
+			방문자 수:${stat.totalVisit}명<br/>
 			전체 회원 수:${stat.totalMember}명<br/>
 			전체 게시글 수:${stat.totalPost}개<br/>
 		</div>
