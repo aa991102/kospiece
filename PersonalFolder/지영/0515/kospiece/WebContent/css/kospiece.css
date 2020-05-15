@@ -1,0 +1,251 @@
+/*공통 디자인*/
+.clear{clear:both;}
+
+a {text-decoration:none;}
+* {box-sizing:border-box;}
+
+html{font-size:10px}
+body{
+	min-width:1060px;
+	font-size:1.8em;
+	font-family: Roboto, sans-serif;
+	}
+
+/*1.header 디자인*/
+.header {
+	background:#1A3F69;
+    height:80px;
+    min-width:1600px;
+    padding:15px 10px;
+    }
+/* 로고 */
+.header .logo {
+	position:absolute;
+    top:22px;
+    left:50px;
+    margin:0;
+    color:white;
+    }
+/* 상단메뉴바 */
+.header .nav {text-align:left;}
+.header .list {
+	position:absolute;
+    text_align:center;
+    width:900px;
+    top:15px;
+    left:200px;
+    margin:20px 50px;
+    }
+.header .list:after {
+		content:'';
+    display:block;
+    clear:both;
+    }
+.header .list-item {
+		display:inline;
+    font-size:1.6rem;
+    font-weight:700;
+    padding:25px;
+    width:100px
+    }
+.header .sub-list-virtual {
+		display:block;
+    position:absolute;
+    top:45px;
+    left:458px;
+    }
+.header .sub-item-virtual {
+		display:block;
+    background-color: rgba( 255, 255, 255, 0.5 );
+    padding:10px;
+    border-top-style:solid;
+    border-width: 2px;
+    border-color:#1a3f69d1;
+    text-align:center;
+    width:110px;
+    position:relative;
+    z-index:1;
+    }
+.header .sub-list-my {
+		display:block;
+    position:absolute;
+    top:45px;
+    left:574px;
+    }
+.header .sub-item-my {
+		display:block;
+    background-color: rgba( 255, 255, 255, 0.5 );
+    padding:10px;
+    border-top-style:solid;
+    border-width: 2px;
+    border-color:#1a3f69d1;
+    text-align:center;
+    width:110px;
+    position:relative;
+    z-index:1;
+    }
+.header a.a-item {text-decoration:none; 
+									color:#1A3F69;}
+
+.header .list2 { 
+		position:absolute;
+    top:15px;
+    left:1170px;
+    width:320px;
+    list-style-type: none;
+    }
+.header .list-item2 {display:inline;
+										 position:relative;
+										 }
+.header .list2:after {
+		content:'';
+    display:block;
+    clear:both;
+}
+/* 헤더-포인트순위-관리자 로그인 했을때  */
+.header .rank {position:absolute;
+		top:0;
+		right:-70px;
+		line-height:inherit;
+    width:170px;
+    height:22px;
+    color:white;
+    border-bottom-style:solid;
+    border-color:white;
+    border-width:1px;
+    }
+/* 헤더-포인트순위-관리자 로그인 안했을때  */
+.header .rank2 {position:absolute;
+		top:0;
+		right:35px;
+		line-height:inherit;
+    width:170px;
+    height:22px;
+    color:white;
+    border-bottom-style:solid;
+    border-color:white;
+    border-width:1px;
+    }
+.header .rankTitle {
+		font-size:1.6rem;
+		font-weight:700;
+		color:#8EE8B7;
+}
+.header .rankNum {
+	font-size:1.8rem;
+    font-weight:700;
+    color:#8EE8B7;
+    }
+.header .rankNick {
+	font-size:1.6rem;
+    font-weight:500;
+    color:white;
+    }
+.header rank.a {text-decoration:none;}
+#rank-list {
+				    overflow: hidden;
+				    width: 160px;
+				    height: 20px;
+				    margin: 0;
+						}	
+#rank-list dt {display: none;}
+#rank-list dd {position: relative;
+						   margin: 0;
+							}
+#rank-list ol {position: absolute;
+						   top: 0;
+						   left: 0;
+						   margin: 0;
+						   padding: 0;
+						   list-style-type: none;
+							}
+#rank-list li {height: 20px;
+						   line-height: 20px;
+							}
+/* 헤더-회원이름 */
+.myNick {position:relative;
+				 float:right;
+				 width:max-content;}
+.myNick >a {position:relative;
+						color:white;
+						border-bottom:1px solid white;
+						font-size:1.6rem;}
+.header .list-item_log{position:absolute;
+		top:0;
+		left:340px;
+		display:inline;
+    font-size:1.6rem;
+    font-weight:700;
+    padding:0;
+    }
+.header .list-item_log:after{content:'';
+    display:inline;
+    clear:both;}
+    
+.header .list-item_log> a {
+		color:white;
+    width:100px;
+    position:relative;
+    color:#486587;
+    background:white;
+    padding:6px 20px;
+    margin:0 auto;
+    text-align:center;
+    font-size:1.6rem;
+    }
+.header .list-item_log>a:hover{background:#D1D9E1;}
+.header .list-item>a{color:#D1D9E1;}
+.header .list-item>a:hover{color:white;}
+
+/*2.main 디자인*/
+.main{min-height:750px;}
+.main .title{
+						width:280px;
+						height:125px;
+						text-align: center;
+						line-height:125px;
+						font-size:25px;
+						font-weight:bold;
+						color:#385170;
+						display:inline-block;
+						background-color:#f6f6f6;
+						margin:0 0 20px 0;
+}
+
+/*3.footer 디자인*/
+.footer{text-align:center;
+		}
+
+/*4.home화면 디자인*/
+.map{
+	width:1000px;
+	height:650px;
+	/*border:1px solid black;*/
+	margin:50px auto;
+	}
+.map-detail{
+	width:800px;
+	margin:0 auto;
+	}
+.company-inform{float:right;}
+.company-detail tr:nth-child(1),.company-detail tr:nth-child(5){text-align:left;}
+.company-detail tr:nth-child(1) img{
+	width:15px;
+	height:15px;
+	float:right;
+	margin:0 10px;
+	}
+.company-detail tr:nth-child(1) a{
+	float:right;
+	margin:0 10px;
+	}
+
+
+
+
+
+
+
+
+
+
