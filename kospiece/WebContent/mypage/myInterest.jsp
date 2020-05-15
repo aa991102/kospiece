@@ -29,7 +29,7 @@
 			    <input type="submit" formaction="/kospiece/myInterestInsert.do" name="insertBtn" id="insertBtn" value="추가"/>
 		    	<input type="submit" formaction="/kospiece/myInterestDelete.do" name="deleteBtn" class="btn-del" value="삭제" onclick="return deleteCheck()"/>
 		    	<input type="submit" formaction="/kospiece/simulation.do" id="investBtn" value="가상투자하기" onclick="return goToInvest();"/>
-		    	<input type="button" value="?"/>
+		    	<input type="button" value="?" id="helpBtn"/>
 		    </div>
 	    </div>
 
