@@ -2,9 +2,9 @@
     pageEncoding="UTF-8"%>
 
 <div class="title">공지사항</div>
-
 <div class="notice">
-	<form name="notice-search" method ="post" class="notice-search">
+	<form name="notice-search" method ="post" class="notice-search" 
+		action="<%= request.getContextPath()%>/noticeList.do">
 	    <select name="search">
 	        <option value="ntitle">제목</option>
 	        <option value="ncontent">내용</option> 
