@@ -61,7 +61,7 @@ public class MemberDAO {
 			updateLoginTime(conn, mno);
 			supplyPoint(conn, lastTime, mno);
 			
-			member = new MemberVO(mno, memberid,mnick,password,mname,mmail,mphone,deposit,asset, lastTime);
+			member = new MemberVO(mno, memberid,mnick,password,mname,mmail,mphone,deposit,asset);
 			
 		}
 		return member;
