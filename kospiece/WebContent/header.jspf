@@ -116,7 +116,7 @@
                 	<a href="<%= request.getContextPath()%>/member/login.jsp" rel="noopener">🚪&nbsp;&nbsp;login</a>
                 </c:if>
                 <c:if test="${!empty AUTHUSER}">
-                	<a href="<%= request.getContextPath()%>/member/login.jsp" rel="noopener">🚪&nbsp;logout</a>
+                	<a href="./logout.do">🚪&nbsp;logout</a>
                 </c:if>
             </li>
         </ul>
