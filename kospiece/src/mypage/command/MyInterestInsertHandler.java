@@ -40,7 +40,7 @@ public class MyInterestInsertHandler implements CommandHandler {
 		System.out.println("MyInterestInsertHandler-processSubmit()");
 		
 		//파라미터 가져오기
-		String sname = request.getParameter("sname");
+		String sname = request.getParameter("snameSearh");
 		session = request.getSession();
 		int mno = (int)session.getAttribute("MNO");
 		
