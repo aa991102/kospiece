@@ -19,26 +19,25 @@ public class NoticeListHandler implements CommandHandler {
 	NoticeListService noticeListService = new NoticeListService(); //서비스객체 생성
 	List<NoticeVO> noticeList=new ArrayList<NoticeVO>();
 	
-	int pageNo;
+	String column;
+	String value;
+	String page;
 	
 	@Override
 	public String process(HttpServletRequest request, 
 						  HttpServletResponse response) throws Exception {
 		System.out.print("NoticeListHandler 진입 ");
+		
+		column=request.getParameter("search");
+		value=request.getParameter("content");
+		page=request.getParameter("page");
+		System.out.println(column+value+page);
 
-		String page = request.getParameter("page");//클릭한 페이지 파라미터로 받아오기
-		
-		pageNo = 1; //페이지번호를 안받아오면 첫 화면이면 1페이지를 반환
-		
-		if( page!=null ) { //보고싶은페이지가 넘어오면 해당페이지 변수로 저장
-			pageNo = Integer.parseInt(page);
-		}
-		
-		if(request.getMethod().equalsIgnoreCase("GET")) {
-			System.out.print("get방식, 파라미터 없음, 전체 공지사항 출력");
+		if(value==null) {
+			System.out.print("검색내용 없을 때 ");
 			return processTotalNotice(request,response);
-		}else if(request.getMethod().equalsIgnoreCase("POST")) {
-			System.out.print("post방식, 파라미터 있음, 선택된 조건의 공지사항 출력");
+		}else if(value!=null) {
+			System.out.print("검색내용 있을 때 ");
 			return processSelectedNotice(request,response);
 		}else {
 			response.setStatus(HttpServletResponse.SC_METHOD_NOT_ALLOWED); 
@@ -47,11 +46,23 @@ public class NoticeListHandler implements CommandHandler {
 	}
 	
 	private String processTotalNotice(HttpServletRequest request, HttpServletResponse response) {
-		//파라미터 없을때 실행하는 로직. 전체 공지사항 리스트를 출력
+		//검색내용 없을 때(처음화면과 페이징 눌렀을 때 화면)
 		
-		NoticePage noticePage = noticeListService.noticeListService(pageNo);
+		NoticePage noticePage;
+		int pageNo;
+		
+		if(page==null) {//처음화면
+			pageNo=1;
+			System.out.print("처음화면 ");
+		}else {
+			pageNo=Integer.parseInt(page);
+			System.out.print(pageNo+"페이지");
+		}
+		
+		noticePage = noticeListService.noticeListService(pageNo);
 		
 		request.setAttribute("noticePage",noticePage);
+		request.setAttribute("Total", true);
 		//페이지에서 출력할 공지사항 객체 arrayList를 request속성에 담아보내기
 		//<1번글객체,2번글객체.....>
 		
@@ -59,13 +70,26 @@ public class NoticeListHandler implements CommandHandler {
 		
 	}
 	private String processSelectedNotice(HttpServletRequest request, HttpServletResponse response) {
+		//검색내용 있을 때
 		
-		String column=request.getParameter("search");
-		String value=request.getParameter("notice-inform");
+		NoticePage noticePage;
+		int pageNo;
 		
-		System.out.println(column+"컬럼의 "+value+"가 들어있는 공지사항만 출력");
+		if(request.getMethod().equalsIgnoreCase("POST")) {//처음화면
+			pageNo=1;
+			System.out.print("검색시 처음화면");
+		}else {
+			pageNo=Integer.parseInt(page);
+			System.out.print(pageNo+"페이지");
+		}
 		
-		NoticePage noticePage=noticeListService.noticeListService(pageNo,column,value);
+		System.out.print(column+"컬럼의 "+value+"가 들어있는 공지사항만 출력");
+		
+		noticePage=noticeListService.noticeListService(pageNo,column,value);
+		
+		request.setAttribute("search",column);
+		request.setAttribute("content",value);
+		request.setAttribute("Total", false);
 		request.setAttribute("noticePage",noticePage);
 		//페이지에서 출력할 공지사항 객체 arrayList를 request속성에 담아보내기
 		//<1번글객체,2번글객체.....>
