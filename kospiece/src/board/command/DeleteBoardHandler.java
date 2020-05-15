@@ -18,7 +18,7 @@ public class DeleteBoardHandler implements CommandHandler {
 		String noVal = req.getParameter("fno"); //현재 페이지
 		int fno = 0;
 		if(noVal != null) {
-			fno = Integer.parseInt(noVal); 
+			fno = Integer.parseInt(noVal);  
 			//사용자가 페이지를 선택하면 pageNo에 사용자가 보려고 하는 페이지를 반환한다.
 		}else {
 			System.out.println("fno 파라미터를 전달받지 못함");

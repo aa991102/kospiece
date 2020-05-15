@@ -18,7 +18,7 @@ public class FreeBoardVO {
 		this.nickname=nickname;
 		this.title=title;
 		this.content=content;
-		this.uploaddate = uploaddate;
+		this.uploaddate=uploaddate;
 	}
 	//update에 쓰이는 생성자
 	public FreeBoardVO(int fno, String horsehead, String title, String content) {

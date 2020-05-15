@@ -23,7 +23,7 @@ public class WriteBoardService {
 		String Nickname = board.getNickname();
 		String Title = board.getTitle();
 		String Content = board.getContent();
-		Date Uploaddate = board.getUploaddate();
+		Date uploaddate = board.getUploaddate();
 		
 		Connection conn = null;
 		try {
@@ -32,7 +32,7 @@ public class WriteBoardService {
 			
 		//파라미터 전달받기
 			FreeBoardVO boardVO = 
-					new FreeBoardVO(Horsehead, Nickname, Title, Content , Uploaddate);
+					new FreeBoardVO(Horsehead, Nickname, Title, Content, uploaddate);
 			
 		//Dao의 insert문 실행
 			boardwriteDao.insert(conn, boardVO);
