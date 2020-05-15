@@ -43,10 +43,10 @@ public class WriteBoardHandler implements CommandHandler {
 
 	//요청파라미터받기
 		//사용자 정보(세션)
-		MemberVO member = (MemberVO)req.getSession(false).getAttribute("NICKNAME");
-		System.out.println("전달받은 세션 정보"+member);
+		String nickname = (String) req.getSession(false).getAttribute("NICKNAME");
+		System.out.println("전달받은 세션닉넴"+nickname);
 		//파라미터
-		FreeBoardVO board = ParamToBoard(member, req);
+		FreeBoardVO board = ParamToBoard(nickname, req);
 		System.out.println("등록한 BoardVO파라미터 = \n"+board);
 		/*//5.8 제목을 입력 안했을 시 alert문 띄워주는 기능 추가해야함	
 		Map<String, Boolean> errors = new HashMap<>();
@@ -62,10 +62,10 @@ public class WriteBoardHandler implements CommandHandler {
 		return "/board.do";
 	}
 
-	private FreeBoardVO ParamToBoard(MemberVO member, HttpServletRequest req) {
+	private FreeBoardVO ParamToBoard(String nickname, HttpServletRequest req) {
 		return new FreeBoardVO(
 				req.getParameter("horsehead"), 
-				member.getNickname(),
+				nickname,
 				req.getParameter("title"), 
 				req.getParameter("content"),
 				new Date());

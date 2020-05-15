@@ -118,6 +118,16 @@ public class BoardDAO {
 			JdbcUtil.close(pstmt);
 		}
 	}
+	public int delete(Connection conn, int fno) throws SQLException{
+		PreparedStatement pstmt = null;
+		try {
+			pstmt = conn.prepareStatement("delete from freeboard where fno=?");
+			pstmt.setInt(1, fno);
+			return pstmt.executeUpdate();
+		}finally {
+			JdbcUtil.close(pstmt);
+		}
+	}
 	
 	private FreeBoardVO toFreeBoardVO(ResultSet rs) throws SQLException{
 		return new FreeBoardVO(
@@ -130,4 +140,6 @@ public class BoardDAO {
 	private Timestamp toTimestamp(Date date) {
 		return new Timestamp(date.getTime());
 	}
+
+
 }
