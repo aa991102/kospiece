@@ -55,13 +55,33 @@
      
         chart.maxDepth(3);
         chart.hintDepth(3);
-        chart.maxHeadersHeight("5%");
+        chart.maxHeadersHeight("30%");
         // add a color range
         chart.colorRange().enabled(true);
         chart.colorRange().length("30%");
         // add a title for the chart
         chart.title("Kospi 200 Map");
+        /* adjust the font size of labels
+        according to the size of tiles */
+        chart.labels().adjustFontSize(true);
+        chart.labels().fontColor("white")
+     // configure the font of headers
+        chart.normal().headers().fontColor("#990000");
+        chart.normal().headers().adjustFontSize(true);
+        chart.normal().headers().fontWeight('bold');
+        chart.hovered().headers().fontColor("#000099");
+     // enable HTML for labels
+        chart.labels().useHtml(true);
 
+        // configure labels
+        chart.labels().format(
+          "<span style='font-weight:bold'>{%name}</span><br>{%value}"
+        );
+
+        // configure tooltips
+        chart.tooltip().format(
+          "등락률: {%value}\%\n시가총액(억): {%size}"
+        );
         // specify the container id
         chart.container("map");
 
