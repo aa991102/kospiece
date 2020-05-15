@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <script src="https://cdn.anychart.com/releases/v8/js/anychart-core.min.js"></script>
 <script src="https://cdn.anychart.com/releases/v8/js/anychart-treemap.min.js"></script>
-<%@ page import="json.data,util.Crawling.*" %>
+<%@ page import="json.*,util.Crawling.*" %>
 <!-- 나진 파트 -->
 
 <!-- "추가해야 될 사항" 
@@ -20,16 +20,16 @@
  3.관심주식
  -->
 <script>
-$(document).ready(function() { <%CrawlingLoad.Load();%> });
+<%-- $(document).ready(function() { <%CrawlingLoad.Load();%> }); --%>
 </script>
 <div class="main-map">
-
+<% trans.Data(); %>
 	<div class="map" id="map">
 	<script>
       anychart.onDocumentReady(function() {
 		        // create data
-		<% data dd = new data(); %>        
-        var data = <%=dd.raw()%>
+		<%-- <% data dd = new data(); %>   --%>      
+        var data = <%= trans.Data()%>
 
         // create a data tree
         var treeData = anychart.data.tree(eval(data), "as-tree");
