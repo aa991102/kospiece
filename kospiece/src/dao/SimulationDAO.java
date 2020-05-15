@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -151,16 +152,10 @@ public class SimulationDAO {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, mno);
 			rs = pstmt.executeQuery();
+			StockHistoryVO stock = null;
 			while(rs.next()) {
 				
-				StockHistoryVO stock = new StockHistoryVO(
-						rs.getTimestamp("sidate"), 
-						rs.getString("sno"), 
-						rs.getInt("siquantity"), 
-						rs.getInt("siprice"), 
-						rs.getInt("siquantity")*rs.getInt("siprice"));
-				
-				
+				stock = toStockHistory(rs);
 				history.add(stock);
 			}
 			
@@ -189,16 +184,10 @@ public class SimulationDAO {
 			pstmt.setInt(1, mno);
 			pstmt.setString(2, sno);
 			rs = pstmt.executeQuery();
+			StockHistoryVO stock = null;
+			
 			while(rs.next()) {
-				
-				StockHistoryVO stock = new StockHistoryVO(
-						rs.getTimestamp("sidate"), 
-						rs.getString("sno"), 
-						rs.getInt("siquantity"), 
-						rs.getInt("siprice"), 
-						rs.getInt("siquantity")*rs.getInt("siprice"));
-				
-				
+				stock = toStockHistory(rs);
 				history.add(stock);
 			}
 			return history;
@@ -208,6 +197,37 @@ public class SimulationDAO {
 		}finally {
 			JdbcUtil.close(rs);
 			JdbcUtil.close(pstmt);
+		}
+		
+	}
+	
+	private StockHistoryVO toStockHistory(ResultSet rs) {
+		
+		String dmethod = "";
+		int total;
+		try {
+			total = rs.getInt("siquantity")*rs.getInt("siprice");
+			if(total>0) {
+				dmethod="매수";
+			}else if(total<0){
+				dmethod="매도";
+				total=total*-1;
+			}else {
+				dmethod="";
+			}
+			
+			return new StockHistoryVO(
+					rs.getTimestamp("sidate"), 
+					rs.getString("sno"), 
+					rs.getInt("siquantity"), 
+					rs.getInt("siprice"), 
+					total,
+					dmethod);
+			
+		} catch (SQLException e) {
+			System.out.println("SimulationDAO toStockHistory error");
+			e.printStackTrace();
+			return null;
 		}
 		
 	}

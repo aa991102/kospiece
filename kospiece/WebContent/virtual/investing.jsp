@@ -60,7 +60,8 @@
 				    	<input type="number" name="quantity"/>
 					    <input type="hidden" name="sname" value="${MyStock.stock.name}"/>
 					    <input type="hidden" name="totalquantity" value="${MyStock.totalquantity}"/>
-					    <input type="submit" value="적용"/>
+					    <input type="submit" name="income" value="매수"/>
+					    <input type="submit" value="매도"/>
 	    			</form>
     			</td>
     		</tr>
@@ -75,7 +76,7 @@
 				<th>종목</th>
 				<th>거래량</th>
 				<th>거래시 주식가</th>
-				<th>거래금액</th>
+				<th colspan="2">거래금액</th>
 			</tr>
 			<c:if test="${empty historys}">
 				<tr><td colspan="5">거래 내역이 없습니다.</td></tr>
@@ -88,7 +89,10 @@
 					<td>${history.sname}</td>
 					<td width="10%">${history.siquantity}</td>
 					<td width="20%">${history.siprice}</td>
-					<td width="20%">${history.total}</td>
+					<td width="5%">${history.dmethod}</td>
+						<c:if test="${history.total>0}">
+						<td width="15%">${history.total}</td></c:if>
+						<c:if test="${history.total<0}"><td width="15%">${-history.total}</td></c:if>
 				</tr>
 				<p hidden="hidden">${sum=sum+history.total}</p>
 			</c:forEach>

@@ -62,6 +62,13 @@ public class InvestingHandler implements CommandHandler{
 		int totalquantity = Integer.parseInt(request.getParameter("totalquantity"));
 		String mid = user.getId();
 		
+		//int 저장용량 이상의 값 입력시 return
+		if(quantity<0) {return processSubmit2(request, response, mid, sname);}
+		
+		String tmethod = request.getParameter("income");
+		if(tmethod!=null) {
+			quantity=quantity*-1;
+		}
 		//판매량이 보유량보다 많을 경우(보유량이 없으므로 error)
 		if((quantity+totalquantity)<0){return processSubmit2(request, response, mid, sname);}
 
