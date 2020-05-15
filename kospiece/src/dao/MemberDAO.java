@@ -47,6 +47,7 @@ public class MemberDAO {
 		pstmt.setString(1, id);
 		rs = pstmt.executeQuery();
 		if( rs.next() ) {
+			
 			int mno = rs.getInt("mno");
 			String memberid = rs.getString("mid");
 			String mnick    = rs.getString("mnick");
@@ -56,11 +57,71 @@ public class MemberDAO {
 			String mphone	= rs.getString("mphone");
 			int deposit		= rs.getInt("mdeposit");
 			int asset		= rs.getInt("masset");
+			Date lastTime 	= rs.getDate("mlastlogin");
+			updateLoginTime(conn, mno);
+			supplyPoint(conn, lastTime, mno);
 			
-			member = new MemberVO(mno, memberid,mnick,password,mname,mmail,mphone,deposit,asset);	
+			member = new MemberVO(mno, memberid,mnick,password,mname,mmail,mphone,deposit,asset, lastTime);
+			
 		}
 		return member;
 	}
+	
+	
+	//로그인 시간 업데이트
+	public void updateLoginTime(Connection conn, int mno) {
+		PreparedStatement pstmt = null;
+		
+		String sql = "update member set mlastlogin=now() where mno=?";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, mno);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			JdbcUtil.rollback(conn);
+			System.out.println("MemberDAO updateLoginTime error");
+		}finally {
+			JdbcUtil.close(pstmt);
+		}
+		
+	}
+	
+	//로그인 시간 비교 후 포인트 증가 함수
+	private void supplyPoint(Connection conn, Date lastTime, int mno) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		Date curTime = null;
+		String sql = "select * from member where mno=?";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, mno);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				curTime = rs.getDate("mlastlogin");
+				if(lastTime.compareTo(curTime)<0) {
+					sql = "update member set mdeposit=mdeposit+10 WHERE mno = ?";
+					pstmt = conn.prepareStatement(sql);
+					pstmt.setInt(1, mno);
+					pstmt.executeUpdate();
+				}				
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("error 발생");
+			e.printStackTrace();
+			System.out.println();
+		}
+		
+		
+		
+		
+	}
+	
+	
 	
 	//비밀번호 변경 기능
 	public void pwUpdate(Connection conn,MemberVO member) throws SQLException{
