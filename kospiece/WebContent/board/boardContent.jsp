@@ -14,7 +14,7 @@
 			자유게시판
 		</div>
 		<div class="" id="1-2"> 
-			<a href="<%= request.getContextPath()%>/board.do?pageNo=${pageNo}">
+			<a href="<%= request.getContextPath()%>/board.do?pageNo=${param.pageNo}">
 				<input type="button" value="목록" class="목록">
 			</a>
 			<a href="<%= request.getContextPath()%>/board/write.do">
@@ -24,7 +24,7 @@
 				<a href="<%= request.getContextPath()%>/board/modify.do?fno=${param.fno}">
 					<input type="button" value="수정" class="수정">
 				</a>
-				<a href="<%= request.getContextPath()%>#">
+				<a href="<%= request.getContextPath()%>/board/delete.do?fno=${param.fno}">
 					<input type="button" value="삭제" class="삭제">
 				</a>
 			</c:if>

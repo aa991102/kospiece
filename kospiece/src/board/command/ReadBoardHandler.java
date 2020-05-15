@@ -17,7 +17,6 @@ public class ReadBoardHandler implements CommandHandler {
 		//페이지 번호를 넘겨줌
 		String pageNoVal = req.getParameter("pageNo");
 		int pageNo = Integer.parseInt(pageNoVal); 
-		req.setAttribute("pageNo", pageNo);
 
 		//글 번호를 넘겨줌
 		String fnoVal = req.getParameter("fno");
