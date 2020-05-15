@@ -20,27 +20,12 @@ public class AdminHandler implements CommandHandler {
 						  HttpServletResponse response) throws Exception {
 		System.out.print("AdminHandler 진입성공 ");
 
-		//admin페이지는 파라미터를 받을 일이 없으므로 processAdmin메서드 하나만 생성
-		if(request.getMethod().equalsIgnoreCase("GET")) {
-			System.out.print("get방식 ");
-			return processAdmin(request,response);
-		}else if(request.getMethod().equalsIgnoreCase("POST")) {
-			System.out.print("post방식 ");
-			return processAdmin(request,response);
-		}else {
-			response.setStatus(HttpServletResponse.SC_METHOD_NOT_ALLOWED); 
-			return   null;
-		}
-	}
-	
-	private String processAdmin(HttpServletRequest request, HttpServletResponse response) {
-		
 		statistics=adminService.service();//통계값 리턴받아 통계객체에 저장
 		
 		request.setAttribute("stat",statistics);//페이지에서 출력할 통계 객체 request속성으로 전달
 		System.out.print(statistics.toString()+"통계객체 전달");
 		
 		return FORM_VIEW;
-		
 	}
+	
 }
