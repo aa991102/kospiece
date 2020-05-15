@@ -56,11 +56,11 @@ body{
     }
 .header .sub-item-virtual {
 		display:block;
-    background-color: rgba( 255, 255, 255, 0.8 );
+    background-color: rgba( 255, 255, 255, 0.5 );
     padding:10px;
-    border-bottom-style:solid;
-    border-width: 1px;
-    border-color:#20639B;
+    border-top-style:solid;
+    border-width: 2px;
+    border-color:#1a3f69d1;
     text-align:center;
     width:110px;
     position:relative;
@@ -74,11 +74,11 @@ body{
     }
 .header .sub-item-my {
 		display:block;
-    background-color: rgba( 255, 255, 255, 0.8 );
+    background-color: rgba( 255, 255, 255, 0.5 );
     padding:10px;
-    border-bottom-style:solid;
-    border-width: 1px;
-    border-color:#20639B;
+    border-top-style:solid;
+    border-width: 2px;
+    border-color:#1a3f69d1;
     text-align:center;
     width:110px;
     position:relative;
@@ -91,7 +91,7 @@ body{
 		position:absolute;
     top:15px;
     left:1170px;
-    width:400px;
+    width:320px;
     list-style-type: none;
     }
 .header .list-item2 {display:inline;
@@ -102,17 +102,35 @@ body{
     display:block;
     clear:both;
 }
+/* 헤더-포인트순위-관리자 로그인 했을때  */
 .header .rank {position:absolute;
-		top:-6px;
-		left:110px;
-		line-height:30px;
-    width:160px;
-    height:30px;
+		top:0;
+		right:-70px;
+		line-height:inherit;
+    width:170px;
+    height:22px;
     color:white;
     border-bottom-style:solid;
     border-color:white;
     border-width:1px;
     }
+/* 헤더-포인트순위-관리자 로그인 안했을때  */
+.header .rank2 {position:absolute;
+		top:0;
+		right:35px;
+		line-height:inherit;
+    width:170px;
+    height:22px;
+    color:white;
+    border-bottom-style:solid;
+    border-color:white;
+    border-width:1px;
+    }
+.header .rankTitle {
+		font-size:1.6rem;
+		font-weight:700;
+		color:#8EE8B7;
+}
 .header .rankNum {
 	font-size:1.8rem;
     font-weight:700;
@@ -124,37 +142,34 @@ body{
     color:white;
     }
 .header rank.a {text-decoration:none;}
-
 #rank-list {
 				    overflow: hidden;
 				    width: 160px;
 				    height: 20px;
 				    margin: 0;
-						}
-				
-#rank-list dt {
-				    		display: none;
+						}	
+#rank-list dt {display: none;}
+#rank-list dd {position: relative;
+						   margin: 0;
 							}
-				
-#rank-list dd {
-						    position: relative;
-						    margin: 0;
+#rank-list ol {position: absolute;
+						   top: 0;
+						   left: 0;
+						   margin: 0;
+						   padding: 0;
+						   list-style-type: none;
 							}
-				
-#rank-list ol {
-						    position: absolute;
-						    top: 0;
-						    left: 0;
-						    margin: 0;
-						    padding: 0;
-						    list-style-type: none;
+#rank-list li {height: 20px;
+						   line-height: 20px;
 							}
-				
-#rank-list li {
-						    height: 20px;
-						    line-height: 20px;
-							}
-							
+/* 헤더-회원이름 */
+.myNick {position:relative;
+				 float:right;
+				 width:max-content;}
+.myNick >a {position:relative;
+						color:white;
+						border-bottom:1px solid white;
+						font-size:1.6rem;}
 .header .list-item_log{position:absolute;
 		top:0;
 		left:340px;

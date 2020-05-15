@@ -92,14 +92,16 @@
             </c:if>
         </ul>
 
-        <!-- 포인트랭킹 -->
+        <!-- 포인트랭킹/회원명/로그인버튼 -->
         <ul class="list2">
             <li class="list-item2">
+            	<c:if test="${AUTHUSER.nickname=='관리자1'||AUTHUSER.nickname=='관리자2'||AUTHUSER.nickname=='관리자3'||AUTHUSER.nickname=='관리자4'
+            	||AUTHUSER.nickname=='관리자5'||AUTHUSER.nickname=='관리자6'}">
                 <div class="rank">
                 	<dl id="rank-list">
-                		<dt>오늘의 포인트 TOP5</dt>
                 		<dd>
                 			<ol>
+                				<li><a class="rankTitle">&nbsp;&nbsp;오늘의 포인트 랭킹</a></li>
                     		<li>&nbsp;&nbsp;<a class="rankNum">1</a>&nbsp;&nbsp;<a class="rankNick">인생은 한방</a></li>
                     		<li>&nbsp;&nbsp;<a class="rankNum">2</a>&nbsp;&nbsp;<a class="rankNick">대박이야</a></li>
                     		<li>&nbsp;&nbsp;<a class="rankNum">3</a>&nbsp;&nbsp;<a class="rankNick">눈누난나랄라랄라</a></li>
@@ -108,6 +110,30 @@
                 			</ol>
                 		</dd>
                		</dl>
+                </div>
+              </c:if>
+              <c:if test="${!(AUTHUSER.nickname=='관리자1'||AUTHUSER.nickname=='관리자2'||AUTHUSER.nickname=='관리자3'||AUTHUSER.nickname=='관리자4'
+            	||AUTHUSER.nickname=='관리자5'||AUTHUSER.nickname=='관리자6')}">
+                <div class="rank2">
+                	<dl id="rank-list">
+                		<dd>
+                			<ol>
+                				<li><a class="rankTitle">&nbsp;&nbsp;오늘의 포인트 랭킹</a></li>
+                    		<li>&nbsp;&nbsp;<a class="rankNum">1</a>&nbsp;&nbsp;<a class="rankNick">인생은 한방</a></li>
+                    		<li>&nbsp;&nbsp;<a class="rankNum">2</a>&nbsp;&nbsp;<a class="rankNick">대박이야</a></li>
+                    		<li>&nbsp;&nbsp;<a class="rankNum">3</a>&nbsp;&nbsp;<a class="rankNick">눈누난나랄라랄라</a></li>
+                    		<li>&nbsp;&nbsp;<a class="rankNum">4</a>&nbsp;&nbsp;<a class="rankNick">해피데이</a></li>
+                    		<li>&nbsp;&nbsp;<a class="rankNum">5</a>&nbsp;&nbsp;<a class="rankNick">에이요쥐쥐</a></li>
+                			</ol>
+                		</dd>
+               		</dl>
+                </div>
+              </c:if>
+                	
+                <div class="myNick">
+                	<c:if test="${!empty AUTHUSER}">
+                		<a>${NICKNAME}님</a>
+                	</c:if>
                 </div>
             </li>
             <li class="list-item_log">
