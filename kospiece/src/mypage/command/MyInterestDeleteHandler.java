@@ -44,16 +44,16 @@ public class MyInterestDeleteHandler implements CommandHandler {
 	
 	private String processSubmit(HttpServletRequest req, HttpServletResponse res) {
 		
-		String[] snoArray = req.getParameterValues("sno");
+		String[] snameArray = req.getParameterValues("sname");
 		int mno = (int)session.getAttribute("MNO");
 		
-		if(snoArray == null) {
+		if(snameArray == null) {
 			req.setAttribute("errors", "삭제할 주식을 선택해주세요");
 		}
 		
 		try {
 		
-			myInterestDeleteSvc.myInterestDeleteService(mno, snoArray);
+			myInterestDeleteSvc.myInterestDeleteService(mno, snameArray);
 			
 		} catch (Exception e) {
 			System.out.println("MyInterestDeleteHandler-processSubmit() 오류발생");

@@ -67,14 +67,14 @@ public class StockDAO {
 			//snoList의 값 하나씩 접근해 sql문 돌리기
 			
 			for (String sno : snoList) { 
-				System.out.println("selectStocks-sno="+sno);
+				//System.out.println("selectStocks-sno="+sno);
 				
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, sno);
 				rs = pstmt.executeQuery();
 				
 				if(rs.next()) {
-					System.out.println("stockResultSet2(rs)"+stockResultSet2(rs));
+					//System.out.println("stockResultSet2(rs)"+stockResultSet2(rs));
 					stocklist.add(stockResultSet2(rs));
 				}
 			}

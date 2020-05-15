@@ -1,21 +1,37 @@
-//submit버튼!
-// index가 1이면 /kospiece/myInterestInsert.do 로
-// index가 2면    /kospiece/myInterestDelete.do 로
-// 이동
-
 $(function(){ 
+	
 	//전체선택 체크박스 클릭 
 	$("#allCheck").click(function(){ 
 		//만약 전체 선택 체크박스가 체크된상태일경우 
 		if($("#allCheck").prop("checked")) { 
 			//해당화면에 전체 checkbox들을 체크해준다 
 			$("input[type=checkbox]").prop("checked",true); 
-			// 전체선택 체크박스가 해제된 경우 
+		// 전체선택 체크박스가 해제된 경우 
 		} else { 
-			//해당화면에 모든 checkbox들의 체크를해제시킨다. 
+			//해당화면에 모든 checkbox들의 체크를 해제시킨다. 
 			$("input[type=checkbox]").prop("checked",false); 
 		} 
 	}) 
-})
-		
+	
+	
 
+})
+
+//가상투자하기 버튼 눌렀을 시 선택한 회사가 한 개 이상일 경우 alert
+function goToInvest(){
+	if($("input[type=checkbox]:checked").length>1){
+		alert("회사는 하나만 선택해주세요");
+		return false;
+	}
+}		
+
+//관심회사에서 삭제했을때 확인
+function deleteCheck(){
+	if (confirm("정말 삭제하시겠습니까?") == true){//확인
+
+	}else{   //취소
+
+	    return false;
+
+	}
+}

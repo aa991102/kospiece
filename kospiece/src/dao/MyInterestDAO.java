@@ -37,9 +37,9 @@ public class MyInterestDAO {
 				snoList.add(rs.getString("sno"));
 				
 			}while(rs.next());
-			System.out.println("conn="+conn);
-			System.out.println("selectSno-rs="+rs.toString());
-			System.out.println("selectSno-snoList="+snoList.toString());
+			//System.out.println("conn="+conn);
+			//System.out.println("selectSno-rs="+rs.toString());
+			//System.out.println("selectSno-snoList="+snoList.toString());
 			
 			return snoList;
 			
