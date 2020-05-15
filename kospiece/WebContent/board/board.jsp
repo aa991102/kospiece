@@ -30,7 +30,7 @@
 	 			<tr>
 	 				<td>${board.fno} </td>
 	 				<td>
-	 					<a href="<%= request.getContextPath()%>/board/read.do?pageNo=${listboard.currentPage}&no=${board.fno}">
+	 					<a href="<%= request.getContextPath()%>/board/read.do?pageNo=${listboard.currentPage}&fno=${board.fno}">
 	 						<c:out value="[${board.horsehead}]${board.title}"/></a>
 	 				</td>
 	 				<td>${board.nickname}</td>

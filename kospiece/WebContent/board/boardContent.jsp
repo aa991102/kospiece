@@ -21,7 +21,7 @@
 				<input type="button" value="글쓰기" class="글쓰기">
 			</a>
 			<c:if test="${NICKNAME == board.nickname}">
-				<a href="<%= request.getContextPath()%>#">
+				<a href="<%= request.getContextPath()%>/board/modify.do?fno=${param.fno}">
 					<input type="button" value="수정" class="수정">
 				</a>
 				<a href="<%= request.getContextPath()%>#">

@@ -76,6 +76,8 @@ public class BoardDAO {
 			JdbcUtil.close(pstmt);
 		}
 	}
+	
+	//5.14 selectById
 	public FreeBoardVO selectById(Connection conn, int no) throws SQLException{
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -103,6 +105,20 @@ public class BoardDAO {
 			JdbcUtil.close(pstmt);
 		}
 	}
+	public int update(Connection conn, int fno, String horsehead, String title, String content) throws SQLException{
+		PreparedStatement pstmt = null;
+		try {
+			pstmt = conn.prepareStatement("update freeboard set fclass=?, ftitle=?, fcontent=? where fno=?");
+			pstmt.setString(1, horsehead);
+			pstmt.setString(2, title);
+			pstmt.setString(3, content);
+			pstmt.setInt(4, fno);
+			return pstmt.executeUpdate();
+		}finally {
+			JdbcUtil.close(pstmt);
+		}
+	}
+	
 	private FreeBoardVO toFreeBoardVO(ResultSet rs) throws SQLException{
 		return new FreeBoardVO(
 				rs.getInt("fno"), rs.getString("fclass"), rs.getString("fmemnick"), rs.getString("ftitle"),

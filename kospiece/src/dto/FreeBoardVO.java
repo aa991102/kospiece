@@ -12,12 +12,20 @@ public class FreeBoardVO {
 	private int hit; //조회수(fhit)
 
 	public FreeBoardVO() {}
+	//write에서 쓰는 생성자
 	public FreeBoardVO(String horsehead, String nickname, String title, String content, Date uploaddate) {
 		this.horsehead=horsehead;
 		this.nickname=nickname;
 		this.title=title;
 		this.content=content;
 		this.uploaddate = uploaddate;
+	}
+	//update에 쓰이는 생성자
+	public FreeBoardVO(int fno, String horsehead, String title, String content) {
+		this.fno=fno;
+		this.horsehead=horsehead;
+		this.title=title;
+		this.content=content;
 	}
 	public FreeBoardVO(int fno, String horsehead, String nickname, String title, String content, Date uploaddate, int hit) {
 		this.fno=fno;

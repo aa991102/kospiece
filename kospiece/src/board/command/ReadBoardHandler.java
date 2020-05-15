@@ -20,7 +20,7 @@ public class ReadBoardHandler implements CommandHandler {
 		req.setAttribute("pageNo", pageNo);
 
 		//글 번호를 넘겨줌
-		String fnoVal = req.getParameter("no");
+		String fnoVal = req.getParameter("fno");
 		int fno = Integer.parseInt(fnoVal);
 		try {
 			FreeBoardVO boardVO = readService.getBoard(fno, true);

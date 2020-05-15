@@ -43,7 +43,7 @@ public class WriteBoardHandler implements CommandHandler {
 
 	//요청파라미터받기
 		//사용자 정보(세션)
-		MemberVO member = (MemberVO)req.getSession(false).getAttribute("AUTHUSER");
+		MemberVO member = (MemberVO)req.getSession(false).getAttribute("NICKNAME");
 		System.out.println("전달받은 세션 정보"+member);
 		//파라미터
 		FreeBoardVO board = ParamToBoard(member, req);

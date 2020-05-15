@@ -20,7 +20,7 @@ public class ReadBoardService {
 				throw new ArticleNotFoundException();
 			}
 			if(uphit) { 
-				boardDao.increaseHit(conn, fno); //조회수 증가
+				boardDao.increaseHit(conn, fno); //uphit 이 true면 조회수 증가
 			}
 			return boardVO;
 		}catch(SQLException e){
