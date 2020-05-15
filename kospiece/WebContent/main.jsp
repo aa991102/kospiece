@@ -55,21 +55,51 @@
      
         chart.maxDepth(3);
         chart.hintDepth(3);
-        chart.maxHeadersHeight("5%");
+        chart.maxHeadersHeight("30%");
         // add a color range
         chart.colorRange().enabled(true);
         chart.colorRange().length("30%");
         // add a title for the chart
         chart.title("Kospi 200 Map");
+        /* adjust the font size of labels
+        according to the size of tiles */
+        chart.labels().adjustFontSize(true);
+        chart.labels().fontColor("white")
+     // configure the font of headers
+        chart.normal().headers().fontColor("#990000");
+        chart.normal().headers().adjustFontSize(true);
+        chart.normal().headers().fontWeight('bold');
+        chart.hovered().headers().fontColor("#000099");
+     // enable HTML for labels
+        chart.labels().useHtml(true);
 
+        // configure labels
+        chart.labels().format(
+          "<span style='font-weight:bold'>{%name}</span><br>{%value}"
+        );
+
+        // configure tooltips
+        chart.tooltip().format(
+          "등락률: {%value}\%\n시가총액(억): {%size}"
+        );
         // specify the container id
         chart.container("map");
+        chart.headersDisplayMode("clip");
+        
+        //온클릭구현!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        chart.listen("pointClick", function(e) {
+        	var name = e.point.get("name");
+        	document.getElementById("kk").innerHTML=name
+        });
 
+/*         state.get */
         // draw the chart
         chart.draw();
 
         
       });
+   
+      /* document.getElementById('kk').innerHTML = state.get("name"); */
     </script>
 	</div>
 	<div class="map-detail">
@@ -79,7 +109,7 @@
 		</form>
 		<table border="1" width="800" align="center" class="company-detail">
 			<tr>
-				<th colspan="12">회사명 회사코드
+				<th colspan="12" id="kk" >회사명 회사코드
 				<!-- 1.로그인했는지체크 2.회원아이디넘기기 *3.회사코드넘기기* -->
 				<!-- 즐겨찾기추가는 if문으로 해당 회원이 해당 회사를 즐겨찾기로 갖고있는지 확인 후 별의 색을 결정 & 보유 여부를 파라미터로 넘겨주기 -->
 				<img src="img/star.png" onclick="LoginCheck('favoritePlus',${!empty AUTHUSER},'${AUTHUSER.id}')" style="cursor:pointer"/>
@@ -87,7 +117,7 @@
 				</th>
 			</tr>
 			<tr>
-				<th colspan="2" width="16.6%">전일비</th>
+				<th colspan="2" width="16.6%" >전일비</th>
 				<td colspan="2" width="16.6%"></td>
 				<th colspan="2" width="16.6%">전일비</th>
 				<td colspan="2" width="16.6%"></td>

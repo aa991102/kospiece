@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import dto.StockVO;
+import jdbc.JdbcUtil;
 import jdbc.connection.ConnectionProvider;
 
 public class trans 
@@ -35,9 +36,10 @@ public class trans
 	while( rs.next() )
 	{ 
 		sdetail[i]=rs.getString("sdetail");
-		System.out.println(sdetail[i]);
+//		System.out.println(sdetail[i]);
 		i++;
 	}
+	//데이터파싱
 	String data = "[{name: \"kospi200\", children: [";
 	for (int j=0 ; j<sdetail.length; j++)
 	{
@@ -58,7 +60,8 @@ public class trans
 	    data=data.substring(0, data.length()-1)+"]},"; 
 	}
 data=data.substring(0, data.length()-1)+"]}];";
-System.out.println(data);
+//System.out.println(data);
+JdbcUtil.close(conn);
 return data;
 	}
 
