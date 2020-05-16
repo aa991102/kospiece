@@ -147,6 +147,51 @@ public class StockDAO {
 		}
 	}
 
+	//같은 sdetail 업체 리스트 가져오기
+	public ArrayList<StockVO> getListByDetail(Connection conn, String sno, String sdetail){
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT * FROM stock where sdetail=?";
+		
+		ArrayList<StockVO> list = new ArrayList<StockVO>();
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, sdetail);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				//결과값 가져와서 본인꺼만 빼고 list에 담자.
+				if(sno.equals(rs.getString("sno"))) {
+				}else {
+					list.add(new StockVO(rs.getString("sno"),
+							rs.getString("sname"), 
+							rs.getString("sfield"), 
+							rs.getString("sdetail"), 
+							rs.getInt("sprice"), 
+							rs.getString("sdayrate"), 
+							rs.getFloat("schangerate"), 
+							rs.getString("svolume"), 
+							rs.getString("sdealprice"), 
+							rs.getInt("stotal"), 
+							rs.getString("shigh52")));
+				}
+			}
+			return list;
+			
+		} catch (SQLException e) {
+			System.out.println("StockDAO getListByDetail error");
+			e.printStackTrace();
+			return null;
+		}
+		
+		
+	}
+	
+	
+	
+	
+	
 	//특정 회사이름을 이용한 회사정보검색
 	public StockVO selectByName(Connection conn, String sname) {
 		PreparedStatement pstmt = null;
