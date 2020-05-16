@@ -96,14 +96,17 @@ public class AdminDAO {
 		pstmt.setDate(1, now);
 	
 		if(pstmt.executeUpdate()!=0) { //오늘 날짜의 방문자 데이터가 있으면
-			pstmt.executeUpdate();
 			System.out.print("방문자수 1명 증가 ");
 		}else {
-			sql = "insert INTO visitor (vscount) values (1)";
+			
+			PreparedStatement pstmt2;
+			sql = "insert INTO visitor (vsdate,vscount) values (?,?)";
+			pstmt2 = conn.prepareStatement(sql);
+			pstmt2.setDate(1, now);
+			pstmt2.setInt(2, 1);
 			System.out.println(now+"일자 첫 방문자");
 			
-			pstmt = conn.prepareStatement(sql);
-			pstmt.executeUpdate();
+			pstmt2.executeUpdate();
 		}
 	}
 
