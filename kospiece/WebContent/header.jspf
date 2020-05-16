@@ -140,10 +140,16 @@
             <li class="list-item_log">
             	<!-- 로그인상태면 로그아웃표시 로그아웃상태면 로그인표시하기 -->
             	<c:if test="${empty AUTHUSER}">
-                	<a href="<%= request.getContextPath()%>/member/login.jsp" rel="noopener">🚪&nbsp;&nbsp;login</a>
+                	 <form method="post" action="./login.do">
+                	 	<input type="hidden" name="path" value="<%=request.getRequestURI()%>"/>
+                	 	<input type="submit" value="🚪&nbsp;&nbsp;login"/>
+                	 </form>
                 </c:if>
                 <c:if test="${!empty AUTHUSER}">
-                	<a href="./logout.do">🚪&nbsp;logout</a>
+                	 <form method="post" action="./logout.do">
+                	 	<input type="hidden" name="path" value="<%=request.getRequestURI()%>"/>
+                	 	<input type="submit" value="🚪&nbsp;&nbsp;logout"/>
+                	 </form>
                 </c:if>
             </li>
         </ul>

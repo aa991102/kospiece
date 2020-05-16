@@ -18,13 +18,16 @@ public class MyInvestHandler implements CommandHandler{
 	private HttpSession session = null;
 	private MyInvestService searchService = new MyInvestService();
 	private MyInvestListService service = new MyInvestListService();
+	private String path = "";
 	
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
-		
+		System.out.println("들어왔어?1");
 		session = req.getSession();
 		MemberVO user = (MemberVO) session.getAttribute("AUTHUSER");//회원 아이디 가져오기
-		if(user == null) {return processForm(req, res);
+		if(user == null) {
+			System.out.println("들어왔어?4");
+			return processForm(req, res);
 		}else{return processSubmit(req, res, user);
 		}
 		
@@ -32,11 +35,15 @@ public class MyInvestHandler implements CommandHandler{
 	
 	
 	private String processForm(HttpServletRequest req, HttpServletResponse res) {
+		System.out.println("들어왔어?2");
+		path = req.getRequestURI();
+		System.out.println("path="+path);
+		req.setAttribute("path", path);
 		return "/member/login.jsp";
 	}//processForm() end
 
 	private String processSubmit(HttpServletRequest request, HttpServletResponse response, MemberVO user) {
-		
+		System.out.println("들어왔어?3");
 		//파라미터 가져오기
 		String sname = request.getParameter("sname");
 		if(sname==null) {

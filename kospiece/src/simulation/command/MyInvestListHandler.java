@@ -17,8 +17,8 @@ public class MyInvestListHandler implements CommandHandler{
 
 	private HttpSession session = null;
 	private MyInvestListService myInvestService = new MyInvestListService();
-	
-	
+	private String path = "";
+	private String path2 = "";
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		
@@ -33,6 +33,10 @@ public class MyInvestListHandler implements CommandHandler{
 	}//process() end
 	
 	private String processForm(HttpServletRequest req, HttpServletResponse res) {
+		path = req.getRequestURI(); 
+		path2 = req.getContextPath();
+		req.setAttribute("path", path);
+		req.setAttribute("path2", path2);
 		return "/member/login.jsp";
 	}//processForm() end
 
@@ -43,6 +47,7 @@ public class MyInvestListHandler implements CommandHandler{
 		System.out.println("user="+user);
 		String mid = user.getId();
 		//String mid = "jun";
+		
 		
 		try {
 			
@@ -66,7 +71,8 @@ public class MyInvestListHandler implements CommandHandler{
 		} catch (Exception e) {
 			e.printStackTrace();
 			
-			//에외 발생 시 일단 로그인화면으로... 
+			//에외 발생 시 일단 로그인화면으로...
+			req.setAttribute("path", path);
 			return "/member/login.jsp";
 		}
 		
