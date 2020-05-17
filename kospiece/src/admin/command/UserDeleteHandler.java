@@ -16,28 +16,12 @@ public class UserDeleteHandler  implements CommandHandler {
 	@Override
 	public String process(HttpServletRequest request, 
 						  HttpServletResponse response) throws Exception {
-		System.out.print("UserDeleteHandler 진입성공 ");
-
-		if(request.getMethod().equalsIgnoreCase("GET")) {
-			System.out.print("get방식 ");
-			return processDelete(request,response);
-		}else if(request.getMethod().equalsIgnoreCase("POST")) {
-			System.out.print("post방식 ");
-			return processDelete(request,response);
-		}else {
-			response.setStatus(HttpServletResponse.SC_METHOD_NOT_ALLOWED); 
-			return   null;
-		}
-	}
-	
-	//회원 강제탈퇴는 무조건 회원id파라미터를 받는다.그러므로 메서드 하나만 생성
-	private String processDelete(HttpServletRequest request, HttpServletResponse response) {
+		System.out.print("UserDeleteHandler진입-");
 
 		String id=(String) request.getAttribute("userId"); //해당 회원 id를 파라미터로 받음
-		System.out.println(id);
 		userDeleteService.service(id); //회원 id를 가지고 서비스 진행
 		
-		System.out.print(id+"강제탈퇴완료");
+		System.out.println(id+"강제탈퇴완료");
 		
 		return FORM_VIEW;
 		

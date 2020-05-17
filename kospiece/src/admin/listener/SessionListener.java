@@ -18,7 +18,7 @@ public class SessionListener implements HttpSessionListener {
     @Override
     public void sessionCreated(HttpSessionEvent se) {
     	
-    	System.out.println("세션 추가");
+    	System.out.print("세션시작-");
     	
     	Connection conn = null;
     	int todayCount;

@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import admin.service.CheckAdminPwService;
 import controller.command.CommandHandler;
 
+//관리자페이지 비밀번호 확인하는 로직
 public class CheckAdminPwHandler implements CommandHandler {
 	
 	private static final String FORM_VIEW = "/admin/checkAdminPw.jsp";
@@ -17,7 +18,7 @@ public class CheckAdminPwHandler implements CommandHandler {
 	@Override
 	public String process(HttpServletRequest request, 
 						  HttpServletResponse response) throws Exception {
-		System.out.print("CheckAdminPwHandler 진입 ");
+		System.out.println("CheckAdminPwHandler 진입");
 
 		HttpSession session = request.getSession();
 		
@@ -25,54 +26,42 @@ public class CheckAdminPwHandler implements CommandHandler {
 		String id=(String) session.getAttribute("ID");
 		String pw=request.getParameter("adminPw");
 		
-		if(pw==null) {
+		if(pw==null) {//처음 비밀번호 입력 화면에 들어왔을 때 form만 출력
 			return FORM_VIEW;
 		}
 		
-		System.out.print(id+"님이 입력한 비밀번호는 "+pw);
+		System.out.print(id+"님이 입력한 비밀번호는 "+pw+"입니다-");
 		
 		Boolean pwCheck=checkAdminPwService.check(id,pw);
-		System.out.println(pwCheck);
+		System.out.println("비밀번호가 일치하는가?"+pwCheck);
 		
 		if(pwCheck) {//비밀번호가 맞으면 이 페이지를 부른 각 페이지로 리턴
 			String service=request.getParameter("service");
 			
-			String error="";
-			request.setAttribute("error",error );
-			
 			if(service.equals("deleteMember")){
-				
 				String userId=request.getParameter("userId");
 				request.setAttribute("userId",userId);
-				
-				return "memberDelete.do";
+				return "memberDelete.do"; //회원을 삭제하는 로직 수행
 				
 			}else if(service.equals("pointCharge")) {
-				
 				String point=request.getParameter("point");
-				request.setAttribute("point", point);
-				
-				return "/admin/pointCharge.jsp";
+				request.setAttribute("point", point);	
+				String userId=request.getParameter("userId");
+				request.setAttribute("userId",userId);
+				return "/admin/pointCharge.jsp"; //포인트 충전하기 위한 form 화면으로
 				
 			}else if(service.equals("modify")) {
-				
 				String no=request.getParameter("no");
 				request.setAttribute("no", no);
-				System.out.println(no);
-				
-				return "noticeModify.do";
+				return "noticeModify.do"; //게시글 수정을 위한 로직 수행
 				
 			}else if(service.equals("delete")) {
-				
 				String no=request.getParameter("no");
 				request.setAttribute("no", no);
-				System.out.println(no);
-				
-				return "noticeDelete.do";
+				return "noticeDelete.do"; //게시글 삭제를 위한 로직 수행
 				
 			}else if(service.equals("write")) {
-				
-				return "/admin/noticeWrite.jsp";
+				return "/admin/noticeWrite.jsp";//게시글 작성을 위한 form 화면으로
 			}
 		}else {//비밀번호가 다르면 에러메시지를 가지고 비밀번호 입력 폼으로 이동
 			String error="비밀번호를 다시 입력하세요";

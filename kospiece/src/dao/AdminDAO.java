@@ -17,7 +17,8 @@ public class AdminDAO {
 	PreparedStatement pstmt=null;
 	ResultSet rs=null;
 	
-	/*AdminService(관리자페이지 홈화면)-통계*/
+	/*관리자페이지 홈화면-today&total 통계 데이터 구하기*/
+	
 	//전체 회원 수 구하는 메서드
 	public int selectTotalMember(Connection conn) throws SQLException {
 		String sql = "select count(*) from member";
@@ -49,7 +50,7 @@ public class AdminDAO {
 			rs.next();
 			return rs.getInt(1);
 	}
-
+		
 	//전체 게시글 구하는 메서드
 	public int selectTotalPost(Connection conn) throws SQLException {
 		String sql = "select count(*) from freeboard";
@@ -82,7 +83,7 @@ public class AdminDAO {
 		return rs.getInt(1);
 	}
 
-	//전체 방문자 수에 +1하는 메서드
+	//오늘 방문자 수에 +1하는 메서드(만약 오늘 처음 방문한 방문자라면 새로운 날짜에 해당하는 행을 하나 생성한다)
 	public void setVisitTotalCount(Connection conn) throws SQLException {
 		String sql = "UPDATE visitor SET vscount = vscount+1 where vsdate=?";
 		
@@ -148,6 +149,8 @@ public class AdminDAO {
 		return rs.getInt(1);
 	}
 
+	/*관리자페이지 홈화면-단위기간별 방문자 수 추이 구하기*/
+	
 	//한 주간 방문자 수 검색
 	public List<Visitor> selectWeekVisitor(Connection conn) throws SQLException {
 		
@@ -157,15 +160,12 @@ public class AdminDAO {
 		rs=pstmt.executeQuery();
 		
 		Calendar today = Calendar.getInstance();
-		//오늘 요일 구하기
-		
 		List<Visitor> visitor=new ArrayList<Visitor>();
 		
 		if(rs.next()) {
-			
 			for(int i=1;i<8;i++) {
 				
-				int weekNum=today.get(Calendar.DAY_OF_WEEK)-i;
+				int weekNum=today.get(Calendar.DAY_OF_WEEK)-i; //오늘부터 7일전까지의 요일 구하기
 				String week="";
 				
 				if(weekNum==0 || weekNum==-7 ) {
@@ -188,7 +188,7 @@ public class AdminDAO {
 				
 				rs.next();
 			}
-			Collections.reverse(visitor);
+			Collections.reverse(visitor); //리스트 순서를 반대로
 			
 			return visitor;
 		}else {
@@ -197,7 +197,7 @@ public class AdminDAO {
 		
 	}
 
-	//한달간 방문자수 검색
+	//한 달간 방문자수 검색
 	public List<Visitor> selectMonthVisitor(Connection conn) throws SQLException {
 
 		String sql = "SELECT DATE_FORMAT(DATE_SUB(`vsdate`, INTERVAL (DAYOFWEEK(`vsdate`)-1) DAY), '%Y/%m/%d') as start," + 
@@ -210,13 +210,11 @@ public class AdminDAO {
 				" LIMIT 1,4;";
 		
 		pstmt = conn.prepareStatement(sql);
-		System.out.println(pstmt);
 		rs=pstmt.executeQuery();
 		
 		List<Visitor> visitor=new ArrayList<Visitor>();
 		
 		if(rs.next()) {
-			
 			for(int i=1;i<5;i++) {
 				
 				String term=i+"주전";
@@ -225,8 +223,7 @@ public class AdminDAO {
 				
 				rs.next();
 			}
-			
-			Collections.reverse(visitor);
+			Collections.reverse(visitor); //리스트 순서를 반대로
 			
 			return visitor;
 		}else {
@@ -245,17 +242,15 @@ public class AdminDAO {
 				" LIMIT 12;";
 		
 		pstmt = conn.prepareStatement(sql);
-		System.out.println(pstmt);
 		rs=pstmt.executeQuery();
 		
 		Calendar today = Calendar.getInstance();
-		//오늘 요일 구하기
 		
 		List<Visitor> visitor=new ArrayList<Visitor>();
 		
 		if(rs.next()) {
 			
-			for(int i=0;i<12;i++) {
+			for(int i=0;i<12;i++) {//이번달부터 12달 전까지의 월 구하기
 				
 				int monthNum=today.get(Calendar.MONTH)+1-i;
 				String month="";
@@ -290,8 +285,7 @@ public class AdminDAO {
 				
 				rs.next();
 			}
-			Collections.reverse(visitor);
-			System.out.println(visitor);
+			Collections.reverse(visitor); //리스트 순서를 반대로
 			
 			return visitor;
 		}else {

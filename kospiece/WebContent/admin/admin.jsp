@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+<!-- 방문자수 그래프를 위한 구글차트 사용 -->
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script>
-
 $( document ).ready(function() {
 
 	google.charts.load('current', {packages: ['corechart', 'line']});
@@ -34,7 +35,6 @@ $( document ).ready(function() {
 	    }
 	
 	});
-
 </script>
 
 <!-- 오늘통계와 전체통계 -->
@@ -55,6 +55,7 @@ $( document ).ready(function() {
 		</div>
 	</div>
 	
+	<!-- 그래프의 단위기간 고르는 select -->
 	<div style="margin:0 auto;">
 	<form name="visitForm" action="admin.do" method="post"
 		onChange="javascript:visitForm.submit();">
@@ -67,8 +68,10 @@ $( document ).ready(function() {
 	  </form>
 	  </div>
 	  
+	  <!-- 기간별 방문자 차트  -->
 	  <div id="chart_div" style="width: 700px; height: 300px; margin:0 auto;"></div>
   
+  <!-- 회원관리와 게시글 관리로 이동하는 링크 -->
 	<div class="managemant-list">
 		<a href="<%= request.getContextPath()%>/userList.do" class="user-management">
 		<img src="<%= request.getContextPath()%>/img/user.png"><br/>

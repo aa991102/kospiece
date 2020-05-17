@@ -27,10 +27,10 @@ public class RankHandler implements CommandHandler {
 		request.setAttribute("fieldName",field);
 		
 		if(request.getMethod().equalsIgnoreCase("GET")) {
-			System.out.println("get방식 처음 실시간순위 들어왔을 때 화면");
+			System.out.println("처음 실시간순위 들어왔을 때 화면-전체 주식 데이터가 등락률을 기준으로 내림차순 정렬");
 			return processTotalList(request,response);//파라미터가 없으면
 		}else if(request.getMethod().equalsIgnoreCase("POST")) {
-			System.out.print("post방식 파라미터를 받음-");
+			System.out.print("파라미터를 받음-");
 			return processSelectedList(request,response);//파라미터가 있으면
 		}else {
 			response.setStatus(HttpServletResponse.SC_METHOD_NOT_ALLOWED); 
@@ -47,16 +47,13 @@ public class RankHandler implements CommandHandler {
 			//세션에 회원정보가 있으면(로그인 상태면) mno에 회원번호 넣어주기
 			//비로그인 상태라면 mno는 0이된다
 			mno=(int)session.getAttribute("MNO");
-			System.out.print("회원번호:"+mno+",");
 		}
 		
-		System.out.println(mno);
 		stockList=rankService.service(mno,"all","schangerate","desc");
 		request.setAttribute("type","schangerate");
 		request.setAttribute("sort","desc");
 		request.setAttribute("field","all");
 		request.setAttribute("stockList",stockList);
-		System.out.println(stockList);
 		return FORM_VIEW;
 		
 	}

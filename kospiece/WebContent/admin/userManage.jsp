@@ -1,9 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<!-- 1.회원 리스트가 나오게 변경 -->
-<!-- 2.선택한 닉네임이나 아이디에 맞는 회원 리스트가 나오게 변경 -->
-<!-- 3.회원목록에 페이징 추가 -->
-
 <script>
 function checkForm() {
     if(document.getElementById("member-content").value==""){
@@ -18,6 +14,7 @@ function checkForm() {
 	<a href="<%= request.getContextPath()%>/userList.do" class="user-button">회원관리</a>
 	<a href="<%= request.getContextPath()%>/noticeManage.do" class="notice-button">공지사항</a><br/>
 	
+	<!-- 회원을 닉네임이나 아이디로 검색 가능 -->
 	<form action="<%= request.getContextPath()%>/userList.do"name="user-search" 
 		method ="post" class="user-search" onsubmit="return checkForm();">
 	    <select name="search">	
@@ -28,8 +25,7 @@ function checkForm() {
 	    <input type="submit" value="검색"/>
 	</form>
 	
-
-	
+	<!-- 검색된 회원 리스트 -->
 	<table border="1" width="1000" align="center">
         <tr>
         	<th>닉네임</th>
@@ -43,8 +39,7 @@ function checkForm() {
         
      <!-- 멤버 중 관리자인 회원을 최 상단에 출력 -->
 	 <c:forEach var="member" items="${memberList}">
- 	 <c:set var="adminOK" value="${member.nickname=='관리자1'||member.nickname=='관리자2'||member.nickname=='관리자3'||member.nickname=='관리자4'
-           	||member.nickname=='관리자5'||member.nickname=='관리자6'}"/>
+ 	 <c:set var="adminOK" value="${member.nickname=='관리자'}"/>
   		<c:if test='${adminOK}'>
 	        <tr class="admin-list">
 	        	<td>${member.nickname}</td>
@@ -66,8 +61,7 @@ function checkForm() {
      </c:forEach>
      <!-- 일반회원을 아래로 나열 -->
      <c:forEach var="member" items="${memberList}" varStatus="status">
-      	 <c:set var="adminOK" value="${member.nickname=='관리자1'||member.nickname=='관리자2'||member.nickname=='관리자3'||member.nickname=='관리자4'
-           	||member.nickname=='관리자5'||member.nickname=='관리자6'}"/>
+      	 <c:set var="adminOK" value="${member.nickname=='관리자'}"/>
          <c:if test='${!adminOK}'>
 	        <tr class="member-list">
 	        	<td>${member.nickname}</td>

@@ -20,8 +20,7 @@ public class UserListService {
 			
 			conn = ConnectionProvider.getConnection();
 			conn.setAutoCommit(false);//트랜잭션 시작
-			System.out.print(column+value);
-				memberlist=adminDao.selectedMember(conn,column,value);
+			memberlist=adminDao.selectedMember(conn,column,value);
 			
 			conn.commit(); //트랙잭션 반영
 			
@@ -41,7 +40,7 @@ public class UserListService {
 			
 			conn = ConnectionProvider.getConnection();
 			conn.setAutoCommit(false);//트랜잭션 시작
-				memberlist=adminDao.selectAllMember(conn);
+			memberlist=adminDao.selectAllMember(conn);
 			
 			conn.commit(); //트랙잭션 반영
 			

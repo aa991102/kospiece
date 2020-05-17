@@ -4,21 +4,7 @@
 <script src="https://cdn.anychart.com/releases/v8/js/anychart-core.min.js"></script>
 <script src="https://cdn.anychart.com/releases/v8/js/anychart-treemap.min.js"></script>
 <%@ page import="json.*,util.Crawling.*" %>
-<!-- 나진 파트 -->
 
-<!-- "추가해야 될 사항" 
-1.맵추가(태경님)-클릭했을 때 해당 회사 코드번호 파라미터 넘겨주기
-2.회사를 검색하면 해당 회사의 정보 디테일박스에 뜨는 로직 추가 
-3.즐겨찾기 로직 연결 (지영님) +js추가(main.js)
-4.투자하기 로직 연결 (준님) +js추가(main.js)
-5.관심주식 - 해당 회원의 관심주식 리스트에 해당 회사가 존재하는지 확인하는 로직 추가!
- -->
- 
- <!-- "필요한 객체"
- 1.실시간 주식정보(디테일박스에 나타낼때 필요) - 확인용파라미터:회사코드번호(관심주식 또는 가상투자로 넘어갈때 회사코드번호 넘겨주기)
- 2.회원 - 확인용파라미터:회원아이디(관심주식 또는 가상투자로 넘어갈때 회원아이디 넘겨주기)
- 3.관심주식
- -->
 <script>
 <%-- $(document).ready(function() { <%CrawlingLoad.Load();%> }); --%>
 </script>

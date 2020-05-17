@@ -257,7 +257,6 @@ public class MemberDAO {
 		value="%"+value+"%";
 		pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, value);
-		System.out.println(pstmt);
 		rs=pstmt.executeQuery();
 		
 		if(rs.next()) {
@@ -274,26 +273,26 @@ public class MemberDAO {
 	}
 	
 	//관리자 비밀번호 맞는지 확인
-			public Boolean checkPw(Connection conn,String id, String pw) throws SQLException {
-				
-				String sql = "select mpw from member where mid=?";
-				
-				pstmt = conn.prepareStatement(sql);
-				pstmt.setString(1, id);
-				rs=pstmt.executeQuery();
-				
-				if(rs.next()) {
-					System.out.print("진짜 번호는 "+rs.getString("mpw"));
-					if(rs.getString("mpw").equals(pw)) {
-						return true;
-					}else {
-						return false;
-					}
-					
-				}else {
-					return false;
-				}
+	public Boolean checkPw(Connection conn,String id, String pw) throws SQLException {
+		
+		String sql = "select mpw from member where mid=?";
+		
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, id);
+		rs=pstmt.executeQuery();
+		
+		if(rs.next()) {
+			System.out.print("회원님의 실제 비밀번호는 "+rs.getString("mpw")+"입니다");
+			if(rs.getString("mpw").equals(pw)) {
+				return true;
+			}else {
+				return false;
 			}
+			
+		}else {
+			return false;
+		}
+	}
 	
 	//관리자가 회원 강제탈퇴시키기
 	public void deleteMember(Connection conn,String id) throws SQLException {
@@ -313,7 +312,6 @@ public class MemberDAO {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, point);
 			pstmt.setString(2, id);
-			System.out.println(pstmt);
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

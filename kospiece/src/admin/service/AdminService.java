@@ -17,6 +17,7 @@ public class AdminService {
 	Statistics memberStatistics= new Statistics();
 	List<Visitor> visitor=new ArrayList<Visitor>();
 	
+	//today,total 통계데이터 구하는 메서드
 	public Statistics staticService() {
 		Connection conn = null;
 		try {
@@ -44,6 +45,7 @@ public class AdminService {
 		
 	}
 	
+	//visitor 통계데이터 구하는 메서드	
 	public List<Visitor> visitService(String term) {
 		Connection conn = null;
 		try {
