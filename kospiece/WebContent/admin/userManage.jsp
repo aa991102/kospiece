@@ -55,6 +55,7 @@ function checkForm() {
 	        	<td>${member.deposit}
 	        	<form name="delete" method="post" action="<%= request.getContextPath()%>/checkAdminPw.do">
 	        		<input type="hidden" name="userId" value="${member.id}"/>
+	        		<input type="hidden" name="point" value="${member.deposit}"/>
 					<input type="hidden" name="service" value="pointCharge"/>
 					<input type="submit" value="충전">
 				</form>
@@ -77,6 +78,7 @@ function checkForm() {
 	        	<td>${member.deposit}
 	        	<form name="delete" method="post" action="<%= request.getContextPath()%>/checkAdminPw.do">
 	        		<input type="hidden" name="userId" value="${member.id}"/>
+	        		<input type="hidden" name="point" value="${member.deposit}"/>
 					<input type="hidden" name="service" value="pointCharge"/>
 					<input type="submit" value="충전">
 				</form>

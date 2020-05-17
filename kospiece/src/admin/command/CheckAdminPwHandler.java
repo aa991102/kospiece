@@ -36,20 +36,43 @@ public class CheckAdminPwHandler implements CommandHandler {
 		
 		if(pwCheck) {//비밀번호가 맞으면 이 페이지를 부른 각 페이지로 리턴
 			String service=request.getParameter("service");
-			String userId=request.getParameter("userId");
-			request.setAttribute("userId",userId);
 			
 			String error="";
 			request.setAttribute("error",error );
 			
 			if(service.equals("deleteMember")){
+				
+				String userId=request.getParameter("userId");
+				request.setAttribute("userId",userId);
+				
 				return "memberDelete.do";
+				
 			}else if(service.equals("pointCharge")) {
+				
+				String point=request.getParameter("point");
+				request.setAttribute("point", point);
+				
 				return "/admin/pointCharge.jsp";
+				
 			}else if(service.equals("modify")) {
-				return "/admin/noticeModify.jsp";
+				
+				String no=request.getParameter("no");
+				request.setAttribute("no", no);
+				System.out.println(no);
+				
+				return "noticeModify.do";
+				
 			}else if(service.equals("delete")) {
+				
+				String no=request.getParameter("no");
+				request.setAttribute("no", no);
+				System.out.println(no);
+				
 				return "noticeDelete.do";
+				
+			}else if(service.equals("write")) {
+				
+				return "/admin/noticeWrite.jsp";
 			}
 		}else {//비밀번호가 다르면 에러메시지를 가지고 비밀번호 입력 폼으로 이동
 			String error="비밀번호를 다시 입력하세요";

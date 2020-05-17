@@ -44,7 +44,7 @@ function checkForm() {
         </c:forEach>
         <c:if test="${noticePage.total==0}">
 					<tr>
-						<th colspan="4">
+						<th colspan="6">
 							공지사항이 없습니다.
 					</tr>
 				</c:if>
@@ -55,17 +55,17 @@ function checkForm() {
 						<c:if test="${null eq content}">
 							<%-- [이전prev]출력 --%>
 							<c:if test="${noticePage.currentPage>5}">
-							<a href="noticeList.do?page=${noticePage.startPage-5}">[이전]</a>
+							<a href="noticeManage.do?page=${noticePage.startPage-5}">[이전]</a>
 							</c:if>
 							
 							<%-- 페이지출력 [이전] [1] [2] [3] [4] [5] --%>
 							<c:forEach var="pNo" begin="${noticePage.startPage}" end="${noticePage.endPage}">
-							<a href="noticeList.do?page=${pNo}">[${pNo}]</a>
+							<a href="noticeManage.do?page=${pNo}">[${pNo}]</a>
 							</c:forEach>
 							
 							<%-- [다음next]출력 --%>
 							<c:if test="${noticePage.endPage<noticePage.totalPages}">
-							<a href="noticeList.do?page=${noticePage.startPage+5}">[다음]</a>
+							<a href="noticeManage.do?page=${noticePage.startPage+5}">[다음]</a>
 							</c:if>
 						</c:if>
 						
@@ -73,19 +73,19 @@ function checkForm() {
 						<c:if test="${null ne content}">
 							<%-- [이전prev]출력 --%>
 							<c:if test="${noticePage.currentPage>5}">
-							<a href="noticeList.do?page=${noticePage.startPage-5}&search=${search}&content=${content}">
+							<a href="noticeManage.do?page=${noticePage.startPage-5}&search=${search}&content=${content}">
 								[이전]</a>
 							</c:if>
 							
 							<%-- 페이지출력 [이전] [1] [2] [3] [4] [5] --%>
 							<c:forEach var="pNo" begin="${noticePage.startPage}" end="${noticePage.endPage}">
-							<a href="noticeList.do?page=${pNo}&search=${search}&content=${content}">
+							<a href="noticeManage.do?page=${pNo}&search=${search}&content=${content}">
 								[${pNo}]</a>
 							</c:forEach>
 							
 							<%-- [다음next]출력 --%>
 							<c:if test="${noticePage.endPage<noticePage.totalPages}">
-							<a href="noticeList.do?page=${noticePage.startPage+5}&search=${search}&content=${content}">
+							<a href="noticeManage.do?page=${noticePage.startPage+5}&search=${search}&content=${content}">
 								[다음]</a>
 							</c:if>
 						</c:if>
@@ -94,6 +94,6 @@ function checkForm() {
 					</tr>
 				</c:if>
      </table>
-     <a href="<%= request.getContextPath()%>/admin/noticeWrite.jsp">공지사항작성</a>
+     <a href="checkAdminPw.do?service=write">공지사항작성</a>
 
 </div>
