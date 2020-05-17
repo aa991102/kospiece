@@ -4,18 +4,27 @@
 <!-- 2.선택한 닉네임이나 아이디에 맞는 회원 리스트가 나오게 변경 -->
 <!-- 3.회원목록에 페이징 추가 -->
 
+<script>
+function checkForm() {
+    if(document.getElementById("member-content").value==""){
+    	alert("회원정보를 입력해주세요")
+    	return false;
+    }
+}
+</script>
+
 <div class="admin-user">
 	<a href="<%= request.getContextPath()%>/admin.do" class="admin-logo">관리자 페이지</a>	
 	<a href="<%= request.getContextPath()%>/userList.do" class="user-button">회원관리</a>
 	<a href="<%= request.getContextPath()%>/noticeManage.do" class="notice-button">공지사항</a><br/>
 	
-	<form action="<%= request.getContextPath()%>/noticeManage.do"name="user-search" method ="post" class="user-search">
-	    <select name="search">
-    		<option value=""selected>전체</option>	
+	<form action="<%= request.getContextPath()%>/userList.do"name="user-search" 
+		method ="post" class="user-search" onsubmit="return checkForm();">
+	    <select name="search">	
 	        <option value="mnick">닉네임</option>
 	        <option value="mid">아이디</option> 
 	    </select>
-	    <input type="text" name="user-inform" />
+	    <input type="text" name="user-inform" id="member-content"/>
 	    <input type="submit" value="검색"/>
 	</form>
 	
@@ -44,7 +53,11 @@
 	        	<td>${member.mail}</td>
 	        	<td>${member.regdate}</td>
 	        	<td>${member.deposit}
-	        	<a href="<%= request.getContextPath()%>/pointCharge.do">충전</a>
+	        	<form name="delete" method="post" action="<%= request.getContextPath()%>/checkAdminPw.do">
+	        		<input type="hidden" name="userId" value="${member.id}"/>
+					<input type="hidden" name="service" value="pointCharge"/>
+					<input type="submit" value="충전">
+				</form>
 	        	</td>
 	        	<td></td>
 	        </tr>
@@ -61,13 +74,19 @@
 	        	<td>${member.name}</td>
 	        	<td>${member.mail}</td>
 	        	<td>${member.regdate}</td>
-	        	<td>${member.deposit}<a href="<%= request.getContextPath()%>/pointCharge.do">충전</a></td>
+	        	<td>${member.deposit}
+	        	<form name="delete" method="post" action="<%= request.getContextPath()%>/checkAdminPw.do">
+	        		<input type="hidden" name="userId" value="${member.id}"/>
+					<input type="hidden" name="service" value="pointCharge"/>
+					<input type="submit" value="충전">
+				</form>
+	        	</td>
 	        	<td>
 	        	<form name="delete" method="post" action="<%= request.getContextPath()%>/checkAdminPw.do">
 	        		<input type="hidden" name="userId" value="${member.id}"/>
-							<input type="hidden" name="service" value="deleteMember"/>
-							<input type="submit" value="탈퇴">
-						</form>
+					<input type="hidden" name="service" value="deleteMember"/>
+					<input type="submit" value="탈퇴">
+				</form>
 	        	</td>
 	        </tr>
         </c:if>

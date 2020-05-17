@@ -21,11 +21,7 @@ public class UserListService {
 			conn = ConnectionProvider.getConnection();
 			conn.setAutoCommit(false);//트랜잭션 시작
 			System.out.print(column+value);
-			if(column==""||value==""||column==null||value==null) {
-				memberlist=adminDao.selectAllMember(conn);
-			}else {
 				memberlist=adminDao.selectedMember(conn,column,value);
-			}
 			
 			conn.commit(); //트랙잭션 반영
 			
@@ -37,6 +33,25 @@ public class UserListService {
 			JdbcUtil.close(conn);
 		}
 		
+	}
+
+	public List<MemberVO> userListService() {
+		Connection conn = null;
+		try {
+			
+			conn = ConnectionProvider.getConnection();
+			conn.setAutoCommit(false);//트랜잭션 시작
+				memberlist=adminDao.selectAllMember(conn);
+			
+			conn.commit(); //트랙잭션 반영
+			
+			return memberlist;
+		}catch(SQLException e) {
+			JdbcUtil.rollback(conn); //트랙잭션 취소
+			throw new RuntimeException(e);
+		}finally {
+			JdbcUtil.close(conn);
+		}
 	}
 	
 }

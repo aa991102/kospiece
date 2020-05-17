@@ -19,31 +19,16 @@ public class CheckAdminPwHandler implements CommandHandler {
 						  HttpServletResponse response) throws Exception {
 		System.out.print("CheckAdminPwHandler 진입 ");
 
-		
-		if(request.getMethod().equalsIgnoreCase("GET")) {
-			System.out.print("get방식, 폼 보여주기");
-			return processForm(request,response);//파라미터가 없으면
-		}else if(request.getMethod().equalsIgnoreCase("POST")) {
-			System.out.print("post방식, 비밀번호 맞는지 확인");
-			return processCheck(request,response);//파라미터가 있으면
-		}else {
-			response.setStatus(HttpServletResponse.SC_METHOD_NOT_ALLOWED); 
-			return   null;
-		}
-	}
-	
-	private String processForm(HttpServletRequest request, HttpServletResponse response) {
-		
-		return FORM_VIEW;
-		
-	}
-	private String processCheck(HttpServletRequest request, HttpServletResponse response) {
-		
 		HttpSession session = request.getSession();
 		
 		//세션의 id에 해당하는 비번과 사용자가 입력한 비번이 같은지 확인
 		String id=(String) session.getAttribute("ID");
 		String pw=request.getParameter("adminPw");
+		
+		if(pw==null) {
+			return FORM_VIEW;
+		}
+		
 		System.out.print(id+"님이 입력한 비밀번호는 "+pw);
 		
 		Boolean pwCheck=checkAdminPwService.check(id,pw);
@@ -54,9 +39,17 @@ public class CheckAdminPwHandler implements CommandHandler {
 			String userId=request.getParameter("userId");
 			request.setAttribute("userId",userId);
 			
+			String error="";
+			request.setAttribute("error",error );
+			
 			if(service.equals("deleteMember")){
-				
 				return "memberDelete.do";
+			}else if(service.equals("pointCharge")) {
+				return "/admin/pointCharge.jsp";
+			}else if(service.equals("modify")) {
+				return "/admin/noticeModify.jsp";
+			}else if(service.equals("delete")) {
+				return "noticeDelete.do";
 			}
 		}else {//비밀번호가 다르면 에러메시지를 가지고 비밀번호 입력 폼으로 이동
 			String error="비밀번호를 다시 입력하세요";

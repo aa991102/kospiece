@@ -11,14 +11,14 @@ public class PointChargeService {
 	
 	MemberDAO memberDao=new MemberDAO();
 
-	public void pointCharge(int point) {
+	public void pointCharge(String id,int point) {
 		Connection conn = null;
 		try {
 			
 			conn = ConnectionProvider.getConnection();
 			conn.setAutoCommit(false);//트랜잭션 시작
-
-			memberDao.pointCharge(conn,point);
+			
+			memberDao.pointCharge(conn,id,point);
 			
 			conn.commit(); //트랙잭션 반영
 			

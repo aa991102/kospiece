@@ -5,6 +5,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import admin.model.Statistics;
+import admin.model.Visitor;
 import dao.AdminDAO;
 import jdbc.JdbcUtil;
 import jdbc.connection.ConnectionProvider;

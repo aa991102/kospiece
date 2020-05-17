@@ -1,7 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
+<script>
+function checkForm() {
+    if(document.getElementById("notice-content").value==""){
+    	alert("검색어를 입력해주세요")
+    	return false;
+    }
+}
+</script>
+
 <div class="title">공지사항</div>
+
 <div class="notice">
 	<form name="notice-search" id="notice-search" method ="post" class="notice-search" 
 		action="<%= request.getContextPath()%>/noticeList.do" onsubmit="return checkForm();">
@@ -18,11 +28,13 @@
         	<th>제목</th>
         	<th>작성일</th>
         	<th>조회</th>
+        	<th>수정</th>
+        	<th>삭제</th>
         </tr>
 			<c:forEach var="notice" items="${noticePage.content}">
         <tr>
         	<td>${notice.nno}</td>
-        	<td><a href="noticeDetail.do?no=${notice.nno}">${notice.title}</a></td>
+        	<td><a href="noticeRead.do?no=${notice.nno}">${notice.title}</a></td>
         	<td>${notice.uploadDate}</td>
         	<td>${notice.hit}</td>
         </tr>
@@ -40,17 +52,17 @@
 						<c:if test="${null eq content}">
 							<%-- [이전prev]출력 --%>
 							<c:if test="${noticePage.currentPage>5}">
-							<a href="noticeList.do?page=${noticePage.startPage-5}">[이전]</a>
+							<a href="noticeManage.do?page=${noticePage.startPage-5}">[이전]</a>
 							</c:if>
 							
 							<%-- 페이지출력 [이전] [1] [2] [3] [4] [5] --%>
 							<c:forEach var="pNo" begin="${noticePage.startPage}" end="${noticePage.endPage}">
-							<a href="noticeList.do?page=${pNo}">[${pNo}]</a>
+							<a href="noticeManage.do?page=${pNo}">[${pNo}]</a>
 							</c:forEach>
 							
 							<%-- [다음next]출력 --%>
 							<c:if test="${noticePage.endPage<noticePage.totalPages}">
-							<a href="noticeList.do?page=${noticePage.startPage+5}">[다음]</a>
+							<a href="noticeManage.do?page=${noticePage.startPage+5}">[다음]</a>
 							</c:if>
 						</c:if>
 						
@@ -58,19 +70,19 @@
 						<c:if test="${null ne content}">
 							<%-- [이전prev]출력 --%>
 							<c:if test="${noticePage.currentPage>5}">
-							<a href="noticeList.do?page=${noticePage.startPage-5}&search=${search}&content=${content}">
+							<a href="noticeManage.do?page=${noticePage.startPage-5}&search=${search}&content=${content}">
 								[이전]</a>
 							</c:if>
 							
 							<%-- 페이지출력 [이전] [1] [2] [3] [4] [5] --%>
 							<c:forEach var="pNo" begin="${noticePage.startPage}" end="${noticePage.endPage}">
-							<a href="noticeList.do?page=${pNo}&search=${search}&content=${content}">
+							<a href="noticeManage.do?page=${pNo}&search=${search}&content=${content}">
 								[${pNo}]</a>
 							</c:forEach>
 							
 							<%-- [다음next]출력 --%>
 							<c:if test="${noticePage.endPage<noticePage.totalPages}">
-							<a href="noticeList.do?page=${noticePage.startPage+5}&search=${search}&content=${content}">
+							<a href="noticeManage.do?page=${noticePage.startPage+5}&search=${search}&content=${content}">
 								[다음]</a>
 							</c:if>
 						</c:if>

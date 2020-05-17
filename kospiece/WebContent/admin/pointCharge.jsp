@@ -11,9 +11,9 @@
 	<div class="point-box">
 		<form name="point-form" method="post" action="pointCharge.do">
 			<p>포인트 충전</p>
-			<p>000님의 현재 포인트 : 0P</p>
+			<p>${userId}님의 현재 포인트 : 0P</p>
 			<p><input type="text" name="point"/>P 충전하기<br/></p>
-			<input type="hidden" name="id" value="${member.id}"/>
+			<input type="hidden" name="id" value="${userId}"/>
 			<p><input type="submit" value="충전"/></p>
 		</form>
 	</div>

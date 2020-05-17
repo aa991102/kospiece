@@ -7,10 +7,14 @@ import controller.command.CommandHandler;
 
 public class NoticeModifyHandler implements CommandHandler  {
 
+	private static final String FORM_VIEW = "/noticeManage.do";
+	
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		
+		
+		
+		return FORM_VIEW;
 	}
 
 }

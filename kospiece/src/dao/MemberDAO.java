@@ -306,12 +306,14 @@ public class MemberDAO {
 	}
 
 	//관리자가 회원 포인트 충전
-	public void pointCharge(Connection conn, int point) {
-			String sql = "update";
+	public void pointCharge(Connection conn, String id, int point) {
+			String sql = "UPDATE member SET mdeposit=mdeposit+? where mid=?";
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
-			//pstmt.setString(1, id);
+			pstmt.setInt(1, point);
+			pstmt.setString(2, id);
+			System.out.println(pstmt);
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

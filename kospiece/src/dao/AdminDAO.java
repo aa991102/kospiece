@@ -10,7 +10,7 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
 
-import admin.service.Visitor;
+import admin.model.Visitor;
 
 public class AdminDAO {
 	
