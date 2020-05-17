@@ -295,23 +295,23 @@ public class MemberDAO {
 	}
 	
 	//관리자가 회원 강제탈퇴시키기
-	public void deleteMember(Connection conn,String id) throws SQLException {
-		String sql = "delete from member where mid=?";
+	public void deleteMember(Connection conn,String nick) throws SQLException {
+		String sql = "delete from member where mnick=?";
 		
 		pstmt = conn.prepareStatement(sql);
-		pstmt.setString(1, id);
+		pstmt.setString(1, nick);
 		pstmt.executeUpdate();
 		
 	}
 
 	//관리자가 회원 포인트 충전
-	public void pointCharge(Connection conn, String id, int point) {
-			String sql = "UPDATE member SET mdeposit=mdeposit+? where mid=?";
+	public void pointCharge(Connection conn, String nick, int point) {
+			String sql = "UPDATE member SET mdeposit=mdeposit+? where mnick=?";
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, point);
-			pstmt.setString(2, id);
+			pstmt.setString(2, nick);
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

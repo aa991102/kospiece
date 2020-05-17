@@ -1,14 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<!-- "추가해야 될 사항"
-1.마이페이지 jsp추가하고 경로 변경 (지영님)
-2.가상투자-로그인상태면 해당회원의 주식리스트, 비로그인상태면 로그인페이지 이동할건지 alert 띄우기 +main.js-loginCheck()에 추가
-3.마이페이지- 로그인상태면 마이페이지 홈, 비로그인상태면 로그인페이지 이동할건지 alert 띄우기 +main.js-loginCheck()에 추가
-4.로그아웃 누르면 로그아웃처리하는 로직으로 링크 추가하기
-5.포인트랭킹 js 추가하기
- -->
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,7 +35,6 @@
     <script src="<%= request.getContextPath()%>/js/point_rank.js" type="text/javascript"></script>
     <script src="<%= request.getContextPath()%>/js/rank.js" type="text/javascript"></script>
     <script src="<%= request.getContextPath()%>/js/myInterest.js" type="text/javascript"></script>
-    <script src="<%= request.getContextPath()%>/js/form.js" type="text/javascript"></script>
 </head>
 <body>
 

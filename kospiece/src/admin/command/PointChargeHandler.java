@@ -19,12 +19,15 @@ public class PointChargeHandler implements CommandHandler {
 		
 		System.out.print("PointChargeHandler 진입 ");
 		
-		int point=Integer.parseInt(request.getParameter("point"));
-		String id=request.getParameter("id");
+		String charge=request.getParameter("point");
+		charge=charge.replaceAll(" ",""); //잘못입력한 공백을 제거
 		
-		System.out.println(id+"님에게 "+point+"포인트를 충전");
+		int point=Integer.parseInt(charge);
+		String nick=request.getParameter("nick");
 		
-		pointChargeService.pointCharge(id,point);
+		System.out.println(nick+"님에게 "+point+"포인트를 충전");
+		
+		pointChargeService.pointCharge(nick,point);
 		
 		return FORM_VIEW;
 		

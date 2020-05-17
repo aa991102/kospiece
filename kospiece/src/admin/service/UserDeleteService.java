@@ -11,7 +11,7 @@ public class UserDeleteService {
 	
 	MemberDAO adminDao=new MemberDAO();
 
-	public void service(String id) {
+	public void service(String nick) {
 
 			Connection conn = null;
 			try {
@@ -19,7 +19,7 @@ public class UserDeleteService {
 				conn = ConnectionProvider.getConnection();
 				conn.setAutoCommit(false);//트랜잭션 시작
 
-				adminDao.deleteMember(conn,id);
+				adminDao.deleteMember(conn,nick);
 				
 				conn.commit(); //트랙잭션 반영
 				

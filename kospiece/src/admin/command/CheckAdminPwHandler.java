@@ -39,15 +39,15 @@ public class CheckAdminPwHandler implements CommandHandler {
 			String service=request.getParameter("service");
 			
 			if(service.equals("deleteMember")){
-				String userId=request.getParameter("userId");
-				request.setAttribute("userId",userId);
+				String userNick=request.getParameter("userNick");
+				request.setAttribute("userNick",userNick);
 				return "memberDelete.do"; //회원을 삭제하는 로직 수행
 				
 			}else if(service.equals("pointCharge")) {
 				String point=request.getParameter("point");
 				request.setAttribute("point", point);	
-				String userId=request.getParameter("userId");
-				request.setAttribute("userId",userId);
+				String userNick=request.getParameter("userNick");
+				request.setAttribute("userNick",userNick);
 				return "/admin/pointCharge.jsp"; //포인트 충전하기 위한 form 화면으로
 				
 			}else if(service.equals("modify")) {

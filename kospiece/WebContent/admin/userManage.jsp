@@ -7,6 +7,23 @@ function checkForm() {
     	return false;
     }
 }
+function checkCharge(nick){
+	result=confirm(nick+"님의 포인트를 충전하시겠습니까?")
+	if(result){
+		return true;
+	}else{
+		return false;
+	}
+	
+}
+function checkDelete(nick){
+	result=confirm(nick+"님을 강제탈퇴하시겠습니까?")
+	if(result){
+		return true;
+	}else{
+		return false;
+	}
+}
 </script>
 
 <div class="admin-user">
@@ -39,7 +56,8 @@ function checkForm() {
         
      <!-- 멤버 중 관리자인 회원을 최 상단에 출력 -->
 	 <c:forEach var="member" items="${memberList}">
- 	 <c:set var="adminOK" value="${member.nickname=='관리자'}"/>
+ 	 <c:set var="adminOK" value="${member.nickname=='관리자1'||member.nickname=='관리자2'||member.nickname=='관리자3'||member.nickname=='관리자4'
+            	||member.nickname=='관리자5'||member.nickname=='관리자6'}"/>
   		<c:if test='${adminOK}'>
 	        <tr class="admin-list">
 	        	<td>${member.nickname}</td>
@@ -48,8 +66,9 @@ function checkForm() {
 	        	<td>${member.mail}</td>
 	        	<td>${member.regdate}</td>
 	        	<td>${member.deposit}
-	        	<form name="delete" method="post" action="<%= request.getContextPath()%>/checkAdminPw.do">
-	        		<input type="hidden" name="userId" value="${member.id}"/>
+	        	<form name="delete" method="post" action="<%= request.getContextPath()%>/checkAdminPw.do"
+	        		onsubmit="return checkCharge('${member.nickname}');">
+	        		<input type="hidden" name="userNick" value="${member.nickname}"/>
 	        		<input type="hidden" name="point" value="${member.deposit}"/>
 					<input type="hidden" name="service" value="pointCharge"/>
 					<input type="submit" value="충전">
@@ -61,7 +80,8 @@ function checkForm() {
      </c:forEach>
      <!-- 일반회원을 아래로 나열 -->
      <c:forEach var="member" items="${memberList}" varStatus="status">
-      	 <c:set var="adminOK" value="${member.nickname=='관리자'}"/>
+      	 <c:set var="adminOK" value="${member.nickname=='관리자1'||member.nickname=='관리자2'||member.nickname=='관리자3'||member.nickname=='관리자4'
+            	||member.nickname=='관리자5'||member.nickname=='관리자6'}"/>
          <c:if test='${!adminOK}'>
 	        <tr class="member-list">
 	        	<td>${member.nickname}</td>
@@ -70,23 +90,24 @@ function checkForm() {
 	        	<td>${member.mail}</td>
 	        	<td>${member.regdate}</td>
 	        	<td>${member.deposit}
-	        	<form name="delete" method="post" action="<%= request.getContextPath()%>/checkAdminPw.do">
-	        		<input type="hidden" name="userId" value="${member.id}"/>
+	        	<form name="delete" method="post" action="<%= request.getContextPath()%>/checkAdminPw.do"
+	        		onsubmit="return checkCharge('${member.nickname}');">
+	        		<input type="hidden" name="userNick" value="${member.nickname}"/>
 	        		<input type="hidden" name="point" value="${member.deposit}"/>
 					<input type="hidden" name="service" value="pointCharge"/>
 					<input type="submit" value="충전">
 				</form>
 	        	</td>
 	        	<td>
-	        	<form name="delete" method="post" action="<%= request.getContextPath()%>/checkAdminPw.do">
-	        		<input type="hidden" name="userId" value="${member.id}"/>
+	        	<form name="delete" method="post" action="<%= request.getContextPath()%>/checkAdminPw.do"
+	        		onsubmit="return checkDelete('${member.nickname}');">
+	        		<input type="hidden" name="userNick" value="${member.nickname}"/>
 					<input type="hidden" name="service" value="deleteMember"/>
 					<input type="submit" value="탈퇴">
 				</form>
 	        	</td>
 	        </tr>
         </c:if>
-		
 	 </c:forEach>
      </table>
 </div>

@@ -22,7 +22,7 @@ function checkForm() {
 		<p>공지사항 변경</p>
 		
 		<!-- 공지사항 변경 폼 (제목과 내용이 표시되어있음) -->
-		<form name="notice-write" action="noticeModify.do" method="post">
+		<form name="notice-write" action="noticeModify.do" method="post" onsubmit="return checkForm();">
 			제목:<input type="text" style="width:650px;" id="title" name="title" value="${notice.title}"/><br/>
 			내용:<textarea cols="70" rows="20" id="content" name="content" >${notice.content}</textarea><br/>
 			<input type="hidden" name="no" value="${no}"/>

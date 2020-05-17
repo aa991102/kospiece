@@ -15,13 +15,13 @@
 			<p>${error}</p>
 			
 			<!-- 로직을 실행하는 데 필요한 파라미터들을 셋팅 -->
-			<input type="hidden" name="userId" value="${param.userId}">
+			<input type="hidden" name="userNick" value="${param.userNick}">
 			<input type="hidden" name="service" value="${param.service}">
 			<input type="hidden" name="point" value="${param.point}">
 			<input type="hidden" name="no" value="${param.no}">
 			
 			<input type="submit" value="확인"/>
-			<input type="reset" value="취소"/>
+			<input type="button" value="취소" onclick="history.back()"/>
 		</form>
 	</div>
 </div>

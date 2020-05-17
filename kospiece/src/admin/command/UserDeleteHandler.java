@@ -18,10 +18,10 @@ public class UserDeleteHandler  implements CommandHandler {
 						  HttpServletResponse response) throws Exception {
 		System.out.print("UserDeleteHandler진입-");
 
-		String id=(String) request.getAttribute("userId"); //해당 회원 id를 파라미터로 받음
-		userDeleteService.service(id); //회원 id를 가지고 서비스 진행
+		String nick=(String) request.getAttribute("userNick"); //해당 회원 id를 파라미터로 받음
+		userDeleteService.service(nick); //회원 id를 가지고 서비스 진행
 		
-		System.out.println(id+"강제탈퇴완료");
+		System.out.println(nick+"님 강제탈퇴완료");
 		
 		return FORM_VIEW;
 		
