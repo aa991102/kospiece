@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import controller.command.CommandHandler;
 import dto.MemberVO;
@@ -15,7 +16,7 @@ import member.service.WithdrawalService;
 public class WithdrawalHandler implements CommandHandler {
 
 	WithdrawalService withdrawalService=new WithdrawalService(); 
-
+	private HttpSession session;
 	private static final String FORM_VIEW = "/mypage/myInfo/withdrawalForm.jsp"; 
 	
 	@Override
@@ -63,7 +64,8 @@ public class WithdrawalHandler implements CommandHandler {
 			String mid = member.getId();
 			
 			withdrawalService.deleteMember(mid,checkPw);
-			
+			session = request.getSession();
+			session.invalidate();
 			System.out.print(mid + " 탈퇴 완료");
 			return "/mypage/myInfo/withdrawalSuccess.jsp";
 			
