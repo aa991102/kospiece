@@ -1,6 +1,10 @@
 package comment.command;
 
 
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -35,6 +39,14 @@ public class WriteCommentHandler implements CommandHandler {
 		String content = req.getParameter("content");
 		FreeCommentVO comment =  ParamToComment(fno, nickname, content);
 		
+		//유효성검사 5.18
+		Map<String, Boolean> errors = new HashMap<>();
+		req.setAttribute("errors", errors);
+		writecomment.validate(errors, comment);
+		if(!errors.isEmpty()) {
+			return "/board/read.do?pageNo="+pageNo+"&fno="+fno;
+		}
+
 		writecomment.write(comment);
 		
 		req.setAttribute("writecomment", writecomment);
@@ -42,7 +54,7 @@ public class WriteCommentHandler implements CommandHandler {
 	}
 
 	private FreeCommentVO ParamToComment(int fno, String nickname, String content) {
-		return new FreeCommentVO(	fno,	nickname, content);
+		return new FreeCommentVO(	fno,	nickname, content, new Date());
 	}
 
 	private String processForm(HttpServletRequest req, HttpServletResponse res) {

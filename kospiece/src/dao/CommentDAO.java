@@ -18,31 +18,30 @@ import jdbc.JdbcUtil;
 public class CommentDAO {
 	PreparedStatement pstmt = null;
 	Statement stmt = null;
-	ResultSet rs  = null;
+	ResultSet rs = null;
 	FreeCommentVO comment = null;
 
-	public void insert(Connection conn,FreeCommentVO comment)
-		throws SQLException {
+	public void insert(Connection conn, FreeCommentVO comment) throws SQLException {
 		System.out.println("CommentDAO.insert()호출");
-		String sql = "INSERT INTO freecomment(fno, fcmemnick, fccontent, fcdate) " + 
-				     " VALUES(?,?,?,?)";
+		String sql = "INSERT INTO freecomment(fno, fcmemnick, fccontent, fcdate) " + " VALUES(?,?,?,?)";
 		try {
-		pstmt = conn.prepareStatement(sql);
-		pstmt.setInt(1,comment.getFno());
-		pstmt.setString(2,comment.getNickname());
-		pstmt.setString(3,comment.getContent());
-		pstmt.setTimestamp(4,  toTimestamp(comment.getUploaddate()));
-		pstmt.executeUpdate();
-		}finally{
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, comment.getFno());
+			pstmt.setString(2, comment.getNickname());
+			pstmt.setString(3, comment.getContent());
+			pstmt.setTimestamp(4, toTimestamp(comment.getUploaddate()));
+			pstmt.executeUpdate();
+		} finally {
 			JdbcUtil.close(pstmt);
 		}
 	}
-	
-	public int selectCount(Connection conn) throws SQLException {
+
+	public int selectCount(Connection conn, int fno) throws SQLException {
 		System.out.println("CommentDAO-selectCount()호출");
 		try {
-			String sql = "select  count(*) from  freecomment";
+			String sql = "select  count(*) from  freecomment where fno=?";
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, fno);
 			rs = pstmt.executeQuery();
 			if (rs.next()) { // 등록된 게시물이 존재하면
 				return rs.getInt(1); // 전체 게시물수 리턴
@@ -54,13 +53,15 @@ public class CommentDAO {
 		}
 	}
 
-	public List<FreeCommentVO> select(Connection conn, int startRow, int size) throws SQLException {
+	public List<FreeCommentVO> select(Connection conn, int fno, int startRow, int size) throws SQLException {
 		System.out.println("CommentDAO-select()호출");
 		try {
-			String sql = "SELECT * from freeboard order by fno desc LIMIT ?, ?"; // 0부터 시작함
+			String sql = "SELECT * from freecomment where fno=? ORDER BY fcno DESC LIMIT ?,?";
+			// 0부터 시작해야함 0,10,20 ...
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, startRow);
-			pstmt.setInt(2, size);
+			pstmt.setInt(1, fno);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, size);
 			rs = pstmt.executeQuery();
 			List<FreeCommentVO> result = new ArrayList<>();
 			while (rs.next()) {
@@ -72,13 +73,29 @@ public class CommentDAO {
 			JdbcUtil.close(pstmt);
 		}
 	}
-	
-	private FreeCommentVO toFreeCommentVO(ResultSet rs) throws SQLException {
-		return new FreeCommentVO(rs.getInt("fcno"), rs.getInt("fno"),
-				rs.getString("fcmenick"), rs.getString("fccontent"), rs.getTimestamp("fcdate"));
+
+	public void delete(Connection conn, int commentNum)  throws SQLException{
+		System.out.println("CommentDAO-delete()호출");
+		String sql = "delete from freecomment where fcno=?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, commentNum);
+			pstmt.executeUpdate();
+		} finally {
+			JdbcUtil.close(pstmt);
+		}
 	}
+
 	
+
+	private FreeCommentVO toFreeCommentVO(ResultSet rs) throws SQLException {
+		return new FreeCommentVO(rs.getInt("fcno"), rs.getInt("fno"), rs.getString("fcmemnick"),
+				rs.getString("fccontent"), rs.getTimestamp("fcdate"));
+	}
+
 	private Timestamp toTimestamp(Date date) {
 		return new Timestamp(date.getTime());
 	}
+
 }
+
