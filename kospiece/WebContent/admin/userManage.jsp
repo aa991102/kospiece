@@ -55,7 +55,7 @@ function checkDelete(nick){
         </tr>
         
      <!-- 멤버 중 관리자인 회원을 최 상단에 출력 -->
-	 <c:forEach var="member" items="${memberList}">
+	 <c:forEach var="member" items="${memberPage.content}">
  	 <c:set var="adminOK" value="${member.nickname=='관리자1'||member.nickname=='관리자2'||member.nickname=='관리자3'||member.nickname=='관리자4'
             	||member.nickname=='관리자5'||member.nickname=='관리자6'}"/>
   		<c:if test='${adminOK}'>
@@ -79,7 +79,7 @@ function checkDelete(nick){
         </c:if>
      </c:forEach>
      <!-- 일반회원을 아래로 나열 -->
-     <c:forEach var="member" items="${memberList}" varStatus="status">
+     <c:forEach var="member" items="${memberPage.content}" varStatus="status">
       	 <c:set var="adminOK" value="${member.nickname=='관리자1'||member.nickname=='관리자2'||member.nickname=='관리자3'||member.nickname=='관리자4'
             	||member.nickname=='관리자5'||member.nickname=='관리자6'}"/>
          <c:if test='${!adminOK}'>
@@ -109,5 +109,57 @@ function checkDelete(nick){
 	        </tr>
         </c:if>
 	 </c:forEach>
+	 ${memberPage }
+	 <!-- 검색된 공지사항이 없을 경우 출력 -->
+   <c:if test="${memberPage.total==0}">
+			<tr>
+				<th colspan="7">
+					공지사항이 없습니다.
+			</tr>
+		</c:if>
+		
+	 <!-- 회원목록 페이징 -->		
+     <c:if test="${memberPage.total>0}">
+			<tr>
+				<th colspan="7">
+				<!-- 검색조건이 없을 때는 페이지넘버만 파라미터로 보내기 -->
+				<c:if test="${null eq content}">
+					<%-- [이전prev]출력 --%>
+					<c:if test="${memberPage.currentPage>5}">
+						<a href="userList.do?page=${memberPage.startPage-5}">[이전]</a>
+					</c:if>
+					
+					<%-- 페이지출력 [이전] [1] [2] [3] [4] [5] --%>
+					<c:forEach var="pNo" begin="${memberPage.startPage}" end="${memberPage.endPage}">
+						<a href="userList.do?page=${pNo}">[${pNo}]</a>
+					</c:forEach>
+					
+					<%-- [다음next]출력 --%>
+					<c:if test="${memberPage.endPage<memberPage.totalPages}">
+						<a href="userList.do?page=${memberPage.startPage+5}">[다음]</a>
+					</c:if>
+				</c:if>
+				
+				<!-- 검색조건이 있을 때는 페이지넘버와 검색조건도 파라미터로 보내기 -->
+				<c:if test="${null ne content}">
+					<%-- [이전prev]출력 --%>
+					<c:if test="${memberPage.currentPage>5}">
+						<a href="userList.do?page=${memberPage.startPage-5}&search=${search}&inform=${content}">
+							[이전]</a>
+					</c:if>
+					
+					<%-- 페이지출력 [이전] [1] [2] [3] [4] [5] --%>
+					<c:forEach var="pNo" begin="${memberPage.startPage}" end="${memberPage.endPage}">
+						<a href="userList.do?page=${pNo}&search=${search}&inform=${content}">
+							[${pNo}]</a>
+					</c:forEach>
+					
+					<%-- [다음next]출력 --%>
+					<c:if test="${memberPage.endPage<memberPage.totalPages}">
+						<a href="userList.do?page=${memberPage.startPage+5}&search=${search}&inform=${content}">
+							[다음]</a>
+					</c:if>
+					</c:if>
+				</c:if>
      </table>
 </div>
