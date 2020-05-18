@@ -75,7 +75,9 @@
 						<td>${comment.nickname}</td>
 						<td>${comment.content}</td>
 						<td>${comment.uploaddate}</td>
-						<td>업</td>
+						<td><a href="<%=request.getContextPath() %>/comment/like.do?
+						pageNo=${param.pageNo}&fno=${param.fno}&comment=${comment.fcno}">
+						업${comment.like }</a></td>
 						<td>다운</td>
 						<td><a href="<%=request.getContextPath() %>/comment/delete.do?
 						pageNo=${param.pageNo}&fno=${param.fno}&comment=${comment.fcno}">
@@ -87,16 +89,16 @@
 					<tr>
 						<td colspan="4"><c:if test="${listcomment.startPage > 5}">
 								<a
-									href="read.do?pageNo=${param.pageNo }&fno=${param.fno}&commentPageNo=${listcomment.startPage - listcomment.page}">
+									href="<%=request.getContextPath() %>/board/read.do?pageNo=${param.pageNo }&fno=${param.fno}&commentPageNo=${listcomment.startPage - listcomment.page}">
 									[이전]</a>
 							</c:if> <c:forEach var="commentPno" begin="${listcomment.startPage }"
 								end="${listcomment.endPage }">
 								<a
-									href="read.do?pageNo=${param.pageNo }&fno=${param.fno}&commentPageNo=${commentPno}">
+									href="<%=request.getContextPath() %>/board/read.do?pageNo=${param.pageNo }&fno=${param.fno}&commentPageNo=${commentPno}">
 									[ ${commentPno } ]</a>
 							</c:forEach> <c:if test="${listcomment.endPage < listcomment.totalPages}">
 								<a
-									href="read.do?pageNo=${param.pageNo }&fno=${param.fno}&commentPageNo=${listcomment.startPage + listcomment.page}">
+									href="<%=request.getContextPath() %>/board/read.do?pageNo=${param.pageNo }&fno=${param.fno}&commentPageNo=${listcomment.startPage + listcomment.page}">
 									[다음]</a>
 							</c:if></td>
 					</tr>

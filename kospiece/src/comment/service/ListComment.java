@@ -12,7 +12,9 @@ public class ListComment {
 	private int startPage;
 	private int endPage;
 	private int page = 5; // 한 화면에 보여지는 페이지 수 (현재 10로 설정)
-
+	private int likecount;
+	private int hatecount;
+	
 	// 댓글 읽기 생성자
 	public ListComment(List<FreeCommentVO> content) {
 		this.content = content;
@@ -42,6 +44,22 @@ public class ListComment {
 		endPage = startPage + (page - 1);
 		if (endPage > totalPages)
 			endPage = totalPages;
+	}
+
+	public void setLikecount(int likecount) {
+		this.likecount = likecount;
+	}
+
+	public void setHatecount(int hatecount) {
+		this.hatecount = hatecount;
+	}
+
+	public int getLikecount() {
+		return likecount;
+	}
+
+	public int getHatecount() {
+		return hatecount;
 	}
 
 	public int getTotal() {

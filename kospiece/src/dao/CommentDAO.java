@@ -13,6 +13,7 @@ import java.util.Date;
 import java.util.List;
 
 import dto.FreeCommentVO;
+import dto.LikeBoardVO;
 import jdbc.JdbcUtil;
 
 public class CommentDAO {
@@ -74,7 +75,7 @@ public class CommentDAO {
 		}
 	}
 
-	public void delete(Connection conn, int commentNum)  throws SQLException{
+	public void delete(Connection conn, int commentNum) throws SQLException {
 		System.out.println("CommentDAO-delete()호출");
 		String sql = "delete from freecomment where fcno=?";
 		try {
@@ -86,16 +87,89 @@ public class CommentDAO {
 		}
 	}
 
-	
-
 	private FreeCommentVO toFreeCommentVO(ResultSet rs) throws SQLException {
 		return new FreeCommentVO(rs.getInt("fcno"), rs.getInt("fno"), rs.getString("fcmemnick"),
-				rs.getString("fccontent"), rs.getTimestamp("fcdate"));
+				rs.getString("fccontent"), rs.getTimestamp("fcdate"), rs.getInt("fclike"), rs.getInt("fchate"));
 	}
 
 	private Timestamp toTimestamp(Date date) {
 		return new Timestamp(date.getTime());
 	}
 
-}
+	public void likeCountInsert(Connection conn, LikeBoardVO likeVO) throws SQLException {
+		System.out.println("CommentDao - 좋아요 증가 진입");
+		String sql = "insert into likeboard(fcno, lmemid) values(?,?)";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, likeVO.getFcno());
+			pstmt.setString(2, likeVO.getLmemid());
+			pstmt.executeUpdate();
+		} finally {
+			JdbcUtil.close(pstmt);
+		}
+	}
 
+	public void likeCountDelete(Connection conn, LikeBoardVO likeVO) throws SQLException {
+		System.out.println("CommentDao - 좋아요 감소 진입");
+		String sql = "delete from likeboard where fcno=? and lmemid=?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, likeVO.getFcno());
+			pstmt.setString(2, likeVO.getLmemid());
+			pstmt.executeUpdate();
+		} finally {
+			JdbcUtil.close(pstmt);
+		}
+	}
+
+	// 좋아요 및 싫어요를 사전에 눌렀는지 확인하기 위해 LikeCountService에서 사용
+	public int selectById(Connection conn, int commentNo, String id) throws SQLException {
+		System.out.println("CommentDAO-selectById()호출");
+		try {
+			String sql = "select  count(*) from  likeboard where fcno=? and lmemid=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, commentNo);
+			pstmt.setString(2, id);
+			rs = pstmt.executeQuery();
+			if (rs.next()) { // 등록된 게시물이 존재하면
+				return rs.getInt(1);
+			}
+			return 0;
+		} finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+	}
+
+	// Like갯수를 세기 위한 메서드
+	public int LikeCount(Connection conn, int commentNo) throws SQLException {
+		System.out.println("CommentDAO-LikeCount()호출");
+		try {
+			String sql = "select count(*) from  likeboard where fcno=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, commentNo);
+			rs = pstmt.executeQuery();
+			if (rs.next()) { // 등록된 게시물이 존재하면
+				return rs.getInt(1); // 전체 게시물수 리턴
+			}
+			return 0;
+		} finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+	}
+
+	public void likeCountUpdate(Connection conn, LikeBoardVO likeVO) throws SQLException {
+		System.out.println("CommentDAO-LikeCountUpdate()호출");
+		String sql = "update freecomment set fclike = (select count(*) from likeboard where fcno=?) where fcno=?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, likeVO.getFcno());
+			pstmt.setInt(2, likeVO.getFcno());
+			pstmt.executeUpdate();
+		} finally {
+			JdbcUtil.close(pstmt);
+		}
+	}
+
+}

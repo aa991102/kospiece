@@ -19,10 +19,6 @@ public class ListCommentService {
 		try (Connection conn = ConnectionProvider.getConnection()) {
 
 			int total = commentDao.selectCount(conn, fno); // 전체 댓글의 수 구함
-			System.out.println("전체 댓글의 갯수 = "+total);
-
-			System.out.println("전달받은 파라미터 = \nfno = "+fno+
-					"\ncommentPageNo = "+commentPageNo);
 			
 			List<FreeCommentVO> content = 
 					commentDao.select(conn, fno, getStartPage(commentPageNo, size), size);
