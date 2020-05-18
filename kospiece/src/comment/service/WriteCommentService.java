@@ -2,6 +2,7 @@ package comment.service;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.Map;
 
 import dao.CommentDAO;
 import dto.FreeCommentVO;
@@ -26,6 +27,12 @@ public class WriteCommentService {
 			throw new RuntimeException(e);
 		}
 		
+	}
+
+	public void validate(Map<String, Boolean> errors, FreeCommentVO comment) {
+		if (comment.getContent().trim().isEmpty()) {
+			errors.put("Content", Boolean.TRUE);
+		}
 	}
 
 }

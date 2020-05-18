@@ -14,7 +14,14 @@ public class FreeCommentVO {
 		this.nickname=nickname;
 		this.content=content;
 	}
-	
+	//select dao에 쓰이는 생성자
+	public FreeCommentVO(int fno, String nickname, String content, Date uploaddate) {
+		this.fno=fno;
+		this.nickname=nickname;
+		this.content=content;
+		this.uploaddate=uploaddate;
+	}
+
 	//select dao에 쓰이는 생성자
 	public FreeCommentVO(int fcno, int fno, String nickname, String content, Date uploaddate) {
 		this.fcno = fcno;
