@@ -65,6 +65,7 @@
 					<th>엄지다운</th>
 					<th>삭제버튼이 들어갈 컬럼</th>
 				</tr>
+<<<<<<< Updated upstream
 				<tr>
 					<td>홍길동</td>
 					<td>테스트용 텍스트입니다.</td>
@@ -73,6 +74,18 @@
 					<td>테스트용 텍스트입니다.</td>
 					<td>삭제</td>
 				</tr>
+=======
+			<c:forEach var="comment" items="${listcomment.content}">
+		 			<tr>
+		 				<td>${comment.nickname} </td>
+		 				<td>${comment.content}"/></td>
+		 				<td>${comment.uploaddate}</td>
+		 				<td>업</td>
+		 				<td>다운</td>
+		 				<td>삭제버튼</td>
+		 			</tr> 
+	 			</c:forEach>
+>>>>>>> Stashed changes
 			</table>
 		</div>
 	</div>

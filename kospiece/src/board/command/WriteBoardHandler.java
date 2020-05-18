@@ -15,6 +15,7 @@ import dto.MemberVO;
 public class WriteBoardHandler implements CommandHandler {
 	private static final String FORM_VIEW = "/board/boardWrite.jsp";
 	private WriteBoardService writeService = new WriteBoardService();
+	private String path = "";
 	
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
@@ -36,11 +37,20 @@ public class WriteBoardHandler implements CommandHandler {
 	
 	private String processForm(HttpServletRequest req, HttpServletResponse res) {
 		System.out.println("-> processForm 진입");
-		return FORM_VIEW;
+		path = req.getRequestURI();
+		req.setAttribute("path", path);
+		System.out.println("세션 = "+req.getSession(false).getAttribute("NICKNAME"));
+		if(req.getSession(false).getAttribute("NICKNAME")==null) {
+			return "/member/login.jsp";
+		}else {
+			return FORM_VIEW;
+		}
+		
 	}
 	private String processSubmit(HttpServletRequest req, HttpServletResponse res) {
 		System.out.println("-> processSubmit 진입");
 
+		
 	//요청파라미터받기
 		//사용자 정보(세션)
 		String nickname = (String) req.getSession(false).getAttribute("NICKNAME");
@@ -48,16 +58,17 @@ public class WriteBoardHandler implements CommandHandler {
 		//파라미터
 		FreeBoardVO board = ParamToBoard(nickname, req);
 		System.out.println("등록한 BoardVO파라미터 = \n"+board);
-		/*//5.8 제목을 입력 안했을 시 alert문 띄워주는 기능 추가해야함	
+		
+		//유효성검사 5.18
 		Map<String, Boolean> errors = new HashMap<>();
 		req.setAttribute("errors", errors);
+		writeService.validate(errors, board);
 		if(!errors.isEmpty()) {
 			return FORM_VIEW;
 		}
-		*/
 		
-		int newArticleNo = writeService.write(board);
-		req.setAttribute("newArticleNo", newArticleNo);
+		writeService.write(board);
+		//req.setAttribute("newArticleNo", newArticleNo);
 		
 		return "/board.do";
 	}

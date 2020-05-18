@@ -29,7 +29,7 @@
 		</div>
 		<div class="" id="1-4">
 			<input type="submit" value="등록"/>
-			<input type="reset" value="취소"/>
+			<a href="<%=request.getContextPath() %>/board.do"><input type="button" value="목록으로 가기"/></a>
 		</div>
 		</form>
 		

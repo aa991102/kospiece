@@ -1,5 +1,12 @@
+<<<<<<< Updated upstream
 /admin/
 /board/
+=======
+/util/
+/admin/
+/board/
+/comment/
+>>>>>>> Stashed changes
 /controller/
 /dao/
 /dto/
@@ -13,5 +20,8 @@
 /notice/
 /rank/
 /simulation/
+<<<<<<< Updated upstream
 /util/
 /Crawling/
+=======
+>>>>>>> Stashed changes

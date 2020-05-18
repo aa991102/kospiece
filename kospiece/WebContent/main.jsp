@@ -79,7 +79,11 @@ $(document).ready(function() { <%CrawlingLoad.Load();%> });
 		</form>
 		<table border="1" width="800" align="center" class="company-detail">
 			<tr>
+<<<<<<< Updated upstream
 				<th colspan="12">회사명 회사코드
+=======
+				<th colspan="12" id="kk"><b>${info.stockVO.name}</b> 
+>>>>>>> Stashed changes
 				<!-- 1.로그인했는지체크 2.회원아이디넘기기 *3.회사코드넘기기* -->
 				<!-- 즐겨찾기추가는 if문으로 해당 회원이 해당 회사를 즐겨찾기로 갖고있는지 확인 후 별의 색을 결정 & 보유 여부를 파라미터로 넘겨주기 -->
 				<img src="img/star.png" onclick="LoginCheck('favoritePlus',${!empty AUTHUSER},'${AUTHUSER.id}')" style="cursor:pointer"/>

@@ -40,10 +40,8 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
     <!--
-    5.8 유태우
-    	로그인체크필터기능 추가하였습니다. 필요하신분은 밑에 url패턴 추가하시면 됩니다.
-    	아직 로그아웃 기능은 미구현 상태인 것 같습니다 
-    -->
+    5.18 유태우
+    로그인 필터기능 off 
     <filter>
         <filter-name>LoginCheckFilter</filter-name>
         <filter-class>filter.LoginCheckFilter</filter-class>
@@ -51,10 +49,8 @@
 
     <filter-mapping>
         <filter-name>LoginCheckFilter</filter-name>
-        <url-pattern>/board/write.do</url-pattern>
-	<url-pattern>/board/modify.do</url-pattern>
     </filter-mapping>
-    
+    -->
     <servlet>
     	<servlet-name>ControllerUsingURI</servlet-name>
     	<servlet-class>controller.ControllerUsingURI</servlet-class>
