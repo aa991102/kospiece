@@ -8,6 +8,31 @@
 <script>
 <%-- $(document).ready(function() { <%CrawlingLoad.Load();%> }); --%>
 </script>
+<!-- TREND CHART -->
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+  function drawChart() {
+    var data = google.visualization.arrayToDataTable([${chart}], true);
+
+    var options = {
+ 	     legend: 'none',
+ 	     bar: { groupWidth: '100%' }, // Remove space between bars.
+	     candlestick: {
+ 	            fallingColor: { strokeWidth: 0, fill: '#0400FF' }, // red
+ 	            risingColor: { strokeWidth: 0, fill: '#FF0400' }   // green
+   	     }
+ 	};
+
+    var chart = new google.visualization.CandlestickChart(document.getElementById('chart_div'));
+
+    chart.draw(data, options);
+  }
+</script>
+
+
 <div class="main-map">
 <% trans.Data(); %>
 	<div class="map" id="map">
@@ -153,6 +178,6 @@
 				</c:if>
 			</c:if>
 		</table>
-		
 	</div>
+	<div class="rank" id="chart_div" style="width: 900px; height: 500px;"></div>
 </div>

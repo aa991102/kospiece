@@ -1,5 +1,7 @@
 package main.command;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -27,9 +29,12 @@ public class MainSearchHandler implements CommandHandler{
 		
 		//비즈니스
 		SearchStockWithDetailVO info = mainSearchService.getStockInfo(sname);
+		String chartinfo = mainSearchService.getChartinfo(info.getStockVO().getNo());
+		
 		
 		//model
 		request.setAttribute("info", info);
+		request.setAttribute("chart", chartinfo);
 		if(info==null) {
 			request.setAttribute("error", "검색하신 업체는 존재하지 않습니다.");
 		}
