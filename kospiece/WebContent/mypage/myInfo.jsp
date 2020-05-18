@@ -8,7 +8,16 @@
 </head>
 <body>
 <div class="title">내 정보</div>
+<div class="title-sub" >
+	<a href="<%= request.getContextPath()%>/main.do">홈</a>
+	&nbsp;|&nbsp;<a href="<%= request.getContextPath()%>/mypage.do">마이페이지</a>
+	&nbsp;|&nbsp;<a href="<%= request.getContextPath()%>/myInfo.do">내 정보</a>
+</div>
 
+<div id="help" class="helpDiv">
+	자산포인트란?<input type="button" id="helpClose" value="✕"/>
+	<br/>예수금포인트~~~입니다.
+</div>
 <div class="myDiv">
 	<table class="myT">
 		<tr>
@@ -36,8 +45,9 @@
 			<td class="infoContent">${member.deposit} p</td>
 		</tr>
 		<tr>
-			<th class="infoH">자산 포인트</th>
+			<th class="infoH">자산 포인트<input type="button" value="?" id="helpBtn"/></th>
 			<td class="infoContent">${member.asset} p</td>
+			
 		</tr>
 	</table>
 	<div class="infoBtn-wrapper">

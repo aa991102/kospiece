@@ -2,12 +2,9 @@ package mypage.service;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.Date;
 
 import dao.MyInterestDAO;
 import dao.StockDAO;
-import dto.FreeBoardVO;
-import dto.StockVO;
 import jdbc.JdbcUtil;
 import jdbc.connection.ConnectionProvider;
 

@@ -1,5 +1,6 @@
 package member.command;
 
+import java.sql.Connection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -8,7 +9,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dto.MemberVO;
+import jdbc.connection.ConnectionProvider;
 import controller.command.CommandHandler;
+import dao.MemberDAO;
 import member.service.DuplicateMailException;
 import member.service.DuplicateNickException;
 import member.service.DuplicatePhoneException;
@@ -29,18 +32,17 @@ public class InfoUpdateHandler implements CommandHandler {
 	private static final String CUR_VIEW = "/mypage/myInfo/myInfoUpdateForm.jsp";
 	private static final String NEXT_VIEW = "/mypage/myInfo/myInfoUpdateSuccess.jsp";
 	private InfoUpdateService infoUpSvc = new InfoUpdateService();
+	private String path = "";
 
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
 		session = request.getSession();
-		member = (MemberVO)session.getAttribute("AUTHUSER"); //기존의 회원 정보
 		
-		//user session 정보가 없으면 processForm
-		if(member == null) {
+		//session 정보가 없으면 processForm
+		if(session.getAttribute("AUTHUSER") == null) {
 			return processForm(request, response);
 		
-		//user session 정보가 있으면 process 실행
+		//session 정보가 있으면 process 실행
 		}else {
 			
 			//post방식이면 processSubmit
@@ -58,7 +60,10 @@ public class InfoUpdateHandler implements CommandHandler {
 	
 	//미로그인시
 	private String processForm(HttpServletRequest request, HttpServletResponse response) {
-		return "/kospiece/login.do";
+		path = request.getRequestURI(); 
+		request.setAttribute("path", path);
+		
+		return "/member/login.jsp";
 	}
 	
 	
@@ -68,6 +73,11 @@ public class InfoUpdateHandler implements CommandHandler {
 	 *  - 성공시 /mypage/myInfo/myInfoUpdateSuccess.jsp
 	 */
 	private String processSubmit(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		//기존의 회원 정보(변경전)
+		Connection conn = ConnectionProvider.getConnection();
+		MemberDAO memberDao = new MemberDAO();
+		String mid = (String)session.getAttribute("ID");
+		member = memberDao.selectById2(conn, mid);
 		
 		//회원이 입력한 파라미터값 받기
 		String changeNick = request.getParameter("changeNickName");
@@ -116,7 +126,8 @@ public class InfoUpdateHandler implements CommandHandler {
 			user = infoUpSvc.infoUpdate(id, changeNick, changeMail, changePhone);
 			System.out.println("user는!!!"+user.toString());
 			
-			session.setAttribute("AUTHUSER", user);
+			session.setAttribute("MNO", id);
+			session.setAttribute("NICKNAME", changeNick);
 			
 			System.out.println("회원정보 수정완료");
 			return NEXT_VIEW;
@@ -142,7 +153,11 @@ public class InfoUpdateHandler implements CommandHandler {
 		}catch(Exception e){ // 일단 로그인폼으로 보내자
 			System.out.println("회원정보 수정 실패");
 			e.getStackTrace();
-			return "/kospiece/login.do";
+			
+			path = request.getRequestURI(); 
+			request.setAttribute("path", path);
+			
+			return "/member/login.jsp";
 		}
 	}
 

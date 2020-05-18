@@ -1,6 +1,5 @@
 package mypage.command;
 
-import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,23 +8,28 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import controller.command.CommandHandler;
-import dto.MemberVO;
+import dto.FreeBoardVO;
 import dto.MyStockVO;
 import dto.StockVO;
-import jdbc.connection.ConnectionProvider;
+import mypage.service.MyBoardListService;
 import mypage.service.MyInterestListService;
-import simulation.service.MyInvestService;
+import simulation.service.MyInvestListService;
 
 public class MypageListHandler implements CommandHandler {
 
 	//마이페이지 핸들러
 
 	HttpSession session = null;
-	private static final String FORM_VIEW ="/login.do";  // 로그인페이지
+	private static final String FORM_VIEW ="/member/login.jsp";  // 로그인페이지
 	
 	MyInterestListService myInterestListSvc = new MyInterestListService();
+	MyBoardListService myBoardListService = new MyBoardListService();
+	MyInvestListService myInvestListService = new MyInvestListService();
 	List<StockVO> myInterestList = null;
 	List<StockVO> myInterestList5 = new ArrayList<StockVO>();
+	List<FreeBoardVO> myBoardList = null;
+	ArrayList<MyStockVO> myInvestList = null;
+	private String path = "";
 	
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -43,41 +47,50 @@ public class MypageListHandler implements CommandHandler {
 
 	
 	private String processForm(HttpServletRequest request, HttpServletResponse response) {
+		path = request.getRequestURI(); 
+		request.setAttribute("path", path);
+		System.out.println("MypageListHandler의 path="+path);
 		return FORM_VIEW;
 	}
 	
 	
 	private String processSubmit(HttpServletRequest request, HttpServletResponse response) {
-		MemberVO member = null;
 		
 		try {
-			Connection conn = ConnectionProvider.getConnection();
+			int mno = (int)session.getAttribute("MNO");
+			String fmemnick = (String)session.getAttribute("NICKNAME");
 			
-			member = (MemberVO)request.getSession(false).getAttribute("AUTHUSER");
-			int mno = member.getMno();
+			
+			
+			//관심주식 리스트 가져오기(최대 5개)
 			myInterestList = myInterestListSvc.myInterestListService(mno);
-			
-			//해당 회원의 관심주식회사가 5개보다 많으면 5개만 가져오기
-			//System.out.println("myInterestList.size()="+myInterestList.size());
-			if(myInterestList.size()>5) {
-				if(myInterestList5.size()<5) {
-					for(int i=0;i<5;i++) {
-						myInterestList5.add(myInterestList.get(i));
-					}
-				}
-				if(!myInterestList5.isEmpty()) {
-					request.setAttribute("myInterestList", myInterestList5);
-				}
-				//System.out.println("myInterestList5="+myInterestList5);
-			}else {
-				request.setAttribute("myInterestList", myInterestList);
-			}
-			
+			request.setAttribute("myInterestList", myInterestList);
 			//해당 회원의 관심주식회사가 없는 경우 없다는 멘트 띄우기
 			if(myInterestList.size()<1) {
 				request.setAttribute("noInterest", Boolean.TRUE);
 			}
-			//ArrayList<MyStockVO> g = MyInvestService.getMyList(mno);
+			
+			
+			
+			//가상투자 리스트 가져오기(최대 5개)
+			ArrayList<MyStockVO> myInvestList = myInvestListService.getMyList(mno);
+			request.setAttribute("myInvestList", myInvestList);
+			//해당 회원의 게시글이 없는 경우 없다는 멘트 띄우기
+			if(myInvestList.size()<1 | myInvestList==null) {
+				request.setAttribute("noInvest", Boolean.TRUE);
+			}
+			
+			
+			
+			//내 게시글 리스트 가져오기(최신순으로 최대 5개까지)
+			myBoardList = myBoardListService.boardListService5(fmemnick);
+			request.setAttribute("myBoardList", myBoardList);
+			//해당 회원의 게시글이 없는 경우 없다는 멘트 띄우기
+			if(myBoardList.size()<1 | myBoardList==null) {
+				request.setAttribute("noBoard", Boolean.TRUE);
+			}
+			
+			
 			return "/mypage/mypage.jsp";
 				
 			

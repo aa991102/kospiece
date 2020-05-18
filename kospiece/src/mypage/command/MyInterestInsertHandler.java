@@ -5,7 +5,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import controller.command.CommandHandler;
-import dto.StockVO;
 import mypage.service.MyInterestInsertService;
 
 public class MyInterestInsertHandler implements CommandHandler {
@@ -45,7 +44,6 @@ public class MyInterestInsertHandler implements CommandHandler {
 		int mno = (int)session.getAttribute("MNO");
 		
 		//비즈니스 수행
-		StockVO stock = new StockVO();
 		MyInterestInsertService service = new MyInterestInsertService();
 		
 		String sno = service.selectSnoBySname(sname);

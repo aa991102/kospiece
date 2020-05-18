@@ -8,8 +8,13 @@
 </head>
 <body>
 <div class="title">회원탈퇴</div>
+<div class="title-sub" >
+	<a href="<%= request.getContextPath()%>/main.do">홈</a>
+	&nbsp;|&nbsp;<a href="<%= request.getContextPath()%>/mypage.do">마이페이지</a>
+	&nbsp;|&nbsp;<a href="<%= request.getContextPath()%>/myInfo.do">내 정보</a>
+</div>
 <div class="myDiv">
-<form action="/kospiece/withdrawal.do" method="post">
+<form action="/kospiece/withdrawal.do" method="post" id="withdrawalFrm">
 	<table class="myDivT">
 	    <tr>
 	        <th>아이디</th><td>${member.id}</td>
@@ -17,9 +22,9 @@
 	    <tr>
 	        <th>비밀번호</th>
 	        <td>
-	            <input type="password" name="passcheck" class="passcheck" id="passcheck"/>
-	            <input type="button" class="deletebtn" id="deletebtn" value="✕"/>
-	            <input type="button" class="seebtn" id="seebtn" value="보기"/>
+	            <input type="password" name="passcheck" class="curPw"/>
+	            <input type="button" class="deleteCurBtn" value="✕"/>
+	            <input type="button" class="seeCurBtn" value="보기"/>
 	            <c:if test="${errors.checkPw}"><br/>비밀번호를 입력하세요.</c:if>
               <c:if test="${errors.badCurPw}"><br/>비밀번호가 일치하지 않습니다.</c:if>
 	        </td>
@@ -27,7 +32,7 @@
 	    <tr>
 	        <td colspan="2" align="center">
 	            <input type="submit" class="smbtn" id="smbtn" value="탈퇴"/>
-	            <input type="button" value="취소" />
+	            <input type="button" value="취소" id="Nope" onClick="location.href='<%=request.getContextPath()%>/myInfo.do'"/>
 	        </td>
 	    </tr>
 	    <tr>

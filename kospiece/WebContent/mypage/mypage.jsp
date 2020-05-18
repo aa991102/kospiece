@@ -11,7 +11,10 @@
 
 <body>
 <div class="title">마이페이지</div>
-
+<div class="title-sub" >
+	<a href="<%= request.getContextPath()%>/main.do">홈</a>
+	&nbsp;|&nbsp;<a href="<%= request.getContextPath()%>/mypage.do">마이페이지</a>
+</div>
 <div class="my">
 	<div class="TH" style=" cursor: pointer;" onclick="location.href='/kospiece/myInterest.do';" >
 		<a>관심주식 더보기</a>
@@ -29,7 +32,7 @@
 			<th>시가총액</th>
 			<th>52주고가</th>
 		</tr>
-		<c:forEach var="list" items="${myInterestList}" varStatus="status">
+		<c:forEach var="list" items="${myInterestList}" end="4" varStatus="status">
 	    <tr>
 				<td>${list.name}</td>
 				<td>${list.field}</td>
@@ -60,22 +63,22 @@
             <th>기사총액</th>
             <th>보유량</th>
 		</tr>
-		<c:forEach var="list" items="${mysumlationList}" end="4" varStatus="status">
+		<c:forEach var="list" items="${myInvestList}" end="4" varStatus="status">
 	    <tr>
-	        <td><a herf="/simulationlist.do">${list.stock.name}</a></td>
-	        <td><a herf="/simulationlist.do">${list.stock.price}</a></td>
-	        <td><a herf="/simulationlist.do">${list.stock.dayrate}</a></td>
-	        <td><a herf="/simulationlist.do">${list.stock.changerate}</a></td>
-	        <td><a herf="/simulationlist.do">${list.stock.total}</a></td>
-	        <td><a herf="/simulationlist.do">${list.totalquantity}</a></td>
-	        <td>
+	        <td>${list.stock.name}</td>
+	        <td>${list.stock.price}</td>
+	        <td>${list.stock.dayrate}</td>
+	        <td>${list.stock.changerate}</td>
+	        <td>${list.stock.total}</td>
+	        <td>${list.totalquantity}</td>
 	    </tr>
     </c:forEach>
+    <c:if test="${noInvest}"><tr><td colspan="100%">가상투자 보유주식이 없습니다</td></tr></c:if>
 	</table>
 </div>
 
 <div class="my" >
-	<div class="TH" style=" cursor: pointer;" onclick="location.href='myPost.jsp';" >
+	<div class="TH" style=" cursor: pointer;" onclick="location.href='/kospiece/myBoardList.do';" >
 		<a>내 게시글 더 보기</a>
 	</div>
 	<table class="myT" >
@@ -83,14 +86,17 @@
 			<th>제목</th>
 			<th>작성자</th>
 			<th>작성일</th>
-			<th>조회</th>
+			<th>조회수</th>
 		</tr>
-		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-		</tr>
+		<c:forEach var="list" items="${myBoardList}" end="4" varStatus="status">
+	    <tr>
+	        <td>${list.title}</td>
+	        <td>${list.nickname}</td>
+	        <td>${list.uploaddate}</td>
+	        <td>${list.hit}</td>
+	    </tr>
+    </c:forEach>
+    <c:if test="${noBoard}"><tr><td colspan="100%">내 게시글이 없습니다</td></tr></c:if>
 	</table>
 </div>
 

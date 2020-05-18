@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import controller.command.CommandHandler;
+import dao.MemberDAO;
 import dto.MemberVO;
 import dto.StockVO;
 import jdbc.connection.ConnectionProvider;
@@ -20,17 +21,18 @@ public class MyInterestListHandler implements CommandHandler {
 	 */
 	
 	HttpSession session = null;
+	private String path = "";
 	MyInterestListService myInterestListSvc = new MyInterestListService();
 	List<StockVO> myInterestList = null;
 	
-	private static final String FORM_VIEW ="/login.do";  // 로그인페이지
+	private static final String FORM_VIEW ="/member/login.jsp";  // 로그인페이지
 	
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		System.out.println("MyInterestListHandler-process()");
 		//session 정보 가져오기
 		session = req.getSession();
-		if(session == null) {//user session 정보가 없으면 login.jsp로 강제이동
+		if(session.getAttribute("AUTHUSER") == null) {//user session 정보가 없으면 login.jsp로 강제이동
 			return processForm(req, res);
 		}else {//user session 정보가 있으면 process 실행
 			return processSubmit(req, res);
@@ -41,6 +43,8 @@ public class MyInterestListHandler implements CommandHandler {
 	
 	//로그인 안했을때
 	private String processForm(HttpServletRequest req, HttpServletResponse res) {
+		path = req.getRequestURI(); 
+		req.setAttribute("path", path);
 		return FORM_VIEW;
 	}//processForm() end
 
@@ -48,14 +52,16 @@ public class MyInterestListHandler implements CommandHandler {
 	//로그인 했을때 
 	private String processSubmit(HttpServletRequest req, HttpServletResponse res) {
 		MemberVO member = null;
+		MemberDAO memberDao = new MemberDAO();
 		
 		try {
 			Connection conn = ConnectionProvider.getConnection();
 			
-			member = (MemberVO)req.getSession(false).getAttribute("AUTHUSER");
+			String id = (String)req.getSession(false).getAttribute("ID");
+			member = memberDao.selectById2(conn, id);
 			int mno = member.getMno();
+			
 			myInterestList = myInterestListSvc.myInterestListService(mno);
-			System.out.println("processSubmit-myInterestList"+myInterestList.toString());
 			
 			req.setAttribute("myInterestList", myInterestList);
 			

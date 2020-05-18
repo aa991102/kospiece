@@ -67,7 +67,36 @@ public class MemberDAO {
 		return member;
 	}
 	
-	
+	//로그인한 회원의 정보를 가져오기 위해
+	public MemberVO selectById2(Connection conn, String id) 
+			throws SQLException {
+		
+		System.out.println("MemberDAO-selectById(id)호출="+id);
+		
+		String sql = "SELECT * FROM member WHERE mid = ?";
+		
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, id);
+		rs = pstmt.executeQuery();
+		if( rs.next() ) {
+			
+			int mno = rs.getInt("mno");
+			String memberid = rs.getString("mid");
+			String mnick    = rs.getString("mnick");
+			String password = rs.getString("mpw");
+			String mname 	= rs.getString("mname");
+			String mmail	= rs.getString("mmail");
+			String mphone	= rs.getString("mphone");
+			int deposit		= rs.getInt("mdeposit");
+			int asset		= rs.getInt("masset"); 
+			
+			member = new MemberVO(mno, memberid,mnick,password,mname,mmail,mphone,deposit,asset);
+			
+		}
+		return member;
+	}
+		
+		
 	//로그인 시간 업데이트
 	public void updateLoginTime(Connection conn, int mno) {
 		PreparedStatement pstmt = null;

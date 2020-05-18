@@ -7,9 +7,14 @@
     <title>Title</title>
 </head>
 <body>
-<div class="title">정보수정</div>
+<div class="title">정보 수정</div>
+<div class="title-sub" >
+	<a href="<%= request.getContextPath()%>/main.do">홈</a>
+	&nbsp;|&nbsp;<a href="<%= request.getContextPath()%>/mypage.do">마이페이지</a>
+	&nbsp;|&nbsp;<a href="<%= request.getContextPath()%>/myInfo.do">내 정보</a>
+</div>
 <div class="myDiv">
-<form action="/kospiece/infoUpdate.do" method="post" >
+<form action="/kospiece/infoUpdate.do" method="post" id="infoUpdateFrm">
 	<table class="myDivT">
 	    <tr>
 	        <th>아이디</th>
@@ -46,8 +51,8 @@
 	    <tr>
 	    	<td colspan="2" align="center">
 	    		<c:if test="${errors.noChange}">변경사항이 없습니다.<br/></c:if>
-	    		<input type="submit" formaction="/kospiece/infoUpdate.do" value="변경" class="" id="" /> 
-	    		<input type="button" value="취소" class="" id="" />
+	    		<input type="submit" formaction="/kospiece/infoUpdate.do" value="변경" /> 
+	    		<input type="button" value="취소" class="" id="Nope" onClick="location.href='<%=request.getContextPath()%>/myInfo.do'"/>
 	    	</td>
 	    </tr>
 	</table>
