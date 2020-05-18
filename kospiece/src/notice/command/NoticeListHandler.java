@@ -31,10 +31,9 @@ public class NoticeListHandler implements CommandHandler {
 		column=request.getParameter("search");
 		value=request.getParameter("content");
 		page=request.getParameter("page");
-		System.out.println(column+value+page);
 
 		if(value==null) {
-			System.out.print("검색내용 없을 때 ");
+			System.out.println("검색내용 없을 때");
 			return processTotalNotice(request,response);
 		}else if(value!=null) {
 			System.out.print("검색내용 있을 때 ");
@@ -53,10 +52,9 @@ public class NoticeListHandler implements CommandHandler {
 		
 		if(page==null) {//처음화면
 			pageNo=1;
-			System.out.print("처음화면 ");
 		}else {
 			pageNo=Integer.parseInt(page);
-			System.out.print(pageNo+"페이지");
+			System.out.println("공지사항"+pageNo+"페이지");
 		}
 		
 		noticePage = noticeListService.noticeListService(pageNo);
@@ -77,13 +75,13 @@ public class NoticeListHandler implements CommandHandler {
 		
 		if(request.getMethod().equalsIgnoreCase("POST")) {//처음화면
 			pageNo=1;
-			System.out.print("검색시 처음화면");
+			System.out.print("검색시 처음화면-");
 		}else {
 			pageNo=Integer.parseInt(page);
-			System.out.print(pageNo+"페이지");
+			System.out.print(pageNo+"페이지-");
 		}
 		
-		System.out.print(column+"컬럼의 "+value+"가 들어있는 공지사항만 출력");
+		System.out.println(column+"컬럼의 "+value+"라는 내용이 포함되는 공지사항만 출력");
 		
 		noticePage=noticeListService.noticeListService(pageNo,column,value);
 		

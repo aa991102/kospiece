@@ -79,7 +79,8 @@ public class WriteBoardHandler implements CommandHandler {
 				nickname,
 				req.getParameter("title"), 
 				req.getParameter("content"),
-				new Date());
+				new Date()
+				);
 	}
 
 }

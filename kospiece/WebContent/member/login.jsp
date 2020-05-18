@@ -5,6 +5,7 @@
 
 <div class="login">
     <form name="login" id="login" method="post" action="<%= request.getContextPath()%>/login.do">
+    <input type="hidden" name="path" value="${path}"/>
         <table>
         <tr>
             <tr>

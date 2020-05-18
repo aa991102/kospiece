@@ -6,7 +6,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
 
@@ -18,6 +17,7 @@ public class MemberDAO {
 	PreparedStatement pstmt = null;
 	ResultSet rs  = null;
 	MemberVO member = null;
+	public List<MemberVO> memberlist;
 	
 	//회원가입 로직
 	public void  insert(Connection conn,MemberVO mem)
@@ -115,13 +115,7 @@ public class MemberDAO {
 			e.printStackTrace();
 			System.out.println();
 		}
-		
-		
-		
-		
 	}
-	
-	
 	
 	//비밀번호 변경 기능
 	public void pwUpdate(Connection conn,MemberVO member) throws SQLException{
@@ -223,39 +217,7 @@ public class MemberDAO {
 		return id;
 	}
 	
-	/*1.AdminService(관리자페이지 홈화면)*/
-	//전체 회원 수 구하는 메서드
-	public int selectTotalMember(Connection conn) throws SQLException {
-		String sql = "select count(*) from member";
-		pstmt = conn.prepareStatement(sql);
-		rs=pstmt.executeQuery();
-		rs.next();
-		return rs.getInt(1);
-	}
-	
-	//신규(오늘 가입한) 회원 수 구하는 메서드
-	public int selectTodayMember(Connection conn) throws SQLException {
-			String sql = "select count(*) from member where mdate=?";
-			
-			pstmt = conn.prepareStatement(sql);
-			
-			Calendar cal = Calendar.getInstance();
-			 
-			//현재 년도, 월, 일
-			int year = cal.get ( Calendar.YEAR );
-			int month = cal.get ( Calendar.MONTH );
-			int date = cal.get ( Calendar.DATE );
-			String today=year+"-"+(month+1)+"-"+(date+1);
-			
-			Date now=Date.valueOf(today);
-			
-			pstmt.setDate(1, now);
-			rs=pstmt.executeQuery();
-			rs.next();
-			return rs.getInt(1);
-	}
-	
-	/*2.UserListService(회원관리 페이지)*/
+	/*UserListService(회원관리 페이지)*/
 	
 	//회원목록 셋팅해주는 메서드
 	private MemberVO memberListResultSet(ResultSet rs) throws SQLException{
@@ -270,11 +232,14 @@ public class MemberDAO {
 	}
 	
 	//관리자페이지에서 회원 전체보기
-	public List<MemberVO> selectAllMember(Connection conn) throws SQLException {
+	public List<MemberVO> selectAllMember(Connection conn,int startRow,int size) throws SQLException {
 	
-		String sql = "select mnick,mid,mname,mmail,mdate,mdeposit from member";
+		String sql = "select mnick,mid,mname,mmail,mdate,mdeposit from member"
+				+ " limit ?,?";
 		
 		pstmt = conn.prepareStatement(sql);
+		pstmt.setInt(1, startRow);
+		pstmt.setInt(2, size);
 		rs=pstmt.executeQuery();
 		
 		if(rs.next()) {
@@ -291,12 +256,15 @@ public class MemberDAO {
 	}
 
 	//지정한 조건의 회원만 보기
-	public List<MemberVO> selectedMember(Connection conn, String column, String value) throws SQLException {
-		String sql = "select mnick,mid,mname,mmail,mdate,mdeposit from member where "+column+" like ?";
+	public List<MemberVO> selectedMember(Connection conn,int startRow,int size, String column, String value) throws SQLException {
+		String sql = "select mnick,mid,mname,mmail,mdate,mdeposit from member where "+column+" like ?"
+				+ " limit ?,?";
+		
 		value="%"+value+"%";
 		pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, value);
-		System.out.println(pstmt);
+		pstmt.setInt(2, startRow);
+		pstmt.setInt(3, size);
 		rs=pstmt.executeQuery();
 		
 		if(rs.next()) {
@@ -312,45 +280,61 @@ public class MemberDAO {
 		}
 	}
 	
-	//관리자 비밀번호 맞는지 확인
-			public Boolean checkPw(Connection conn,String id, String pw) throws SQLException {
-				
-				String sql = "select mpw from member where mid=?";
-				
-				pstmt = conn.prepareStatement(sql);
-				pstmt.setString(1, id);
-				rs=pstmt.executeQuery();
-				
-				if(rs.next()) {
-					System.out.print("진짜 번호는 "+rs.getString("mpw"));
-					if(rs.getString("mpw").equals(pw)) {
-						return true;
-					}else {
-						return false;
-					}
-					
-				}else {
-					return false;
-				}
-			}
+	//지정한 조건의 회원수 검색
+		public int selectedMemberCount(Connection conn,String column, String value) throws SQLException {
+			String sql = "select count(*) from member where "+column+" like ?";
+			
+			value="%"+value+"%";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, value);
+			
+			rs=pstmt.executeQuery();
+			
+			rs.next();
+			return rs.getInt(1);
+		}
 	
-	//관리자가 회원 강제탈퇴시키기
-	public void deleteMember(Connection conn,String id) throws SQLException {
-		String sql = "delete from member where mid=?";
+	//관리자 비밀번호 맞는지 확인
+	public Boolean checkPw(Connection conn,String id, String pw) throws SQLException {
+		
+		String sql = "select mpw from member where mid=?";
 		
 		pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, id);
+		rs=pstmt.executeQuery();
+		
+		if(rs.next()) {
+			System.out.print("회원님의 실제 비밀번호는 "+rs.getString("mpw")+"입니다");
+			if(rs.getString("mpw").equals(pw)) {
+				return true;
+			}else {
+				return false;
+			}
+			
+		}else {
+			return false;
+		}
+	}
+	
+	//관리자가 회원 강제탈퇴시키기
+	public void deleteMember(Connection conn,String nick) throws SQLException {
+		String sql = "delete from member where mnick=?";
+		
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, nick);
 		pstmt.executeUpdate();
 		
 	}
 
 	//관리자가 회원 포인트 충전
-	public void pointCharge(Connection conn, int point) {
-			String sql = "update";
+	public void pointCharge(Connection conn, String nick, int point) {
+			String sql = "UPDATE member SET mdeposit=mdeposit+? where mnick=?";
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
-			//pstmt.setString(1, id);
+			pstmt.setInt(1, point);
+			pstmt.setString(2, nick);
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -374,10 +358,7 @@ public class MemberDAO {
 			JdbcUtil.rollback(conn);
 			e.printStackTrace();
 		}
-		
 	}
-	
-	
 }
 
 

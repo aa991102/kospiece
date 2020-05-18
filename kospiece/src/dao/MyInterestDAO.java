@@ -51,7 +51,6 @@ public class MyInterestDAO {
 	
 	//관심주식 추가
 	public void insertBySno(Connection conn, int mno, String sno) throws SQLException {
-		System.out.println("MyInterestVO-insert()호출");
 		
 		String sql = "INSERT INTO Interest(mno,sno) " + 
 				     " VALUES(?,?)";
@@ -66,7 +65,6 @@ public class MyInterestDAO {
 	
 	//관심주식 삭제
 	public void delete(Connection conn,int mno, String sno) throws SQLException {
-		System.out.println("MyInterestVO-delete()호출");
 		
 		String sql = "DELETE FROM interest WHERE mno=? AND sno=?";
 		

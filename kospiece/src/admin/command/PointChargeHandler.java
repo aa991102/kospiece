@@ -9,40 +9,25 @@ import controller.command.CommandHandler;
 
 public class PointChargeHandler implements CommandHandler {
 	
-	private static final String FORM_VIEW = "/admin/pointCharge.jsp";
+	private static final String FORM_VIEW = "/userList.do";
 	
 	PointChargeService pointChargeService=new PointChargeService();
 	
 	@Override
 	public String process(HttpServletRequest request, 
 						  HttpServletResponse response) throws Exception {
+		
 		System.out.print("PointChargeHandler 진입 ");
 		
-		if(request.getMethod().equalsIgnoreCase("GET")) {
-			System.out.print("get방식");
-			return processForm(request,response);//파라미터가 없으면
-		}else if(request.getMethod().equalsIgnoreCase("POST")) {
-			System.out.print("post");
-			return processCharge(request,response);//파라미터가 있으면
-		}else {
-			response.setStatus(HttpServletResponse.SC_METHOD_NOT_ALLOWED); 
-			return   null;
-		}
-	}
-	
-	private String processForm(HttpServletRequest request, HttpServletResponse response) {
-		//파라미터 없을때 폼을 보여준다.
+		String charge=request.getParameter("point");
+		charge=charge.replaceAll(" ",""); //잘못입력한 공백을 제거
 		
-		return FORM_VIEW;
+		int point=Integer.parseInt(charge);
+		String nick=request.getParameter("nick");
 		
-	}
-	private String processCharge(HttpServletRequest request, HttpServletResponse response) {
-		//파라미터 있을때 실행하는 로직. 선택된 조건의 회원리스트만 출력한다.
+		System.out.println(nick+"님에게 "+point+"포인트를 충전");
 		
-		int point=Integer.parseInt(request.getParameter("point"));
-		String id=request.getParameter("id");
-		System.out.println(point+id);
-		pointChargeService.pointCharge(point);
+		pointChargeService.pointCharge(nick,point);
 		
 		return FORM_VIEW;
 		

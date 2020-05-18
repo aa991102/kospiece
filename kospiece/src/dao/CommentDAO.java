@@ -6,11 +6,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
+import java.util.Date;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import dto.FreeBoardVO;
 import dto.FreeCommentVO;
 import jdbc.JdbcUtil;
 
@@ -36,6 +37,7 @@ public class CommentDAO {
 			JdbcUtil.close(pstmt);
 		}
 	}
+	
 	public int selectCount(Connection conn) throws SQLException {
 		System.out.println("CommentDAO-selectCount()호출");
 		try {

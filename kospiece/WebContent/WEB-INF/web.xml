@@ -64,13 +64,19 @@
     	<servlet-name>ControllerUsingURI</servlet-name>
     	<url-pattern>*.do</url-pattern>
     </servlet-mapping>
+    
+    <listener>
+
+			<listener-class>admin.listener.SessionListener</listener-class>
+
+		</listener>
  
- <jsp-config>
- 	<jsp-property-group>
- 		<url-pattern>*.jsp</url-pattern>
- 		<include-prelude>/header.jspf</include-prelude>
- 		<include-coda>/footer.jspf</include-coda>
- 	</jsp-property-group>
- </jsp-config>
+	 <jsp-config>
+	 	<jsp-property-group>
+	 		<url-pattern>*.jsp</url-pattern>
+	 		<include-prelude>/header.jspf</include-prelude>
+	 		<include-coda>/footer.jspf</include-coda>
+	 	</jsp-property-group>
+	 </jsp-config>
 
 </web-app>

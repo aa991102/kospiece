@@ -64,11 +64,8 @@ public class BoardDAO {
 			String sql ="SELECT * from freeboard order by fno desc LIMIT ?, ?"; //0부터 시작함
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, startRow);
-<<<<<<< Updated upstream
 			pstmt.setInt(2, size);;
-=======
 			pstmt.setInt(2, size);
->>>>>>> Stashed changes
 			rs = pstmt.executeQuery();
 			List<FreeBoardVO> result = new ArrayList<>();
 			while (rs.next()) {
@@ -136,21 +133,9 @@ public class BoardDAO {
 	private FreeBoardVO toFreeBoardVO(ResultSet rs) throws SQLException{
 		return new FreeBoardVO(
 				rs.getInt("fno"), rs.getString("fclass"), rs.getString("fmemnick"), rs.getString("ftitle"),
-				rs.getString("fcontent"), toDate(rs.getTimestamp("fdate")), rs.getInt("fhit"));
-	}
-	private Date toDate(Timestamp timestamp) {
-		return new Date(timestamp.getTime());
+				rs.getString("fcontent"), rs.getTimestamp("fdate"), rs.getInt("fhit"));
 	}
 	private Timestamp toTimestamp(Date date) {
 		return new Timestamp(date.getTime());
 	}
-<<<<<<< Updated upstream
-
-=======
-	 
-	 private Timestamp toTimestamp(Date date) { return new
-			 Timestamp(date.getTime()); }
-	
->>>>>>> Stashed changes
-
 }

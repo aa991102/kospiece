@@ -154,4 +154,27 @@ public class NoticeDAO {
 		pstmt.setString(2, content);
 		pstmt.executeUpdate();
 	}
+	
+	//공지사항 수정
+	public void updateNotice(Connection conn, int no, String title,String content) throws SQLException {
+		
+		sql = "update notice set ntitle=?, ncontent=? where nno=?";
+		
+		pstmt = conn.prepareStatement(sql);
+		
+		pstmt.setString(1, title);
+		pstmt.setString(2, content);
+		pstmt.setInt(3, no);
+		pstmt.executeUpdate();		
+	}
+
+	public void deleteNotice(Connection conn, int no) throws SQLException {
+		sql = "delete from notice where nno=?";
+		
+		pstmt = conn.prepareStatement(sql);
+		
+		pstmt.setInt(1, no);
+		pstmt.executeUpdate();
+	}
+	
 }

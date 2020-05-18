@@ -1,13 +1,11 @@
 package comment.command;
 
-import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import comment.service.WriteCommentService;
 import controller.command.CommandHandler;
-import dto.FreeBoardVO;
 import dto.FreeCommentVO;
 
 public class WriteCommentHandler implements CommandHandler {

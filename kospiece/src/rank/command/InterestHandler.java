@@ -15,26 +15,7 @@ public class InterestHandler implements CommandHandler {
 	@Override
 	public String process(HttpServletRequest request, 
 						  HttpServletResponse response) throws Exception {
-		System.out.print("interestHandler 진입 ");
-		
-		
-		if(request.getMethod().equalsIgnoreCase("GET")) {
-			System.out.print("get방식 ");
-			return processTotalList(request,response);//파라미터가 없으면
-		}else if(request.getMethod().equalsIgnoreCase("POST")) {
-			System.out.print("post방식 ");
-			return processSelectedList(request,response);//파라미터가 있으면
-		}else {
-			response.setStatus(HttpServletResponse.SC_METHOD_NOT_ALLOWED); 
-			return   null;
-		}
-	}
-	
-	private String processTotalList(HttpServletRequest request, HttpServletResponse response) {
-		return FORM_VIEW;
-	
-	}
-	private String processSelectedList(HttpServletRequest request, HttpServletResponse response) {
+		System.out.print("interestHandler진입-");
 		
 		//관심주식 추가인지 삭제인지 파라미터로 받아오기
 		String interest=request.getParameter("interest");
@@ -44,13 +25,15 @@ public class InterestHandler implements CommandHandler {
 		HttpSession session = request.getSession();
 		int mno=(int) session.getAttribute("MNO");
 		
-		System.out.print("받은 회사명"+sno);
+		System.out.print("받은 회사 번호:"+sno+",");
 		
 		if(interest.equals("plus")) {
-		interestService.plusService(mno,sno);
+			interestService.plusService(mno,sno);
+			System.out.println("즐겨찾기 추가 완료");
 		}
 		if(interest.equals("delete")) {
-		interestService.deleteService(mno,sno);
+			interestService.deleteService(mno,sno);
+			System.out.println("즐겨찾기 삭제 완료");
 		}
 		
 		return FORM_VIEW;

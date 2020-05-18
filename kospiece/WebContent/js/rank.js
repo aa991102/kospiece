@@ -1,4 +1,3 @@
-
 $(function(){
 	
 	login=$('input[id="login"]').val();//로그인 여부를 알려주는 변수 선언(html에 히든으로 설정함)

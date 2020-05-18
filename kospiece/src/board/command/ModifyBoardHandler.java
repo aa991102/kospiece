@@ -11,7 +11,6 @@ import board.service.PermissionDeniedException;
 import board.service.ReadBoardService;
 import controller.command.CommandHandler;
 import dto.FreeBoardVO;
-import dto.MemberVO;
 
 public class ModifyBoardHandler implements CommandHandler {
 	private static final String FORM_VIEW = "/board/boardModify.jsp";
@@ -71,11 +70,11 @@ public class ModifyBoardHandler implements CommandHandler {
 		//현재 글 정보 받아오기
 		FreeBoardVO boardVO = readService.getBoard(fno, false);
 		//VO에 말머리, 제목, 컨텐트만 수정
-		boardVO = new FreeBoardVO(
-				fno,
+		boardVO = new FreeBoardVO(fno,	
 				req.getParameter("horsehead"),
 				req.getParameter("title"),
 				req.getParameter("content")); 
+		
 		req.setAttribute("board", boardVO); // jsp에서 쓰기 위한 객체선언
 		
 		try {

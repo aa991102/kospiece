@@ -1,15 +1,12 @@
+/dao/
+/main/
 /admin/
 /board/
 /comment/
 /controller/
-/dao/
 /dto/
-/filter/
-/jdbc/
 /json/
-/main/
 /member/
-/model/
 /mypage/
 /notice/
 /rank/
