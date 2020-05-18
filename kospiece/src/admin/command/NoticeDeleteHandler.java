@@ -22,6 +22,8 @@ public class NoticeDeleteHandler implements CommandHandler {
 		
 		noticeDeleteService.deleteService(no);
 		
+		request.setAttribute("service", "delete");
+		
 		return "noticeManage.do";
 	}
 

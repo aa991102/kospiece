@@ -17,6 +17,7 @@ public class MemberDAO {
 	PreparedStatement pstmt = null;
 	ResultSet rs  = null;
 	MemberVO member = null;
+	public List<MemberVO> memberlist;
 	
 	//회원가입 로직
 	public void  insert(Connection conn,MemberVO mem)
@@ -231,11 +232,14 @@ public class MemberDAO {
 	}
 	
 	//관리자페이지에서 회원 전체보기
-	public List<MemberVO> selectAllMember(Connection conn) throws SQLException {
+	public List<MemberVO> selectAllMember(Connection conn,int startRow,int size) throws SQLException {
 	
-		String sql = "select mnick,mid,mname,mmail,mdate,mdeposit from member";
+		String sql = "select mnick,mid,mname,mmail,mdate,mdeposit from member"
+				+ " limit ?,?";
 		
 		pstmt = conn.prepareStatement(sql);
+		pstmt.setInt(1, startRow);
+		pstmt.setInt(2, size);
 		rs=pstmt.executeQuery();
 		
 		if(rs.next()) {
@@ -252,11 +256,15 @@ public class MemberDAO {
 	}
 
 	//지정한 조건의 회원만 보기
-	public List<MemberVO> selectedMember(Connection conn, String column, String value) throws SQLException {
-		String sql = "select mnick,mid,mname,mmail,mdate,mdeposit from member where "+column+" like ?";
+	public List<MemberVO> selectedMember(Connection conn,int startRow,int size, String column, String value) throws SQLException {
+		String sql = "select mnick,mid,mname,mmail,mdate,mdeposit from member where "+column+" like ?"
+				+ " limit ?,?";
+		
 		value="%"+value+"%";
 		pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, value);
+		pstmt.setInt(2, startRow);
+		pstmt.setInt(3, size);
 		rs=pstmt.executeQuery();
 		
 		if(rs.next()) {
@@ -271,6 +279,21 @@ public class MemberDAO {
 			return Collections.emptyList();
 		}
 	}
+	
+	//지정한 조건의 회원수 검색
+		public int selectedMemberCount(Connection conn,String column, String value) throws SQLException {
+			String sql = "select count(*) from member where "+column+" like ?";
+			
+			value="%"+value+"%";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, value);
+			
+			rs=pstmt.executeQuery();
+			
+			rs.next();
+			return rs.getInt(1);
+		}
 	
 	//관리자 비밀번호 맞는지 확인
 	public Boolean checkPw(Connection conn,String id, String pw) throws SQLException {
