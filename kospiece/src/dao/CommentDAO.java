@@ -6,8 +6,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
+<<<<<<< HEAD
 import java.util.Date;
 
+=======
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import dto.FreeBoardVO;
+>>>>>>> dbxodn
 import dto.FreeCommentVO;
 import jdbc.JdbcUtil;
 
@@ -20,18 +28,28 @@ public class CommentDAO {
 	public void insert(Connection conn,FreeCommentVO comment)
 		throws SQLException {
 		System.out.println("CommentDAO.insert()호출");
+<<<<<<< HEAD
 		String sql = "INSERT INTO freecomment(fno, fcmemnick, fccontent) " + 
 				     " VALUES(?,?,?)";
+=======
+		String sql = "INSERT INTO freecomment(fno, fcmemnick, fccontent, fcdate) " + 
+				     " VALUES(?,?,?,?)";
+>>>>>>> dbxodn
 		try {
 		pstmt = conn.prepareStatement(sql);
 		pstmt.setInt(1,comment.getFno());
 		pstmt.setString(2,comment.getNickname());
 		pstmt.setString(3,comment.getContent());
+<<<<<<< HEAD
+=======
+		pstmt.setTimestamp(4,  toTimestamp(comment.getUploaddate()));
+>>>>>>> dbxodn
 		pstmt.executeUpdate();
 		}finally{
 			JdbcUtil.close(pstmt);
 		}
 	}
+<<<<<<< HEAD
 	
 	/*
 	 * private FreeCommentVO toFreeCommentVO(ResultSet rs) throws SQLException{
@@ -40,6 +58,48 @@ public class CommentDAO {
 	private Date toDate(Timestamp timestamp) {
 		return new Date(timestamp.getTime());
 	}
+=======
+	public int selectCount(Connection conn) throws SQLException {
+		System.out.println("CommentDAO-selectCount()호출");
+		try {
+			String sql = "select  count(*) from  freecomment";
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if (rs.next()) { // 등록된 게시물이 존재하면
+				return rs.getInt(1); // 전체 게시물수 리턴
+			}
+			return 0;
+		} finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+	}
+
+	public List<FreeCommentVO> select(Connection conn, int startRow, int size) throws SQLException {
+		System.out.println("CommentDAO-select()호출");
+		try {
+			String sql = "SELECT * from freeboard order by fno desc LIMIT ?, ?"; // 0부터 시작함
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, size);
+			rs = pstmt.executeQuery();
+			List<FreeCommentVO> result = new ArrayList<>();
+			while (rs.next()) {
+				result.add(toFreeCommentVO(rs));
+			}
+			return result;
+		} finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+	}
+	
+	private FreeCommentVO toFreeCommentVO(ResultSet rs) throws SQLException {
+		return new FreeCommentVO(rs.getInt("fcno"), rs.getInt("fno"),
+				rs.getString("fcmenick"), rs.getString("fccontent"), rs.getTimestamp("fcdate"));
+	}
+	
+>>>>>>> dbxodn
 	private Timestamp toTimestamp(Date date) {
 		return new Timestamp(date.getTime());
 	}

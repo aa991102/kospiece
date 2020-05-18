@@ -53,9 +53,7 @@
 			댓글
 		</div>
 		<div class="" id="2-2">
-			<form action="<%=request.getContextPath() %>/comment/write.do?pageNo=${param.pageNo}&fno=${param.fno}" method="post">
-				<input type="text" name="content"/> <input type="submit" value="등록"/>
-			</form>
+			<input type="text"/> <input type="button" value="등록"/>
 		</div>
 		<div class="" id="2-3">
 			<table style="width=100%" border=1>
@@ -67,19 +65,27 @@
 					<th>엄지다운</th>
 					<th>삭제버튼이 들어갈 컬럼</th>
 				</tr>
-<%-- 	 			<c:forEach var="board" items="${listboard.content}">
+<<<<<<< Updated upstream
+				<tr>
+					<td>홍길동</td>
+					<td>테스트용 텍스트입니다.</td>
+					<td>테스트용 텍스트입니다.</td>
+					<td>테스트용 텍스트입니다.</td>
+					<td>테스트용 텍스트입니다.</td>
+					<td>삭제</td>
+				</tr>
+=======
+			<c:forEach var="comment" items="${listcomment.content}">
 		 			<tr>
-		 				<td>${board.fno} </td>
-		 				<td>
-		 					<a href="<%= request.getContextPath()%>/board/read.do?pageNo=${listboard.currentPage}&fno=${board.fno}">
-		 						<c:out value="[${board.horsehead}]${board.title}"/></a>
-		 				</td>
-		 				<td>${board.nickname}</td>
-		 				<td>${board.uploaddate}</td>
-		 				<td>${board.hit}</td>
+		 				<td>${comment.nickname} </td>
+		 				<td>${comment.content}"/></td>
+		 				<td>${comment.uploaddate}</td>
+		 				<td>업</td>
+		 				<td>다운</td>
+		 				<td>삭제버튼</td>
 		 			</tr> 
 	 			</c:forEach>
-	 			--%>
+>>>>>>> Stashed changes
 			</table>
 		</div>
 	</div>

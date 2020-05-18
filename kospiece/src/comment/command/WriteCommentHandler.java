@@ -13,6 +13,10 @@ import dto.FreeCommentVO;
 public class WriteCommentHandler implements CommandHandler {
 
 	private WriteCommentService writecomment = new WriteCommentService();
+<<<<<<< HEAD
+=======
+	String path="";
+>>>>>>> dbxodn
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		System.out.println("\ncomment/command/WriteCommentHandler.process진입");
@@ -48,6 +52,12 @@ public class WriteCommentHandler implements CommandHandler {
 
 	private String processForm(HttpServletRequest req, HttpServletResponse res) {
 		System.out.println("-> processForm 진입");
+<<<<<<< HEAD
+=======
+		path = req.getRequestURI();
+		req.setAttribute("path",path);
+		
+>>>>>>> dbxodn
 		return "/login.do";
 	}
 }
