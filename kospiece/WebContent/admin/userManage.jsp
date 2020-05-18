@@ -109,7 +109,6 @@ function checkDelete(nick){
 	        </tr>
         </c:if>
 	 </c:forEach>
-	 ${memberPage }
 	 <!-- 검색된 공지사항이 없을 경우 출력 -->
    <c:if test="${memberPage.total==0}">
 			<tr>

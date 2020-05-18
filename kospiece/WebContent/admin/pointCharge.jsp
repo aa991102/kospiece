@@ -31,12 +31,12 @@ function checkForm(nick,point) {
 	<div class="point-box">
 		<form name="point-form" method="post" action="pointCharge.do" 
 			onsubmit="return checkForm('${userNick}','${point}');">
-			<p>포인트 충전</p>
+			<p class="pointCharge-msg">포인트 충전</p>
 			<p>${userNick}님의 보유 포인트 : ${point}P</p>
 			<p><input type="text" id="point" name="point"/>
-				P 충전하기<br/></p>
+				P 충전<br/></p>
 			<input type="hidden" name="nick" value="${userNick}"/>
-			<p><input type="submit" value="충전"/></p>
+			<p><input type="submit" value="충전" class="pointSubmit"/></p>
 		</form>
 	</div>
 </div>
