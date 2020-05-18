@@ -1,2 +1,14 @@
 /dao/
 /main/
+/admin/
+/board/
+/comment/
+/controller/
+/dto/
+/json/
+/member/
+/mypage/
+/notice/
+/rank/
+/simulation/
+/util/

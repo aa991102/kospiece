@@ -24,31 +24,18 @@ public class WriteBoardService {
 		String Nickname = board.getNickname();
 		String Title = board.getTitle();
 		String Content = board.getContent();
-<<<<<<< Updated upstream
 		Date Uploaddate = board.getUploaddate();
 		
-=======
-		Date uploaddate = board.getUploaddate();
-
-		// 파라미터 전달받기
-		FreeBoardVO boardVO = new FreeBoardVO(Horsehead, Nickname, Title, Content, uploaddate);
-
->>>>>>> Stashed changes
 		Connection conn = null;
 		try {
 			conn = ConnectionProvider.getConnection();
 			conn.setAutoCommit(false);
-<<<<<<< Updated upstream
 			
 		//파라미터 전달받기
 			FreeBoardVO boardVO = 
 					new FreeBoardVO(Horsehead, Nickname, Title, Content , Uploaddate);
 			
-		//Dao의 insert문 실행
-=======
-
 			// Dao의 insert문 실행
->>>>>>> Stashed changes
 			boardwriteDao.insert(conn, boardVO);
 
 			conn.commit();

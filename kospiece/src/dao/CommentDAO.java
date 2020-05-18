@@ -6,16 +6,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
-<<<<<<< HEAD
 import java.util.Date;
 
-=======
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import dto.FreeBoardVO;
->>>>>>> dbxodn
 import dto.FreeCommentVO;
 import jdbc.JdbcUtil;
 
@@ -28,37 +24,20 @@ public class CommentDAO {
 	public void insert(Connection conn,FreeCommentVO comment)
 		throws SQLException {
 		System.out.println("CommentDAO.insert()호출");
-<<<<<<< HEAD
-		String sql = "INSERT INTO freecomment(fno, fcmemnick, fccontent) " + 
-				     " VALUES(?,?,?)";
-=======
 		String sql = "INSERT INTO freecomment(fno, fcmemnick, fccontent, fcdate) " + 
 				     " VALUES(?,?,?,?)";
->>>>>>> dbxodn
 		try {
 		pstmt = conn.prepareStatement(sql);
 		pstmt.setInt(1,comment.getFno());
 		pstmt.setString(2,comment.getNickname());
 		pstmt.setString(3,comment.getContent());
-<<<<<<< HEAD
-=======
 		pstmt.setTimestamp(4,  toTimestamp(comment.getUploaddate()));
->>>>>>> dbxodn
 		pstmt.executeUpdate();
 		}finally{
 			JdbcUtil.close(pstmt);
 		}
 	}
-<<<<<<< HEAD
 	
-	/*
-	 * private FreeCommentVO toFreeCommentVO(ResultSet rs) throws SQLException{
-	 * return new FreeCommentVO(); }
-	 */
-	private Date toDate(Timestamp timestamp) {
-		return new Date(timestamp.getTime());
-	}
-=======
 	public int selectCount(Connection conn) throws SQLException {
 		System.out.println("CommentDAO-selectCount()호출");
 		try {
@@ -99,7 +78,6 @@ public class CommentDAO {
 				rs.getString("fcmenick"), rs.getString("fccontent"), rs.getTimestamp("fcdate"));
 	}
 	
->>>>>>> dbxodn
 	private Timestamp toTimestamp(Date date) {
 		return new Timestamp(date.getTime());
 	}
