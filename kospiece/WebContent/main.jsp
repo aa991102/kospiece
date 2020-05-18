@@ -100,7 +100,8 @@
         //온클릭구현!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         chart.listen("pointClick", function(e) {
         	var name = e.point.get("name");
-        	document.getElementById("kk").innerHTML=name
+        	document.getElementById("sname").value=name;
+        	$(submit).trigger( "click" );
         });
 
 /*         state.get */
@@ -114,9 +115,9 @@
     </script>
 	</div>
 	<div class="map-detail">
-		<form name="company-inform" method ="post" class="company-inform" action="./search.do">
-		    <input type="text" name="sname"/>
-		    <input type="submit" value="검색"/>
+		<form id = "company-inform",name="company-inform" method ="post" class="company-inform" action="./search.do">
+		    <input type="text" id = "sname" name="sname"/>
+		    <input id="submit" type="submit" value="검색"/>
 		</form>
 		<table border="1" width="800" align="center" class="company-detail">
 			<tr>
