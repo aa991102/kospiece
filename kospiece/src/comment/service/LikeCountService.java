@@ -59,7 +59,7 @@ public class LikeCountService {
 	}
 
 	private int validate(Connection conn, LikeBoardVO likeVO) throws SQLException {
-		return commentDao.selectById(conn, likeVO.getFcno(), likeVO.getLmemid());
+		return commentDao.selectLikeBoardById(conn, likeVO.getFcno(), likeVO.getLmemid());
 	}
 
 }
