@@ -9,8 +9,8 @@
 	
 /*2.회원가입 화면*/
 .join form{
-	width:1000px;
-	height:500px;
+	width:500px;
+	height:400px;
 	margin:0 auto;
 	border:1px solid black;
 	padding:50px 100px;

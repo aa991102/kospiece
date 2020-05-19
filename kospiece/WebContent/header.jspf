@@ -87,6 +87,13 @@
         <!-- 포인트랭킹/회원명/로그인버튼 -->
         <ul class="list2">
             <li class="list-item2">
+                
+                <div class="myNick">
+                	<c:if test="${!empty AUTHUSER}">
+                		<a>${AUTHUSER.nickname}</a>
+                	</c:if>
+                </div>
+                
                 <div class="rank">
                 	<dl id="rank-list">
                 		<dd>
@@ -99,12 +106,7 @@
                 		</dd>
                		</dl>
                 </div>
-              
-                <div class="myNick">
-                	<c:if test="${!empty AUTHUSER}">
-                		<a>${NICKNAME}님</a>
-                	</c:if>
-                </div>
+                
             </li>
             <li class="list-item_log">
             	<!-- 로그인상태면 로그아웃표시 로그아웃상태면 로그인표시하기 -->

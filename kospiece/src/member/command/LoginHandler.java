@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import controller.command.CommandHandler;
-import dto.UserVO;
+import dto.MemberVO;
 import member.service.LoginFailException;
 import member.service.LoginService;
 
@@ -65,12 +65,15 @@ public class LoginHandler implements CommandHandler {
 		
 		//2.비즈니스로직수행
 		try {
-			UserVO member = loginService.login(id,password); //폼에서 받은 파라미터를 가지고 로그인 로직 수행
+			MemberVO member = loginService.login(id,password); //폼에서 받은 파라미터를 가지고 로그인 로직 수행
 			System.out.println(member.toString());
 			//3.Model(session객체이용,request객체이용,..)
 			
 			HttpSession session = request.getSession();
 			session.setAttribute("AUTHUSER", member); //로그인한 회원의 정보를 세션에 저장
+			session.setAttribute("ID", member.getId());
+			session.setAttribute("MNO", member.getMno());
+			session.setAttribute("NICKNAME", member.getNickname()); //5.14 유태우 추가
 
 			//4.View
 			//로그인성공시   index.jsp문서로 sendRedirect를 이용하여 강제이동

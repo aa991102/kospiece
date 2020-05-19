@@ -10,7 +10,6 @@ import controller.command.CommandHandler;
 import dto.MemberVO;
 import dto.MyStockVO;
 import dto.StockHistoryVO;
-import dto.UserVO;
 import simulation.service.MyInvestListService;
 
 public class MyInvestListHandler implements CommandHandler{
@@ -25,7 +24,7 @@ public class MyInvestListHandler implements CommandHandler{
 		
 		session = req.getSession();
 		System.out.println("session="+session);
-		UserVO user = (UserVO)session.getAttribute("AUTHUSER");
+		MemberVO user = (MemberVO)session.getAttribute("AUTHUSER");
 		System.out.println("user="+user);
 		if(user== null){return processForm(req, res);
 		}else {return processSubmit(req, res, user);
@@ -43,7 +42,7 @@ public class MyInvestListHandler implements CommandHandler{
 
 
 	//로그인 했을때 
-	private String processSubmit(HttpServletRequest req, HttpServletResponse res, UserVO user) {
+	private String processSubmit(HttpServletRequest req, HttpServletResponse res, MemberVO user) {
 		//파라미터
 		System.out.println("user="+user);
 		String mid = user.getId();

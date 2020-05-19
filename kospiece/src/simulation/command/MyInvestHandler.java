@@ -10,7 +10,6 @@ import controller.command.CommandHandler;
 import dto.MemberVO;
 import dto.MyStockVO;
 import dto.StockHistoryVO;
-import dto.UserVO;
 import simulation.service.MyInvestListService;
 import simulation.service.MyInvestService;
 
@@ -24,7 +23,7 @@ public class MyInvestHandler implements CommandHandler{
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		session = req.getSession();
-		UserVO user = (UserVO) session.getAttribute("AUTHUSER");//회원 아이디 가져오기
+		MemberVO user = (MemberVO) session.getAttribute("AUTHUSER");//회원 아이디 가져오기
 		if(user == null) {
 			return processForm(req, res);
 		}else{return processSubmit(req, res, user);
@@ -39,7 +38,7 @@ public class MyInvestHandler implements CommandHandler{
 		return "/member/login.jsp";
 	}//processForm() end
 
-	private String processSubmit(HttpServletRequest request, HttpServletResponse response, UserVO user) {
+	private String processSubmit(HttpServletRequest request, HttpServletResponse response, MemberVO user) {
 		//파라미터 가져오기
 		String sname = request.getParameter("sname");
 		if(sname==null) {

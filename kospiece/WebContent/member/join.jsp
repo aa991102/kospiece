@@ -6,7 +6,7 @@
 <script src="<%= request.getContextPath()%>/js/formchk.js">
 </script>
 <div class="join">
-	<form name="join" onsubmit="formChk();" action="<%= request.getContextPath()%>/join.do" method="post" name="join">
+	<form name="join" onsubmit="formChk(); return false;" action="<%= request.getContextPath()%>/join.do" method="post" name="join">
 		<table>
 			<tr>
 				<th>아이디</th>
