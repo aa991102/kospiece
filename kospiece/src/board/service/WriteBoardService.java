@@ -20,6 +20,7 @@ public class WriteBoardService {
 		System.out.println("WriteBoardService.write() 호출");
 
 		// 파라미터 전달
+		String Id = board.getFid();
 		String Horsehead = board.getHorsehead();
 		String Nickname = board.getNickname();
 		String Title = board.getTitle();
@@ -33,7 +34,7 @@ public class WriteBoardService {
 			
 		//파라미터 전달받기
 			FreeBoardVO boardVO = 
-					new FreeBoardVO(Horsehead, Nickname, Title, Content , Uploaddate);
+					new FreeBoardVO(Id, Horsehead, Nickname, Title, Content , Uploaddate);
 			
 			// Dao의 insert문 실행
 			boardwriteDao.insert(conn, boardVO);

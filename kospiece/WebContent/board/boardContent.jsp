@@ -1,55 +1,62 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
 
-	<div class="" id="1">
-		<div class="" id="1-1">자유게시판</div>
-		<div class="" id="1-2">
+<div class="boardContent" id="1">
+	<div class="" id="1-1">자유게시판</div>
+	<hr>
+
+	<div class="boardContent-buttons" id="1-2">
+		<%-- 기본 목록가기 경로 --%>
+		<c:if test="${null eq param.searchMethod}">
 			<a
 				href="<%= request.getContextPath()%>/board.do?pageNo=${param.pageNo}">
 				<input type="button" value="목록" class="목록">
-			</a> <a href="<%=request.getContextPath()%>/board/write.do"> <input
-				type="button" value="글쓰기" class="글쓰기">
 			</a>
-			<c:if test="${NICKNAME == board.nickname}">
-				<a
-					href="<%= request.getContextPath()%>/board/modify.do?fno=${param.fno}">
-					<input type="button" value="수정" class="수정">
-				</a>
-				<a
-					href="<%= request.getContextPath()%>/board/delete.do?fno=${param.fno}">
-					<input type="button" value="삭제" class="삭제">
-				</a>
-			</c:if>
+		</c:if>
+		<%-- 검색으로 들어왔을 경우 목록가기 경로 수정 --%>
+		<c:if test="${null ne param.searchMethod}">
+			<a
+				href="<%= request.getContextPath()%>/board.do?pageNo=${param.pageNo}
+				&searchMethod=${param.searchMethod}&searchValue=${param.searchValue}">
+				<input type="button" value="목록" class="목록">
+			</a>
+		</c:if>
 
-		</div>
-		<div class="" id="1-3">
-			<table style="" border=1>
-				<tr>
-					<td>제목</td>
-					<td>${board.title }</td>
-				</tr>
-				<tr>
-					<td>작성자</td>
-					<td>${board.nickname }</td>
-				</tr>
-				<tr>
-					<td>상세내용</td>
-					<td>${board.content }</td>
-				</tr>
-			</table>
-		</div>
+		<a href="<%=request.getContextPath()%>/board/write.do"> <input
+			type="button" value="글쓰기" class="글쓰기">
+		</a>
+		<c:if test="${NICKNAME == board.nickname}">
+			<a
+				href="<%= request.getContextPath()%>/board/modify.do?fno=${param.fno}">
+				<input type="button" value="수정" class="수정">
+			</a>
+			<a
+				href="<%= request.getContextPath()%>/board/delete.do?fno=${param.fno}">
+				<input type="button" value="삭제" class="삭제">
+			</a>
+		</c:if>
+
+	</div>
+	<div class="" id="1-3">
+		<table border=1 width="100%">
+			<tr>
+				<td>제목</td>
+				<td>${board.title }</td>
+			</tr>
+			<tr>
+				<td>작성자</td>
+				<td>${board.nickname }</td>
+			</tr>
+			<tr>
+				<td>상세내용</td>
+				<td>${board.content }</td>
+			</tr>
+		</table>
 	</div>
 
 	<div class="" id="2">
-	
+
 		<div class="" id="2-1">댓글</div>
 		<div class="" id="2-2">
 			<form
@@ -59,7 +66,7 @@
 					value="등록" />
 			</form>
 		</div>
-		
+
 		<div class="" id="2-3">
 			<table style="" border=1>
 				<tr>
@@ -75,15 +82,20 @@
 						<td>${comment.nickname}</td>
 						<td>${comment.content}</td>
 						<td>${comment.uploaddate}</td>
-						<td><a href="<%=request.getContextPath() %>/comment/like.do?
+						<td><a
+							href="<%=request.getContextPath() %>/comment/like.do?
 						pageNo=${param.pageNo}&fno=${param.fno}&comment=${comment.fcno}">
-						업${comment.like }</a></td>
-						<td><a href="<%=request.getContextPath() %>/comment/hate.do?
+								업${comment.like }</a></td>
+						<td><a
+							href="<%=request.getContextPath() %>/comment/hate.do?
 						pageNo=${param.pageNo}&fno=${param.fno}&comment=${comment.fcno}">
-						다운${comment.hate}</a></td>
-						<td><a href="<%=request.getContextPath() %>/comment/delete.do?
+								다운${comment.hate}</a></td>
+						<td><c:if test="${NICKNAME == comment.nickname}">
+								<a
+									href="<%=request.getContextPath() %>/comment/delete.do?
 						pageNo=${param.pageNo}&fno=${param.fno}&comment=${comment.fcno}">
-						삭제버튼</a></td>
+									삭제버튼</a>
+							</c:if></td>
 					</tr>
 				</c:forEach>
 
@@ -109,5 +121,4 @@
 			</table>
 		</div>
 	</div>
-</body>
-</html>
+</div>

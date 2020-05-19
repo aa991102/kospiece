@@ -24,15 +24,16 @@ public class BoardDAO {
 	public void insert(Connection conn,FreeBoardVO board)
 		throws SQLException {
 		System.out.println("BoardWriteDAO.insert()호출");
-		String sql = "INSERT INTO freeboard(fclass, fmemnick, ftitle, fcontent, fdate, fhit) " + 
-				     " VALUES(?,?,?,?,?,0)";
+		String sql = "INSERT INTO freeboard(fid, fclass, fmemnick, ftitle, fcontent, fdate, fhit) " + 
+				     " VALUES(?,?,?,?,?,?,0)";
 		try {
 		pstmt = conn.prepareStatement(sql);
-		pstmt.setString(1,board.getHorsehead());
-		pstmt.setString(2,board.getNickname());
-		pstmt.setString(3,board.getTitle());
-		pstmt.setString(4,board.getContent());
-		pstmt.setTimestamp(5,toTimestamp(board.getUploaddate()));
+		pstmt.setString(1,board.getFid());
+		pstmt.setString(2,board.getHorsehead());
+		pstmt.setString(3,board.getNickname());
+		pstmt.setString(4,board.getTitle());
+		pstmt.setString(5,board.getContent());
+		pstmt.setTimestamp(6,toTimestamp(board.getUploaddate()));
 		pstmt.executeUpdate();
 		}finally{
 			JdbcUtil.close(pstmt);
