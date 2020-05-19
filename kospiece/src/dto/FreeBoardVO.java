@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class FreeBoardVO {
 	private int fno; //글번호(fno)
+	private String fid; //회원 id(fid)
 	private String horsehead; //말머리(fclass)
 	private String nickname; //회원ID(fmemnick)
 	private String title; //제목(ftitle)
@@ -11,9 +12,9 @@ public class FreeBoardVO {
 	private Date uploaddate; //작성일(fdate)
 	private int hit; //조회수(fhit)
 
-	public FreeBoardVO() {}
 	//write에서 쓰는 생성자
-	public FreeBoardVO(String horsehead, String nickname, String title, String content, Date uploaddate) {
+	public FreeBoardVO(String fid, String horsehead, String nickname, String title, String content, Date uploaddate) {
+		this.fid=fid;
 		this.horsehead=horsehead;
 		this.nickname=nickname;
 		this.title=title;
@@ -35,6 +36,10 @@ public class FreeBoardVO {
 		this.content=content;
 		this.uploaddate = uploaddate;
 		this.hit=hit;
+	}
+	
+	public String getFid() {
+		return fid;
 	}
 	public int getFno() {
 		return fno;

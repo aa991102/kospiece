@@ -35,6 +35,7 @@
     <script src="<%= request.getContextPath()%>/js/point_rank.js" type="text/javascript"></script>
     <script src="<%= request.getContextPath()%>/js/rank.js" type="text/javascript"></script>
     <script src="<%= request.getContextPath()%>/js/myInterest.js" type="text/javascript"></script>
+    <script src="<%= request.getContextPath()%>/js/mypage.js" type="text/javascript"></script>
 </head>
 <body>
 
@@ -71,13 +72,12 @@
                 <a class="my" id="my" href="<%= request.getContextPath()%>/mypage.do">MYPAGE</a>
                 <ul class="sub-list-my">
                     <li class="sub-item-my"><a href="<%= request.getContextPath()%>/myInterest.do" class="a-item">관심주식</a></li>
-                    <li class="sub-item-my"><a href="<%= request.getContextPath()%>/mypage/myPost.jsp" class="a-item">내 게시글</a></li>
+                    <li class="sub-item-my"><a href="<%= request.getContextPath()%>/myBoardList.do" class="a-item">내 게시글</a></li>
                     <li class="sub-item-my"><a href="<%= request.getContextPath()%>/myInfo.do" class="a-item">내 정보</a></li>
                 </ul>
             </li>
             <!-- 관리자로 로그인했을 경우 nav-admin 보여주기 -->
-            <c:if test="${AUTHUSER.nickname=='관리자1'||AUTHUSER.nickname=='관리자2'||AUTHUSER.nickname=='관리자3'||AUTHUSER.nickname=='관리자4'
-            	||AUTHUSER.nickname=='관리자5'||AUTHUSER.nickname=='관리자6'}">
+            <c:if test="${AUTHUSER.nickname=='관리자'}">
 	            <li class="list-item">
 	            	<a class="nav-admin" href="<%= request.getContextPath()%>/admin.do">ADMIN</a>
 	            </li>
@@ -87,41 +87,19 @@
         <!-- 포인트랭킹/회원명/로그인버튼 -->
         <ul class="list2">
             <li class="list-item2">
-            	<c:if test="${AUTHUSER.nickname=='관리자1'||AUTHUSER.nickname=='관리자2'||AUTHUSER.nickname=='관리자3'||AUTHUSER.nickname=='관리자4'
-            	||AUTHUSER.nickname=='관리자5'||AUTHUSER.nickname=='관리자6'}">
                 <div class="rank">
                 	<dl id="rank-list">
                 		<dd>
                 			<ol>
                 				<li><a class="rankTitle">&nbsp;&nbsp;오늘의 포인트 랭킹</a></li>
-                    		<li>&nbsp;&nbsp;<a class="rankNum">1</a>&nbsp;&nbsp;<a class="rankNick">인생은 한방</a></li>
-                    		<li>&nbsp;&nbsp;<a class="rankNum">2</a>&nbsp;&nbsp;<a class="rankNick">대박이야</a></li>
-                    		<li>&nbsp;&nbsp;<a class="rankNum">3</a>&nbsp;&nbsp;<a class="rankNick">눈누난나랄라랄라</a></li>
-                    		<li>&nbsp;&nbsp;<a class="rankNum">4</a>&nbsp;&nbsp;<a class="rankNick">해피데이</a></li>
-                    		<li>&nbsp;&nbsp;<a class="rankNum">5</a>&nbsp;&nbsp;<a class="rankNick">에이요쥐쥐</a></li>
+                				<c:forEach var="rank" items="${rank}" varStatus="status">
+                    			<li>&nbsp;&nbsp;<a class="rankNum">${status.count}</a>&nbsp;&nbsp;<a class="rankNick">${rank}</a></li>
+												</c:forEach>
                 			</ol>
                 		</dd>
                		</dl>
                 </div>
-              </c:if>
-              <c:if test="${!(AUTHUSER.nickname=='관리자1'||AUTHUSER.nickname=='관리자2'||AUTHUSER.nickname=='관리자3'||AUTHUSER.nickname=='관리자4'
-            	||AUTHUSER.nickname=='관리자5'||AUTHUSER.nickname=='관리자6')}">
-                <div class="rank2">
-                	<dl id="rank-list">
-                		<dd>
-                			<ol>
-                				<li><a class="rankTitle">&nbsp;&nbsp;오늘의 포인트 랭킹</a></li>
-                    		<li>&nbsp;&nbsp;<a class="rankNum">1</a>&nbsp;&nbsp;<a class="rankNick">인생은 한방</a></li>
-                    		<li>&nbsp;&nbsp;<a class="rankNum">2</a>&nbsp;&nbsp;<a class="rankNick">대박이야</a></li>
-                    		<li>&nbsp;&nbsp;<a class="rankNum">3</a>&nbsp;&nbsp;<a class="rankNick">눈누난나랄라랄라</a></li>
-                    		<li>&nbsp;&nbsp;<a class="rankNum">4</a>&nbsp;&nbsp;<a class="rankNick">해피데이</a></li>
-                    		<li>&nbsp;&nbsp;<a class="rankNum">5</a>&nbsp;&nbsp;<a class="rankNick">에이요쥐쥐</a></li>
-                			</ol>
-                		</dd>
-               		</dl>
-                </div>
-              </c:if>
-                	
+              
                 <div class="myNick">
                 	<c:if test="${!empty AUTHUSER}">
                 		<a>${NICKNAME}님</a>
@@ -131,15 +109,15 @@
             <li class="list-item_log">
             	<!-- 로그인상태면 로그아웃표시 로그아웃상태면 로그인표시하기 -->
             	<c:if test="${empty AUTHUSER}">
-                	 <form method="post" action="./login.do">
+                	 <form method="post" action="<%= request.getContextPath()%>/login.do">
                 	 	<input type="hidden" name="path" value="<%=request.getRequestURI()%>"/>
-                	 	<input type="submit" value="🚪&nbsp;&nbsp;login"/>
+                	 	<input type="submit" value="🚪&nbsp;&nbsp;login" class="loginout"/>
                 	 </form>
                 </c:if>
                 <c:if test="${!empty AUTHUSER}">
-                	 <form method="post" action="./logout.do">
+                	 <form method="post" action="<%= request.getContextPath()%>/logout.do">
                 	 	<input type="hidden" name="path" value="<%=request.getRequestURI()%>"/>
-                	 	<input type="submit" value="🚪&nbsp;&nbsp;logout"/>
+                	 	<input type="submit" value="🚪&nbsp;&nbsp;logout" class="loginout"/>
                 	 </form>
                 </c:if>
             </li>

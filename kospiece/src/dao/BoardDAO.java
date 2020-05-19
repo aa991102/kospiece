@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -23,15 +24,16 @@ public class BoardDAO {
 	public void insert(Connection conn,FreeBoardVO board)
 		throws SQLException {
 		System.out.println("BoardWriteDAO.insert()호출");
-		String sql = "INSERT INTO freeboard(fclass, fmemnick, ftitle, fcontent, fdate, fhit) " + 
-				     " VALUES(?,?,?,?,?,0)";
+		String sql = "INSERT INTO freeboard(fid, fclass, fmemnick, ftitle, fcontent, fdate, fhit) " + 
+				     " VALUES(?,?,?,?,?,?,0)";
 		try {
 		pstmt = conn.prepareStatement(sql);
-		pstmt.setString(1,board.getHorsehead());
-		pstmt.setString(2,board.getNickname());
-		pstmt.setString(3,board.getTitle());
-		pstmt.setString(4,board.getContent());
-		pstmt.setTimestamp(5,toTimestamp(board.getUploaddate()));
+		pstmt.setString(1,board.getFid());
+		pstmt.setString(2,board.getHorsehead());
+		pstmt.setString(3,board.getNickname());
+		pstmt.setString(4,board.getTitle());
+		pstmt.setString(5,board.getContent());
+		pstmt.setTimestamp(6,toTimestamp(board.getUploaddate()));
 		pstmt.executeUpdate();
 		}finally{
 			JdbcUtil.close(pstmt);
@@ -137,5 +139,125 @@ public class BoardDAO {
 	}
 	private Timestamp toTimestamp(Date date) {
 		return new Timestamp(date.getTime());
+	}
+	
+	//특정 회원의 전체 게시물을 가져오는 메서드
+	 public List<FreeBoardVO> selectByNick(Connection conn, int startRow, int size,String fmemnick) throws SQLException {
+		System.out.println("BoardDAO-selectByNick()호출");
+		try {
+			String sql = "SELECT * from freeboard where fmemnick=? order by fno desc LIMIT ?, ?"; // 0부터 시작함
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, fmemnick);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, size);
+			;
+			rs = pstmt.executeQuery();
+			List<FreeBoardVO> result = new ArrayList<>();
+			while (rs.next()) {
+				result.add(toFreeBoardVO(rs));
+			}
+			return result;
+		} finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+	}
+	 
+	//특정 회원의 전체 게시물 수를 구하는 메서드
+	public int selectCountByNick(Connection conn,String fmemnick) throws SQLException {
+		System.out.println("BoardDAO-selectCountByNick()호출");
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			String sql = "select  count(*) from  freeboard where fmemnick = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, fmemnick);
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) { //등록된 게시물이 존재하면
+				return rs.getInt(1); //전체 게시물수 리턴
+			}
+			return 0; 
+			
+		} finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+	}
+	
+	//특정 회원의 특정조건의 게시글 수를 구하는 메서드
+	public int selectedCountByNick(Connection conn,String column, String value,String fmemnick) throws SQLException {
+		String sql = "select count(*) from freeboard where "+column+" like ? and fmemnick=?";
+		
+		value = "%"+value+"%"; //해당 조건을 포함하는 조건문으로 설정
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, value);
+			pstmt.setString(2, fmemnick);
+			rs=pstmt.executeQuery();
+			
+			if(rs.next()) {
+				return rs.getInt(1);
+			}
+			return 0;
+		}finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+	}
+	
+	//조건이 선택된 게시글 전체보기
+	public List<FreeBoardVO> selectedBoard
+		(Connection conn, String column, String value, String fmemnick , int startRow, int size) 
+			throws SQLException {
+		
+		List<FreeBoardVO> Boardlist=new ArrayList<FreeBoardVO>();
+		
+		String sql = "select * from freeboard where "+ column +" like ? and fmemnick = ? order by fno desc limit ?,? ";
+		
+		value="%"+value+"%"; //해당 조건을 포함하는 조건문으로 설정
+		
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, value);
+		pstmt.setString(2, fmemnick);
+		pstmt.setInt(3, startRow);
+		pstmt.setInt(4, size);
+		rs=pstmt.executeQuery();
+		
+		if(rs.next()) {
+			
+			do{
+				Boardlist.add(toFreeBoardVO(rs));
+			}while(rs.next());
+			
+			return Boardlist;
+		}else {
+			return Collections.emptyList();
+		}
+	}
+	
+	//닉네임으로 정보 5개만 가져오기
+	public List<FreeBoardVO> selectByNick5(Connection conn,String fmemnick) throws SQLException {
+		System.out.println("BoardDAO-selectByNick5()호출");
+		System.out.println("fmemnick="+fmemnick);
+		try {
+			String sql = "SELECT * from freeboard where fmemnick = ? order by fno desc LIMIT 0, 5";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, fmemnick);
+			rs = pstmt.executeQuery();
+			
+			List<FreeBoardVO> result = new ArrayList<>();
+			while (rs.next()) {
+				System.out.println("rs="+rs.toString());
+				result.add(toFreeBoardVO(rs));
+			}
+			System.out.println("selectByNick-result="+result);
+			return result;
+		} finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
 	}
 }

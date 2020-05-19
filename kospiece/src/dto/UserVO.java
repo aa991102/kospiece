@@ -1,20 +1,28 @@
 package dto;
 
 public class UserVO {
-	private String mid;
-	private String mnick;
+	private int mno;
+	private String id;
+	private String nickname;
 	
-	public UserVO(String mid, String mnick) {
-		this.mid = mid;
-		this.mnick = mnick;
+	public int getMno() {
+		return mno;
+	}
+	public String getId() {
+		return id;
+	}
+	public String getNickname() {
+		return nickname;
+	}
+	
+	public UserVO(int mno, String id, String nickname) {
+		super();
+		this.mno = mno;
+		this.id = id;
+		this.nickname = nickname;
 	}
 
-	public String getMid() {
-		return mid;
-	}
-
-	public String getMnick() {
-		return mnick;
-	}
+	
+	
 	
 }

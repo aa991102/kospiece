@@ -124,6 +124,35 @@ public class StockDAO {
 		}
 	}
 	
+	//특정회원의 특정회사정보만 가져오기
+	public StockVO selectedStock(Connection conn,String sname,int mno) throws SQLException {
+
+		String sql="SELECT s.sno,s.sname,s.sfield,s.sdetail,s.sprice,s.sdayrate,"+
+		" s.schangerate,s.svolume,s.sdealprice,s.stotal,s.shigh52,i.mno"+
+		" FROM stock s"+
+		" LEFT OUTER JOIN"+
+		" (SELECT sno,mno FROM interest WHERE mno=?) AS i"+
+		" ON s.sno=i.sno"+
+		" where s.sname=?";
+		
+		StockVO stock=null;
+		System.out.println(mno+sname);
+		
+		pstmt = conn.prepareStatement(sql);
+		
+		pstmt.setInt(1, mno);
+		pstmt.setString(2, sname);
+		rs=pstmt.executeQuery();
+		
+		System.out.println(pstmt);
+		
+		if(rs.next()) {
+			stock=stockResultSet(rs);
+		}
+		System.out.println(stock);
+		return stock;
+	}
+	
 	//업종 종류 가져오기
 	public List<String> selectField(Connection conn) throws SQLException {
 		

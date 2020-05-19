@@ -10,6 +10,7 @@ import controller.command.CommandHandler;
 import dto.MemberVO;
 import dto.MyStockVO;
 import dto.StockHistoryVO;
+import dto.UserVO;
 import simulation.service.MyInvestListService;
 import simulation.service.MyInvestService;
 
@@ -22,11 +23,9 @@ public class MyInvestHandler implements CommandHandler{
 	
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
-		System.out.println("들어왔어?1");
 		session = req.getSession();
-		MemberVO user = (MemberVO) session.getAttribute("AUTHUSER");//회원 아이디 가져오기
+		UserVO user = (UserVO) session.getAttribute("AUTHUSER");//회원 아이디 가져오기
 		if(user == null) {
-			System.out.println("들어왔어?4");
 			return processForm(req, res);
 		}else{return processSubmit(req, res, user);
 		}
@@ -35,15 +34,12 @@ public class MyInvestHandler implements CommandHandler{
 	
 	
 	private String processForm(HttpServletRequest req, HttpServletResponse res) {
-		System.out.println("들어왔어?2");
 		path = req.getRequestURI();
-		System.out.println("path="+path);
 		req.setAttribute("path", path);
 		return "/member/login.jsp";
 	}//processForm() end
 
-	private String processSubmit(HttpServletRequest request, HttpServletResponse response, MemberVO user) {
-		System.out.println("들어왔어?3");
+	private String processSubmit(HttpServletRequest request, HttpServletResponse response, UserVO user) {
 		//파라미터 가져오기
 		String sname = request.getParameter("sname");
 		if(sname==null) {
@@ -51,7 +47,6 @@ public class MyInvestHandler implements CommandHandler{
 		}
 		String mid = user.getId();
 		 
-		System.out.println("user="+user);
 		//비즈니스 수행		
 		try {
 		MyStockVO myStock = searchService.getMyStock(mid, sname);

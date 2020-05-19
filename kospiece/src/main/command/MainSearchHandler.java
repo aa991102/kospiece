@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import controller.command.CommandHandler;
 import dto.SearchStockWithDetailVO;
@@ -27,8 +28,17 @@ public class MainSearchHandler implements CommandHandler{
 			return "/main.jsp";
 		}
 		
+		//로그인한 회원 받기
+		HttpSession session = request.getSession();
+		int mno=0;
+		if(session.getAttribute("MNO")!=null) {
+			//세션에 회원정보가 있으면(로그인 상태면) mno에 회원번호 넣어주기
+			//비로그인 상태라면 mno는 0이된다
+			mno=(int)session.getAttribute("MNO");
+		}
+		
 		//비즈니스
-		SearchStockWithDetailVO info = mainSearchService.getStockInfo(sname);
+		SearchStockWithDetailVO info = mainSearchService.getStockInfo(sname,mno);
 		String chartinfo = mainSearchService.getChartinfo(info.getStockVO().getNo());
 		
 		

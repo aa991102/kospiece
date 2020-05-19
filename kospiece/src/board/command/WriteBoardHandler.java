@@ -53,10 +53,11 @@ public class WriteBoardHandler implements CommandHandler {
 		
 	//요청파라미터받기
 		//사용자 정보(세션)
+		String id = (String) req.getSession(false).getAttribute("ID");
 		String nickname = (String) req.getSession(false).getAttribute("NICKNAME");
 		System.out.println("전달받은 세션닉넴"+nickname);
 		//파라미터
-		FreeBoardVO board = ParamToBoard(nickname, req);
+		FreeBoardVO board = ParamToBoard(id, nickname, req);
 		System.out.println("등록한 BoardVO파라미터 = \n"+board);
 		
 		//유효성검사 5.18
@@ -73,8 +74,9 @@ public class WriteBoardHandler implements CommandHandler {
 		return "/board.do";
 	}
 
-	private FreeBoardVO ParamToBoard(String nickname, HttpServletRequest req) {
+	private FreeBoardVO ParamToBoard(String id, String nickname, HttpServletRequest req) {
 		return new FreeBoardVO(
+				id,
 				req.getParameter("horsehead"), 
 				nickname,
 				req.getParameter("title"), 

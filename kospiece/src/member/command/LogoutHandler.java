@@ -23,7 +23,7 @@ public class LogoutHandler implements CommandHandler{
 		request.setAttribute("path", path);
 		
 		
-		return "/user/logoutSuccess.jsp";
+		return "/member/logoutSuccess.jsp";
 	}
 
 	
