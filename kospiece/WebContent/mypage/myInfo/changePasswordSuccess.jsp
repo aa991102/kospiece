@@ -14,11 +14,12 @@
 	&nbsp;|&nbsp;<a href="<%= request.getContextPath()%>/myInfo.do">내 정보</a>
 </div>
 <div class="myDiv">
-	비밀번호를 성공적으로 변경했습니다.
+	비밀번호 변경을 실패했습니다.<br/>
+	잠시 후 다시 시도해주세요.
 	
 	<div class="infoBtn-wrapper">
-		<div class="infoBtn" style="cursor: pointer;" onclick="location.href='/kospiece/main.do';">홈으로</div>
-		<div class="infoBtn" style="cursor: pointer;" onclick="location.href='/kospiece/myInfo.do';">마이페이지</div>
+		
+		<div class="infoBtn" style="cursor: pointer;" onclick="location.href='<%= request.getContextPath()%>/myInfo.do';">마이페이지</div>
 	</div>
 </div>
 </body>

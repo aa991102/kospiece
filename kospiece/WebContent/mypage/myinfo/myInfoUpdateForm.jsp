@@ -17,32 +17,32 @@
 <form action="/kospiece/infoUpdate.do" method="post" id="infoUpdateFrm">
 	<table class="myDivT">
 	    <tr>
-	        <th>아이디</th>
-	        <td>${user.id}</td>
+	        <th class="infoH">아이디</th>
+	        <td class="infoContent">${user.id}</td>
 	    </tr>
 	    <tr>
-	        <th>이름</th>
-	        <td>${user.name}</td>
+	        <th class="infoH">이름</th>
+	        <td class="infoContent">${user.name}</td>
 	    </tr>
 	    <tr>
-	        <th>닉네임</th>
-	        <td>
+	        <th class="infoH">닉네임</th>
+	        <td class="infoContent">
 	        	<input type="text" name="changeNickName" class="" value="${user.nickname}"/>
-	        	<c:if test="${errors.checkNick}">닉네임을 입력하세요.</c:if>
-	        	<c:if test="${errors.dupliceteNick}">이미 사용중인 닉네임입니다.</c:if>
+	        	<c:if test="${errors.checkNick}"><br/>닉네임을 입력하세요.</c:if>
+	        	<c:if test="${errors.dupliceteNick}"><br/>이미 사용중인 닉네임입니다.</c:if>
 	        </td>
 	    </tr>
 	    <tr>
-	        <th>이메일</th>
-	        <td>
+	        <th class="infoH">이메일</th>
+	        <td class="infoContent">
 	        	<input type="email" name="changeMail" class=""  value="${user.mail}" />
 	        	<c:if test="${errors.checkMail}">이메일을 입력하세요.</c:if>
 	        	<c:if test="${errors.dupliceteMail}">이미 사용중인 이메일입니다.</c:if>
         	</td>
 	    </tr>
 	    <tr>
-	        <th>전화번호</th>
-	        <td>
+	        <th class="infoH">전화번호</th>
+	        <td class="infoContent">
         		<input type="text" name="changePhone" class="" value="${user.phone}"/>
         		<c:if test="${errors.checkPhone}">전화번호를 입력하세요.</c:if>
         		<c:if test="${errors.duplicetePhone}">이미 사용중인 전화번호입니다.</c:if>

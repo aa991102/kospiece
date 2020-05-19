@@ -20,6 +20,7 @@ public class MyInfoListHandler implements CommandHandler {
 	HttpSession session = null;
 	
 	private static final String FORM_VIEW ="/member/login.jsp";  // 로그인페이지
+	private String path = "";
 	
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
@@ -37,7 +38,8 @@ public class MyInfoListHandler implements CommandHandler {
 	
 	//로그인 안했을때
 	private String processForm(HttpServletRequest req, HttpServletResponse res) {
-		
+		path = request.getRequestURI(); 
+		request.setAttribute("path", path);
 		return FORM_VIEW;
 	}//processForm() end
 

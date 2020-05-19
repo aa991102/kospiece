@@ -51,9 +51,9 @@
 		</tr>
 	</table>
 	<div class="infoBtn-wrapper">
-		<div class="infoBtn" style="cursor: pointer;" onclick="location.href='/kospiece/infoUpdatePwCheck.do';">정보 수정</div>
-		<div class="infoBtn" style="cursor: pointer;" onclick="location.href='/kospiece/changePw.do';">비밀번호 변경</div>
-		<div class="infoBtn" style="cursor: pointer;" onclick="location.href='/kospiece/withdrawal.do';">탈퇴하기</div>
+		<div class="infoBtn" style="cursor: pointer;" onclick="location.href='<%= request.getContextPath()%>/infoUpdatePwCheck.do';">정보 수정</div>
+		<div class="infoBtn" style="cursor: pointer;" onclick="location.href='<%= request.getContextPath()%>/changePw.do';">비밀번호 변경</div>
+		<div class="infoBtn" style="cursor: pointer;" onclick="location.href='<%= request.getContextPath()%>/withdrawal.do';">탈퇴하기</div>
 	</div>
 </div>
 </body>

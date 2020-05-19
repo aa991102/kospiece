@@ -17,11 +17,12 @@
 <form action="/kospiece/withdrawal.do" method="post" id="withdrawalFrm">
 	<table class="myDivT">
 	    <tr>
-	        <th>아이디</th><td>${member.id}</td>
+	        <th class="infoH">아이디</th>
+	        <td class="infoContent">${member.id}</td>
 	    </tr>
 	    <tr>
-	        <th>비밀번호</th>
-	        <td>
+	        <th class="infoH">비밀번호</th>
+	        <td class="infoContent">
 	            <input type="password" name="passcheck" class="curPw"/>
 	            <input type="button" class="deleteCurBtn" value="✕"/>
 	            <input type="button" class="seeCurBtn" value="보기"/>

@@ -16,7 +16,7 @@
 	&nbsp;|&nbsp;<a href="<%= request.getContextPath()%>/mypage.do">마이페이지</a>
 	&nbsp;|&nbsp;<a href="<%= request.getContextPath()%>/myInterest.do">관심주식</a>
 </div>
-<div class="my">
+<div class="interest">
 	
 	<form name="interestFrm" id="interestFrm" method="post" >
 		<c:set var="error" value="${errors}"/>
@@ -34,9 +34,9 @@
 			<div class="inlineDiv">종목추가</div>
 			<div class="inlineDiv">
 			    <input type="text" name="snameSearh" id="sname"/>
-			    <input type="submit" formaction="/kospiece/myInterestInsert.do" name="insertBtn" id="insertBtn" value="추가"/>
-		    	<input type="submit" formaction="/kospiece/myInterestDelete.do" name="deleteBtn" class="btn-del" value="삭제" onclick="return deleteCheck();"/>
-		    	<input type="submit" formaction="/kospiece/simulation.do" id="investBtn" value="가상투자하기" onclick="return goToInvest();"/>
+			    <input type="submit" formaction="<%= request.getContextPath()%>/myInterestInsert.do" name="insertBtn" id="insertBtn" value="추가"/>
+		    	<input type="submit" formaction="<%= request.getContextPath()%>/myInterestDelete.do" name="deleteBtn" class="btn-del" value="삭제" onclick="return deleteCheck();"/>
+		    	<input type="submit" formaction="<%= request.getContextPath()%>/simulation.do" id="investBtn" value="가상투자하기" onclick="return goToInvest();"/>
 		    	<input type="button" value="?" id="helpBtn2"/>
 		    </div>
 	    </div>

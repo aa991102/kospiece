@@ -18,8 +18,8 @@
 	<form action="changePw.do" method="post" id="passChangeFrm">
 	    <table class="myDivT">
 	        <tr>
-	            <td>현재 비밀번호</td>
-	            <td>
+	            <td class="infoH">현재 비밀번호</td>
+	            <td class="infoContent">
 	                <input type="password" name="curPw" class="curPw" />
 	                <input type="button" class="deleteCurBtn" value="✕"/>
 	                <input type="button" class="seeCurBtn" value="보기"/>
@@ -28,21 +28,19 @@
 	            </td>
 	        </tr>
 	        <tr>
-	            <td>새로운 비밀번호</td>
-	            <td>
+	            <td class="infoH">새로운 비밀번호</td>
+	            <td class="infoContent">
 	                <input type="password" name="newPw" class="newPw" />
 	                <input type="button" class="deleteNewBtn" value="✕"/>
 	                <input type="button" class="seeNewBtn" value="보기"/>
 	                <c:if test="${errors.newPw}"><br/>새로운 비밀번호를 입력하세요.</c:if>
 	            </td>
 	        </tr>
-	        <tr>
-	            <th colspan="100%">
-	                <input type="submit" value="변경"/>
-	                <input type="button" value="취소" id="Nope" onClick="location.href='<%=request.getContextPath()%>/myInfo.do'"/>
-	            </th>
-	        </tr>
 	    </table>
+	        <div class="infoBtn-wrapper">
+	        	<input type="submit" value="변경" class="infoBtn" />
+            <input type="button" value="취소" id="Nope" onClick="location.href='<%=request.getContextPath()%>/myInfo.do'" class="infoBtn" />
+	        </div>
 	</form>
 </div>
 </body>

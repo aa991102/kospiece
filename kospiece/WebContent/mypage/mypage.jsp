@@ -16,7 +16,7 @@
 	&nbsp;|&nbsp;<a href="<%= request.getContextPath()%>/mypage.do">마이페이지</a>
 </div>
 <div class="my">
-	<div class="TH" style=" cursor: pointer;" onclick="location.href='/kospiece/myInterest.do';" >
+	<div class="TH" style=" cursor: pointer;" onclick="location.href='<%= request.getContextPath()%>/myInterest.do';" >
 		<a>관심주식 더보기</a>
 	</div>
 	<table class="myT">
@@ -51,7 +51,7 @@
 </div>
 
 <div class="my" >
-	<div class="TH" style=" cursor: pointer;" onclick="location.href='/kospiece/simulationlist.do';" >
+	<div class="TH" style=" cursor: pointer;" onclick="location.href='<%= request.getContextPath()%>/simulationlist.do';" >
 		<a>가상투자 더보기</a>
 	</div>
 	<table class="myT" >
@@ -78,7 +78,7 @@
 </div>
 
 <div class="my" >
-	<div class="TH" style=" cursor: pointer;" onclick="location.href='/kospiece/myBoardList.do';" >
+	<div class="TH" style=" cursor: pointer;" onclick="location.href='<%= request.getContextPath()%>/myBoardList.do';" >
 		<a>내 게시글 더 보기</a>
 	</div>
 	<table class="myT" >
@@ -100,8 +100,8 @@
 	</table>
 </div>
 
-<div class="myInfo" style=" cursor: pointer;" onclick="location.href='/kospiece/myInfo.do';" >
-	<a href="/kospiece/myInfo.do">내 정보 확인</a>
+<div class="myInfo" style=" cursor: pointer;" onclick="location.href='<%= request.getContextPath()%>/myInfo.do';" >
+	<a href="<%= request.getContextPath()%>/myInfo.do">내 정보 확인</a>
 </div>
 
 </body>

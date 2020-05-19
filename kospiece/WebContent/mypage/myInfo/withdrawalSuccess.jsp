@@ -17,7 +17,7 @@
 	회원을 성공적으로 탈퇴하였습니다.
 	
 	<div class="infoBtn-wrapper">
-		<div class="infoBtn" style="cursor: pointer;" onclick="location.href='/kospiece/main.do';">홈으로</div>
+		<div class="infoBtn" style="cursor: pointer;" onclick="location.href='<%= request.getContextPath()%>/main.do';">홈으로</div>
 	</div>
 </div>
 </body>

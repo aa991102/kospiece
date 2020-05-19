@@ -20,17 +20,17 @@
 			</div>
 			<table class="myDivT">
 				<tr>
-					<th>아이디</th>
-					<td>${user.id}</td>
+					<th class="infoH">아이디</th>
+					<td class="infoContent">${user.id}</td>
 				</tr>
 				<tr>
-					<th>비밀번호</th>
-					<td>
+					<th class="infoH">비밀번호</th>
+					<td class="infoContent">
 						<input type="password" name="passcheck" class="curPw" />
 						<input type="button" class="deleteCurBtn" value="✕"/>
             <input type="button" class="seeCurBtn" value="보기"/>
-						<c:if test="${errors.checkPw}">비밀번호를 입력하세요.</c:if>
-            <c:if test="${errors.badCurPw}">비밀번호가 일치하지 않습니다.</c:if>
+						<c:if test="${errors.checkPw}"><br/>비밀번호를 입력하세요.</c:if>
+            <c:if test="${errors.badCurPw}"><br/>비밀번호가 일치하지 않습니다.</c:if>
 					</td>
 				</tr>
 			</table>
