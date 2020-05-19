@@ -1,0 +1,13 @@
+.sim{
+	width:1000px;
+	margin:0 auto;
+	}
+.side_buttonR{float:right}
+.side_buttonL{float:left}
+
+.scroll_div{
+	overflow:auto;
+	width:1000px;
+	height:400px;
+	position:relative;
+}

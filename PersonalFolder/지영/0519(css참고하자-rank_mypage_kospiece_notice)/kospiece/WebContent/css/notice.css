@@ -1,0 +1,27 @@
+/*怨듭��궗�빆 由ъ뒪�듃(notice/notice.jsp)*/
+.notice{
+	width:950px;
+	margin:0 auto;
+	}
+.notice .notice-search{
+	display:inline-block;
+	}
+.notice-search-div{
+	font-size:1.6rem;
+	float:right;
+	margin:0 0px 10px 0;
+}
+.noticeT {
+    border-collapse: collapse;
+    width:950px;
+    margin:0 0 20px 0;
+    font-size:1.5rem;
+    } 
+/*怨듭��궗�빆 �긽�꽭蹂닿린(notice/noticeDetail.jsp)*/
+.noticeDetail{
+	width:700px;
+	height:700px;
+	border:1px solid black;
+	margin:0 auto;
+	padding:10px
+	}
