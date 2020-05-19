@@ -10,6 +10,7 @@ import java.util.Collections;
 import java.util.List;
 
 import dto.MemberVO;
+import dto.UserVO;
 import jdbc.JdbcUtil;
 
 public class MemberDAO {
@@ -42,39 +43,50 @@ public class MemberDAO {
 		System.out.println("MemberDAO-selectById(id)호출="+id);
 		
 		String sql = "SELECT * FROM member WHERE mid = ?";
-		System.out.println("들어와?1");
 		pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, id);
 		rs = pstmt.executeQuery();
 		if( rs.next() ) {
-			System.out.println("들어와?2");
 			int mno = rs.getInt("mno");
-			System.out.println("들어와?3");
 			String memberid = rs.getString("mid");
-			System.out.println("들어와?4");
 			String mnick    = rs.getString("mnick");
-			System.out.println("들어와?5");
 			String password = rs.getString("mpw");
-			System.out.println("들어와?6");
 			String mname 	= rs.getString("mname");
-			System.out.println("들어와?7");
 			String mmail	= rs.getString("mmail");
-			System.out.println("들어와?8");
 			String mphone	= rs.getString("mphone");
-			System.out.println("들어와?9");
 			int deposit		= rs.getInt("mdeposit");
-			System.out.println("들어와?10");
 			int asset		= rs.getInt("masset");
-			System.out.println("들어와?11");
 			Date lastTime 	= rs.getDate("mlastlogin");
-			System.out.println("들어와?12");
 			updateLoginTime(conn, mno);
 			supplyPoint(conn, lastTime, mno);
-			System.out.println("들어와?13");
 			member = new MemberVO(mno, memberid,mnick,password,mname,mmail,mphone,deposit,asset);
 			
 		}
 		return member;
+	}
+	
+	//UserVO Session에 넣을 정보 가져오기
+	public UserVO selectUser(Connection conn, String id) {
+
+		String sql = "SELECT * FROM member WHERE mid = ?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				return new UserVO(rs.getInt("mno"),
+						rs.getString("mid"),
+						rs.getString("mnick"));
+			}
+			
+			return null;			
+		} catch (SQLException e) {
+			System.out.println("MemberDAO selectUser error");
+			e.printStackTrace();
+			return null;
+			
+		}
+		
 	}
 	
 	//로그인한 회원의 정보를 가져오기 위해
