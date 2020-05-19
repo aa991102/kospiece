@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 <script>
 	function checkForm() {
 		if (document.getElementById("search-value").value == "") {
@@ -10,12 +9,11 @@
 		}
 	}
 </script>
+<div class="title">자유게시판</div>
 
 <div class="board" id="1">
 
-	<div class="" id="1-1">자유게시판</div>
-
-	<hr>
+	<div class="" id="1-1"></div>
 
 	<div class="board-search" id="1-2">
 		<form action="<%=request.getContextPath()%>/board.do?" method="post"
