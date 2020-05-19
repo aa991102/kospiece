@@ -12,10 +12,22 @@
 	<div class="" id="1">
 		<div class="" id="1-1">자유게시판</div>
 		<div class="" id="1-2">
-			<a
+		<%-- 기본 목록가기 경로 --%>
+		<c:if test="${null eq param.searchMethod}">
+		<a
 				href="<%= request.getContextPath()%>/board.do?pageNo=${param.pageNo}">
+				<input type="button" value="목록" class="목록"></a>
+				</c:if>
+		<%-- 검색으로 들어왔을 경우 목록가기 경로 수정 --%>
+		<c:if test="${null ne param.searchMethod}">
+			<a
+				href="<%= request.getContextPath()%>/board.do?pageNo=${param.pageNo}
+				&searchMethod=${param.searchMethod}&searchValue=${param.searchValue}">
 				<input type="button" value="목록" class="목록">
-			</a> <a href="<%=request.getContextPath()%>/board/write.do"> <input
+			</a>
+		</c:if>
+			
+			 <a href="<%=request.getContextPath()%>/board/write.do"> <input
 				type="button" value="글쓰기" class="글쓰기">
 			</a>
 			<c:if test="${NICKNAME == board.nickname}">
