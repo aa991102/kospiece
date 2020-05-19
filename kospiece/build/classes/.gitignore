@@ -1,3 +1,9 @@
+/member/
+/model/
+/mypage/
+/notice/
+/rank/
+/simulation/
 /admin/
 /board/
 /comment/
@@ -8,10 +14,4 @@
 /jdbc/
 /json/
 /main/
-/member/
-/model/
-/mypage/
-/notice/
-/rank/
-/simulation/
 /util/

@@ -3,23 +3,22 @@
 
 <div class="title">회원가입</div>
 
-<script>
-	//입력받은 데이터가 검색이 되면 false, 검색이 안되면 true
+<script src="<%= request.getContextPath()%>/js/formchk.js">
 </script>
 <div class="join">
-	<form id="join" action="<%= request.getContextPath()%>/join.do" method="post" name="join">
+	<form name="join" onsubmit="formChk();" action="<%= request.getContextPath()%>/join.do" method="post" name="join">
 		<table>
 			<tr>
 				<th>아이디</th>
-				<td><input type="text" name="mid" value="${member.id}"/></td>
+				<td><input type="text" name="mid" id="mid" value="${member.id}"/></td>
 			</tr>
 			<tr>
 				<th>비밀번호</th>
-				<td><input type="password" name="mpw" value="${member.pw }"/></td>
+				<td><input type="password" name="mpw" id="mpw" value="${member.pw }"/></td>
 			</tr>
 			<tr>
 				<th>비밀번호 확인</th>
-				<td><input type="password" name="pw2"/></td>
+				<td><input type="password" name="pw2" id="mpw2"/></td>
 			</tr>
 			<tr>
 				<th>이름</th>
@@ -53,7 +52,5 @@
 				</c:choose>
 			</tr>
 		</table>
-		
-		
 	</form>
 </div>
