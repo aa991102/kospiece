@@ -1,11 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<script>
+	function checkForm() {
+		if (document.getElementById("title").value == "") {
+			alert("제목을 입력해주세요")
+			return false;
+		}
+		if (document.getElementById("content").value == "") {
+			alert("내용을 입력해주세요")
+			return false;
+		}
+	}
+</script>
 <div class="title">자유게시판</div>
 
 <div class="boardWrite" id="1">
 	<div class="" id="1-1">게시글작성</div>
-	<form action="<%=request.getContextPath()%>/board/write.do" method="post">
+	<form action="<%=request.getContextPath()%>/board/write.do" method="post"
+	onsubmit="return checkForm();">
 	<div class="boardWrite-Input" id="1-2">
 			<table border=1 width="100%">
 				<tr>
@@ -19,11 +32,11 @@
 				</tr>
 				<tr>
 					<td align="center">제목</td>
-					<td><input size=50 type="text" name="title" value="${param.title}" /></td>
+					<td><input size=50 type="text" id="title" name="title"/></td>
 				</tr>
 				<tr>
 					<td align="center">상세 내용</td>
-					<td><textarea cols="95" rows="10" name="content">${param.content}</textarea></td>
+					<td><textarea cols="95" rows="10" id="content" name="content"></textarea></td>
 				</tr>
 			</table>
 	</div>

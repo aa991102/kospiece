@@ -50,8 +50,10 @@ public class WriteBoardService {
 	}
 
 	public void validate(Map<String, Boolean> errors, FreeBoardVO board) {
-		if (board.getTitle().trim().isEmpty() | board.getContent().trim().isEmpty()) {
+		if (board.getTitle().trim().isEmpty()) {
 			errors.put("title", Boolean.TRUE);
+		}else if(board.getContent().trim().isEmpty()) {
+			errors.put("content", Boolean.TRUE);
 		}
 	}
 }
