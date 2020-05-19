@@ -77,8 +77,7 @@
                 </ul>
             </li>
             <!-- 관리자로 로그인했을 경우 nav-admin 보여주기 -->
-            <c:if test="${AUTHUSER.nickname=='관리자1'||AUTHUSER.nickname=='관리자2'||AUTHUSER.nickname=='관리자3'||AUTHUSER.nickname=='관리자4'
-            	||AUTHUSER.nickname=='관리자5'||AUTHUSER.nickname=='관리자6'}">
+            <c:if test="${AUTHUSER.nickname=='관리자'}">
 	            <li class="list-item">
 	            	<a class="nav-admin" href="<%= request.getContextPath()%>/admin.do">ADMIN</a>
 	            </li>

@@ -54,35 +54,8 @@ function checkDelete(nick){
         	<th>강제탈퇴</th>
         </tr>
         
-     <!-- 멤버 중 관리자인 회원을 최 상단에 출력 -->
-	 <c:forEach var="member" items="${memberPage.content}">
- 	 <c:set var="adminOK" value="${member.nickname=='관리자1'||member.nickname=='관리자2'||member.nickname=='관리자3'||member.nickname=='관리자4'
-            	||member.nickname=='관리자5'||member.nickname=='관리자6'}"/>
-  		<c:if test='${adminOK}'>
-	        <tr class="admin-list">
-	        	<td>${member.nickname}</td>
-	        	<td>${member.id}</td>
-	        	<td>${member.name}</td>
-	        	<td>${member.mail}</td>
-	        	<td>${member.regdate}</td>
-	        	<td>${member.deposit}
-	        	<form name="delete" method="post" action="<%= request.getContextPath()%>/checkAdminPw.do"
-	        		onsubmit="return checkCharge('${member.nickname}');">
-	        		<input type="hidden" name="userNick" value="${member.nickname}"/>
-	        		<input type="hidden" name="point" value="${member.deposit}"/>
-					<input type="hidden" name="service" value="pointCharge"/>
-					<input type="submit" value="충전">
-				</form>
-	        	</td>
-	        	<td></td>
-	        </tr>
-        </c:if>
-     </c:forEach>
-     <!-- 일반회원을 아래로 나열 -->
-     <c:forEach var="member" items="${memberPage.content}" varStatus="status">
-      	 <c:set var="adminOK" value="${member.nickname=='관리자1'||member.nickname=='관리자2'||member.nickname=='관리자3'||member.nickname=='관리자4'
-            	||member.nickname=='관리자5'||member.nickname=='관리자6'}"/>
-         <c:if test='${!adminOK}'>
+        <c:forEach var="member" items="${memberPage.content}">
+         <c:if test='${member.nickname ne "관리자"}'>
 	        <tr class="member-list">
 	        	<td>${member.nickname}</td>
 	        	<td>${member.id}</td>
@@ -108,7 +81,8 @@ function checkDelete(nick){
 	        	</td>
 	        </tr>
         </c:if>
-	 </c:forEach>
+        </c:forEach>
+        
 	 <!-- 검색된 공지사항이 없을 경우 출력 -->
    <c:if test="${memberPage.total==0}">
 			<tr>
