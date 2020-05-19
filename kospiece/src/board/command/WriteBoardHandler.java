@@ -10,16 +10,17 @@ import javax.servlet.http.HttpServletResponse;
 import board.service.WriteBoardService;
 import controller.command.CommandHandler;
 import dto.FreeBoardVO;
-import dto.MemberVO;
 
 public class WriteBoardHandler implements CommandHandler {
 	private static final String FORM_VIEW = "/board/boardWrite.jsp";
 	private WriteBoardService writeService = new WriteBoardService();
 	private String path = "";
+	Map<String, Boolean> errors = new HashMap<>();
 	
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		System.out.println("\nboard/command/WriteBoardHandler.process진입");
+		
 		if(req.getMethod().equalsIgnoreCase("GET")) {
 			System.out.println("get방식요청");
 			return processForm(req,res);
@@ -59,7 +60,6 @@ public class WriteBoardHandler implements CommandHandler {
 		System.out.println("등록한 BoardVO파라미터 = \n"+board.toString());
 		
 		//유효성검사 5.18
-		Map<String, Boolean> errors = new HashMap<>();
 		req.setAttribute("errors", errors);
 		writeService.validate(errors, board);
 		if(!errors.isEmpty()) {
