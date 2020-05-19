@@ -38,8 +38,8 @@ public class MyInfoListHandler implements CommandHandler {
 	
 	//로그인 안했을때
 	private String processForm(HttpServletRequest req, HttpServletResponse res) {
-		path = request.getRequestURI(); 
-		request.setAttribute("path", path);
+		path = req.getRequestURI(); 
+		req.setAttribute("path", path);
 		return FORM_VIEW;
 	}//processForm() end
 
