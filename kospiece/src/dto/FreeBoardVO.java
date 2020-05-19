@@ -69,7 +69,7 @@ public class FreeBoardVO {
 	}
 	@Override
 	public String toString() {
-		return "FreeBoardVO [fno=" + fno + ", horsehead=" + horsehead + ", nickname=" + nickname + ", title=" + title
-				+ ", content=" + content + ", uploaddate=" + uploaddate + ", hit=" + hit + "]";
+		return "FreeBoardVO [fno=" + fno + ", fid=" + fid + ", horsehead=" + horsehead + ", nickname=" + nickname
+				+ ", title=" + title + ", content=" + content + ", uploaddate=" + uploaddate + ", hit=" + hit + "]";
 	}
 }

@@ -25,8 +25,6 @@ public class WriteBoardHandler implements CommandHandler {
 			return processForm(req,res);
 		}else if(req.getMethod().equalsIgnoreCase("POST")) {
 			System.out.println("post방식요청");
-			//System.out.println("제목 : "+req.getParameter("title"));
-			//System.out.println("내용 : "+req.getParameter("content"));
 			return processSubmit(req,res);
 		}else {
 			System.out.println("요청없음");
@@ -45,7 +43,6 @@ public class WriteBoardHandler implements CommandHandler {
 		}else {
 			return FORM_VIEW;
 		}
-		
 	}
 	private String processSubmit(HttpServletRequest req, HttpServletResponse res) {
 		System.out.println("-> processSubmit 진입");
@@ -55,10 +52,11 @@ public class WriteBoardHandler implements CommandHandler {
 		//사용자 정보(세션)
 		String id = (String) req.getSession(false).getAttribute("ID");
 		String nickname = (String) req.getSession(false).getAttribute("NICKNAME");
+		System.out.println("전달받은 세션아이디"+id);
 		System.out.println("전달받은 세션닉넴"+nickname);
 		//파라미터
 		FreeBoardVO board = ParamToBoard(id, nickname, req);
-		System.out.println("등록한 BoardVO파라미터 = \n"+board);
+		System.out.println("등록한 BoardVO파라미터 = \n"+board.toString());
 		
 		//유효성검사 5.18
 		Map<String, Boolean> errors = new HashMap<>();
@@ -69,7 +67,6 @@ public class WriteBoardHandler implements CommandHandler {
 		}
 		
 		writeService.write(board);
-		//req.setAttribute("newArticleNo", newArticleNo);
 		
 		return "/board.do";
 	}
