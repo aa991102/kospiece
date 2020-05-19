@@ -13,6 +13,7 @@ import java.util.Date;
 import java.util.List;
 
 import dto.FreeCommentVO;
+import dto.HateBoardVO;
 import dto.LikeBoardVO;
 import jdbc.JdbcUtil;
 
@@ -123,10 +124,29 @@ public class CommentDAO {
 	}
 
 	// 좋아요 및 싫어요를 사전에 눌렀는지 확인하기 위해 LikeCountService에서 사용
-	public int selectById(Connection conn, int commentNo, String id) throws SQLException {
-		System.out.println("CommentDAO-selectById()호출");
+	public int selectLikeBoardById(Connection conn, int commentNo, String id) throws SQLException {
+		System.out.println("CommentDAO-selectLikeBoardById()호출");
 		try {
 			String sql = "select  count(*) from  likeboard where fcno=? and lmemid=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, commentNo);
+			pstmt.setString(2, id);
+			rs = pstmt.executeQuery();
+			if (rs.next()) { // 등록된 게시물이 존재하면
+				return rs.getInt(1);
+			}
+			return 0;
+		} finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+	}
+
+	// 좋아요 및 싫어요를 사전에 눌렀는지 확인하기 위해 HateCountService에서 사용
+	public int selectHateBoardById(Connection conn, int commentNo, String id) throws SQLException {
+		System.out.println("CommentDAO-selectHateBoardById()호출");
+		try {
+			String sql = "select  count(*) from  hateboard where fcno=? and hmemid=?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, commentNo);
 			pstmt.setString(2, id);
@@ -168,6 +188,62 @@ public class CommentDAO {
 			pstmt.setInt(2, likeVO.getFcno());
 			pstmt.executeUpdate();
 		} finally {
+			JdbcUtil.close(pstmt);
+		}
+	}
+
+	public void hateCountDelete(Connection conn, HateBoardVO hateVO) throws SQLException {
+		System.out.println("CommentDao - 싫어요 감소 진입");
+		String sql = "delete from hateboard where fcno=? and hmemid=?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, hateVO.getFcno());
+			pstmt.setString(2, hateVO.getHmemid());
+			pstmt.executeUpdate();
+		} finally {
+			JdbcUtil.close(pstmt);
+		}
+	}
+
+	public void hateCountInsert(Connection conn, HateBoardVO hateVO) throws SQLException {
+		System.out.println("CommentDao - 싫어요 증가 진입");
+		String sql = "insert into hateboard(fcno, hmemid) values(?,?)";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, hateVO.getFcno());
+			pstmt.setString(2, hateVO.getHmemid());
+			pstmt.executeUpdate();
+		} finally {
+			JdbcUtil.close(pstmt);
+		}
+	}
+
+	public void hateCountUpdate(Connection conn, HateBoardVO hateVO) throws SQLException {
+		System.out.println("CommentDAO-HateCountUpdate()호출");
+		String sql = "update freecomment set fchate = (select count(*) from hateboard where fcno=?) where fcno=?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, hateVO.getFcno());
+			pstmt.setInt(2, hateVO.getFcno());
+			pstmt.executeUpdate();
+		} finally {
+			JdbcUtil.close(pstmt);
+		}
+	}
+
+	public int HateCount(Connection conn, int commentNo) throws SQLException {
+		System.out.println("CommentDAO-HateCount()호출");
+		try {
+			String sql = "select count(*) from  hateboard where fcno=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, commentNo);
+			rs = pstmt.executeQuery();
+			if (rs.next()) { // 등록된 게시물이 존재하면
+				return rs.getInt(1); // 전체 게시물수 리턴
+			}
+			return 0;
+		} finally {
+			JdbcUtil.close(rs);
 			JdbcUtil.close(pstmt);
 		}
 	}

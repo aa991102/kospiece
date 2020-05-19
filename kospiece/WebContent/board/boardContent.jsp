@@ -78,7 +78,9 @@
 						<td><a href="<%=request.getContextPath() %>/comment/like.do?
 						pageNo=${param.pageNo}&fno=${param.fno}&comment=${comment.fcno}">
 						업${comment.like }</a></td>
-						<td>다운</td>
+						<td><a href="<%=request.getContextPath() %>/comment/hate.do?
+						pageNo=${param.pageNo}&fno=${param.fno}&comment=${comment.fcno}">
+						다운${comment.hate}</a></td>
 						<td><a href="<%=request.getContextPath() %>/comment/delete.do?
 						pageNo=${param.pageNo}&fno=${param.fno}&comment=${comment.fcno}">
 						삭제버튼</a></td>
