@@ -6,7 +6,8 @@
 <%@ page import="json.*,util.Crawling.*" %>
 
 <script>
-<%-- $(document).ready(function() { <%CrawlingLoad.Load();%> }); --%>
+/*  크롤링파일실행*/
+$(document).ready(function() { <%CrawlingLoad.Load();%> });
 </script>
 <!-- TREND CHART -->
 <c:if test="${!empty chart }">
@@ -101,8 +102,11 @@
         //온클릭구현!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         chart.listen("pointClick", function(e) {
         	var name = e.point.get("name");
-        	document.getElementById("sname").value=name;
-        	$(submit).trigger( "click" );
+        	if(name!="kospi200")
+        		{
+        		document.getElementById("sname").value=name;
+        		$(submit).trigger( "click" );
+        		}
         });
 
 /*         state.get */
