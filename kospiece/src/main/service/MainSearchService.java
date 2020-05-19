@@ -24,15 +24,10 @@ public class MainSearchService {
 		
 		try {
 			
-			System.out.println("여기니?1");
 			StockVO stockVO = stockDAO.selectedStock(conn=ConnectionProvider.getConnection(),sname,mno);
 			if(stockVO==null) {return null;}
-			System.out.println("여기니?2");
 			ArrayList<StockVO> list = stockDAO.getListByDetail(conn, stockVO.getNo(), stockVO.getDetail());
-			System.out.println("여기니?3");
 			
-			
-			System.out.println("여기니?4");
 			return new SearchStockWithDetailVO(stockVO, list);
 			
 		} catch (SQLException e) {
