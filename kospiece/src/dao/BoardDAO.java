@@ -79,45 +79,6 @@ public class BoardDAO {
 		}
 	}
 	
-	//5.19 검색기능 구현
-	public int selectSearchCount(Connection conn, String column, String value) throws SQLException {
-		System.out.println("BoardDAO-selectSearchCount()호출");
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		try {
-			String sql = "select  count(*) from  freeboard where "+column+" like '%"+value+"%'";
-			pstmt = conn.prepareStatement(sql);
-			rs = pstmt.executeQuery();
-			if (rs.next()) { //등록된 게시물이 존재하면
-				return rs.getInt(1); //전체 게시물수 리턴
-			}
-			return 0; 
-		} finally {
-			JdbcUtil.close(rs);
-			JdbcUtil.close(pstmt);
-		}
-	}
-	
-	public List<FreeBoardVO> selectSearch(
-			Connection conn, int startPage, int size, String column, String value) throws SQLException {
-		System.out.println("BoardDAO-selectSearch호출");
-		try {
-			String sql = "SELECT * from freeboard  where "+column+" like '%"+value+"%'  order by fno desc LIMIT ?, ?"; // 0부터 시작함
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, startPage);
-			pstmt.setInt(2, size);
-			rs = pstmt.executeQuery();
-			List<FreeBoardVO> result = new ArrayList<>();
-			while (rs.next()) {
-				result.add(toFreeBoardVO(rs));
-			}
-			return result;
-		} finally {
-			JdbcUtil.close(rs);
-			JdbcUtil.close(pstmt);
-		}
-	}
-	
 	//5.14 selectById
 	public FreeBoardVO selectById(Connection conn, int no) throws SQLException{
 		PreparedStatement pstmt = null;
@@ -298,8 +259,4 @@ public class BoardDAO {
 			JdbcUtil.close(pstmt);
 		}
 	}
-
-
-
-
 }
