@@ -9,6 +9,7 @@
 <%-- $(document).ready(function() { <%CrawlingLoad.Load();%> }); --%>
 </script>
 <!-- TREND CHART -->
+<c:if test="${!empty chart }">
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
       google.charts.load('current', {'packages':['corechart']});
@@ -19,7 +20,7 @@
 
     var options = {
  	     legend: 'none',
- 	     bar: { groupWidth: '100%' }, // Remove space between bars.
+ 	     bar: { groupWidth: '80%' }, // Remove space between bars.
 	     candlestick: {
  	            fallingColor: { strokeWidth: 0, fill: '#0400FF' }, // red
  	            risingColor: { strokeWidth: 0, fill: '#FF0400' }   // green
@@ -31,7 +32,7 @@
     chart.draw(data, options);
   }
 </script>
-
+</c:if>
 
 <div class="main-map">
 <% trans.Data(); %>

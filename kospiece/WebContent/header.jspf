@@ -132,13 +132,13 @@
             <li class="list-item_log">
             	<!-- 로그인상태면 로그아웃표시 로그아웃상태면 로그인표시하기 -->
             	<c:if test="${empty AUTHUSER}">
-                	 <form method="post" action="./login.do">
+                	 <form method="post" action="<%= request.getContextPath()%>/login.do">
                 	 	<input type="hidden" name="path" value="<%=request.getRequestURI()%>"/>
                 	 	<input type="submit" value="🚪&nbsp;&nbsp;login" class="loginout"/>
                 	 </form>
                 </c:if>
                 <c:if test="${!empty AUTHUSER}">
-                	 <form method="post" action="./logout.do">
+                	 <form method="post" action="<%= request.getContextPath()%>/logout.do">
                 	 	<input type="hidden" name="path" value="<%=request.getRequestURI()%>"/>
                 	 	<input type="submit" value="🚪&nbsp;&nbsp;logout" class="loginout"/>
                 	 </form>

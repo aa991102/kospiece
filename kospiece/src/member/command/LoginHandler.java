@@ -80,7 +80,7 @@ public class LoginHandler implements CommandHandler {
 			//response.sendRedirect(request.getContextPath()+"/main.jsp");
 			System.out.println("path="+path);
 			if(path!=null) {
-				return "/user/loginSuccess.jsp";
+				return "/member/loginSuccess.jsp";
 			}else {
 				return "/member/login.jsp";
 			}
