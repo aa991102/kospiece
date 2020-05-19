@@ -1,8 +1,6 @@
 package simulation.command;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,6 +10,7 @@ import controller.command.CommandHandler;
 import dto.MemberVO;
 import dto.MyStockVO;
 import dto.StockHistoryVO;
+import dto.UserVO;
 import simulation.service.InvestingService;
 import simulation.service.MyInvestListService;
 import simulation.service.MyInvestService;
@@ -26,7 +25,7 @@ public class InvestingHandler implements CommandHandler{
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		session = req.getSession();
-		MemberVO user = (MemberVO) session.getAttribute("AUTHUSER");
+		UserVO user = (UserVO) session.getAttribute("AUTHUSER");
 		if(user == null){return processForm(req, res);
 		}else{return processSubmit(req, res, user);}
 		
@@ -54,8 +53,7 @@ public class InvestingHandler implements CommandHandler{
 
 	}
 
-	private String processSubmit(HttpServletRequest request, HttpServletResponse response, MemberVO user) {
-		System.out.println("InvestingHandler processSubmit들어옴");
+	private String processSubmit(HttpServletRequest request, HttpServletResponse response, UserVO user) {
 		//파라미터 가져오기
 		String sname = request.getParameter("sname");
 		int quantity = Integer.parseInt(request.getParameter("quantity"));
@@ -66,7 +64,7 @@ public class InvestingHandler implements CommandHandler{
 		if(quantity<0) {return processSubmit2(request, response, mid, sname);}
 		
 		String tmethod = request.getParameter("income");
-		if(tmethod==null) {
+		if(tmethod!=null) {
 			quantity=quantity*-1;
 		}
 		//판매량이 보유량보다 많을 경우(보유량이 없으므로 error)

@@ -101,7 +101,7 @@ public class SimulationDAO {
 	
 	//가상투자 정보 입력
 	public void insertInfo(Connection conn, int mno, int quantity, StockVO stock) {
-
+			
 		PreparedStatement pstmt = null;
 		String sql = "INSERT INTO simulation (mno, sno, siquantity, siprice, sidate) VALUES (?,?,?,?,sysdate())";
 		Date date = new Date();
@@ -112,7 +112,6 @@ public class SimulationDAO {
 			pstmt.setInt(3, quantity);
 			pstmt.setInt(4, stock.getPrice());
 			pstmt.executeUpdate();
-			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
