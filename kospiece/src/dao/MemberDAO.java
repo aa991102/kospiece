@@ -436,6 +436,27 @@ public class MemberDAO {
 		
 	}
 	
+	//자산포인트 보유 순위
+	public List<String> pointRank(Connection conn) throws SQLException {
+
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT masset,mdeposit,mnick FROM member" + 
+				" ORDER BY masset DESC,mdate asc"+
+				" limit 10";
+		pstmt = conn.prepareStatement(sql);
+		System.out.println(pstmt);
+		rs = pstmt.executeQuery();
+		List<String> rank = new ArrayList<String>();
+		
+		if(rs.next()) {
+			do{
+				rank.add(rs.getString("mnick"));
+			}while(rs.next());
+		}
+		return rank;
+	}
+	
 }
 
 
