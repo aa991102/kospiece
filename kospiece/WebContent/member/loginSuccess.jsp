@@ -13,9 +13,9 @@
 	<c:when test="${path=='/kospiece/myInterest.do'}"><jsp:forward page="/myInterest.do"/></c:when>
 	<c:when test="${path=='/kospiece/mypage.do'}"><jsp:forward page="/mypage.do"/></c:when>
 	<c:when test="${path=='/kospiece/board/write.do'}"><jsp:forward page="/write.do"/></c:when>
+	<c:when test="${path=='/kospiece/myBoardList.do'}"><jsp:forward page="/myBoardList.do"/></c:when>
+	<c:when test="${path=='/kospiece/myInfo.do'}"><jsp:forward page="/myInfo.do"/></c:when>
 	
-	<c:when test="${path=='/kospiece/board/board.jsp'}">${path}</c:when>
-	<c:when test="${path=='/kospiece/board/board.jsp'}">${path}</c:when>
 	<c:when test="${path=='/kospiece/board/board.jsp'}">${path}</c:when>
 	
 	<c:otherwise><jsp:forward page="/main.do"/></c:otherwise>

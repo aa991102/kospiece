@@ -10,7 +10,6 @@ import controller.command.CommandHandler;
 import dto.MemberVO;
 import dto.MyStockVO;
 import dto.StockHistoryVO;
-import dto.UserVO;
 import simulation.service.InvestingService;
 import simulation.service.MyInvestListService;
 import simulation.service.MyInvestService;
@@ -25,7 +24,7 @@ public class InvestingHandler implements CommandHandler{
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		session = req.getSession();
-		UserVO user = (UserVO) session.getAttribute("AUTHUSER");
+		MemberVO user = (MemberVO) session.getAttribute("AUTHUSER");
 		if(user == null){return processForm(req, res);
 		}else{return processSubmit(req, res, user);}
 		
@@ -53,31 +52,41 @@ public class InvestingHandler implements CommandHandler{
 
 	}
 
-	private String processSubmit(HttpServletRequest request, HttpServletResponse response, UserVO user) {
+	private String processSubmit(HttpServletRequest request, HttpServletResponse response, MemberVO user) {
 		//파라미터 가져오기
 		String sname = request.getParameter("sname");
 		int quantity = Integer.parseInt(request.getParameter("quantity"));
-		int totalquantity = Integer.parseInt(request.getParameter("totalquantity"));
 		String mid = user.getId();
 		
 		//int 저장용량 이상의 값 입력시 return
 		if(quantity<0) {return processSubmit2(request, response, mid, sname);}
 		
-		String tmethod = request.getParameter("income");
-		if(tmethod!=null) {
+		String tmethod = request.getParameter("income"); //income == 매수
+		if(tmethod==null) {//매도
 			quantity=quantity*-1;
 		}
-		//판매량이 보유량보다 많을 경우(보유량이 없으므로 error)
-		if((quantity+totalquantity)<0){return processSubmit2(request, response, mid, sname);}
-
-		//비즈니스 수행
-		MyStockVO myStock = service.insertInfo(mid, sname, quantity);
-		MemberVO member = myInvestListService.getMemberVOById(mid);
-		//수행조건이 맞지 않을 경우 null반환
-		if(myStock == null ) {
-			myStock = searchService.getMyStock(mid, sname);
-			request.setAttribute("errors", "포인트가 부족합니다.");
+		
+		MyStockVO myStock =  searchService.getMyStock(mid, sname);
+		System.out.println("myStock="+myStock);
+		System.out.println("quantity="+quantity);
+		
+		//매수 > 0  포인트보다 낮으면 error
+		if(quantity>0) {
+			if(myStock.getMdeposit()<quantity*myStock.getStock().getPrice()) {
+				request.setAttribute("errors", "포인트가 부족합니다.");
+			}else {
+				myStock = service.insertInfo(mid, sname, quantity);
+			}
+		}else if(quantity<0) {//매도  < 0 보유량보다 낮으면 error
+			if(myStock.getTotalquantity()+quantity<0) {
+				return processSubmit2(request, response, mid, sname);
+			}else {
+				myStock = service.insertInfo(mid, sname, quantity);
+			}
 		}
+		
+		//매매이력 가져오기
+		MemberVO member = myInvestListService.getMemberVOById(mid);
 		ArrayList<StockHistoryVO> histories = searchService.getMyHistory(member.getMno(), myStock.getStock().getNo(),myStock.getStock().getNo());
 		
 		//model

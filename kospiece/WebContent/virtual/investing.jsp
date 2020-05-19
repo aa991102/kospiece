@@ -3,8 +3,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <div class="title">가상투자</div>
-<div class="rank">
-    <table class="rank" border="0">
+<div class="sim">
+	<div class="sim">
+    <table border="0">
 	    <tr>
 	    	<td width="50%" >업체 상세 정보</td>
 	    	<td>
@@ -17,7 +18,7 @@
     </table>
    	<c:if test="${empty MyStock}"><p>회사명을 올바르게 입력하세요.</p></c:if>
    	<c:if test="${!empty MyStock}">
-    	<table class="rank" border="1">
+    	<table border="1">
 	        <tr>
 				<th colspan="2">종목	</th>
 				<td colspan="10">${MyStock.stock.name}</td>
@@ -68,15 +69,16 @@
     	</table>
    	</c:if>
     <p>${errors}</p>
+    </div>
     <div class="side_buttonR"><a href="./simulationlist.do"><input type="button" value="목록으로 가기" style="cursor:pointer"/></a></div>
    	<div class="scroll_div">
-	   <table class="rank" border="1">
+	   <table border="1">
 			<tr>
 				<th>일자</th>
 				<th>종목</th>
-				<th>거래량</th>
+				<th colspan="2">거래량</th>
 				<th>거래시 주식가</th>
-				<th colspan="2">거래금액</th>
+				<th>거래금액</th>
 			</tr>
 			<c:if test="${empty historys}">
 				<tr><td colspan="5">거래 내역이 없습니다.</td></tr>
@@ -87,11 +89,13 @@
 				<tr>
 					<td width="25%">${history.date}</td>
 					<td>${history.sname}</td>
-					<td width="10%">${history.siquantity}</td>
+						<c:if test="${history.dmethod=='매수'}">
+							<td width="5%" style="color: red">${history.dmethod}</td><td width="10%">${history.siquantity}</td></c:if>
+						<c:if test="${history.dmethod=='매도'}">
+							<td width="5%" style="color: blue">${history.dmethod}</td><td width="10%">${-history.siquantity}</td></c:if>
+					
 					<td width="20%">${history.siprice}</td>
-					<td width="5%">${history.dmethod}</td>
-						<c:if test="${history.total>0}">
-						<td width="15%">${history.total}</td></c:if>
+						<c:if test="${history.total>0}"><td width="15%">${history.total}</td></c:if>
 						<c:if test="${history.total<0}"><td width="15%">${-history.total}</td></c:if>
 				</tr>
 				<p hidden="hidden">${sum=sum+history.total}</p>
