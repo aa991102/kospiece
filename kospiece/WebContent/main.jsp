@@ -115,6 +115,10 @@
       /* document.getElementById('kk').innerHTML = state.get("name"); */
     </script>
 	</div>
+	
+<!-- 로그인 했는지 검사하는 T/F 변수 선언 -->
+<input type="hidden" id="login" value="${!empty AUTHUSER}">
+	
 	<div class="map-detail">
 		<form id = "company-inform",name="company-inform" method ="post" class="company-inform" action="./search.do">
 		    <input type="text" id = "sname" name="sname"/>
@@ -125,7 +129,37 @@
 				<th colspan="12"><b>${info.stockVO.name}</b> 
 				<!-- 1.로그인했는지체크 2.회원아이디넘기기 *3.회사코드넘기기* -->
 				<!-- 즐겨찾기추가는 if문으로 해당 회원이 해당 회사를 즐겨찾기로 갖고있는지 확인 후 별의 색을 결정 & 보유 여부를 파라미터로 넘겨주기 -->
-				<img src="img/star.png" onclick="LoginCheck('favoritePlus',${!empty AUTHUSER},'${AUTHUSER.id}')" style="cursor:pointer"/>
+		
+		
+				<!-- 로그인상태로 빈 하얀 별모양을 누르면 해당 회사가 관심주식으로 추가된다  -->
+				<!-- 로그인 안한 상태에서는 로그인페이지로 가도록 alert 띄움(js로 구현) -->
+				<c:if test="${info.stockVO.interest==0||info.stockVO.interest==null}">
+					<form name="interestPlus" id="interestPlus"	
+						method="post" action="interest.do" >
+						<input type="hidden" name="interest" value="plus">
+						<input type="hidden" name="form" value="main">
+						<input type="hidden" name="sname" value="${info.stockVO.name}">
+						<input type="hidden" name="sno" value="${info.stockVO.no}">
+						<input type="image" class=star-img name="PlusImg" 
+							src="<%= request.getContextPath()%>/img/star.png" style="cursor:pointer">
+					</form>
+				</c:if>
+				
+				<!-- 로그인상태로 노란 별모양을 누르면 해당 회사가 관심주식에서 삭제된다  -->
+				<!-- 로그인 안한 상태에서는 로그인페이지로 가도록 alert 띄움(js로 구현) -->
+				<c:if test="${info.stockVO.interest>0}">
+					<form name="interestDelete" id="interestDelete"
+							method="post" action="interest.do">
+						<input type="hidden" name="interest" value="delete">
+						<input type="hidden" name="form" value="main">
+						<input type="hidden" name="sname" value="${info.stockVO.name}">
+						<input type="hidden" name="sno" value="${info.stockVO.no}">
+						<input type="image" class="star-img" name="DeleteImg"
+							src="<%= request.getContextPath()%>/img/star-click.png" style="cursor:pointer">
+					</form>
+				</c:if>
+				
+				
 				<form action="./simulation.do">
 					<input type="hidden" name="sname" value="${info.stockVO.name}"/>
 					<input type="submit" value="투자하기"/>

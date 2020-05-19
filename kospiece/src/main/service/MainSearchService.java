@@ -20,12 +20,12 @@ public class MainSearchService {
 		
 	}
 	
-	public SearchStockWithDetailVO getStockInfo(String sname) {
+	public SearchStockWithDetailVO getStockInfo(String sname,int mno ) {
 		
 		try {
 			
 			System.out.println("여기니?1");
-			StockVO stockVO = stockDAO.selectByName(conn=ConnectionProvider.getConnection(), sname);
+			StockVO stockVO = stockDAO.selectedStock(conn=ConnectionProvider.getConnection(),sname,mno);
 			if(stockVO==null) {return null;}
 			System.out.println("여기니?2");
 			ArrayList<StockVO> list = stockDAO.getListByDetail(conn, stockVO.getNo(), stockVO.getDetail());
