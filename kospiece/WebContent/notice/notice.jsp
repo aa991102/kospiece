@@ -35,7 +35,7 @@ function checkForm() {
 			<c:forEach var="notice" items="${noticePage.content}">
         <tr>
         	<td>${notice.nno}</td>
-        	<td><a href="noticeRead.do?no=${notice.nno}">${notice.title}</a></td>
+        	<td><a href="noticeDetail.do?no=${notice.nno}">${notice.title}</a></td>
         	<td>${notice.uploadDate}</td>
         	<td>${notice.hit}</td>
         </tr>
