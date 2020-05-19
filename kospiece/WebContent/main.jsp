@@ -39,7 +39,7 @@
 	<script>
       anychart.onDocumentReady(function() {
 		        // create data
-		<%-- <% data dd = new data(); %>   --%>      
+		<% data dd = new data(); %>      
         var data = <%= trans.Data()%>
 
         // create a data tree
