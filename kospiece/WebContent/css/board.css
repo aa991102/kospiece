@@ -1,0 +1,22 @@
+.board{
+	width:1000px;
+	margin:0 auto;
+	padding:10px;
+	}
+	
+.board-search .board-searchbar{
+	float : right;
+}
+
+.boardContent{
+	width:1000px;
+	margin:0 auto;
+	align:center;
+	padding:10px;
+}
+
+.board-writebutton{}
+.boardContent-buttons{
+	align:center;
+	padding:10px;
+}
