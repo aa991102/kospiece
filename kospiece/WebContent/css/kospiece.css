@@ -13,9 +13,8 @@ body{
 
 /*1.header å ì™ì˜™å ì™ì˜™å ì™ì˜™*/
 .header {
-	background:#1A3F69;
+		background:#1A3F69;
     height:80px;
-    min-width:1600px;
     padding:15px 10px;
     }
 /* å ì‹¸ê³¤ì˜™ */
@@ -88,24 +87,25 @@ body{
 									color:#1A3F69;}
 
 .header .list2 { 
-		position:absolute;
-    top:15px;
-    left:1170px;
-    width:320px;
+		position: absolute;
+		top: 8px;
+    right: 26px;
+    width:550px;
     list-style-type: none;
     }
-.header .list-item2 {display:inline;
-										 position:relative;
-										 }
+.header .list-item2 {
+	float:left;
+	width:400px;
+	height:50px;
+	}
 .header .list2:after {
 		content:'';
     display:block;
     clear:both;
 }
 /* å ì™ì˜™å ï¿½-å ì™ì˜™å ì™ì˜™íŠ¸å ì™ì˜™å ì™ì˜™-å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì‹¸ê¹ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™  */
-.header .rank {position:absolute;
-		top:0;
-		right:-70px;
+.header .rank {
+		float:right;
 		line-height:inherit;
     width:170px;
     height:22px;
@@ -113,19 +113,9 @@ body{
     border-bottom-style:solid;
     border-color:white;
     border-width:1px;
+    margin-top: 7px;
     }
-/* å ì™ì˜™å ï¿½-å ì™ì˜™å ì™ì˜™íŠ¸å ì™ì˜™å ì™ì˜™-å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì‹¸ê¹ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™å ì™ì˜™  */
-.header .rank2 {position:absolute;
-		top:0;
-		right:35px;
-		line-height:inherit;
-    width:170px;
-    height:22px;
-    color:white;
-    border-bottom-style:solid;
-    border-color:white;
-    border-width:1px;
-    }
+
 .header .rankTitle {
 		font-size:1.6rem;
 		font-weight:700;
@@ -163,16 +153,17 @@ body{
 						   line-height: 20px;
 							}
 /* å ì™ì˜™å ï¿½-íšŒå ì™ì˜™å ì‹±ëªŒì˜™ */
-.myNick {position:relative;
-				 float:right;
-				 width:max-content;}
+.myNick {
+	float:right;
+	margin-left:25px;
+	margin-top: 7px;
+	width:max-content;}
 .myNick >a {position:relative;
 						color:white;
 						border-bottom:1px solid white;
 						font-size:1.6rem;}
-.header .list-item_log{position:absolute;
-		top:-3px;
-		left:335px;
+.header .list-item_log{
+		float:right;
     }
     
 .loginout {
@@ -192,6 +183,10 @@ body{
 .header .loginout:hover{background:#D1D9E1;}
 .header .list-item>a{color:#D1D9E1;}
 .header .list-item>a:hover{color:white;}
+
+
+/* header 반응형 */
+
 
 /*2.main å ì™ì˜™å ì™ì˜™å ì™ì˜™*/
 .main{min-height:750px;}
