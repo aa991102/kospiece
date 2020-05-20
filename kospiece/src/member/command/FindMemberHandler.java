@@ -41,7 +41,7 @@ public class FindMemberHandler implements CommandHandler{
 		System.out.println("result="+result);
 		request.setAttribute("result", result);
 		
-		return "/user/findId.jsp";
+		return "/member/findId.jsp";
 	}
 	
 
