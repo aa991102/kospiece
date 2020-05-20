@@ -1,10 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import = "java.util.Date" %>
+<%@ page import = "java.text.SimpleDateFormat" %>
 <div class="title">자유게시판</div>
 
+<%Date time = new Date();
+SimpleDateFormat formatter = 
+new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");%>
 <div class="boardContent" id="1">
-	<div class="" id="1-1">자유게시판</div>
+	<div class="" id="1-1">자유게시판 세션id = <%=session.getId() %>
+	<%time.setTime(session.getCreationTime());%>
+	<p>세션 생성 시간 : <%=formatter.format(time) %>
+	<%time.setTime(session.getLastAccessedTime());%>
+	<p>최근 접근 시간 : <%=formatter.format(time) %></div>
 	<hr>
 
 	<div class="boardContent-buttons" id="1-2">

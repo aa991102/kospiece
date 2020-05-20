@@ -66,7 +66,6 @@ public class BoardDAO {
 			String sql ="SELECT * from freeboard order by fno desc LIMIT ?, ?"; //0부터 시작함
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, startRow);
-			pstmt.setInt(2, size);;
 			pstmt.setInt(2, size);
 			rs = pstmt.executeQuery();
 			List<FreeBoardVO> result = new ArrayList<>();
