@@ -45,21 +45,23 @@ public class FindMemberHandler implements CommandHandler{
 	}
 	
 
-	private String processSecond(HttpServletRequest request, HttpServletResponse response) {
-		
-		boolean result = find.validateMember(mname,mmail,mid);
-		
-		if(result) {
-			return "/user/ChangePw.jsp";
-		}else {
-			request.setAttribute("error", "존재하지 않는 회원 입니다.");
-			return "/user/findPw.jsp";
+	private String processSecond(HttpServletRequest request, HttpServletResponse response) 
+
+	{
+			
+			boolean result = find.validateMember(mname,mmail,mid);
+			
+			if(result) {request.setAttribute("id",mid );
+				return "/member/FindUpdatePw.jsp";
+			}else {
+				request.setAttribute("error", "존재하지 않는 회원 입니다.");
+				return "/user/findPw.jsp";
+			}
+			
+			
+			
+			
 		}
-		
-		
-		
-		
-	}
 
 	
 	
