@@ -36,7 +36,7 @@ public class InterestHandler implements CommandHandler {
 			System.out.println("즐겨찾기 삭제 완료");
 		}
 		
-		if(request.getParameter("form").equals("main")) {
+		if(request.getParameter("form")!=null) {
 			return "/search.do";
 		}
 		return FORM_VIEW;
