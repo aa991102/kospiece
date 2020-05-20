@@ -3,18 +3,26 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import = "java.util.Date" %>
 <%@ page import = "java.text.SimpleDateFormat" %>
-<div class="title">자유게시판</div>
+<script>
+function checkDelete() {
+		if (confirm("정말 삭제하시겠습니까??") == true){    //확인
+		     document.removefrm.submit();
+		 }else{   //취소
+		     return false;
+		 }
+	}
+</script>
+	<div class="title">자유게시판</div>
 
-<%Date time = new Date();
-SimpleDateFormat formatter = 
-new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");%>
 <div class="boardContent" id="1">
-	<div class="" id="1-1">자유게시판 세션id = <%=session.getId() %>
+<%--
+ 	<div class="" id="1-1">자유게시판 세션id = <%=session.getId() %>
 	<%time.setTime(session.getCreationTime());%>
 	<p>세션 생성 시간 : <%=formatter.format(time) %>
 	<%time.setTime(session.getLastAccessedTime());%>
 	<p>최근 접근 시간 : <%=formatter.format(time) %></div>
-	<hr>
+	<hr> 
+	--%>
 
 	<div class="boardContent-buttons" id="1-2">
 		<%-- 기본 목록가기 경로 --%>
@@ -38,12 +46,12 @@ new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");%>
 		</a>
 		<c:if test="${NICKNAME == board.nickname}">
 			<a
-				href="<%= request.getContextPath()%>/board/modify.do?fno=${param.fno}">
+				href="<%= request.getContextPath()%>/board/modify.do?pageNo=${param.pageNo }&fno=${param.fno}">
 				<input type="button" value="수정" class="수정">
 			</a>
 			<a
 				href="<%= request.getContextPath()%>/board/delete.do?fno=${param.fno}">
-				<input type="button" value="삭제" class="삭제">
+				<input type="button" value="삭제" class="삭제" onclick="checkDelete();">
 			</a>
 		</c:if>
 
@@ -87,16 +95,16 @@ new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");%>
 						<td><a
 							href="<%=request.getContextPath() %>/comment/like.do?
 						pageNo=${param.pageNo}&fno=${param.fno}&comment=${comment.fcno}">
-								업${comment.like }</a></td>
+								<img class="likeandhate" src="<%= request.getContextPath()%>/img/like.png"/>  ${comment.like }</a></td>
 						<td><a
 							href="<%=request.getContextPath() %>/comment/hate.do?
 						pageNo=${param.pageNo}&fno=${param.fno}&comment=${comment.fcno}">
-								다운${comment.hate}</a></td>
+								<img class="likeandhate" src="<%= request.getContextPath()%>/img/hate.png"/>  ${comment.hate}</a></td>
 						<td><c:if test="${NICKNAME == comment.nickname}">
 								<a
 									href="<%=request.getContextPath() %>/comment/delete.do?
 						pageNo=${param.pageNo}&fno=${param.fno}&comment=${comment.fcno}">
-									삭제버튼</a>
+									[삭제]</a>
 							</c:if></td>
 					</tr>
 				</c:forEach>

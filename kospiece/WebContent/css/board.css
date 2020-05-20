@@ -14,7 +14,10 @@
 	align:center;
 	padding:10px;
 }
-
+.likeandhate{
+	height:20px;
+	width:20px;
+}
 .boardContent-buttons{
 	align:center;
 	padding:10px;
@@ -44,6 +47,13 @@
 }
 
 .boardWrite{
+	width:1000px;
+	margin:0 auto;
+	align:center;
+	padding:10px;
+}
+
+.boardModify{
 	width:1000px;
 	margin:0 auto;
 	align:center;

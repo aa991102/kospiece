@@ -16,7 +16,7 @@
 	<div class="" id="1-1"></div>
 
 	<div class="board-search" id="1-2">
-		<form action="<%=request.getContextPath()%>/board.do?" method="post"
+		<form action="<%=request.getContextPath()%>/board.do" method="post"
 			class="board-searchbar" onsubmit="return checkForm();">
 			<select name="searchMethod">
 				<option value="ftitle">제목</option>
