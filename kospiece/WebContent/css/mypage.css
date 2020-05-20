@@ -171,3 +171,11 @@
 .button:hover{
 				border: 1px solid #486587;
 				}
+
+
+.interestTd{
+		border-bottom:none;
+		border-collapse: collapse;
+		padding:10px;
+		}
+}

@@ -36,7 +36,7 @@
         <tr>
         	<td class="center"><input type="checkbox" name="fno" value="${myBoard.fno}"></td>
         	<td class="center">${myBoard.fno}</td>
-        	<td><a href="myBoardDetail.do?no=${myBoard.fno}">${myBoard.title}</a></td>
+        	<td><a href="myBoardRead.do?fno=${myBoard.fno}">${myBoard.title}</a></td>
         	<td class="center">${myBoard.uploaddate}</td>
         	<td class="center">${myBoard.hit}</td>
         </tr>
