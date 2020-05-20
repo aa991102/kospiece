@@ -241,9 +241,34 @@ td {border-bottom:1px solid #c1d1e0;
 		}
 td > a {color:black;}
 .selectCss {vertical-align: top;}
+
+
+
 /*3.footer 책혥혻챙혧�꽓챙�쒋꽓책혥혻챙혧�꽓챙�쒋꽓책혥혻챙혧�꽓챙�쒋꽓*/
-.footer{text-align:center;
-		}
+.footer{
+    position: absolute;
+    bottom: 0px;
+    text-align: center;
+    background: #848484;
+    color: white;
+    height: 120px;
+    width: 100%;
+	}
+.footer .foot{
+	display:flex;
+	justify-content:center;
+	}
+.footer .member{
+    width: 250px;
+    height: 100px;
+    padding:15px;
+    line-height:177%;
+}
+.footer img{
+	width:15px;
+	height:15px;
+}
+
 
 /*4.home챠�꽓�씳Β띉졗�혧�꽓챙�쒋꽓 책혥혻챙혧�꽓챙�쒋꽓책혥혻챙혧�꽓챙�쒋꽓책혥혻챙혧�꽓챙�쒋꽓*/
 .map{

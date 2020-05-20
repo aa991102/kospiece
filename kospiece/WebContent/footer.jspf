@@ -6,9 +6,30 @@
 <div class="clear"></div>
 
 <div class="footer">
-<hr/>
-kospiece<br/>
-강동혁,김태경,신나진,오지영,유태우,이준 <br/>
+
+<div class="foot">
+	<div class="member">
+	Donghyuk
+	</div>
+	<div class="member">
+	Taekyung
+	</div>
+	<div class="member">
+	<span class="name">najin</span><br/>
+	<img src="<%= request.getContextPath()%>/img/phone.png"/> 010-4626-2087<br/>
+	<img src="<%= request.getContextPath()%>/img/mail.png"/> skwls2087@naver.com<br/>
+	</div>
+	<div class="member">
+	Jiyoung
+	</div>
+	<div class="member">
+	Taewoo
+	</div>
+	<div class="member">
+	Jun
+	</div>
+</div>
+<br/>
 </div>
 
 </body>
