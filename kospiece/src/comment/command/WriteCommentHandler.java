@@ -62,6 +62,6 @@ public class WriteCommentHandler implements CommandHandler {
 		path = req.getRequestURI();
 		req.setAttribute("path",path);
 		
-		return "/login.do";
+		return "/member/login.jsp";
 	}
 }

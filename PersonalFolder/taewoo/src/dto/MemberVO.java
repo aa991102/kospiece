@@ -16,6 +16,7 @@ public class MemberVO {
 	private Date regdate; //가입일(mdate)
 	private int deposit; //예수금포인트(mdeposit)
 	private int asset; //자산포인트(masset)
+	private Date mlastlogin; //최근 로그인 시간
 
 	public MemberVO() {}
 	
@@ -24,7 +25,45 @@ public class MemberVO {
 		this.nickname=nickname;
 		this.pw=pw;
 	}
-
+	
+	
+	
+	public MemberVO(int mno, String id, String nickname, String pw, String name, int deposit, int asset) {
+		this.mno = mno;
+		this.id = id;
+		this.nickname = nickname;
+		this.pw = pw;
+		this.name = name;
+		this.deposit = deposit;
+		this.asset = asset;
+	}
+	
+	public MemberVO(int mno, String id, String nickname, String pw, String name, String mail, String phone, int deposit, int asset) {
+		this.mno = mno;
+		this.id = id;
+		this.nickname = nickname;
+		this.pw = pw;
+		this.name = name;
+		this.mail = mail;
+		this.phone = phone;
+		this.deposit = deposit;
+		this.asset = asset;
+	}
+	
+	public MemberVO(int mno, String id, String nickname, String pw, String name, String mail, String phone, int deposit, int asset, Date mlastlogin) {
+		this.mno = mno;
+		this.id = id;
+		this.nickname = nickname;
+		this.pw = pw;
+		this.name = name;
+		this.mail = mail;
+		this.phone = phone;
+		this.deposit = deposit;
+		this.asset = asset;
+		this.mlastlogin = mlastlogin;
+	}
+	
+	
 	public int getMno() {
 		return mno;
 	}
@@ -115,6 +154,17 @@ public class MemberVO {
 	public boolean matchPassword(String password) {
 		return pw.contentEquals(password);
 	}
-
 	
+	
+	public Date getMlastlogin() {
+		return mlastlogin;
+	}
+	
+	
+	//닉네임,이메일,전화번호 변경
+	public void changeInfo(String changeNick,String changeMail,String changePhone) {
+		this.nickname = changeNick;
+		this.mail = changeMail;
+		this.phone = changePhone;
+	}
 }

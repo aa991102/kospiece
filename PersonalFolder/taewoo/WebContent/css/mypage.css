@@ -45,7 +45,55 @@ td {border:1px solid #1A3F69;
 .myInfo > a {font-weight:bold;
 			 			 color:white;}
 
-
+.helpDiv{display:none;}
+.helpShow{background-color: white; 
+					position:absolute; 
+					top:500px; 
+					left:50%; 
+					height:125px;
+					width:280px;
+					border:1px solid #1a3f69;
+					margin: 0 0 0 10px;
+					line-height:60px;
+					text-align:center;
+					font-size:1.6rem;
+					}
+.helpDiv2{display:none;}
+.helpShow2{background-color: white; 
+					position:absolute; 
+					top:200px; 
+					left:50%; 
+					height:300px;
+					width:400px;
+					border:1px solid #1a3f69;
+					margin: 0 0 0 -200px;
+					line-height:60px;
+					text-align:center;
+					font-size:1.6rem;
+					}
+#helpClose{float:right;
+					 background-color: white;
+					 border:none;
+					 padding:10px;}
+#helpBtn {background-color:#f7f7f7;
+		border:1px solid #9E9E9E;
+		width:20px; height:20px;
+		border-radius:10px;
+		text-align:center;
+		margin:0 auto;
+		font-size:12px;
+		vertical-align:middle;
+		line-height:10px;}
+#helpBtn2 {background-color:#f7f7f7;
+		border:1px solid #9E9E9E;
+		width:20px; height:20px;
+		border-radius:10px;
+		text-align:center;
+		margin:0 auto;
+		font-size:12px;
+		vertical-align:middle;
+		line-height:10px;}
+		
  /* 내 정보 페이지 */
 .myDiv {margin:0 auto;
 	    	width:600px;

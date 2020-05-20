@@ -1,5 +1,8 @@
 package member.command;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -39,7 +42,6 @@ public class JoinHandler implements CommandHandler {
 	
 	//GET방식으로  요청이 들어오면  폼(/view/member/joinForm.jsp)을 보여주기
 	private String processForm(HttpServletRequest request, HttpServletResponse response) {
-		System.out.println("JoinHandler의 processForm()호출");
 		return FORM_VIEW;
 	}
 	
@@ -50,16 +52,46 @@ public class JoinHandler implements CommandHandler {
 		//할일
 		//1.요청파라미터 받기
 		//JoinRequest는 유저가 입력한 폼의 내용을 객체로 묶어서 처리
+		Map<String, String> errors = new HashMap<String, String>();
+		
 		MemberVO member = new MemberVO();
+		member.setId(request.getParameter("mid"));
+		member.setNickname(request.getParameter("mnick"));
+		member.setPw(request.getParameter("mpw"));
+		member.setName(request.getParameter("mname"));
+		member.setMail(request.getParameter("mmail"));
+		member.setPhone(request.getParameter("mphone"));
+		request.setAttribute("member", member);
 		
-		member.setId(request.getParameter("id"));
-		member.setNickname(request.getParameter("nickname"));
-		member.setPw(request.getParameter("pw"));
-		member.setName(request.getParameter("name"));
-		member.setMail(request.getParameter("email1")+"@"+request.getParameter("email2"));
-		member.setPhone(request.getParameter("phone1")+"-"+request.getParameter("phone2")+"-"+request.getParameter("phone3"));
 		
-
+		if(joinService.checkNull(member)) {
+			
+			errors = joinService.checkDuplicate(member);
+			System.out.println("errors="+errors);
+			
+			if(!errors.isEmpty()) {
+				request.setAttribute("errors", errors);
+				System.out.println("이거 지나가?1");
+				return "/member/join.jsp";
+			}
+			
+		}else {
+			errors.put("emptys","빈칸을 채우세요.");
+			request.setAttribute("errors", errors);
+			return "/member/join.jsp";
+		}
+		
+		
+		
+		
+		
+		
+		System.out.println("지나가니?6");
+		
+		System.out.println(member);
+		
+		
+		System.out.println("지나가니?7");
 		//2.비즈니스로직수행(<->Service<->DAO<->DB)
 		joinService.join(member);
 		
