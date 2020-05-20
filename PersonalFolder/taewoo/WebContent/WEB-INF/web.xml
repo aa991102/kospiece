@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" 
 				xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
   <display-name>pro1</display-name>
@@ -40,10 +40,8 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
     <!--
-    5.8 유태우
-    	로그인체크필터기능 추가하였습니다. 필요하신분은 밑에 url패턴 추가하시면 됩니다.
-    	아직 로그아웃 기능은 미구현 상태인 것 같습니다 
-    -->
+    5.18 유태우
+    로그인 필터기능 off 
     <filter>
         <filter-name>LoginCheckFilter</filter-name>
         <filter-class>filter.LoginCheckFilter</filter-class>
@@ -51,9 +49,8 @@
 
     <filter-mapping>
         <filter-name>LoginCheckFilter</filter-name>
-        <url-pattern>/board/write.do</url-pattern>
     </filter-mapping>
-    
+    -->
     <servlet>
     	<servlet-name>ControllerUsingURI</servlet-name>
     	<servlet-class>controller.ControllerUsingURI</servlet-class>
@@ -67,13 +64,19 @@
     	<servlet-name>ControllerUsingURI</servlet-name>
     	<url-pattern>*.do</url-pattern>
     </servlet-mapping>
+    
+    <listener>
+
+			<listener-class>admin.listener.SessionListener</listener-class>
+
+		</listener>
  
- <jsp-config>
- 	<jsp-property-group>
- 		<url-pattern>*.jsp</url-pattern>
- 		<include-prelude>/header.jspf</include-prelude>
- 		<include-coda>/footer.jspf</include-coda>
- 	</jsp-property-group>
- </jsp-config>
+	 <jsp-config>
+	 	<jsp-property-group>
+	 		<url-pattern>*.jsp</url-pattern>
+	 		<include-prelude>/header.jspf</include-prelude>
+	 		<include-coda>/footer.jspf</include-coda>
+	 	</jsp-property-group>
+	 </jsp-config>
 
 </web-app>

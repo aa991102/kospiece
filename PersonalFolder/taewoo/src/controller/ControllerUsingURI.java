@@ -95,7 +95,6 @@ public class ControllerUsingURI extends HttpServlet {
         
         //view페이지로 forwading하기
         if (viewPage != null) {
-        	System.out.println(viewPage);
 	        RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
 	        dispatcher.forward(request, response);
         }

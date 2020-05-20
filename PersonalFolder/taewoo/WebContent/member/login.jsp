@@ -5,6 +5,7 @@
 
 <div class="login">
     <form name="login" id="login" method="post" action="<%= request.getContextPath()%>/login.do">
+    <input type="hidden" name="path" value="${path}"/>
         <table>
         <tr>
             <tr>
@@ -22,8 +23,11 @@
             </tr>
         </table>
         <a href="<%= request.getContextPath()%>/join.do">회원가입</a>
-        <a href="<%= request.getContextPath()%>/findId.jsp">아이디찾기</a>
-        <a href="<%= request.getContextPath()%>/findPw.jsp">비밀번호찾기</a>
+        <a href="<%= request.getContextPath()%>/member/findId.jsp">아이디찾기</a>
+        <a href="<%= request.getContextPath()%>/member/findPw.jsp">비밀번호찾기</a><br/>
+        <c:if test="${!empty error}">
+        	<h5>${error}</h5>
+        </c:if>
     </form>
 </div>
 

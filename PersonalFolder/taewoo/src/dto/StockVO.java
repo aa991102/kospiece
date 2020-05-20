@@ -14,6 +14,9 @@ public class StockVO {
 	private int total;//시가총액[억](stotal)
 	private String high52;//52주고가(shigh52)
 	
+	//해당 회원이 주식을 갖고있는지 여부
+	private int interest;
+	
 	public String getNo() {
 		return no;
 	}
@@ -80,13 +83,42 @@ public class StockVO {
 	public void setHigh52(String high52) {
 		this.high52 = high52;
 	}
+	
+	public int getInterest() {
+		return interest;
+	}
+	public void setInterest(int interest) {
+		this.interest = interest;
+	}
+	
+	public StockVO() {}
+	
+	
+	public StockVO(String no, String name, String field, String detail, int price, String dayrate, float changerate,
+			String volume, String dealprice, int total, String high52) {
+		this.no = no;
+		this.name = name;
+		this.field = field;
+		this.detail = detail;
+		this.price = price;
+		this.dayrate = dayrate;
+		this.changerate = changerate;
+		this.volume = volume;
+		this.dealprice = dealprice;
+		this.total = total;
+		this.high52 = high52;
+	}
+	public StockVO (String name, float changerate, int total)
+	{
+		this.name = name;
+		this.changerate = changerate;
+		this.total = total;
+	}
 	@Override
 	public String toString() {
 		return "StockVO [no=" + no + ", name=" + name + ", field=" + field + ", detail=" + detail + ", price=" + price
 				+ ", dayrate=" + dayrate + ", changerate=" + changerate + ", volume=" + volume + ", dealprice="
-				+ dealprice + ", total=" + total + ", high52=" + high52 + "]";
+				+ dealprice + ", total=" + total + ", high52=" + high52 + ", interest=" + interest + "]";
 	}
-	
-	
 	
 }
