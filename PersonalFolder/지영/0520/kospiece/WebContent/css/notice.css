@@ -1,0 +1,31 @@
+/*�⑤벊占쏙옙沅쀯옙鍮� �뵳�딅뮞占쎈뱜(notice/notice.jsp)*/
+.notice{
+	width:950px;
+	margin:0 auto;
+	}
+.board{
+	width:950px;
+	margin:0 auto;
+	}
+.notice .notice-search{
+	display:inline-block;
+	}
+.basic-search-div{
+	font-size:1.6rem;
+	float:right;
+	margin:0 0px 10px 0;
+}
+.noticeT {
+    border-collapse: collapse;
+    width:950px;
+    margin:0 0 20px 0;
+    font-size:1.5rem;
+    } 
+/*�⑤벊占쏙옙沅쀯옙鍮� 占쎄맒占쎄쉭癰귣떯由�(notice/noticeDetail.jsp)*/
+.noticeDetail{
+	width:700px;
+	height:700px;
+	border:1px solid black;
+	margin:0 auto;
+	padding:10px
+	}

@@ -1,0 +1,17 @@
+/*1.로그인 화면*/
+.login form{
+	width:500px;
+	height:200px;
+	margin:0 auto;
+	border:1px solid black;
+	padding:50px 100px;
+	}
+	
+/*2.회원가입 화면*/
+.join form{
+	width:500px;
+	height:400px;
+	margin:0 auto;
+	border:1px solid black;
+	padding:50px 100px;
+}
