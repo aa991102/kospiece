@@ -31,7 +31,7 @@ function formChk(){
 		return false;
 	}
 	
-	if(frm.mnick.value.length<11){
+	if(frm.mnick.value.length>10){
 		alert('nickname은 10자 이내로 제한되어 있습니다.')
 		frm.mid.focus();
 		return false;
