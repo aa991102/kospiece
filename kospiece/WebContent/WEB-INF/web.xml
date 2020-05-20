@@ -51,6 +51,13 @@
         <filter-name>LoginCheckFilter</filter-name>
     </filter-mapping>
     -->
+    
+    <!-- 5.20유태우
+    세션 시간 60분으로 설정 -->
+    <session-config>
+    	<session-timeout>60</session-timeout>
+    </session-config>
+    
     <servlet>
     	<servlet-name>ControllerUsingURI</servlet-name>
     	<servlet-class>controller.ControllerUsingURI</servlet-class>
