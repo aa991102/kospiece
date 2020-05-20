@@ -8,38 +8,50 @@
 	&nbsp;|&nbsp;<a href="<%= request.getContextPath()%>/myBoardList.do">내 게시글</a>
 </div>
 <div class="notice">
-	<form name="myBoard-search" method ="post" class="notice-search" 
+	
+	<form name="myBoard-search" method ="post" onsubmit="return checkForm();"
 		action="<%= request.getContextPath()%>/myBoardList.do">
-	    <select name="search">
+		<div class="insertFavorite">
+	    <select name="search" class="selectCss">
 	        <option value="ftitle">제목</option>
 	        <option value="fcontent">내용</option> 
 	    </select>
 	    <input type="text" name="content" />
-	    <input type="submit" value="검색"/>
+	    <input type="submit" value="검색" class="button"/>
+    </div>
 	</form>
-	<table border="1" width="1000" align="center">
-        <tr>
-        	<th>글번호</th>
-        	<th>제목</th>
-        	<th>작성일</th>
-        	<th>조회</th>
-        </tr>
+	<form action="<%= request.getContextPath()%>/myBoardDelete.do" method="post">
+		<c:set var="error" value="${errors}"/>
+		<script type="text/javascript">if("${error}"!=""){$(function(){alert("${error}")})}</script>
+		<input type="submit" value="삭제" style="margin:10px 0;" class="button" onclick="return deleteBoardCheck();"/>
+		<table class="myT">
+      <tr>
+      	<th class="center" width="5%"><input type="checkbox" id="allCheck" /></th>
+      	<th class="center" width="15%">글번호</th>
+      	<th class="center">제목</th>
+      	<th class="center" width="25%">작성일</th>
+      	<th class="center" width="15%">조회</th>
+      </tr>
 			<c:forEach var="myBoard" items="${myBoardPage.content}">
         <tr>
-        	<td>${myBoard.fno}</td>
+        	<td class="center"><input type="checkbox" name="fno" value="${myBoard.fno}"></td>
+        	<td class="center">${myBoard.fno}</td>
         	<td><a href="myBoardDetail.do?no=${myBoard.fno}">${myBoard.title}</a></td>
-        	<td>${myBoard.uploaddate}</td>
-        	<td>${myBoard.hit}</td>
+        	<td class="center">${myBoard.uploaddate}</td>
+        	<td class="center">${myBoard.hit}</td>
         </tr>
         </c:forEach>
         <c:if test="${myBoardPage.total==0}">
 					<tr>
-						<td colspan="4">작성 게시글이 없습니다.</td>
+						<td colspan="100%" class="empty">
+		    			<img src="<%= request.getContextPath()%>/img/alert.png" style="max-width:10%;height:auto;"><br/>
+		    			작성한 게시글이 없습니다.
+	    			</td>
 					</tr>
 				</c:if>
         <c:if test="${myBoardPage.total>0}">
 					<tr>
-						<th colspan="4">
+						<td colspan="100%" class="center">
 						<!-- 검색조건이 없을 때는 페이지넘버만 파라미터로 보내기 -->
 						<c:if test="${null eq content}">
 							<%-- [이전prev]출력 --%>
@@ -79,8 +91,9 @@
 							</c:if>
 						</c:if>
 						
-							</th>
+							</td>
 					</tr>
 				</c:if>
      </table>
+   </form>
 </div>

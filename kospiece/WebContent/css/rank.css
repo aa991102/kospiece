@@ -1,5 +1,5 @@
 .rank{
-	width:1000px;
+	width:1050px;
 	margin:0 auto;
 	}
 .rank table img{
@@ -10,4 +10,14 @@
 	width:15px;
 	height:15px
 	}
-.field-search{float:right}
+.field-search{
+	font-size:1.6rem;
+	float:right;
+	margin:0 0px 10px 0;
+	}
+.rankT {
+    border-collapse: collapse;
+    width:100%;
+    margin:0 0 20px 0;
+    font-size:1.5rem;
+    }

@@ -90,11 +90,16 @@
                 
                 <div class="myNick">
                 	<c:if test="${!empty AUTHUSER}">
-                		<a>${AUTHUSER.nickname}</a>
+                		<a href="<%= request.getContextPath()%>/myInfo.do">${AUTHUSER.nickname}님</a>
                 	</c:if>
+	               	<div class="joinPlz">
+	                	<c:if test="${empty AUTHUSER}">
+	                		<a href="<%= request.getContextPath()%>/join.do">회원가입</a>
+	                	</c:if>
+	                </div>
                 </div>
                 
-                <div class="rank">
+                <div class="rank2">
                 	<dl id="rank-list">
                 		<dd>
                 			<ol>
@@ -106,8 +111,8 @@
                 		</dd>
                		</dl>
                 </div>
-                
             </li>
+            
             <li class="list-item_log">
             	<!-- 로그인상태면 로그아웃표시 로그아웃상태면 로그인표시하기 -->
             	<c:if test="${empty AUTHUSER}">

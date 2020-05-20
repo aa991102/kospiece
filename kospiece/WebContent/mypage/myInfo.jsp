@@ -15,8 +15,11 @@
 </div>
 
 <div id="help" class="helpDiv">
-	자산포인트란?<input type="button" id="helpClose" value="✕"/>
-	<br/>예수금포인트~~~입니다.
+	<a style="padding:10px 10px 20px 35px;font-weight:bold;line-height:60px;">자산포인트란?</a><input type="button" id="helpClose" value="✕"/>
+	<br/>예수금포인트 + (가상투자 보유주식*보유량)<br/><br/>
+	<hr/>
+	<a style="font-size:1.5rem;color:gray;line-height:30px;">* 당일 종가를 기준으로 자산포인트가 높은 TOP5를 뽑아
+	<br/>오늘의 포인트 랭킹 순위가 결정됩니다.</a>
 </div>
 <div class="myDiv">
 	<table class="myT">
@@ -45,7 +48,7 @@
 			<td class="infoContent">${member.deposit} p</td>
 		</tr>
 		<tr>
-			<th class="infoH">자산 포인트<input type="button" value="?" id="helpBtn"/></th>
+			<th class="infoH">자산 포인트 <input type="button" value="?" id="helpBtn"/></th>
 			<td class="infoContent">${member.asset} p</td>
 			
 		</tr>

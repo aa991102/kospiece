@@ -34,9 +34,9 @@
 			<div class="inlineDiv">종목추가</div>
 			<div class="inlineDiv">
 			    <input type="text" name="snameSearh" id="sname"/>
-			    <input type="submit" formaction="<%= request.getContextPath()%>/myInterestInsert.do" name="insertBtn" id="insertBtn" value="추가"/>
-		    	<input type="submit" formaction="<%= request.getContextPath()%>/myInterestDelete.do" name="deleteBtn" class="btn-del" value="삭제" onclick="return deleteCheck();"/>
-		    	<input type="submit" formaction="<%= request.getContextPath()%>/simulation.do" id="investBtn" value="가상투자하기" onclick="return goToInvest();"/>
+			    <input type="submit" formaction="<%= request.getContextPath()%>/myInterestInsert.do" name="insertBtn" id="insertBtn" value="추가" class="button"/>
+		    	<input type="submit" formaction="<%= request.getContextPath()%>/myInterestDelete.do" name="deleteBtn" value="삭제" onclick="return deleteInterestCheck();" class="button"/>
+		    	<input type="submit" formaction="<%= request.getContextPath()%>/simulation.do" id="investBtn" value="가상투자하기" onclick="return goToInvest();" class="button"/>
 		    	<input type="button" value="?" id="helpBtn2"/>
 		    </div>
 	    </div>
@@ -71,6 +71,14 @@
 						<td>${list.high52}</td>
 					</tr>
 		    </c:forEach>
+		    <c:if test="${empty myInterestList}">
+		    	<tr>
+		    		<td colspan="100%" class="empty">
+		    			<img src="<%= request.getContextPath()%>/img/alert.png" style="max-width:10%;height:auto;"><br/>
+		    			관심 종목이 없습니다. 종목을 추가해주세요.
+	    			</td>
+	    		</tr>
+		    </c:if>
 		</table>
 	</form>
 </div>

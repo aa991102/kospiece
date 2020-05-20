@@ -46,7 +46,7 @@
 				<td>${list.high52}</td>
 			</tr>
     </c:forEach>
-    <c:if test="${noInterest}"><tr><td colspan="100%">관심주식이 없습니다</td></tr></c:if>
+    <c:if test="${noInterest}"><tr><td colspan="100%" class="center">관심주식이 없습니다</td></tr></c:if>
 	</table>
 </div>
 
@@ -73,7 +73,7 @@
 	        <td>${list.totalquantity}</td>
 	    </tr>
     </c:forEach>
-    <c:if test="${noInvest}"><tr><td colspan="100%">가상투자 보유주식이 없습니다</td></tr></c:if>
+    <c:if test="${noInvest}"><tr><td colspan="100%" class="center">가상투자 보유주식이 없습니다</td></tr></c:if>
 	</table>
 </div>
 
@@ -96,7 +96,7 @@
 	        <td>${list.hit}</td>
 	    </tr>
     </c:forEach>
-    <c:if test="${noBoard}"><tr><td colspan="100%">내 게시글이 없습니다</td></tr></c:if>
+    <c:if test="${noBoard}"><tr><td colspan="100%" class="center">내 게시글이 없습니다</td></tr></c:if>
 	</table>
 </div>
 

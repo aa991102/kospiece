@@ -1,60 +1,52 @@
-th {border:1px solid #1A3F69;
-		border-collapse: collapse;
-		background-color:#dae1e7;
-		padding:3px;
-		font-size:1.5rem;
-		}
-td {border:1px solid #1A3F69;
-		border-collapse: collapse;
-		padding:1px;
-		}
-
-
-/* ¸¶ÀÌÆäÀÌÁö ÆäÀÌÁö */
-.TH {border:1px solid #1A3F69;
+/* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
+.TH {border-bottom:1px solid #2b476b;
      border-collapse: collapse;
-     background-color:#1A3F69;
+     background-color:#2b476b;
      text-align:center;
-     padding:7px;
+     padding:15px;
      }
+.TH:hover{background-color:#486587;
+					border-bottom:1px solid #486587;
+					} 
 .TH > a {color:white;
 		     font-weight:bold;
 		     font-size:1.7rem;
 		     }
-     
-.my {margin:0 auto;
-     width:800px;
+.my {margin:0 auto 30px auto;
+     width:900px;
      }
-.myT {border:1px solid #1A3F69;
+.myT {
 		  border-collapse: collapse;
 		  width:100%;
 		  margin:0 0 20px 0;
-		  text-align:center;
 		  font-size:1.5rem;
 		  }  
 					  
 .myInfo {
-				 border:1px solid #173F5F;
-				 width:800px;
+				 border:1px solid #2b476b;
+				 width:900px;
 				 margin:0 auto 20px;
 				 align:center;
 				 text-align:center;
-				 padding:30px;
-				 background-color:#1A3F69;
+				 padding:40px;
+				 background-color:#2b476b;
 				 }
+.myInfo:hover{
+			background-color:#486587;
+			border:1px solid #486587;
+			}
 .myInfo > a {font-weight:bold;
 			 			 color:white;}
 
 .helpDiv{display:none;}
 .helpShow{background-color: white; 
 					position:absolute; 
-					top:500px; 
+					top:200px; 
 					left:50%; 
-					height:125px;
-					width:280px;
+					height:200px;
+					width:400px;
 					border:1px solid #1a3f69;
-					margin: 0 0 0 10px;
-					line-height:60px;
+					margin:140px 0 0 -200px;
 					text-align:center;
 					font-size:1.6rem;
 					}
@@ -76,7 +68,7 @@ td {border:1px solid #1A3F69;
 					 border:none;
 					 padding:10px;}
 #helpBtn {background-color:#f7f7f7;
-		border:1px solid #9E9E9E;
+		border:1px solid #7c9bb9;
 		width:20px; height:20px;
 		border-radius:10px;
 		text-align:center;
@@ -84,8 +76,9 @@ td {border:1px solid #1A3F69;
 		font-size:12px;
 		vertical-align:middle;
 		line-height:10px;}
+#helpBtn:hover{background-color:white;}
 #helpBtn2 {background-color:#f7f7f7;
-		border:1px solid #9E9E9E;
+		border:1px solid #7c9bb9;
 		width:20px; height:20px;
 		border-radius:10px;
 		text-align:center;
@@ -93,19 +86,26 @@ td {border:1px solid #1A3F69;
 		font-size:12px;
 		vertical-align:middle;
 		line-height:10px;}
-		
- /* ³» Á¤º¸ ÆäÀÌÁö */
+#helpBtn2:hover{background-color:white;}
+
+ /* ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
 .myDiv {margin:0 auto;
-	    	width:600px;
+	    	width:550px;
+	    	text-align:center;
 	    }
+	    .infoH {background-color:white;border-bottom:none;border-right: 1px solid black;}
 .infoH {
-		 		width:25%;
+		 		width:150px;
 		 		padding:20px;
-		 		background-color:#dae1e7;
-		 		color:#1A3F69;
+		 		border-right:2px solid #7c9bb9;
+		 		border-top:1px solid #c1d1e0;
+		 		border-bottom:1px solid #c1d1e0;
+		 		text-align:center;
+		 		color:#173f5f;
 		 		}
  		
-.infoContent {
+.infoContent {border-top:1px solid #c1d1e0;
+	border-bottom:1px solid #c1d1e0;
 						  padding:0 40px;
 						  text-align:left;
 						  }
@@ -118,26 +118,22 @@ td {border:1px solid #1A3F69;
 				  text-align:center;
 				  }
 .infoBtn {display:inline-block;
-				  border:1px solid #173F5F;
+				  border:1px solid #173f5f;
 				  background-color:#1A3F69;
 				  color:white;
 				  width:157px;
 				  height:60px;
-				  margin:20px;
+				  margin:45px 10px;
 				  padding:20px;
 				  text-align:center;
 				  font-size:1.5rem;
 				  font-weight:bold;
 				  }
-		  
-/* °ü½ÉÁÖ½Ä ÆäÀÌÁö*/
-.moveFavorite {
-			   margin:10px 0;
-			   float:left;
-			   }
-.btn-up {}
-.btn-down {}
-.btn-del{}
+/*.deleteCurBtn {background-color:white;}
+.deleteCurBtn:hover {border:1px solid black;}*/
+/* ï¿½ï¿½ï¿½ï¿½ï¿½Ö½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/
+.interest {margin:0 auto;
+     width:1000px;}
 
 .insertFavorite {
 				 margin:10px 0;
@@ -147,7 +143,7 @@ td {border:1px solid #1A3F69;
 			display:inline;
 			}
 			
-.myDivT {border:1px solid #1A3F69;
+.myDivT {
 	  border-collapse: collapse;
 	  width:100%;
 	  margin:0 0 20px 0;
@@ -155,5 +151,23 @@ td {border:1px solid #1A3F69;
 	  padding:10px;
 	  }
 .center {text-align:center;
-		 padding:0 0 10px 0;
-		 font-weight:bold;}
+		 font-weight:bold;
+		 color:#505050;}
+.empty{
+		 text-align:center;
+		 font-weight:bold;
+		 color:#505050;
+		 padding:100px;
+		 }
+		 
+		 
+		 
+.button{background-color:white;
+			  border: 1px solid #7c9bb9;
+			  border-radius:3px;
+			  padding:3px 10px;
+			  font-size:1.7rem;
+			  }
+.button:hover{
+				border: 1px solid #486587;
+				}
