@@ -219,5 +219,5 @@ $(document).ready(function() { <%CrawlingLoad.Load();%> });
 			</c:if>
 		</table>
 	</div>
-	<div class="rank" id="chart_div" style="width: 900px; height: 500px;"></div>
+	<div class="rank" id="chart_div" style="width: 1500px; height: 500px;"></div>
 </div>

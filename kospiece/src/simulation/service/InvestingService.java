@@ -20,10 +20,10 @@ public class InvestingService {
 	private SimulationDAO simulationDAO = new SimulationDAO();
 	private StockDAO stockDAO = new StockDAO();
 	private MyInvestService searchService = new MyInvestService();
+	private MemberDAO memberDAO = new MemberDAO();
 	
 	//매수기준 수행
 	public MyStockVO insertInfo(String id, String sname, int quantity) {
-		MemberDAO memberDAO = new MemberDAO();
 		
 		try {
 			

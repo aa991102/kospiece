@@ -143,18 +143,27 @@ public class SimulationDAO {
 		String sql = "SELECT * FROM simulation where mno=? ORDER BY sidate desc";
 		ArrayList<StockHistoryVO> history = new ArrayList<StockHistoryVO>();
 		
-		
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, mno);
 			rs = pstmt.executeQuery();
 			StockHistoryVO stock = null;
+			
+			for(int j=0;j<10;j++) {
+				rs.next();
+				stock = toStockHistory(rs);
+				history.add(stock);
+			}
+			
+			
+			
+			/*
 			while(rs.next()) {
 				
 				stock = toStockHistory(rs);
 				history.add(stock);
 			}
-			
+			*/
 			return history;
 		}catch(Exception e) {
 			System.out.println("DAO error");
@@ -181,11 +190,12 @@ public class SimulationDAO {
 			pstmt.setString(2, sno);
 			rs = pstmt.executeQuery();
 			StockHistoryVO stock = null;
-			
+					
 			while(rs.next()) {
 				stock = toStockHistory(rs);
 				history.add(stock);
 			}
+			
 			return history;
 		}catch(Exception e) {
 			System.out.println("DAO error");

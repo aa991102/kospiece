@@ -17,12 +17,11 @@ import jdbc.connection.ConnectionProvider;
 public class MyInvestService {
 
 	Connection conn = null;
-	
-	//업체명을 받아서 업체명 및 내보유량 찾기
+	StockDAO stockDAO = new StockDAO();
+	SimulationDAO simulationDAO = new SimulationDAO();
 	
 	//업체 이름으로 주식정보 가져오기, 
 	private StockVO selectBySname(String sname) {
-		StockDAO stockDAO = new StockDAO();
 		
 		try {
 			StockVO stockVO = stockDAO.selectByName(conn=ConnectionProvider.getConnection(), sname);
@@ -38,7 +37,7 @@ public class MyInvestService {
 	
 	//내보유량 찾기	
 	private int getTotalQuantity(int mno, String sno) {
-		SimulationDAO simulationDAO = new SimulationDAO();
+		
 		int totalquantity=0;
 		try {
 			totalquantity = simulationDAO.getTotalquantity(conn=ConnectionProvider.getConnection(), mno, sno);
@@ -101,9 +100,8 @@ public class MyInvestService {
 	//특정 주식 기록 가져오기
 	public ArrayList<StockHistoryVO> getMyHistory(int mno, String no, String sname) {
 		
-		SimulationDAO service = new SimulationDAO();
 		try {
-			return MyInvestListService.toName(service.getMyInvestHistory(conn=ConnectionProvider.getConnection(), mno, sname), mno);
+			return MyInvestListService.toName(simulationDAO.getMyInvestHistory(conn=ConnectionProvider.getConnection(), mno, sname), mno);
 			
 		} catch (SQLException e) {
 			System.out.println("MyInvestService-getMyHistory Exception1");

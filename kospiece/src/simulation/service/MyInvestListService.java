@@ -20,11 +20,12 @@ import jdbc.connection.ConnectionProvider;
 public class MyInvestListService {
 	
 	static Connection conn = null;
+	private MemberDAO memberDAO = new MemberDAO();
+	private SimulationDAO simulationDAO = new SimulationDAO();
+	private static StockDAO stockDAO = new StockDAO();
 	
 	public MemberVO getMemberVOById(String mid) {
 		
-		MemberDAO memberDAO = new MemberDAO();
-		SimulationDAO simulationDAO = new SimulationDAO();
 		try {
 			conn = ConnectionProvider.getConnection();
 			MemberVO member = memberDAO.selectById(conn, mid); 
@@ -42,32 +43,31 @@ public class MyInvestListService {
 	
 	public ArrayList<MyStockVO> getMyList(int mno){
 		
-		SimulationDAO service = new SimulationDAO();
 		try {
-			return service.getMySimulationList(conn=ConnectionProvider.getConnection(), mno);
+			return simulationDAO.getMySimulationList(conn=ConnectionProvider.getConnection(), mno);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
+		}finally {
+			JdbcUtil.close(conn);
 		}
 	}
 	
 	public ArrayList<StockHistoryVO> getMyInvestHistory(int mno){
 		
-		SimulationDAO service = new SimulationDAO();
-		
 		try {
-			
-			return toName(service.getMyInvestHistory(conn=ConnectionProvider.getConnection(), mno), mno); 
+			return toName(simulationDAO.getMyInvestHistory(conn=ConnectionProvider.getConnection(), mno), mno); 
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
+		}finally {
+			JdbcUtil.close(conn);
 		}
 		
 	}
 	
 	public static ArrayList<StockHistoryVO> toName(ArrayList<StockHistoryVO> historys, int mno){
 		
-		StockDAO stockDAO = new StockDAO();
 		Map<String, String> map = new HashMap<String, String>();
 		
 		try {
