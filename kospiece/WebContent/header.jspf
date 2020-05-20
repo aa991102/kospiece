@@ -68,14 +68,17 @@
                     <li class="sub-item-virtual"><a href="<%= request.getContextPath()%>/simulation.do" class="a-item">주식주문</a></li>
                 </ul>
             </li>
-            <li class="list-item">
-                <a class="my" id="my" href="<%= request.getContextPath()%>/mypage.do">MYPAGE</a>
-                <ul class="sub-list-my">
-                    <li class="sub-item-my"><a href="<%= request.getContextPath()%>/myInterest.do" class="a-item">관심주식</a></li>
-                    <li class="sub-item-my"><a href="<%= request.getContextPath()%>/myBoardList.do" class="a-item">내 게시글</a></li>
-                    <li class="sub-item-my"><a href="<%= request.getContextPath()%>/myInfo.do" class="a-item">내 정보</a></li>
-                </ul>
-            </li>
+            <!-- 관리자로 로그인하면 마이페이지는 못봄! 로그아웃 옆의 닉네임을 누르면 내 정보 페이지로 이동 -->
+            <c:if test="${AUTHUSER.nickname!='관리자'}">
+	            <li class="list-item">
+	                <a class="my" id="my" href="<%= request.getContextPath()%>/mypage.do">MYPAGE</a>
+	                <ul class="sub-list-my">
+	                    <li class="sub-item-my"><a href="<%= request.getContextPath()%>/myInterest.do" class="a-item">관심주식</a></li>
+	                    <li class="sub-item-my"><a href="<%= request.getContextPath()%>/myBoardList.do" class="a-item">내 게시글</a></li>
+	                    <li class="sub-item-my"><a href="<%= request.getContextPath()%>/myInfo.do" class="a-item">내 정보</a></li>
+	                </ul>
+	            </li>
+            </c:if>
             <!-- 관리자로 로그인했을 경우 nav-admin 보여주기 -->
             <c:if test="${AUTHUSER.nickname=='관리자'}">
 	            <li class="list-item">
