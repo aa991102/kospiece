@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,32 +44,47 @@
 
 		<table class="myT">
 			<tr>
-				<th><input type="checkbox" id="allCheck" /></th>
+				<th style="text-align:center"><input type="checkbox" id="allCheck" /></th>
 				<th>회사명</th>
 				<th>업종</th>
 				<th>세부업종</th>
-				<th>현재가</th>
-				<th>전일비</th>
-				<th>등락율</th>
-				<th>거래량</th>
-				<th>거래대금</th>
-				<th>시가총액</th>
-				<th>52주고가</th>
+				<th style="text-align:right">현재가</th>
+				<th style="text-align:right">전일비</th>
+				<th style="text-align:right">등락율</th>
+				<th style="text-align:right">거래량</th>
+				<th style="text-align:right">거래대금</th>
+				<th style="text-align:right">시가총액</th>
+				<th style="text-align:right">52주고가</th>
 			</tr>
 			
 				<c:forEach var="list" items="${myInterestList}" varStatus="status">
 			    <tr>
-						<td align="center"><input type="checkbox" name="sname" value="${list.name}"></td>
-						<td>${list.name}</td>
-						<td>${list.field}</td>
-						<td>${list.detail}</td>
-						<td>${list.price}</td>
-						<td>${list.dayrate}</td>
-						<td>${list.changerate}</td>
-						<td>${list.volume}</td>
-						<td>${list.dealprice}</td>
-						<td>${list.total}</td>
-						<td>${list.high52}</td>
+						<c:if test="${status.getCount()%5!=0 || status.last}">
+							<td align="center"><input type="checkbox" name="sname" value="${list.name}"></td>
+							<td>${list.name}</td>
+							<td>${list.field}</td>
+							<td>${list.detail}</td>
+							<td align="right"><fmt:formatNumber value="${list.price}" pattern="#,##0" /></td>
+							<td align="right">${list.dayrate}</td>
+							<td align="right">${list.changerate}</td>
+							<td align="right">${list.volume}</td>
+							<td align="right">${list.dealprice}</td>
+							<td align="right"><fmt:formatNumber value="${list.total}" pattern="#,##0" /></td>
+							<td align="right">${list.high52}</td>
+						</c:if>
+						<c:if test="${status.getCount()%5==0 && !status.last}">
+							<td align="center" class="td5"><input type="checkbox" name="sname" value="${list.name}"></td>
+							<td class="td5">${list.name}</td>
+							<td class="td5">${list.field}</td>
+							<td class="td5">${list.detail}</td>
+							<td align="right" class="td5"><fmt:formatNumber value="${list.price}" pattern="#,##0" /></td>
+							<td align="right" class="td5">${list.dayrate}</td>
+							<td align="right" class="td5">${list.changerate}</td>
+							<td align="right" class="td5">${list.volume}</td>
+							<td align="right" class="td5">${list.dealprice}</td>
+							<td align="right" class="td5"><fmt:formatNumber value="${list.total}" pattern="#,##0" /></td>
+							<td align="right" class="td5">${list.high52}</td>
+						</c:if>
 					</tr>
 		    </c:forEach>
 		    <c:if test="${empty myInterestList}">
