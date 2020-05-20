@@ -189,7 +189,7 @@ public class StockDAO {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, sdetail);
 			rs = pstmt.executeQuery();
-			if(rs.next()) {
+			while(rs.next()) {
 				//결과값 가져와서 본인꺼만 빼고 list에 담자.
 				if(sno.equals(rs.getString("sno"))) {
 				}else {
