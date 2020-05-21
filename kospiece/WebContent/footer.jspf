@@ -6,30 +6,39 @@
 <div class="clear"></div>
 
 <div class="footer">
-
-<div class="foot">
-	<div class="member">
-	Donghyuk
+	<div class="developer">
+	<img class="gear" src="<%= request.getContextPath()%>/img/gear.png"/> developer
+	</div>
+	<div class="name">
+	DongHyuk<br/><br/>
+	태경<br/><br/>
 	</div>
 	<div class="member">
-	Taekyung
+	<img src="<%= request.getContextPath()%>/img/phone.png"/> 010-6608-6900<br/>
+	<img src="<%= request.getContextPath()%>/img/mail.png"/> oneneverre@naver.com<br/>
+	<img src="<%= request.getContextPath()%>/img/phone.png"/> 010-0000-2000<br/>
+	<img src="<%= request.getContextPath()%>/img/mail.png"/> ????@naver.com<br/>
+	</div>
+	<div class="name">
+	Najin<br/><br/>
+	Jiyoung<br/><br/>
 	</div>
 	<div class="member">
-	<span class="name">najin</span><br/>
 	<img src="<%= request.getContextPath()%>/img/phone.png"/> 010-4626-2087<br/>
 	<img src="<%= request.getContextPath()%>/img/mail.png"/> skwls2087@naver.com<br/>
+	<img src="<%= request.getContextPath()%>/img/phone.png"/> 010-9092-7241<br/>
+	<img src="<%= request.getContextPath()%>/img/mail.png"/> aa991102@naver.com<br/>
+	</div>
+	<div class="name">
+	태우<br/><br/>
+	leejun<br/><br/>
 	</div>
 	<div class="member">
-	Jiyoung
+	<img src="<%= request.getContextPath()%>/img/phone.png"/> 010-0000-2000<br/>
+	<img src="<%= request.getContextPath()%>/img/mail.png"/> ????@naver.com<br/>
+	<img src="<%= request.getContextPath()%>/img/phone.png"/> 010-0000-2000<br/>
+	<img src="<%= request.getContextPath()%>/img/mail.png"/> desert_fish@hanmail.net<br/>
 	</div>
-	<div class="member">
-	Taewoo
-	</div>
-	<div class="member">
-	Jun
-	</div>
-</div>
-<br/>
 </div>
 
 </body>
