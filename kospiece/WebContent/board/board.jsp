@@ -4,7 +4,7 @@
 <div class="title">자유게시판</div>
 <div class="title-sub" >
 	<a href="<%= request.getContextPath()%>/main.do">홈</a>
-	&nbsp;|&nbsp;<a href="<%= request.getContextPath()%>/board/read.do">자유게시판</a>
+	&nbsp;|&nbsp;<a href="<%=request.getContextPath()%>/board.do">자유게시판</a>
 </div>
 <div class="board" id="1">
 

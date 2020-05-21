@@ -6,39 +6,9 @@
 <div class="clear"></div>
 
 <div class="footer">
-	<div class="developer">
-	<img class="gear" src="<%= request.getContextPath()%>/img/gear.png"/> developer
-	</div>
-	<div class="name">
-	DongHyuk<br/><br/>
-	Taekyoung<br/><br/>
-	</div>
-	<div class="member">
-	<img src="<%= request.getContextPath()%>/img/phone.png"/> 010-6608-6900<br/>
-	<img src="<%= request.getContextPath()%>/img/mail.png"/> oneneverre@naver.com<br/>
-	<img src="<%= request.getContextPath()%>/img/phone.png"/> 010-2232-0337 <br/>
-	<img src="<%= request.getContextPath()%>/img/mail.png"/> kkb2349@naver.com<br/>
-	</div>
-	<div class="name">
-	Najin<br/><br/>
-	Jiyoung<br/><br/>
-	</div>
-	<div class="member">
-	<img src="<%= request.getContextPath()%>/img/phone.png"/> 010-4626-2087<br/>
-	<img src="<%= request.getContextPath()%>/img/mail.png"/> skwls2087@naver.com<br/>
-	<img src="<%= request.getContextPath()%>/img/phone.png"/> 010-9092-7241<br/>
-	<img src="<%= request.getContextPath()%>/img/mail.png"/> aa991102@naver.com<br/>
-	</div>
-	<div class="name">
-	Taewoo<br/><br/>
-	Leejun<br/><br/>
-	</div>
-	<div class="member">
-	<img src="<%= request.getContextPath()%>/img/phone.png"/> 010-3656-7938<br/>
-	<img src="<%= request.getContextPath()%>/img/mail.png"/> dbxodnsms@gmail.com<br/>
-	<img src="<%= request.getContextPath()%>/img/phone.png"/> 010-5188-7779<br/>
-	<img src="<%= request.getContextPath()%>/img/mail.png"/> desert_fish@hanmail.net<br/>
-	</div>
+<hr/>
+kospiece<br/>
+강동혁,김태경,신나진,오지영,유태우,이준 <br/>
 </div>
 
 </body>

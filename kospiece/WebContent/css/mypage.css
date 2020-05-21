@@ -129,6 +129,19 @@
 				  font-size:1.5rem;
 				  font-weight:bold;
 				  }
+.smbtn{display:inline-block;
+				  border:1px solid #173f5f;
+				  background-color:#1A3F69;
+				  color:white;
+				  width:157px;
+				  height:60px;
+				  margin:45px 10px;
+				  padding:20px;
+				  text-align:center;
+				  font-size:1.5rem;
+				  font-weight:bold;
+	
+}
 /*.deleteCurBtn {background-color:white;}
 .deleteCurBtn:hover {border:1px solid black;}*/
 /* �����ֽ� ������*/
@@ -171,7 +184,7 @@
 			  font-size:1.7rem;
 			  color:#4a4a4a;
 			  }
-.button:hover{
+.button:hover{background-color:#eef6ff;
 				border: 1px solid #486587;
 				}
 .button2{background-color:white;

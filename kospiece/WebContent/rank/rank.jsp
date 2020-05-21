@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <div class="title">실시간 순위</div>
-
+<div class="title-sub" >
+	<a href="<%= request.getContextPath()%>/main.do">홈</a>
+	&nbsp;|&nbsp;<a href="<%= request.getContextPath()%>/rank.do">실시간 순위</a>
+</div>
 <!-- 로그인 했는지 검사하는 T/F 변수 선언 -->
 <input type="hidden" id="login" value="${!empty AUTHUSER}">
 

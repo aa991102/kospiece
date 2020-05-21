@@ -3,8 +3,14 @@
 
 <!-- 관리자페이지에서의 모든 로직은 비밀번호를 확인한 후 실행한다. -->
 
+<div class="title">
+	<a href="<%= request.getContextPath()%>/admin.do" >관리자 페이지</a>
+</div>
+
+<a href="<%= request.getContextPath()%>/userList.do" class="user-button">회원관리</a>
+<a href="<%= request.getContextPath()%>/noticeManage.do" class="notice-button">공지사항</a>
+
 <div class="admin-user">
-	<a href="<%= request.getContextPath()%>/admin.do" class="admin-logo">관리자 페이지</a>	
 
 	<div class="checkAdminPw">
 		<form name="adminPwForm" method="post" action="<%= request.getContextPath()%>/checkAdminPw.do">

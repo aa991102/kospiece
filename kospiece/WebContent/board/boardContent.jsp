@@ -12,7 +12,12 @@ function checkDelete() {
 		 }
 	}
 </script>
-	<div class="title">자유게시판</div>
+<div class="title">자유게시판</div>
+<div class="title-sub" >
+	<a href="<%= request.getContextPath()%>/main.do">홈</a>
+	&nbsp;|&nbsp;<a href="<%=request.getContextPath()%>/board.do">자유게시판</a>
+	&nbsp;|&nbsp;<a>게시글 작성</a>
+</div>
 
 <div class="boardContent" id="1">
 <%--
@@ -44,7 +49,7 @@ function checkDelete() {
 		<c:if test="${NICKNAME == board.nickname}">
 			<a
 				href="<%= request.getContextPath()%>/board/delete.do?fno=${param.fno}">
-				<input type="button" value="삭제" class="button2" style="float:right;" onclick="checkDelete();">
+				<input type="button" value="삭제" class="button2" style="float:right;" onclick="return checkDelete();">
 			</a>
 			<a
 				href="<%= request.getContextPath()%>/board/modify.do?pageNo=${param.pageNo }&fno=${param.fno}">

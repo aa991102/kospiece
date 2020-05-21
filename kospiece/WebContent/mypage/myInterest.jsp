@@ -36,7 +36,7 @@
 			<div class="inlineDiv">
 			    <input type="text" name="snameSearh" id="sname"/>
 			    <input type="submit" formaction="<%= request.getContextPath()%>/myInterestInsert.do" name="insertBtn" id="insertBtn" value="추가" class="button"/>
-		    	<input type="submit" formaction="<%= request.getContextPath()%>/myInterestDelete.do" name="deleteBtn" value="삭제" onclick="return deleteInterestCheck();" class="button"/>
+		    	<input type="submit" formaction="<%= request.getContextPath()%>/myInterestDelete.do" name="deleteBtn" value="삭제" onclick="return deleteCheck();" class="button"/>
 		    	<input type="submit" formaction="<%= request.getContextPath()%>/simulation.do" id="investBtn" value="가상투자하기" onclick="return goToInvest();" class="button"/>
 		    	<input type="button" value="?" id="helpBtn2"/>
 		    </div>

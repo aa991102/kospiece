@@ -7,9 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
+<div class="title">비밀번호 찾기</div>
 	<div class="join">
 		<form action="<%= request.getContextPath()%>/find.do" method="post">
-			<table>
+			<table style="margin:0 auto;">
 				<tr>
 					<th>사용자 이름 : </th>
 					<td><input type="text" name="mname"/></td>
@@ -22,18 +23,15 @@
 					<th>아 이 디 : </th>
 					<td><input type="text" name="mid"/></td>
 				</tr>
-				<tr>
-					<td colspan="2">
-						<input type="submit" value="인증"/>
-						<input type="reset" value="취소"/>
-					</td>
-					
-				</tr>
 				
 			</table>
 				<c:if test="${!empty result}">
 					${result}
 				</c:if>
+				<div class="infoBtn-wrapper">
+		     	<input type="submit" class="infoBtn" value="인증"/>
+		     	<input type="reset" class="infoBtn" value="취소"/>
+		   	</div>
 		</form>
 	</div>
 </body>

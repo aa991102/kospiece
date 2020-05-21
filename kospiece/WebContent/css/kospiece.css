@@ -217,6 +217,7 @@ body{
 						background-color:#f6f6f6;
 						margin:0 0 20px 0;
 }
+.main .title > a {color:#385170;}
 .main .title-sub{display:inline;
 								 color:gray;
 								 margin:5px 0 5px 20px;input {height:30px;}
@@ -247,9 +248,53 @@ input {height:30px;}
 .selectDiv{display:inline;
 	line-height:33px;
 	padding:5px;}
-/*3.footer 梨낇삦�샍梨숉삨占쎄퐪梨숋옙�뭼苑볦콉�삦�샍梨숉삨占쎄퐪梨숋옙�뭼苑볦콉�삦�샍梨숉삨占쎄퐪梨숋옙�뭼苑�*/
-.footer{text-align:center;
-		}
+
+/*3.footer 책혥혻챙혧�꽓챙�쒋꽓책혥혻챙혧�꽓챙�쒋꽓책혥혻챙혧�꽓챙�쒋꽓*/
+.footer{
+    background: #848484;
+    color: white;
+    height: 180px;
+    min-width:1600px;
+    display:flex;
+		justify-content:center;
+		margin-top:60px;
+	}
+
+.footer .developer{
+		margin:28px 0px;
+		width: 140px;
+    height: 130px;
+    padding:15px;
+    line-height:177%;
+    text-align:center;
+}
+.footer .name{
+		margin:28px 0px;
+		width: 100px;
+    height: 130px;
+    padding: 0px 15px;
+    line-height:177%;
+    text-align:right;
+    border-left:1.5px solid white;
+}
+.footer .member{
+		margin:28px 0px;
+    width: 250px;
+    height: 130px;
+    padding: 0px 15px;
+    line-height:177%;
+   
+}
+.footer img{
+	width:15px;
+	height:15px;
+}
+.footer .gear{
+	width:40px;
+	height:40px;
+	margin:0 auto;
+}
+
 
 /*4.home梨좑옙苑볩옙�뵵�믩쓨議쀯옙�삨占쎄퐪梨숋옙�뭼苑� 梨낇삦�샍梨숉삨占쎄퐪梨숋옙�뭼苑볦콉�삦�샍梨숉삨占쎄퐪梨숋옙�뭼苑볦콉�삦�샍梨숉삨占쎄퐪梨숋옙�뭼苑�*/
 .map{
@@ -262,7 +307,7 @@ input {height:30px;}
 	width:800px;
 	margin:0 auto;
 	}
-.company-inform{float:right;margin:10px 0;}
+.company-inform{float:right;margin:10px 13px;}
 .company-detail tr:nth-child(1),.company-detail tr:nth-child(5){text-align:left;}
 .company-detail tr:nth-child(1) img{
 	width:15px;
