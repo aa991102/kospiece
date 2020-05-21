@@ -8,7 +8,7 @@
 </head>
 <body>
 <div class="title">비밀번호 찾기</div>
-	<div class="join">
+	<div class="findPw">
 		<form action="<%= request.getContextPath()%>/find.do" method="post">
 			<table style="margin:0 auto;">
 				<tr>
