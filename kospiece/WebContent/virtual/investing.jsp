@@ -3,6 +3,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <div class="title">가상투자</div>
+<a href="<%= request.getContextPath()%>/simulationlist.do" class="user-button">보유 주식</a>
+<a href="<%= request.getContextPath()%>/simulation.do" class="notice-button">주식 주문</a>
+
 <div class="sim">
 	<div class="sim">
 		<div class="sim-search">
@@ -84,7 +87,7 @@
 				<th>거래금액</th>
 			</tr>
 			<c:if test="${empty historys}">
-				<tr><td colspan="5">거래 내역이 없습니다.</td></tr>
+				<tr><td colspan="100%">거래 내역이 없습니다.</td></tr>
 			</c:if>
 			
 			<c:set var="sum" value="${0}"/>

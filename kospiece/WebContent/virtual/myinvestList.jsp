@@ -3,8 +3,10 @@
  <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
    <%@page import="dto.MemberVO" %>
 
-<div class="title">내가 보유한 주식</div>
-	
+<div class="title">보유 주식</div>
+<a href="<%= request.getContextPath()%>/simulationlist.do" class="user-button">보유 주식</a>
+<a href="<%= request.getContextPath()%>/simulation.do" class="notice-button">주식 주문</a>
+
 <div class="rank">
    <div>내가 보유한 포인트 : ${member.deposit}</div>
    <div>
