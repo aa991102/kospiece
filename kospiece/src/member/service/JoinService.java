@@ -91,7 +91,7 @@ public class JoinService {
 		if(checkBy("mmail", member.getMail())!=null) {
 			errors.put("mmail", "중복되는 e-mail 입니다.");
 		}
-		if(checkBy("mmail", member.getMail())!=null) {
+		if(checkBy("mphone", member.getMail())!=null) {
 			errors.put("mphone", "중복되는 전화번호 입니다.");
 		}
 		
