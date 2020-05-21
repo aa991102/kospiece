@@ -7,39 +7,41 @@
 	<div class="boardContent-buttons" id="1-2">
 		<%-- 기본 목록가기 경로 --%>
 			<a href="<%= request.getContextPath()%>/myBoardList.do">
-				<input type="button" value="목록" class="목록">
+				<input type="button" value="목록" class="button">
 			</a>
 		
 		<c:if test="${NICKNAME == board.nickname}">
 			<a
-				href="<%= request.getContextPath()%>/myBoardModify.do?fno=${param.fno}">
-				<input type="button" value="수정" class="수정">
+				href="<%= request.getContextPath()%>/myBoardDelete.do?fno=${param.fno}">
+				<input type="button" value="삭제" class="button2" onclick="return deleteCheck2();" style="float:right;">
 			</a>
 			<a
-				href="<%= request.getContextPath()%>/myBoardDelete.do?fno=${param.fno}">
-				<input type="button" value="삭제" class="삭제" onclick="return deleteCheck1();">
+				href="<%= request.getContextPath()%>/myBoardModify.do?fno=${param.fno}">
+				<input type="button" value="수정" class="button" style="float:right;margin:0 15px;">
 			</a>
 		</c:if>
 
 	</div>
 	<div class="" id="1-3">
-		<table border=1 width="100%">
-			<tr height=50>
-				<td width="10%" align="center">제목</td>
-				<td width="90%">${board.title }</td>
+		<table width="100%">
+			<tr>
+				<td class="board-title">[${board.horsehead}] ${board.title}</td>
 			</tr>
-			<tr height=50>
-				<td align="center">작성자</td>
-				<td>${board.nickname }</td>
+			<tr>
+				<td class="board-info">
+					<a class="board-info-nick">${board.nickname}</a> | 
+					<a class="board-info-others">조회</a> 
+					<a style="color:#ff5656;font-size:1.4rem;">${board.hit}</a>
+					<a class="board-info-others"> | ${board.uploaddate }</a>
+				</td>
 			</tr>
-			<tr height=300>
-				<td align="center">상세내용</td>
-				<td>${board.content }</td>
+			<tr>
+				<td class="board-content"><div class="board-content-div">${board.content }</div></td>
 			</tr>
 		</table>
 	</div>
 
-	<hr>
+	
 	<div class="boardContent-Comment" id="2">
 		<div class="boardContent-Comment-input" id="2-3">
 			<form
@@ -49,35 +51,33 @@
 				<input type="submit" class="button" value="등록" />
 			</form>
 		</div>
-		<div class="boardContent-Comment-comment" id="2-1">댓글(${listcomment.total})</div>
-
+		<div class="boardContent-Comment-comment" id="2-1" style="padding:10px;font-size:1.5rem;">
+		댓글(<a style="color:#ff5656;">${listcomment.total}</a>)
+		</div>
+		
 		<div class="boardContent-Comment-Table" id="2-2">
-			<table border=1 width="100%">
-				<tr>
-					<th>작성자</th>
-					<th>댓글 내용</th>
-					<th>작성일</th>
-					<th>엄지업</th>
-					<th>엄지다운</th>
-					<th>삭제</th>
-				</tr>
+			<table width="100%" style="border-top:1px solid gray;">
 				<c:forEach var="comment" items="${listcomment.content}">
 					<tr>
-						<td>${comment.nickname}</td>
-						<td>${comment.content}</td>
-						<td>${comment.uploaddate}</td>
-						<td><a
+						<td colspan="100%" class="board-comment-info">
+							<a class="board-info-nick">${comment.nickname}</a>&nbsp;&nbsp;
+							<a class="board-info-others">${comment.uploaddate}</a>
+						</td>
+					</tr>
+					<tr>
+						<td width="80%">${comment.content}</td>
+						<td style="padding:0;text-align:center;"><a
 							href="<%=request.getContextPath() %>/myCommentLike.do?
 						fno=${param.fno}&comment=${comment.fcno}">
 								업${comment.like }</a></td>
-						<td><a
+						<td style="padding:0;text-align:center;"><a
 							href="<%=request.getContextPath() %>/myCommentHate.do?
 						fno=${param.fno}&comment=${comment.fcno}">
 								다운${comment.hate}</a></td>
-						<td><c:if test="${NICKNAME == comment.nickname}">
+						<td style="padding:0;text-align:center;"><c:if test="${NICKNAME == comment.nickname}">
 								<a
 									href="<%=request.getContextPath() %>/myCommentDelete.do?
-						fno=${param.fno}&comment=${comment.fcno}">
+						fno=${param.fno}&comment=${comment.fcno}" onclick="return deleteCheck2();">
 									삭제</a>
 							</c:if></td>
 					</tr>
@@ -85,7 +85,7 @@
 
 				<c:if test="${listcomment.hasArticles()}">
 					<tr>
-						<td colspan="6"><c:if test="${listcomment.startPage > 5}">
+						<td colspan="100%" align="center"><c:if test="${listcomment.startPage > 5}">
 								<a
 									href="<%=request.getContextPath() %>/myBoardRead.do?pageNo=${param.pageNo }&fno=${param.fno}&commentPageNo=${listcomment.startPage - listcomment.page}">
 									[이전]</a>
