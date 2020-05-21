@@ -38,7 +38,7 @@
 			</tr>
 			<tr>
 				<td colspan="3">
-				<input type="submit" value="가입" onclick="formChk();"/>
+				<input type="submit" value="가입" onclick="return formChk();"/>
 				<input type="reset" value="취소"/>			
 			</tr>
 			<c:if test="${!empty errors }"></c:if>
