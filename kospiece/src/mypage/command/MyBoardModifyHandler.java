@@ -73,10 +73,10 @@ public class MyBoardModifyHandler implements CommandHandler {
 			return "/myBoardRead.do?fno="+fnoVal;
 		}catch( ArticleNotFoundException e) {
 			res.sendError(HttpServletResponse.SC_NOT_FOUND);
-			return null;
+			return "/mypage/myBoard/myBoardModifyFailNoBoard.jsp";
 		}catch(PermissionDeniedException e) {
 			res.sendError(HttpServletResponse.SC_FORBIDDEN);
-			return null;
+			return "/mypage/myBoard/myBoardModifyFail.jsp";
 		}
 	}
 

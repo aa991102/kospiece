@@ -30,7 +30,7 @@ public class WithdrawalService {
 					throw new InvalidPasswordException();
 				}
 				
-				memberDao.deleteMember(conn,mid);
+				memberDao.deleteMember(conn,member.getNickname());
 				
 				conn.commit(); //트랙잭션 반영
 				
