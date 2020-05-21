@@ -1,5 +1,4 @@
 function formChk(){
-	
 	frm = document.join;
 	
 	if(frm.mid.value.length<1){

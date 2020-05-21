@@ -14,13 +14,16 @@
 	}
 </script>
 <div class="title">자유게시판</div>
-
+<div class="title-sub" >
+	<a href="<%= request.getContextPath()%>/main.do">홈</a>
+	&nbsp;|&nbsp;<a href="<%= request.getContextPath()%>/board/read.do">자유게시판</a>
+	&nbsp;|&nbsp;<a>게시글 작성</a>
+</div>
 <div class="boardWrite" id="1">
-	<div class="" id="1-1">게시글작성</div>
 	<form action="<%=request.getContextPath()%>/board/write.do" method="post"
 	onsubmit="return checkForm();">
 	<div class="boardWrite-Input" id="1-2">
-			<table border=1 width="100%">
+			<table width="100%">
 				<tr>
 					<td width="10%" align="center">말머리</td>
 					<td width="90%"><select name="horsehead">
@@ -32,18 +35,18 @@
 				</tr>
 				<tr>
 					<td align="center">제목</td>
-					<td><input size=50 type="text" id="title" name="title"/></td>
+					<td><input size=72 type="text" id="title" name="title"/></td>
 				</tr>
 				<tr>
 					<td align="center">상세 내용</td>
-					<td><textarea cols="95" rows="10" id="content" name="content"></textarea></td>
+					<td><textarea cols="95" rows="10" id="content" name="content" width="100%"></textarea></td>
 				</tr>
 			</table>
 	</div>
 	<div class="boardWrite-Inputbutton" id="1-3">
-		<input type="submit" value="등록" /> <a
+		<input type="submit" value="등록" class="button"/> <a
 			href="<%=request.getContextPath()%>/board.do"><input
-			type="button" value="목록으로 가기" /></a>
+			type="button" value="목록" class="button"/></a>
 	</div>
 </form>
 </div>

@@ -1,16 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<!-- 검색어를 입력하지 않고 검색을 누르는 것을 방지 -->
-<script>
-function checkForm() {
-    if(document.getElementById("notice-content").value==""){
-    	alert("검색어를 입력해주세요")
-    	return false;
-    }
-}
-</script>
-
 <div class="title">공지사항</div>
 
 <!-- 제목이나 내용으로 공지사항을 검색하는 form -->

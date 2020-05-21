@@ -13,11 +13,12 @@
 	}
 </script>
 <div class="title">내 게시글</div>
+<div class="title-sub" >
+	<a href="<%= request.getContextPath()%>/main.do">홈</a>
+	&nbsp;|&nbsp;<a href="<%= request.getContextPath()%>/board/read.do">자유게시판</a>
+	&nbsp;|&nbsp;<a>게시글 수정</a>
+</div>
 	<div class="" id="1">
-		
-		<div class="" id="1-2">
-			게시글수정
-		</div>
 		<form action="<%=request.getContextPath() %>/myBoardModify.do?fno=${param.fno}" method="post"
 		onsubmit="return checkForm();">
 		<div class="" id="1-3">

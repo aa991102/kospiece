@@ -10,8 +10,8 @@
 <div class="rank">
 	<div class="field-search">
 		<form action="rank.do" method="post" name="fieldForm" onChange="javascript:fieldForm.submit();">
-			업종별&nbsp;&nbsp;
-			<select id="select" name="select">
+			<div class="selectDiv">업종별</div>
+			<select id="select" name="select" class="selectCss">
 				<option value="all" <c:if test="${field == 'all'}">selected='selected'</c:if>>전체보기</option>
 				<c:forEach var="fieldName" items="${fieldName}">
 				<option value="${fieldName}" <c:if test="${field == fieldName}">selected='selected'</c:if>>${fieldName}</option>

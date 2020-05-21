@@ -152,7 +152,9 @@
 	  }
 .center {text-align:center;
 		 font-weight:bold;
-		 color:#505050;}
+		 }
+.center2{text-align:center;
+}
 .empty{
 		 text-align:center;
 		 font-weight:bold;
@@ -165,7 +167,7 @@
 .button{background-color:white;
 			  border: 1px solid #7c9bb9;
 			  border-radius:2px;
-			  padding:6px 12px;
+			  padding:5px 12px;
 			  font-size:1.7rem;
 			  color:#4a4a4a;
 			  }
@@ -175,7 +177,7 @@
 .button2{background-color:white;
 			  border: 1px solid #7c9bb9;
 			  border-radius:2px;
-			  padding:6px 12px;
+			  padding:5px 12px;
 			  font-size:1.7rem;
 			  color:#ff5656;
 			  }
