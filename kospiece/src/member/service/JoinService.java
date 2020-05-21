@@ -86,7 +86,7 @@ public class JoinService {
 		}
 		
 		if(checkBy("mnick", member.getNickname())!=null) {
-			errors.put("nick", "중되는 nickname 입니다.");
+			errors.put("nick", "중복되는 nickname 입니다.");
 		}
 		if(checkBy("mmail", member.getMail())!=null) {
 			errors.put("mmail", "중복되는 e-mail 입니다.");
