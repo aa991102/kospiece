@@ -50,7 +50,7 @@
 		</table>
 		<div class="infoBtn-wrapper">
      	<input type="submit" class="infoBtn" value="가입" style="margin:10px"/>
-     	<input type="reset" class="infoBtn" value="취소" style="margin:10px"/>
+     	<input type="button" class="infoBtn" value="취소" style="cursor: pointer;margin:10px;" onclick="location.href='<%= request.getContextPath()%>/member/login.jsp'"/>
    	</div>
 	</form>
 </div>

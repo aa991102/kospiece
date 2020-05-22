@@ -24,8 +24,8 @@
 					${result}
 				</c:if>
 				<div class="infoBtn-wrapper">
-		     	<input type="submit" class="infoBtn" value="인증"/>
-		     	<input type="reset" class="infoBtn" value="취소"/>
+		     	<input type="submit" class="infoBtn" value="인증" style="cursor: pointer;" />
+		     	<input type="button" value="취소" id="Nope" class="infoBtn" style="cursor: pointer;" onclick="location.href='<%= request.getContextPath()%>/member/login.jsp'"/>
 		   	</div>
 		</form>
 	</div>

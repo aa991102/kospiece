@@ -23,7 +23,7 @@
 		${ errors.notm }
 		<div class="infoBtn-wrapper">
      	<input type="submit" class="infoBtn" value=" 변경"/>
-     	<input type="reset" class="infoBtn" value="취소"/>
+     	<input type="button" value="취소" id="Nope" class="infoBtn" style="cursor: pointer;" onclick="location.href='<%= request.getContextPath()%>/member/login.jsp'"/>
    	</div>
 	</form>
 </div>
