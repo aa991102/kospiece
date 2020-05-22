@@ -14,36 +14,19 @@ function checkForm() {
 }
 </script>
 
-<div class="title">
-	<a href="<%= request.getContextPath()%>/admin.do" >관리자 페이지</a>
-</div>
-
-<a href="<%= request.getContextPath()%>/userList.do" class="user-button">회원관리</a>
-<a href="<%= request.getContextPath()%>/noticeManage.do" class="notice-button">공지사항</a>
-
-<div class="boardWrite">
+<div class="admin-notice">
+	<a href="<%= request.getContextPath()%>/admin.do" class="admin-logo">관리자 페이지</a>	
+	<a href="<%= request.getContextPath()%>/userList.do" class="user-button">회원관리</a>
+	<a href="<%= request.getContextPath()%>/noticeManage.do" class="notice-button">공지사항</a><br/>
 	
-	<div class="boardWrite-Input">
-		<p class="center">공지사항 작성</p>
-		<div class="boardWrite" id="1">
-		<form action="<%=request.getContextPath()%>/noticeWrite.do" method="post"
-		onsubmit="return checkForm();">
-			<div class="boardWrite-Input" id="1-2">
-					<table width="100%">
-						<tr>
-							<td align="center">제목</td>
-							<td><input style="width:95%" type="text" id="title" name="title"/></td>
-						</tr>
-						<tr>
-							<td align="center">상세내용</td>
-							<td><textarea cols="95" rows="15" id="content" name="content" id="content" style="width:95%"></textarea></td>
-						</tr>
-					</table>
-			</div>
-			<div class="boardWrite-Inputbutton" id="1-3">
-				<input type="submit" value="등록" class="button"/>
-				<input type="reset" value="취소" class="button2"/>
-			</div>
+	<div class="notice-write">
+		<p>공지사항 작성</p>
+		<form name="notice-write" action="<%= request.getContextPath()%>/noticeWrite.do" method="post"
+			 onsubmit="return checkForm();">
+			제목:<input type="text" style="width:650px;" name="title" id="title"/><br/>
+			내용:<textarea cols="70" rows="20" name="content" id="content"></textarea><br/>
+			<input type="submit" value="등록"/>
+			<input type="reset" value="취소"/>
 		</form>
 	</div>
 </div>

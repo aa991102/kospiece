@@ -76,10 +76,7 @@ public class WithdrawalHandler implements CommandHandler {
 			return FORM_VIEW;
 		}catch(MemberNotFoundException e) {
 			response.sendError(HttpServletResponse.SC_BAD_REQUEST);
-			return "/mypage/myInfo/withdrawalFail_NoMember.jsp";
-		}catch(Exception e) {
-			response.sendError(HttpServletResponse.SC_BAD_REQUEST);
-			return "/mypage/myInfo/withdrawalFail.jsp";
+			return null;
 		}
 		
 	}

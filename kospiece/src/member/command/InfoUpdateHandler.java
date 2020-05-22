@@ -149,14 +149,15 @@ public class InfoUpdateHandler implements CommandHandler {
 			
 		}catch(MemberNotFoundException e) {
 			response.sendError(HttpServletResponse.SC_BAD_REQUEST);
-			return "/mypage/myInfo/myInfoUpdateFail_NoMember.jsp";
-		}catch(Exception e){
+			return null;
+		}catch(Exception e){ // 일단 로그인폼으로 보내자
+			System.out.println("회원정보 수정 실패");
 			e.getStackTrace();
 			
 			path = request.getRequestURI(); 
 			request.setAttribute("path", path);
 			
-			return "/mypage/myInfo/myInfoUpdateFail.jsp";
+			return "/member/login.jsp";
 		}
 	}
 

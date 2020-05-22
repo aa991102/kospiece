@@ -1,4 +1,4 @@
-/*筌��굟�궑占쎌깓筌��닀�궓�뜝�럡�맚筌��닂�삕占쎈�쇠땻蹂�肄됵옙�궑占쎌깓筌��닀�궓�뜝�럡�맚筌��닂�삕占쎈�쇠땻占� 筌��굟�궑占쎌깓筌��닀�궓�뜝�럡�맚筌��닂�삕占쎈�쇠땻蹂�肄됵옙�궑占쎌깓筌��닀�궓�뜝�럡�맚筌��닂�삕占쎈�쇠땻蹂�肄됵옙�궑占쎌깓筌��닀�궓�뜝�럡�맚筌��닂�삕占쎈�쇠땻占�*/
+/*책혥혻챙혧�꽓챙�쒋꽓책혥혻챙혧�꽓챙�쒋꽓 책혥혻챙혧�꽓챙�쒋꽓책혥혻챙혧�꽓챙�쒋꽓책혥혻챙혧�꽓챙�쒋꽓*/
 .clear{clear:both;}
 
 a {text-decoration:none;}
@@ -11,14 +11,14 @@ body{
 	font-family: Roboto, sans-serif;
 	}
 
-/*1.header 筌��굟�궑占쎌깓筌��닀�궓�뜝�럡�맚筌��닂�삕占쎈�쇠땻蹂�肄됵옙�궑占쎌깓筌��닀�궓�뜝�럡�맚筌��닂�삕占쎈�쇠땻蹂�肄됵옙�궑占쎌깓筌��닀�궓�뜝�럡�맚筌��닂�삕占쎈�쇠땻占�*/
+/*1.header 책혥혻챙혧�꽓챙�쒋꽓책혥혻챙혧�꽓챙�쒋꽓책혥혻챙혧�꽓챙�쒋꽓*/
 .header {
 	background:#173f5f;
     height:80px;
     min-width:1600px;
     padding:15px 10px;
     }
-/* 筌��굟�궑占쎌깓筌��닂�삕獒뺛끇�럶占쎄굻占쎄퉱占쎈�싧뜝�룞�삕占쎈�쇠땻占� */
+/* 책혥혻챙�뮤맡ぢ냈ㅓ��쒋꽓 */
 .header .logo {
 	position:absolute;
     top:22px;
@@ -26,7 +26,7 @@ body{
     margin:0;
     color:white;
     }
-/* 筌��굟�궑占쎌깓筌��닀�궓�뜝�럡�맚筌��닂�삕占쎈�쇠땻蹂�肄뚳쭪�닂�삕占쎈탾占쎈탮占쎌궔亦낃퀕誘⑹벂鈺곗���삕占쎌궓�뜝�럡�맚筌��닂�삕占쎈�쇠땻蹂�肄됵옙�궑占쎌깓筌�占썲㎤遺우컞 */
+/* 책혥혻챙혧�꽓챙�쒋꽓챈짙�┚┑온궁Β띉졗�혧�꽓챙�쒋꽓책혥혻챦쩔쩍 */
 .header .nav {text-align:left;}
 .header .list {
 	position:absolute;
@@ -102,7 +102,7 @@ body{
     display:block;
     clear:both;
 }
-/* 筌��굟�궑占쎌깓筌��닀�궓�뜝�럡�맚筌��닂�삕占쎈�쇠땻蹂�肄됵옙�궑占쎌깓筌�占썲㎤遺우컞-筌��굟�궑占쎌깓筌��닀�궓�뜝�럡�맚筌��닂�삕占쎈�쇠땻蹂�肄됵옙�궑占쎌깓筌��닀�궓�뜝�럡�맚筌��닂�삕占쎈�쇠땻蹂�肄э옙�뿹鸚룸씮肄됵옙�궑占쎌깓筌��닀�궓�뜝�럡�맚筌��닂�삕占쎈�쇠땻蹂�肄됵옙�궑占쎌깓筌��닀�궓�뜝�럡�맚筌��닂�삕占쎈�쇠땻占�-筌��굟�궑占쎌깓筌��닀�궓�뜝�럡�맚筌��닂�삕占쎈�쇠땻蹂�肄됵옙�궑占쎌깓筌��닀�궓�뜝�럡�맚筌��닂�삕占쎈�쇠땻蹂�肄됵옙�궑占쎌깓筌��닀�궓�뜝�럡�맚筌��닂�삕占쎈�쇠땻占� 筌��굟�궑占쎌깓筌��닂�삕獒뺛끇�럶占쎄굻獒뺛끇�벆�뜝�룞�삕占쎈�쇠땻蹂�肄됵옙�궑占쎌깓筌��닀�궓�뜝�럡�맚筌��닂�삕占쎈�쇠땻占� 筌��굟�궑占쎌깓筌��닀�궓�뜝�럡�맚筌��닂�삕占쎈�쇠땻蹂�肄됵옙�궑占쎌깓筌��닀�궓�뜝�럡�맚筌��닂�삕占쎈�쇠땻蹂�肄됵옙�궑占쎌깓筌��닀�궓�뜝�럡�맚筌��닂�삕占쎈�쇠땻占�  */
+/* 책혥혻챙혧�꽓챙�쒋꽓책혥혻챦쩔쩍-책혥혻챙혧�꽓챙�쒋꽓책혥혻챙혧�꽓챙�쒋꽓챠힋쨍책혥혻챙혧�꽓챙�쒋꽓책혥혻챙혧�꽓챙�쒋꽓-책혥혻챙혧�꽓챙�쒋꽓책혥혻챙혧�꽓챙�쒋꽓책혥혻챙혧�꽓챙�쒋꽓 책혥혻챙�뮤맡ぢ뮤띊��쒋꽓책혥혻챙혧�꽓챙�쒋꽓 책혥혻챙혧�꽓챙�쒋꽓책혥혻챙혧�꽓챙�쒋꽓책혥혻챙혧�꽓챙�쒋꽓  */
 .header .rank {position:absolute;
 		top:0;
 		right:-70px;
@@ -114,7 +114,7 @@ body{
     border-color:white;
     border-width:1px;
     }
-/* 筌��굟�궑占쎌깓筌��닀�궓�뜝�럡�맚筌��닂�삕占쎈�쇠땻蹂�肄됵옙�궑占쎌깓筌�占썲㎤遺우컞-筌��굟�궑占쎌깓筌��닀�궓�뜝�럡�맚筌��닂�삕占쎈�쇠땻蹂�肄됵옙�궑占쎌깓筌��닀�궓�뜝�럡�맚筌��닂�삕占쎈�쇠땻蹂�肄э옙�뿹鸚룸씮肄됵옙�궑占쎌깓筌��닀�궓�뜝�럡�맚筌��닂�삕占쎈�쇠땻蹂�肄됵옙�궑占쎌깓筌��닀�궓�뜝�럡�맚筌��닂�삕占쎈�쇠땻占�-筌��굟�궑占쎌깓筌��닀�궓�뜝�럡�맚筌��닂�삕占쎈�쇠땻蹂�肄됵옙�궑占쎌깓筌��닀�궓�뜝�럡�맚筌��닂�삕占쎈�쇠땻蹂�肄됵옙�궑占쎌깓筌��닀�궓�뜝�럡�맚筌��닂�삕占쎈�쇠땻占� 筌��굟�궑占쎌깓筌��닂�삕獒뺛끇�럶占쎄굻獒뺛끇�벆�뜝�룞�삕占쎈�쇠땻蹂�肄됵옙�궑占쎌깓筌��닀�궓�뜝�럡�맚筌��닂�삕占쎈�쇠땻占� 筌��굟�궑占쎌깓筌��닀�궓�뜝�럡�맚筌��닂�삕占쎈�쇠땻蹂�肄됵옙�궑占쎌깓筌��닀�궓�뜝�럡�맚筌��닂�삕占쎈�쇠땻蹂�肄됵옙�궑占쎌깓筌��닀�궓�뜝�럡�맚筌��닂�삕占쎈�쇠땻蹂�肄됵옙�궑占쎌깓筌��닀�궓�뜝�럡�맚筌��닂�삕占쎈�쇠땻占�  */
+/* 책혥혻챙혧�꽓챙�쒋꽓책혥혻챦쩔쩍-책혥혻챙혧�꽓챙�쒋꽓책혥혻챙혧�꽓챙�쒋꽓챠힋쨍책혥혻챙혧�꽓챙�쒋꽓책혥혻챙혧�꽓챙�쒋꽓-책혥혻챙혧�꽓챙�쒋꽓책혥혻챙혧�꽓챙�쒋꽓책혥혻챙혧�꽓챙�쒋꽓 책혥혻챙�뮤맡ぢ뮤띊��쒋꽓책혥혻챙혧�꽓챙�쒋꽓 책혥혻챙혧�꽓챙�쒋꽓책혥혻챙혧�꽓챙�쒋꽓책혥혻챙혧�꽓챙�쒋꽓책혥혻챙혧�꽓챙�쒋꽓  */
 .header .rank2 {position:absolute;
 		top:0;
 		right:35px;
@@ -162,9 +162,9 @@ body{
 #rank-list li {height: 20px;
 						   line-height: 20px;
 							}
-/* 筌��굟�궑占쎌깓筌��닀�궓�뜝�럡�맚筌��닂�삕占쎈�쇠땻蹂�肄됵옙�궑占쎌깓筌�占썲㎤遺우컞-筌�醫뤾콢占쎌뵥筌��굟�궑占쎌깓筌��닀�궓�뜝�럡�맚筌��닂�삕占쎈�쇠땻蹂�肄됵옙�궑占쎌깓筌��닂�삕獒뺛끆�꽴占쎄맘占쎄쾲獒뺤눦�삕�뜝�럩萸쇠땻占� */
+/* 책혥혻챙혧�꽓챙�쒋꽓책혥혻챦쩔쩍-챠큄흸책혥혻챙혧�꽓챙�쒋꽓책혥혻챙�뮤궁ヂづ뮼��쒋꽓 */
 .myNick {position:relative;
-				 left:80px;
+				 float:right;
 				 width:max-content;}
 .myNick >a {position:relative;
 						color:white;
@@ -182,7 +182,7 @@ body{
 .header .list-item_log{
 		position:absolute;
 		top:-5px;
-		left:200px;
+		left:335px;
     }
     
 .loginout {
@@ -203,7 +203,7 @@ body{
 .header .list-item>a{color:#D1D9E1;}
 .header .list-item>a:hover{color:white;}
 
-/*2.main 筌��굟�궑占쎌깓筌��닀�궓�뜝�럡�맚筌��닂�삕占쎈�쇠땻蹂�肄됵옙�궑占쎌깓筌��닀�궓�뜝�럡�맚筌��닂�삕占쎈�쇠땻蹂�肄됵옙�궑占쎌깓筌��닀�궓�뜝�럡�맚筌��닂�삕占쎈�쇠땻占�*/
+/*2.main 책혥혻챙혧�꽓챙�쒋꽓책혥혻챙혧�꽓챙�쒋꽓책혥혻챙혧�꽓챙�쒋꽓*/
 .main{min-height:750px;}
 .main .title{
 						width:280px;
@@ -217,11 +217,9 @@ body{
 						background-color:#f6f6f6;
 						margin:0 0 20px 0;
 }
-.main .title > a {color:#385170;}
 .main .title-sub{display:inline;
 								 color:gray;
-								 margin:5px 0 5px 20px;input {height:30px;}
-.selectCss {vertical-align: top;height:30px;}
+								 margin:5px 0 5px 20px;
 								 text-decoration:none;
 								 }
 .main .title-sub >a{text-decoration:none;
@@ -242,64 +240,15 @@ td {border-bottom:1px solid #c1d1e0;
 		padding:10px;
 		}
 td > a {color:black;}
-input {height:30px;}
-.selectCss {vertical-align:top;
-	height:30px;}
-.selectDiv{display:inline;
-	line-height:33px;
-	padding:5px;}
+.selectCss {vertical-align: top;}
+/*3.footer 책혥혻챙혧�꽓챙�쒋꽓책혥혻챙혧�꽓챙�쒋꽓책혥혻챙혧�꽓챙�쒋꽓*/
+.footer{text-align:center;
+		}
 
-/*3.footer 梨낇삦�샍梨숉삨占쎄퐪梨숋옙�뭼苑볦콉�삦�샍梨숉삨占쎄퐪梨숋옙�뭼苑볦콉�삦�샍梨숉삨占쎄퐪梨숋옙�뭼苑�*/
-.footer{
-    background: #848484;
-    color: white;
-    height: 180px;
-    min-width:1600px;
-    display:flex;
-		justify-content:center;
-		margin-top:60px;
-	}
-
-.footer .developer{
-		margin:28px 0px;
-		width: 140px;
-    height: 130px;
-    padding:15px;
-    line-height:177%;
-    text-align:center;
-}
-.footer .name{
-		margin:28px 0px;
-		width: 100px;
-    height: 130px;
-    padding: 0px 15px;
-    line-height:177%;
-    text-align:right;
-    border-left:1.5px solid white;
-}
-.footer .member{
-		margin:28px 0px;
-    width: 250px;
-    height: 130px;
-    padding: 0px 15px;
-    line-height:177%;
-   
-}
-.footer img{
-	width:15px;
-	height:15px;
-}
-.footer .gear{
-	width:40px;
-	height:40px;
-	margin:0 auto;
-}
-
-
-/*4.home筌�醫묒삕�땻蹂⑹삕占쎈도占쎈�⑹벂鈺곗���삕占쎌궓�뜝�럡�맚筌��닂�삕占쎈�쇠땻占� 筌��굟�궑占쎌깓筌��닀�궓�뜝�럡�맚筌��닂�삕占쎈�쇠땻蹂�肄됵옙�궑占쎌깓筌��닀�궓�뜝�럡�맚筌��닂�삕占쎈�쇠땻蹂�肄됵옙�궑占쎌깓筌��닀�궓�뜝�럡�맚筌��닂�삕占쎈�쇠땻占�*/
+/*4.home챠�꽓�씳Β띉졗�혧�꽓챙�쒋꽓 책혥혻챙혧�꽓챙�쒋꽓책혥혻챙혧�꽓챙�쒋꽓책혥혻챙혧�꽓챙�쒋꽓*/
 .map{
-	width:1000px;
-	height:600px;
+	width:1200px;
+	height:750px;
 	/*border:1px solid black;*/
 	margin:50px auto;
 	}
@@ -307,7 +256,7 @@ input {height:30px;}
 	width:800px;
 	margin:0 auto;
 	}
-.company-inform{float:right;margin:10px 13px;}
+.company-inform{float:right;}
 .company-detail tr:nth-child(1),.company-detail tr:nth-child(5){text-align:left;}
 .company-detail tr:nth-child(1) img{
 	width:15px;
@@ -318,10 +267,6 @@ input {height:30px;}
 .company-detail tr:nth-child(1) a{
 	float:right;
 	margin:0 10px;
-	}
-	
-.mainTH{border-top:none;
-	border-bottom:2px solid #486587;
 	}
 
 

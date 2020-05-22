@@ -93,9 +93,7 @@ public class InfoUpdatePwCheckHandler implements CommandHandler {
 			return FORM_VIEW;
 		}catch(MemberNotFoundException e) {
 			response.sendError(HttpServletResponse.SC_BAD_REQUEST);
-			return "/mypage/myInfo/myInfoUpdateFail_NoMember.jsp";
-		}catch(Exception e) {
-			return "/mypage/myInfo/myInfoUpdateFail.jsp";
+			return null;
 		}
 	}
 

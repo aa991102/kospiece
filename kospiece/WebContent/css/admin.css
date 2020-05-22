@@ -13,8 +13,7 @@
 	}
 	
 /*회원관리나 공지사항관리로 넘어가는 링크박스*/
-.user-button{
-	margin:0 20px;
+.admin .user-button{
 	padding:10px 10px 10px 10px;
 	background:white;
 	font-weight:900;
@@ -23,7 +22,7 @@
 	color:#1A3F69;
 	font-size:15px;
 	}
-.notice-button{
+.admin .notice-button{
 	padding:10px 10px 10px 10px;
 	background:white;
 	font-weight:900;
@@ -32,13 +31,13 @@
 	color:#1A3F69;
 	font-size:15px;
 	}
-.user-button:hover{
+.admin .user-button:hover{
 	background:#1A3F69;
 	border:1px solid #1A3F69;
 	border-radius:5px;
 	color:white;
 	}
-.notice-button:hover{
+.admin .notice-button:hover{
 	background:#1A3F69;
 	border:1px solid #1A3F69;
 	border-radius:5px;
@@ -110,9 +109,6 @@
 /*8-1 회원관리 리스트*/
 
 /*회원관리나 공지사항관리로 넘어가는 링크박스*/
-.admin-div {margin:0 auto;
-     width:1000px;
-     }
 .admin-user .user-button{
 	padding:10px 10px 10px 10px;
 	background:#1A3F69;
@@ -220,7 +216,7 @@
 	color:white;
 	}
 
-
+.notice-button{margin:10px;padding:5px}
 .admin-notice .user-button{
 	background:white;
 	border:1px solid black;
