@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <div class="title">실시간 순위</div>
-
+<div class="title-sub" >
+	<a href="<%= request.getContextPath()%>/main.do">홈</a>
+	&nbsp;|&nbsp;<a href="<%= request.getContextPath()%>/rank.do">실시간 순위</a>
+</div>
 <!-- 로그인 했는지 검사하는 T/F 변수 선언 -->
 <input type="hidden" id="login" value="${!empty AUTHUSER}">
 
@@ -10,8 +13,8 @@
 <div class="rank">
 	<div class="field-search">
 		<form action="rank.do" method="post" name="fieldForm" onChange="javascript:fieldForm.submit();">
-			업종별&nbsp;&nbsp;
-			<select id="select" name="select">
+			<div class="selectDiv">업종별</div>
+			<select id="select" name="select" class="selectCss">
 				<option value="all" <c:if test="${field == 'all'}">selected='selected'</c:if>>전체보기</option>
 				<c:forEach var="fieldName" items="${fieldName}">
 				<option value="${fieldName}" <c:if test="${field == fieldName}">selected='selected'</c:if>>${fieldName}</option>

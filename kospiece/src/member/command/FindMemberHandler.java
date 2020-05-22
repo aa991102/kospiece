@@ -41,7 +41,7 @@ public class FindMemberHandler implements CommandHandler{
 		System.out.println("result="+result);
 		request.setAttribute("result", result);
 		
-		return "/user/findId.jsp";
+		return "/member/findId.jsp";
 	}
 	
 
@@ -50,10 +50,10 @@ public class FindMemberHandler implements CommandHandler{
 		boolean result = find.validateMember(mname,mmail,mid);
 		
 		if(result) {
-			return "/user/ChangePw.jsp";
+			return "/member/FindUpdatePw.jsp";
 		}else {
 			request.setAttribute("error", "존재하지 않는 회원 입니다.");
-			return "/user/findPw.jsp";
+			return "/member/findPw.jsp";
 		}
 		
 		

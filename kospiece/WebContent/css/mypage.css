@@ -59,10 +59,10 @@
 					width:400px;
 					border:1px solid #1a3f69;
 					margin: 0 0 0 -200px;
-					line-height:60px;
-					text-align:center;
-					font-size:1.6rem;
-					}
+					line-height:30px;
+					text-align:left;
+					font-size:1.4rem;
+					padding:0 0 0 30px;}
 #helpClose{float:right;
 					 background-color: white;
 					 border:none;
@@ -129,6 +129,19 @@
 				  font-size:1.5rem;
 				  font-weight:bold;
 				  }
+.smbtn{display:inline-block;
+				  border:1px solid #173f5f;
+				  background-color:#1A3F69;
+				  color:white;
+				  width:157px;
+				  height:60px;
+				  margin:45px 10px;
+				  padding:20px;
+				  text-align:center;
+				  font-size:1.5rem;
+				  font-weight:bold;
+	
+}
 /*.deleteCurBtn {background-color:white;}
 .deleteCurBtn:hover {border:1px solid black;}*/
 /* �����ֽ� ������*/
@@ -152,7 +165,9 @@
 	  }
 .center {text-align:center;
 		 font-weight:bold;
-		 color:#505050;}
+		 }
+.center2{text-align:center;
+}
 .empty{
 		 text-align:center;
 		 font-weight:bold;
@@ -164,10 +179,28 @@
 		 
 .button{background-color:white;
 			  border: 1px solid #7c9bb9;
-			  border-radius:3px;
-			  padding:3px 10px;
+			  border-radius:2px;
+			  padding:5px 12px;
 			  font-size:1.7rem;
+			  color:#4a4a4a;
 			  }
-.button:hover{
+.button:hover{background-color:#eef6ff;
 				border: 1px solid #486587;
 				}
+.button2{background-color:white;
+			  border: 1px solid #7c9bb9;
+			  border-radius:2px;
+			  padding:5px 12px;
+			  font-size:1.7rem;
+			  color:#ff5656;
+			  }
+.button2:hover{
+				border: 1px solid #b33d3d;
+				}
+
+.interestTd{
+		border-bottom:none;
+		border-collapse: collapse;
+		padding:10px;
+		}
+}
