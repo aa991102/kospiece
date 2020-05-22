@@ -59,10 +59,10 @@
 					width:400px;
 					border:1px solid #1a3f69;
 					margin: 0 0 0 -200px;
-					line-height:60px;
-					text-align:center;
-					font-size:1.6rem;
-					}
+					line-height:30px;
+					text-align:left;
+					font-size:1.4rem;
+					padding:0 0 0 30px;}
 #helpClose{float:right;
 					 background-color: white;
 					 border:none;

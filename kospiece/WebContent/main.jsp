@@ -128,7 +128,7 @@ $(document).ready(function() { <%CrawlingLoad.Load();%> });
 		    <input type="text" id = "sname" name="sname"/>
 		    <input id="submit" type="submit" value="검색" class="button" style="vertical-align:top;"/>
 		</form>
-		<table width="800" align="center" class="company-detail">
+		<table width="800" align="center" class="myT">
 			<tr>
 				<th colspan="12"><b style="font-size:2.5rem">${info.stockVO.name}</b> 
 				<!-- 1.로그인했는지체크 2.회원아이디넘기기 *3.회사코드넘기기* -->
@@ -188,11 +188,11 @@ $(document).ready(function() { <%CrawlingLoad.Load();%> });
 			</tr>
 			<tr>
 				<th colspan="2" class="mainTH">시가총액</th>
-				<td colspan="2">${info.stockVO.total}</td>
+				<td colspan="2" class="mainTH">${info.stockVO.total}</td>
 				<th colspan="2" class="mainTH">업종</th>
-				<td colspan="2">${info.stockVO.field}</td>
+				<td colspan="2" class="mainTH">${info.stockVO.field}</td>
 				<th colspan="2" class="mainTH">세부업종</th>
-				<td colspan="2">${info.stockVO.detail}</td>
+				<td colspan="2" class="mainTH">${info.stockVO.detail}</td>
 			</tr>
 			<c:if test="${!empty error }"><tr><th colspan="12">${error}</th></tr></c:if>
 			<c:if test="${empty error }">

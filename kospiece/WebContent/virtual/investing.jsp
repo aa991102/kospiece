@@ -19,10 +19,10 @@
     <div style="display:inline;padding:0 10px;font-size:2rem;font-weight:bold;">업체 상세 정보</div>
    	<c:if test="${empty MyStock}"><p>회사명을 올바르게 입력하세요.</p></c:if>
    	<c:if test="${!empty MyStock}">
-    	<table>
+    	<table class="myT">
 	        <tr>
-				<th colspan="2" class="sim-TH2">종목	</th>
-				<td colspan="10" class="sim-TH2" style="font-size:2.5rem;text-align:left; padding:10px 50px; ">${MyStock.stock.name}</td>
+				<th colspan="2" class="sim-TH2" style="border-top:1px solid #486587;">종목	</th>
+				<td colspan="10" class="sim-TH2" style="font-size:2.5rem;text-align:left; padding:10px 50px; border-top:1px solid #486587;">${MyStock.stock.name}</td>
 			</tr>
 			<tr>
 				<th colspan="2" class="sim-TH2" width="16.6%">현재가</th>
@@ -78,7 +78,7 @@
    		</a>
     	</div>
    	<div class="scroll_div">
-	   <table>
+	   <table class="myT">
 			<tr>
 				<th>일자</th>
 				<th>종목</th>

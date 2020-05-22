@@ -12,7 +12,7 @@
 		<form action="<%= request.getContextPath()%>/find.do" method="post">
 			<table style="margin:0 auto;">
 				<tr>
-					<th>사용자 이름 : </th>
+					<th style="border-top:none;">사용자 이름 : </th>
 					<td><input type="text" name="mname"/></td>
 				</tr>
 				<tr>

@@ -9,7 +9,7 @@
 	<form name="join" onsubmit="return formChk();" action="<%= request.getContextPath()%>/join.do" method="post" name="join">
 		<table style="margin:0 auto;">
 			<tr>
-				<th>아이디</th>
+				<th style="border-top:none;">아이디</th>
 				<td><input type="text" name="mid" id="mid" value="${member.id}"/></td>
 			</tr>
 			<tr>
