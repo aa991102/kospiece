@@ -48,16 +48,14 @@
         		<c:if test="${errors.duplicetePhone}">이미 사용중인 전화번호입니다.</c:if>
 	        </td>
 	    </tr>
-   		<c:if test="${errors.noChange}">
-		    <tr>
-		    	<td colspan="2" align="center">변경사항이 없습니다.</td>
-	   		</tr>
-	    </c:if>
+	    <tr>
+	    	<td colspan="2" align="center">
+	    		<c:if test="${errors.noChange}">변경사항이 없습니다.<br/></c:if>
+	    		<input type="submit" formaction="/kospiece/infoUpdate.do" value="변경" /> 
+	    		<input type="button" value="취소" class="" id="Nope" onClick="location.href='<%=request.getContextPath()%>/myInfo.do'"/>
+	    	</td>
+	    </tr>
 	</table>
-	<div class="infoBtn-wrapper">
-  	<input type="submit" formaction="/kospiece/infoUpdate.do" value="변경" class="infoBtn" />
-    <input type="button" value="취소" id="Nope" onClick="location.href='<%=request.getContextPath()%>/myInfo.do'" class="infoBtn" />
-  </div>
 </form>
 </div>
 </body>

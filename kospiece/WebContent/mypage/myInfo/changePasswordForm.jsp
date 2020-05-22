@@ -37,10 +37,10 @@
 	            </td>
 	        </tr>
 	    </table>
-      <div class="infoBtn-wrapper">
-      	<input type="submit" value="변경" class="infoBtn" />
-         <input type="button" value="취소" id="Nope" onClick="location.href='<%=request.getContextPath()%>/myInfo.do'" class="infoBtn" />
-      </div>
+	        <div class="infoBtn-wrapper">
+	        	<input type="submit" value="변경" class="infoBtn" />
+            <input type="button" value="취소" id="Nope" onClick="location.href='<%=request.getContextPath()%>/myInfo.do'" class="infoBtn" />
+	        </div>
 	</form>
 </div>
 </body>

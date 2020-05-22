@@ -90,7 +90,7 @@
 		</tr>
 		<c:forEach var="list" items="${myBoardList}" end="4" varStatus="status">
 	    <tr>
-	        <td><a href="myBoardRead.do?fno=${list.fno}">[${list.horsehead}] ${list.title}</a></td>
+	        <td>${list.title}</td>
 	        <td>${list.nickname}</td>
 	        <td>${list.uploaddate}</td>
 	        <td>${list.hit}</td>

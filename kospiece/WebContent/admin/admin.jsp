@@ -36,14 +36,10 @@ $( document ).ready(function() {
 </script>
 
 <!-- 관리자 메인화면과 회원관리,공지사항으로 연결되는 링크 -->
-<div class="title">
-	<a href="<%= request.getContextPath()%>/admin.do" >관리자 페이지</a>
-</div>
-
-<a href="<%= request.getContextPath()%>/userList.do" class="user-button">회원관리</a>
-<a href="<%= request.getContextPath()%>/noticeManage.do" class="notice-button">공지사항</a>
-
 <div class="admin" id="admin">
+	<a href="<%= request.getContextPath()%>/admin.do" class="admin-logo">관리자 페이지</a>
+	<a href="<%= request.getContextPath()%>/userList.do" class="user-button">회원관리</a>
+	<a href="<%= request.getContextPath()%>/noticeManage.do" class="notice-button">공지사항</a><br/>
 	
 	<!-- 오늘통계와 전체통계 -->
 	<div class="statistics">

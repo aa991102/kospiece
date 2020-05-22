@@ -169,24 +169,15 @@ public class MemberDAO {
 	}
 	
 	//비밀번호 변경 기능
-		public int pwUpdate(Connection conn,MemberVO member) throws SQLException{
-			String sql = "update member set mpw=? where mid=?";
-			System.out.println("비번변경로직1");
-			System.out.println(member);
-			int i = 0;
-			try(PreparedStatement pstmt = conn.prepareStatement(sql)){
-				pstmt.setString(1, member.getPw());
-				pstmt.setString(2, member.getId());
-				i = pstmt.executeUpdate();
-				System.out.println(i);
-				System.out.println("비번변경로직2");
-				conn.commit();
-				return i;
-					
-				
-			}
+	public void pwUpdate(Connection conn,MemberVO member) throws SQLException{
+		String sql = "update member set mpw=? where mid=?";
+		
+		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
+			pstmt.setString(1, member.getPw());
+			pstmt.setString(2, member.getId());
+			pstmt.executeUpdate();
 		}
-	//비밀번호 변경 기능 긑
+	}
 	
 	//닉네임,이메일,전화번호 변경 기능
 	public void UpdateInfos(Connection conn,String nick,String mail,String phone,String id) throws SQLException{
