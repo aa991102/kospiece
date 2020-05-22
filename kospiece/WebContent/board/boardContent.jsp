@@ -77,7 +77,7 @@ function checkDelete() {
 			<tr>
 				<td class="board-content">
 					<div class="board-content-div">
-						${board.content}
+						<pre>${board.content}</pre>
 					</div>
 				</td>
 			</tr>

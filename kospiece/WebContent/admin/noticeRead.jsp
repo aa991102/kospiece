@@ -29,7 +29,7 @@
 			<tr>
 				<td class="board-content">
 					<div class="board-content-div">
-						${notice.content}
+						<pre>${notice.content}</pre>
 					</div>
 				</td>
 			</tr>
