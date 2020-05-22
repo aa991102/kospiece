@@ -5,28 +5,25 @@
 
 <script src="<%= request.getContextPath()%>/js/formchk.js">
 </script>
-<div class="FindUpdatePw">
+<div class="findPw">
 
 	<form name="FindUpdatePw" onsubmit="formChk();" action="<%= request.getContextPath()%>/findpw.do" method="post" name="FindUpdatePw.jsp">
-		<table>
+		<table style="margin:0 auto;">
 		<input type="hidden" name="mid" value="${id}" />    
-		<tr>
-				<th>비밀번호</th>
+			<tr>
+				<th style="border-top:none;">비밀번호</th>
 				<td><input type="password" name="mpw" id="mpw" value="${member.pw }"/></td>
 			</tr>
 			<tr>
 				<th>비밀번호 확인</th>
 				<td><input type="password" name="pw2" id="mpw2"/></td>
 			</tr>
-			<tr>
-				<td colspan="3">
-				<input type="submit" value="변경"/>
-				<input type="reset" value="취소"/>			
-			</tr>
-			
-			
 		</table>
 		${ errors.emptys } 
 		${ errors.notm }
+		<div class="infoBtn-wrapper">
+     	<input type="submit" class="infoBtn" value=" 변경"/>
+     	<input type="reset" class="infoBtn" value="취소"/>
+   	</div>
 	</form>
 </div>

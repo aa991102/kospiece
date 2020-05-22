@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<div class="title">가상투자</div>
+<div class="title">가상투자/주식주문</div>
 <a href="<%= request.getContextPath()%>/simulationlist.do" class="user-button">보유 주식</a>
 <a href="<%= request.getContextPath()%>/simulation.do" class="notice-button">주식 주문</a>
 

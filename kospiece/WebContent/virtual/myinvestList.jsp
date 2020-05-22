@@ -3,7 +3,7 @@
  <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
    <%@page import="dto.MemberVO" %>
 
-<div class="title">보유 주식</div>
+<div class="title">가상투자/보유주식</div>
 <a href="<%= request.getContextPath()%>/simulationlist.do" class="user-button">보유 주식</a>
 <a href="<%= request.getContextPath()%>/simulation.do" class="notice-button">주식 주문</a>
 
