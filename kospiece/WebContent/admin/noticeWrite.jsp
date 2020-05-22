@@ -35,7 +35,7 @@ function checkForm() {
 							<td><input style="width:95%" type="text" id="title" name="title"/></td>
 						</tr>
 						<tr>
-							<td align="center">상세 내용</td>
+							<td align="center">상세내용</td>
 							<td><textarea cols="95" rows="15" id="content" name="content" id="content" style="width:95%"></textarea></td>
 						</tr>
 					</table>
