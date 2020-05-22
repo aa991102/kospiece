@@ -53,9 +53,9 @@ for k in range(0,3,1):
             time.sleep(1)
 
             # 기업이름
-            com_link = driver.find_elements_by_css_selector(
-                '#boxDashboard > span > div > span:nth-child(1) > span:nth-child(1) >span:nth-child(1)')
-            sno = com_link[0].text[-6:]
+            com_link = driver.find_element_by_css_selector('#favorite > em')
+            sno = com_link.text
+            print(sno)
 
             #현재가버튼클릭
             nowprice_link=driver.find_element_by_css_selector('#boxTabs > td:nth-child(2) > a')
@@ -95,5 +95,5 @@ for k in range(0,3,1):
             break
 
 #
-# conn.commit()
-# conn.close()
+conn.commit()
+conn.close()
