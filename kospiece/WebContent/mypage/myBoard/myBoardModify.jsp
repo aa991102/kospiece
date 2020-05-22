@@ -19,10 +19,11 @@
 		 }
 	}
 </script>
-<div class="title">자유게시판</div>
+<div class="title">내 게시글</div>
 <div class="title-sub" >
 	<a href="<%= request.getContextPath()%>/main.do">홈</a>
-	&nbsp;|&nbsp;<a href="<%=request.getContextPath()%>/myBoardRead.do">내 게시글</a>
+	&nbsp;|&nbsp;<a href="<%= request.getContextPath()%>/mypage.do">마이페이지</a>
+	&nbsp;|&nbsp;<a href="<%= request.getContextPath()%>/myBoardList.do">내 게시글</a>
 	&nbsp;|&nbsp;<a>게시글 수정</a>
 </div>
 <div class="boardModify" id="1">
