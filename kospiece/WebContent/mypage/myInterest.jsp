@@ -36,7 +36,7 @@
 			<div class="inlineDiv">
 			    <input type="text" name="snameSearh" id="sname"/>
 			    <input type="submit" formaction="<%= request.getContextPath()%>/myInterestInsert.do" name="insertBtn" id="insertBtn" value="추가" class="button"/>
-		    	<input type="submit" formaction="<%= request.getContextPath()%>/myInterestDelete.do" name="deleteBtn" value="삭제" onclick="return deleteInterestCheck();" class="button"/>
+		    	<input type="submit" formaction="<%= request.getContextPath()%>/myInterestDelete.do" name="deleteBtn" value="삭제" onclick="return deleteCheck();" class="button"/>
 		    	<input type="submit" formaction="<%= request.getContextPath()%>/simulation.do" id="investBtn" value="가상투자하기" onclick="return goToInvest();" class="button"/>
 		    	<input type="button" value="?" id="helpBtn2"/>
 		    </div>
@@ -60,17 +60,17 @@
 				<c:forEach var="list" items="${myInterestList}" varStatus="status">
 			    <tr>
 						<c:if test="${status.getCount()%5!=0 || status.last}">
-							<td align="center"><input type="checkbox" name="sname" value="${list.name}"></td>
-							<td>${list.name}</td>
-							<td>${list.field}</td>
-							<td>${list.detail}</td>
-							<td align="right"><fmt:formatNumber value="${list.price}" pattern="#,##0" /></td>
-							<td align="right">${list.dayrate}</td>
-							<td align="right">${list.changerate}</td>
-							<td align="right">${list.volume}</td>
-							<td align="right">${list.dealprice}</td>
-							<td align="right"><fmt:formatNumber value="${list.total}" pattern="#,##0" /></td>
-							<td align="right">${list.high52}</td>
+							<td align="center" class="interestTd"><input type="checkbox" name="sname" value="${list.name}" class="interestTd"></td>
+							<td class="interestTd">${list.name}</td>
+							<td class="interestTd">${list.field}</td>
+							<td class="interestTd">${list.detail}</td>
+							<td align="right" class="interestTd"><fmt:formatNumber value="${list.price}" pattern="#,##0" /></td>
+							<td align="right" class="interestTd">${list.dayrate}</td>
+							<td align="right" class="interestTd">${list.changerate}</td>
+							<td align="right" class="interestTd">${list.volume}</td>
+							<td align="right" class="interestTd">${list.dealprice}</td>
+							<td align="right" class="interestTd"><fmt:formatNumber value="${list.total}" pattern="#,##0" /></td>
+							<td align="right" class="interestTd">${list.high52}</td>
 						</c:if>
 						<c:if test="${status.getCount()%5==0 && !status.last}">
 							<td align="center" class="td5"><input type="checkbox" name="sname" value="${list.name}"></td>

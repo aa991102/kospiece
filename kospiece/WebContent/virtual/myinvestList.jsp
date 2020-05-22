@@ -8,7 +8,7 @@
 <div class="rank">
    <div>내가 보유한 포인트 : ${member.deposit}</div>
    <div>
-       <table class="rank" border="1">
+       <table class="rank">
            <tr>
                <th>종목</th>
                <th>현재가</th>
@@ -30,7 +30,7 @@
 	               <form method="post" action="./simulation.do">
 		               <input type="hidden" name="sname" value="${list.stock.name}">
 		               <input type="hidden" name="totalquantity" value="${list.totalquantity}">
-		               <input type="submit" value="투자하기"/>
+		               <input type="submit" value="투자하기" class="button" />
 	               </form>
                </td>
            </tr>
@@ -41,7 +41,7 @@
                <a herf="#">
                <form method="post" action="./simulation.do">
                <input type="hidden" name="sname"  value="삼성전자">
-               <input type="submit" value="추가하기"/>
+               <input type="submit" value="추가하기" class="button" />
                </form></a></td>
            </tr>
        </table>

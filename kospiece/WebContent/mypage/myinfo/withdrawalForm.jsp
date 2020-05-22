@@ -31,18 +31,16 @@
 	        </td>
 	    </tr>
 	    <tr>
-	        <td colspan="2" align="center">
-	            <input type="submit" class="smbtn" id="smbtn" value="탈퇴"/>
-	            <input type="button" value="취소" id="Nope" onClick="location.href='<%=request.getContextPath()%>/myInfo.do'"/>
-	        </td>
-	    </tr>
-	    <tr>
 	        <td colspan="2">
 	            - 비밀번호 확인 후 아이디는 즉시 탈퇴됩니다.<br/>
 	            - 탈퇴 후에는 기존의 아이디와 데이터는 복구할 수 없으니 신중하게 선택해주세요.
 	        </td>
 	    </tr>
 	</table>
+	<div class="infoBtn-wrapper">
+  	<input type="submit" class="smbtn" id="smbtn" value="탈퇴"/>
+    <input type="button" value="취소" id="Nope" onClick="location.href='<%=request.getContextPath()%>/myInfo.do'" class="infoBtn" />
+  </div>
 </form>
 </div>
 </body>
