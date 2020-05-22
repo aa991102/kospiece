@@ -22,7 +22,7 @@ public class MyBoardListHandler implements CommandHandler {
 	String column;
 	String value;
 	String page;
-	String fmemnick;
+	String fid;
 	
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response) 
@@ -36,7 +36,7 @@ public class MyBoardListHandler implements CommandHandler {
 			return processForm(request, response);
 		}
 		
-		fmemnick = (String)request.getSession().getAttribute("NICKNAME");
+		fid = (String)request.getSession().getAttribute("ID");
 		column=request.getParameter("search");
 		value=request.getParameter("content");
 		page=request.getParameter("page");
@@ -77,11 +77,11 @@ public class MyBoardListHandler implements CommandHandler {
 			System.out.print(pageNo+"페이지");
 		}
 		
-		myBoardPage = myBoardistService.boardListService(pageNo,fmemnick);
+		myBoardPage = myBoardistService.boardListService(pageNo,fid);
 		
 		request.setAttribute("myBoardPage",myBoardPage);
 		request.setAttribute("Total", true);
-		//페이지에서 출력할 공지사항 객체 arrayList를 request속성에 담아보내기
+		//페이지에서 출력할 내 게시글 객체 arrayList를 request속성에 담아보내기
 		//<1번글객체,2번글객체.....>
 		
 		return FORM_VIEW;
@@ -103,9 +103,9 @@ public class MyBoardListHandler implements CommandHandler {
 			System.out.println(pageNo+"페이지");
 		}
 		
-		System.out.print(column+"컬럼의 "+value+"가 들어있는 공지사항만 출력");
+		System.out.print(column+"컬럼의 "+value+"가 들어있는 내 게시글만 출력");
 		
-		myBoardPage=myBoardistService.boardListService(pageNo,column,value,fmemnick);
+		myBoardPage=myBoardistService.boardListService(pageNo,column,value,fid);
 		
 		request.setAttribute("search",column);
 		request.setAttribute("content",value);

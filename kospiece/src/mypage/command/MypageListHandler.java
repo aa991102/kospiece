@@ -58,7 +58,7 @@ public class MypageListHandler implements CommandHandler {
 		
 		try {
 			int mno = (int)session.getAttribute("MNO");
-			String fmemnick = (String)session.getAttribute("NICKNAME");
+			String fid = (String)session.getAttribute("ID");
 			
 			
 			
@@ -83,7 +83,7 @@ public class MypageListHandler implements CommandHandler {
 			
 			
 			//내 게시글 리스트 가져오기(최신순으로 최대 5개까지)
-			myBoardList = myBoardListService.boardListService5(fmemnick);
+			myBoardList = myBoardListService.boardListService5(fid);
 			request.setAttribute("myBoardList", myBoardList);
 			//해당 회원의 게시글이 없는 경우 없다는 멘트 띄우기
 			if(myBoardList.size()<1 | myBoardList==null) {

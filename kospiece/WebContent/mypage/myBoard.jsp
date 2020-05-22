@@ -5,7 +5,7 @@
 <div class="title-sub" >
 	<a href="<%= request.getContextPath()%>/main.do">홈</a>
 	&nbsp;|&nbsp;<a href="<%= request.getContextPath()%>/mypage.do">마이페이지</a>
-	&nbsp;|&nbsp;<a href="<%= request.getContextPath()%>/noticeList.do">내 게시글</a>
+	&nbsp;|&nbsp;<a href="<%= request.getContextPath()%>/myBoardList.do">내 게시글</a>
 </div>
 <div class="board">
 	

@@ -16,16 +16,16 @@ public class MyBoardListService {
 	int size=10;
 	
 	//get방식일 때 서비스(전체 내 게시글 리스트 출력)
-	public MyBoardPage boardListService(int page,String fmemnick) {
+	public MyBoardPage boardListService(int page,String fid) {
 		Connection conn = null;
 		try {
 			
 			conn = ConnectionProvider.getConnection();
 			conn.setAutoCommit(false);//트랜잭션 시작
 			
-			int total=boardDao.selectCountByNick(conn, fmemnick);
-			
-			boardList=boardDao.selectByNick(conn, (page-1)*size, size, fmemnick);
+			int total=boardDao.selectCountByFid(conn, fid);
+			System.out.println("total="+total);
+			boardList=boardDao.selectByFid(conn, (page-1)*size, size, fid);
 			
 			
 			conn.commit(); //트랙잭션 반영
@@ -41,16 +41,15 @@ public class MyBoardListService {
 	}
 	
 	//post방식일 때 서비스(선택된 조건의 내 게시글 리스트 출력)
-	public MyBoardPage boardListService(int page,String column, String value, String fmemnick) {
+	public MyBoardPage boardListService(int page,String column, String value, String fid) {
 		Connection conn = null;
 		try {
-			
 			conn = ConnectionProvider.getConnection();
 			conn.setAutoCommit(false);//트랜잭션 시작
 			
-			int total = boardDao.selectedCountByNick(conn,column,value,fmemnick);
-			
-			boardList = boardDao.selectedBoard(conn, column, value, fmemnick, page, total);
+			int total = boardDao.selectedCountByFid(conn,column,value,fid);
+			System.out.println("total="+total);
+			boardList = boardDao.selectedBoard(conn, column, value, fid, (page-1)*size, size);
 			
 			conn.commit(); //트랙잭션 반영
 			
@@ -66,14 +65,14 @@ public class MyBoardListService {
 	}
 	
 	//내 게시글 리스트 5개만 가져오기
-	public List<FreeBoardVO> boardListService5(String fmemnick) {
+	public List<FreeBoardVO> boardListService5(String fid) {
 		Connection conn = null;
 		try {
 			
 			conn = ConnectionProvider.getConnection();
 			conn.setAutoCommit(false);//트랜잭션 시작
 			
-			boardList=boardDao.selectByNick5(conn,fmemnick);
+			boardList=boardDao.selectByFid5(conn,fid);
 			System.out.println("boardListService5-boardList="+boardList);
 			
 			conn.commit(); //트랙잭션 반영
