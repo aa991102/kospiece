@@ -2,11 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div class="title">내 게시글</div>
-<div class="title-sub" >
-	<a href="<%= request.getContextPath()%>/main.do">홈</a>
-	&nbsp;|&nbsp;<a href="<%= request.getContextPath()%>/mypage.do">마이페이지</a>
-	&nbsp;|&nbsp;<a href="<%= request.getContextPath()%>/myBoardList.do">내 게시글</a>
-</div>
 
 <div class="boardContent" id="1">
 	<div class="boardContent-buttons" id="1-2">
