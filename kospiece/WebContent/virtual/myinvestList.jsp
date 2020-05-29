@@ -3,12 +3,14 @@
  <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
    <%@page import="dto.MemberVO" %>
 
-<div class="title">내가 보유한 주식</div>
-	
+<div class="title">가상투자/보유주식</div>
+<a href="<%= request.getContextPath()%>/simulationlist.do" class="user-button">보유 주식</a>
+<a href="<%= request.getContextPath()%>/simulation.do" class="notice-button">주식 주문</a>
+
 <div class="rank">
-   <div>내가 보유한 포인트 : ${member.deposit}</div>
+   <div style="padding:0 10px;">보유 포인트 : ${member.deposit}</div>
    <div>
-       <table class="rank" border="1">
+       <table class="myT">
            <tr>
                <th>종목</th>
                <th>현재가</th>
@@ -30,26 +32,30 @@
 	               <form method="post" action="./simulation.do">
 		               <input type="hidden" name="sname" value="${list.stock.name}">
 		               <input type="hidden" name="totalquantity" value="${list.totalquantity}">
-		               <input type="submit" value="투자하기"/>
+		               <input type="submit" value="투자하기" class="button" />
 	               </form>
                </td>
            </tr>
            </c:forEach>
-           
+           <c:if test="${empty mysumlationList}">
+	           <tr>
+	           	<td colspan="100%" class="center2">보유 주식이 없습니다.</td>
+	         	 </tr>
+         	 </c:if>
            <tr>
                <td colspan="7">
                <a herf="#">
                <form method="post" action="./simulation.do">
                <input type="hidden" name="sname"  value="삼성전자">
-               <input type="submit" value="추가하기"/>
+               <input type="submit" value="추가하기" class="button" style="float:right;margin:0 103px"/>
                </form></a></td>
            </tr>
        </table>
 		
    </div>
-   <div>총 자산 : ${member.asset}</div>
-   <div class="scroll_div">
- 		<table class="rank" border="1">
+   <div style="padding:0 10px;">총 자산 : ${member.asset}</div>
+   <div>
+ 		<table class="myT">
 			<tr>
 				<th>일자</th>
 				<th>종목</th>
@@ -58,7 +64,7 @@
 				<th>거래금액</th>
 			</tr>
 			<c:if test="${empty historys}">
-				<tr><td colspan="5">거래 내역이 없습니다.</td></tr>
+				<tr><td colspan="100%" class="center2">거래 내역이 없습니다.</td></tr>
 			</c:if>
 			<c:forEach var="history" items="${historys}">
 				<tr>
@@ -71,7 +77,7 @@
 				<p hidden="hidden">${sum=sum+history.total}</p>
 			</c:forEach>
 		</table>
-		<div class="side_buttonR">총계 : ${sum }</div>	
+		<div class="side_buttonR" style="padding:0 10px;">총계 : ${sum }</div>	
 	</div>
 </div>
    

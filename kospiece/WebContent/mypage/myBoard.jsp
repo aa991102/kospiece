@@ -7,10 +7,10 @@
 	&nbsp;|&nbsp;<a href="<%= request.getContextPath()%>/mypage.do">마이페이지</a>
 	&nbsp;|&nbsp;<a href="<%= request.getContextPath()%>/myBoardList.do">내 게시글</a>
 </div>
-<div class="notice">
+<div class="board">
 	
 	<form name="myBoard-search" method ="post" onsubmit="return checkForm();"
-		action="<%= request.getContextPath()%>/myBoardList.do">
+		action="<%= request.getContextPath()%>/myBoardList.do" class="myBoard-search">
 		<div class="insertFavorite">
 	    <select name="search" class="selectCss">
 	        <option value="ftitle">제목</option>
@@ -36,9 +36,9 @@
         <tr>
         	<td class="center"><input type="checkbox" name="fno" value="${myBoard.fno}"></td>
         	<td class="center">${myBoard.fno}</td>
-        	<td><a href="myBoardDetail.do?no=${myBoard.fno}">${myBoard.title}</a></td>
-        	<td class="center">${myBoard.uploaddate}</td>
-        	<td class="center">${myBoard.hit}</td>
+        	<td><a href="myBoardRead.do?fno=${myBoard.fno}">[${myBoard.horsehead}] ${myBoard.title}</a></td>
+        	<td class="center2">${myBoard.uploaddate}</td>
+        	<td class="center2">${myBoard.hit}</td>
         </tr>
         </c:forEach>
         <c:if test="${myBoardPage.total==0}">
@@ -51,7 +51,7 @@
 				</c:if>
         <c:if test="${myBoardPage.total>0}">
 					<tr>
-						<td colspan="100%" class="center">
+						<td colspan="100%" class="center2" >
 						<!-- 검색조건이 없을 때는 페이지넘버만 파라미터로 보내기 -->
 						<c:if test="${null eq content}">
 							<%-- [이전prev]출력 --%>

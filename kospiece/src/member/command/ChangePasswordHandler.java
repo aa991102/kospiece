@@ -88,7 +88,9 @@ public class ChangePasswordHandler implements CommandHandler {
 			return FORM_VIEW;
 		}catch(MemberNotFoundException e) {
 			res.sendError(HttpServletResponse.SC_BAD_REQUEST);
-			return null;
+			return "/mypage/myInfo/changePasswordFail_NoMember.jsp";
+		}catch(Exception e) {
+			return "/mypage/myInfo/changePasswordFail.jsp";
 		}
 	}
 

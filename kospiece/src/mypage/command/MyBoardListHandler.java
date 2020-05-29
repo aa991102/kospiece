@@ -97,10 +97,10 @@ public class MyBoardListHandler implements CommandHandler {
 		
 		if(request.getMethod().equalsIgnoreCase("POST")) {//처음화면
 			pageNo=1;
-			System.out.print("검색시 처음화면");
+			System.out.println("검색시 처음화면");
 		}else {
 			pageNo=Integer.parseInt(page);
-			System.out.print(pageNo+"페이지");
+			System.out.println(pageNo+"페이지");
 		}
 		
 		System.out.print(column+"컬럼의 "+value+"가 들어있는 내 게시글만 출력");

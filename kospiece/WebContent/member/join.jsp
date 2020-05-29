@@ -6,10 +6,10 @@
 <script src="<%= request.getContextPath()%>/js/formchk.js">
 </script>
 <div class="join">
-	<form name="join" onsubmit="formChk(); return false;" action="<%= request.getContextPath()%>/join.do" method="post" name="join">
-		<table>
+	<form name="join" onsubmit="return formChk();" action="<%= request.getContextPath()%>/join.do" method="post" name="join">
+		<table style="margin:0 auto;">
 			<tr>
-				<th>아이디</th>
+				<th style="border-top:none;">아이디</th>
 				<td><input type="text" name="mid" id="mid" value="${member.id}"/></td>
 			</tr>
 			<tr>
@@ -36,11 +36,7 @@
 				<th>전화번호</th>
 				<td><input type="text" name="mphone" value="${member.phone}"/></td>
 			</tr>
-			<tr>
-				<td colspan="3">
-				<input type="submit" value="가입"/>
-				<input type="reset" value="취소"/>			
-			</tr>
+			
 			<c:if test="${!empty errors }"></c:if>
 			<tr>
 				<c:choose>
@@ -52,5 +48,9 @@
 				</c:choose>
 			</tr>
 		</table>
+		<div class="infoBtn-wrapper">
+     	<input type="submit" class="infoBtn" value="가입" style="margin:10px"/>
+     	<input type="button" class="infoBtn" value="취소" style="cursor: pointer;margin:10px;" onclick="location.href='<%= request.getContextPath()%>/member/login.jsp'"/>
+   	</div>
 	</form>
 </div>
