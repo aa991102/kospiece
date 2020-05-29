@@ -6,8 +6,8 @@
 <script src="<%= request.getContextPath()%>/js/formchk.js">
 </script>
 <div class="join">
-	<form name="join" onsubmit="return formChk();" action="<%= request.getContextPath()%>/join.do" method="post" name="join">
-		<table style="margin:0 auto;">
+	<form name="join" onsubmit="formChk(); return false;" action="<%= request.getContextPath()%>/join.do" method="post" name="join">
+		<table>
 			<tr>
 				<th>아이디</th>
 				<td><input type="text" name="mid" id="mid" value="${member.id}"/></td>
@@ -36,7 +36,11 @@
 				<th>전화번호</th>
 				<td><input type="text" name="mphone" value="${member.phone}"/></td>
 			</tr>
-			
+			<tr>
+				<td colspan="3">
+				<input type="submit" value="가입"/>
+				<input type="reset" value="취소"/>			
+			</tr>
 			<c:if test="${!empty errors }"></c:if>
 			<tr>
 				<c:choose>
@@ -48,9 +52,5 @@
 				</c:choose>
 			</tr>
 		</table>
-		<div class="infoBtn-wrapper">
-     	<input type="submit" class="infoBtn" value="가입" style="margin:10px"/>
-     	<input type="reset" class="infoBtn" value="취소" style="margin:10px"/>
-   	</div>
 	</form>
 </div>

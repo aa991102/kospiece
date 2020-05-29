@@ -79,10 +79,10 @@ $(document).ready(function() { <%CrawlingLoad.Load();%> });
         chart.labels().adjustFontSize(true);
         chart.labels().fontColor("white")
      // configure the font of headers
-        chart.normal().headers().fontColor("#000000");
+        chart.normal().headers().fontColor("#990000");
         chart.normal().headers().adjustFontSize(true);
         chart.normal().headers().fontWeight('bold');
-        chart.hovered().headers().fontColor("#990000");
+        chart.hovered().headers().fontColor("#000099");
      // enable HTML for labels
         chart.labels().useHtml(true);
 
@@ -126,24 +126,19 @@ $(document).ready(function() { <%CrawlingLoad.Load();%> });
 	<div class="map-detail">
 		<form id = "company-inform",name="company-inform" method ="post" class="company-inform" action="./search.do">
 		    <input type="text" id = "sname" name="sname"/>
-		    <input id="submit" type="submit" value="검색" class="button" style="vertical-align:top;"/>
+		    <input id="submit" type="submit" value="검색"/>
 		</form>
-		<table width="800" align="center" class="company-detail">
+		<table border="1" width="800" align="center" class="company-detail">
 			<tr>
-				<th colspan="12"><b style="font-size:2.5rem">${info.stockVO.name}</b> 
+				<th colspan="12"><b>${info.stockVO.name}</b> 
 				<!-- 1.로그인했는지체크 2.회원아이디넘기기 *3.회사코드넘기기* -->
-		
-				<form action="./simulation.do" style="float:right;">
-					<input type="hidden" name="sname" value="${info.stockVO.name}"/>
-					<input type="submit" value="투자하기" class="button"/>
-				</form>
-				
 				<!-- 즐겨찾기추가는 if문으로 해당 회원이 해당 회사를 즐겨찾기로 갖고있는지 확인 후 별의 색을 결정 & 보유 여부를 파라미터로 넘겨주기 -->
+		
 		
 				<!-- 로그인상태로 빈 하얀 별모양을 누르면 해당 회사가 관심주식으로 추가된다  -->
 				<!-- 로그인 안한 상태에서는 로그인페이지로 가도록 alert 띄움(js로 구현) -->
 				<c:if test="${info.stockVO.interest==0||info.stockVO.interest==null}">
-					<form name="interestPlus" id="interestPlus" style="float:right;margin:5px;"
+					<form name="interestPlus" id="interestPlus"	
 						method="post" action="interest.do" >
 						<input type="hidden" name="interest" value="plus">
 						<input type="hidden" name="form" value="main">
@@ -158,7 +153,7 @@ $(document).ready(function() { <%CrawlingLoad.Load();%> });
 				<!-- 로그인 안한 상태에서는 로그인페이지로 가도록 alert 띄움(js로 구현) -->
 				<c:if test="${info.stockVO.interest>0}">
 					<form name="interestDelete" id="interestDelete"
-							method="post" action="interest.do" style="float:right;margin:5px;">
+							method="post" action="interest.do">
 						<input type="hidden" name="interest" value="delete">
 						<input type="hidden" name="form" value="main">
 						<input type="hidden" name="sname" value="${info.stockVO.name}">
@@ -168,30 +163,35 @@ $(document).ready(function() { <%CrawlingLoad.Load();%> });
 					</form>
 				</c:if>
 				
+				
+				<form action="./simulation.do">
+					<input type="hidden" name="sname" value="${info.stockVO.name}"/>
+					<input type="submit" value="투자하기"/>
+				</form>
 				</th>
 			</tr>
 			<tr>
-				<th colspan="2" width="10%" class="mainTH">현재가</th>
-				<td colspan="2" width="15%">${info.stockVO.price}</td>
-				<th colspan="2" width="10%" class="mainTH">전일비</th>
-				<td colspan="2" width="15%">${info.stockVO.dayrate}</td>
-				<th colspan="2" width="10%" class="mainTH">등락률</th>
-				<td colspan="2" width="25%">${info.stockVO.changerate}</td>
+				<th colspan="2" width="16.6%">현재가</th>
+				<td colspan="2" width="16.6%">${info.stockVO.price}</td>
+				<th colspan="2" width="16.6%">전일비</th>
+				<td colspan="2" width="16.6%">${info.stockVO.dayrate}</td>
+				<th colspan="2" width="16.6%">등락률</th>
+				<td colspan="2">${info.stockVO.changerate}</td>
 			</tr>
 			<tr>
-				<th colspan="2" class="mainTH">거래량</th>
+				<th colspan="2">거래량</th>
 				<td colspan="2">${info.stockVO.volume}</td>
-				<th colspan="2" class="mainTH">거래대금</th>
+				<th colspan="2">거래대금</th>
 				<td colspan="2">${info.stockVO.dealprice}</td>
-				<th colspan="2" class="mainTH">52주고가</th>
+				<th colspan="2">52주고가</th>
 				<td colspan="2">${info.stockVO.high52}</td>
 			</tr>
 			<tr>
-				<th colspan="2" class="mainTH">시가총액</th>
+				<th colspan="2">시가총액</th>
 				<td colspan="2">${info.stockVO.total}</td>
-				<th colspan="2" class="mainTH">업종</th>
+				<th colspan="2">업종</th>
 				<td colspan="2">${info.stockVO.field}</td>
-				<th colspan="2" class="mainTH">세부업종</th>
+				<th colspan="2">세부업종</th>
 				<td colspan="2">${info.stockVO.detail}</td>
 			</tr>
 			<c:if test="${!empty error }"><tr><th colspan="12">${error}</th></tr></c:if>
@@ -199,27 +199,25 @@ $(document).ready(function() { <%CrawlingLoad.Load();%> });
 				<c:if test="${!empty errors}"><tr><td colspan="12">${errors}</td></tr></c:if>
 				<c:if test="${empty errors }">
 					<tr>
-						<th colspan="12" class="mainTH" style="text-align:center;height:50px;">동일 세부업종  현황 </th>
+						<th colspan="12">동일 세부업종  현황 </th>
 					</tr>
 					<tr>
-						<th colspan="3" width="200" class="mainTH" style="padding:0 30px;">종목</th>
-						<th colspan="3" width="200" class="mainTH" style="text-align:right;">현재가</th>
-						<th colspan="3" width="200" class="mainTH" style="text-align:right;">전일비</th>
-						<th colspan="3" width="200" class="mainTH" style="text-align:right;padding:0 30px;">등락률</th>
+						<th colspan="3" width="200">종목</th>
+						<th colspan="3" width="200">현재가</th>
+						<th colspan="3" width="200">전일비</th>
+						<th colspan="3" width="200">등락률</th>
 					</tr>
 						<c:forEach var="list" items="${info.list}">
 							<tr>
-								<td colspan="3" style="padding:0 30px;">${list.name}</td>
-								<td colspan="3" style="text-align:right;">${list.price}</td>
-								<td colspan="3" style="text-align:right;">${list.dayrate}</td>
-								<td colspan="3" style="text-align:right;padding:0 30px;">${list.changerate}%</td>
+								<td colspan="3">${list.name}</td>
+								<td colspan="3">${list.price}</td>
+								<td colspan="3">${list.dayrate}</td>
+								<td colspan="3">${list.changerate}</td>
 							</tr>
 						</c:forEach>
 				</c:if>
 			</c:if>
 		</table>
 	</div>
-	<div style="margin:0 auto;padding:0 0 0 30px;">
-		<div class="rank" id="chart_div" style="width: 1000px; height: 400px;"></div>
-	</div>
+	<div class="rank" id="chart_div" style="width: 1500px; height: 500px;"></div>
 </div>

@@ -10,7 +10,7 @@
 	
 	<c:when test="${path=='/kospiece/notice/notice.jsp'}">${path}<jsp:forward page="/noticeList.do"/></c:when>
 	<c:when test="${path=='/kospiece/notice/noticeDetail.jsp'}"><jsp:forward page="/noticeList.do"/></c:when>
-	<c:when test="${path=='/kospiece/board/write.do'}"><jsp:forward page="/board.do"/></c:when>
+	<c:when test="${path=='/kospiece/board/write.do'}"><jsp:forward page="/write.do"/></c:when>
 	
 	<c:when test="${path=='/kospiece/board/board.jsp'}">${path}<jsp:forward page="/board.do"/></c:when>
 	<c:when test="${path=='/kospiece/comment/write.do'}"><jsp:forward page="/board.do"/></c:when>

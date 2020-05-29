@@ -24,7 +24,7 @@ function goToInvest(){
 	}
 }		
 
-//관심주식에서 삭제 버튼 눌렀을 때 확인(체크박스 체크유무/삭제 재확인)
+//관심회사에서 삭제 버튼 눌렀을 때 확인(체크박스 체크유무/삭제 재확인)
 function deleteCheck(){
 	
 	if($("input[type=checkbox]:checked").length>0){
@@ -35,23 +35,6 @@ function deleteCheck(){
 		}
 	}else{
 		alert("삭제할 주식을 선택해주세요.");
-		return false;
-		
-	}
-	
-	
-}
-
-function deleteBoardCheck(){
-	
-	if($("input[type=checkbox]:checked").length>0){
-		if (confirm("정말 삭제하시겠습니까?") == true){//확인
-			
-		}else{   //취소
-			return false;
-		}
-	}else{
-		alert("삭제할 게시글을 선택해주세요.");
 		return false;
 		
 	}

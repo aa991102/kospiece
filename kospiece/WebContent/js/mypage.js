@@ -69,15 +69,5 @@ $(function(){
 	    $('.newPw').val('');
 	});
 	
+	
 })
-
-//내 게시글에서 삭제 버튼 눌렀을 때 재확인)
-function deleteCheck2(){
-	
-	if (confirm("정말 삭제하시겠습니까?") == true){//확인
-		
-	}else{   //취소
-		return false;
-	}
-	
-}
