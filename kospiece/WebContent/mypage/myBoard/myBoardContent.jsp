@@ -51,6 +51,7 @@
 				<input type="submit" class="button" value="등록" />
 			</form>
 		</div>
+		
 		<div class="boardContent-Comment-comment" id="2-1" style="padding:10px;font-size:1.5rem;">
 		댓글(<a style="color:#ff5656;">${listcomment.total}</a>)
 		</div>
@@ -66,26 +67,28 @@
 					</tr>
 					<tr>
 						<td width="80%">${comment.content}</td>
-						<td style="padding:0;text-align:center;"><a
-							href="<%=request.getContextPath() %>/myCommentLike.do?
+						<td style="padding:0;text-align:center;">
+							<a href="<%=request.getContextPath() %>/myCommentLike.do?
 						fno=${param.fno}&comment=${comment.fcno}">
-								업${comment.like }</a></td>
+								<img class="likeandhate" src="<%= request.getContextPath()%>/img/like.png"/> ${comment.like }</a></td>
 						<td style="padding:0;text-align:center;"><a
 							href="<%=request.getContextPath() %>/myCommentHate.do?
 						fno=${param.fno}&comment=${comment.fcno}">
-								다운${comment.hate}</a></td>
-						<td style="padding:0;text-align:center;"><c:if test="${NICKNAME == comment.nickname}">
+								<img class="likeandhate" src="<%= request.getContextPath()%>/img/hate.png"/> ${comment.hate}</a></td>
+						<td style="padding:0;text-align:center;">
+							<c:if test="${NICKNAME == comment.nickname}">
 								<a
 									href="<%=request.getContextPath() %>/myCommentDelete.do?
-						fno=${param.fno}&comment=${comment.fcno}" onclick="return deleteCheck2();">
+						fno=${param.fno}&comment=${comment.fcno}" onclick="return deleteCheck2();" style="color:#ff5656;">
 									삭제</a>
-							</c:if></td>
+							</c:if>
+						</td>
 					</tr>
 				</c:forEach>
 
 				<c:if test="${listcomment.hasArticles()}">
 					<tr>
-						<td colspan="100%" align="center"><c:if test="${listcomment.startPage > 5}">
+						<td colspan="100%" class="center2"><c:if test="${listcomment.startPage > 5}">
 								<a
 									href="<%=request.getContextPath() %>/myBoardRead.do?pageNo=${param.pageNo }&fno=${param.fno}&commentPageNo=${listcomment.startPage - listcomment.page}">
 									[이전]</a>

@@ -50,7 +50,7 @@ public class MyBoardListService {
 			
 			int total = boardDao.selectedCountByNick(conn,column,value,fmemnick);
 			
-			boardList = boardDao.selectedBoard(conn, column, value, fmemnick, page, total);
+			boardList = boardDao.selectedBoard(conn, column, value, fmemnick, (page-1)*size, total);
 			
 			conn.commit(); //트랙잭션 반영
 			

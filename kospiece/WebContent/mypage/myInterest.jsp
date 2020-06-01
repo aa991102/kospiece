@@ -28,15 +28,22 @@
 			</div>
 		</div>
 		<div id="help2" class="helpDiv2">
-			도움말<input type="button" id="helpClose" value="✕"/>
-			<br/>~~~~~~~~~입니다.
+			<a style="padding:10px 10px 10px 140px;font-size:1.6rem;font-weight:bold;line-height:50px;">도움말</a>
+			<input type="button" id="helpClose" value="✕"/>
+			<br/>현재가: 시간에 따라 변동하는 주식의 현재 가격</a>
+			<br/>전일비: 전일에 비해서 가격이 올랐거나 내린 정도
+			<br/>등락률: 기준시점에 대한 비교시점의 증감률(%)
+			<br/>거래량: 매매거래가 성립된 수량
+			<br/>거래대금: (거래된 주식의 가격*거래량)
+			<br/>시가총액: 상장주식을 시가로 평가하여 회사의 규모<br/>&#9;(발행주식수*주가) 
+			<br/>52주고가: 1년 동안 최고가
 		</div>
 		<div class="insertFavorite">
 			<div class="inlineDiv">종목추가</div>
 			<div class="inlineDiv">
 			    <input type="text" name="snameSearh" id="sname"/>
 			    <input type="submit" formaction="<%= request.getContextPath()%>/myInterestInsert.do" name="insertBtn" id="insertBtn" value="추가" class="button"/>
-		    	<input type="submit" formaction="<%= request.getContextPath()%>/myInterestDelete.do" name="deleteBtn" value="삭제" onclick="return deleteInterestCheck();" class="button"/>
+		    	<input type="submit" formaction="<%= request.getContextPath()%>/myInterestDelete.do" name="deleteBtn" value="삭제" onclick="return deleteCheck();" class="button"/>
 		    	<input type="submit" formaction="<%= request.getContextPath()%>/simulation.do" id="investBtn" value="가상투자하기" onclick="return goToInvest();" class="button"/>
 		    	<input type="button" value="?" id="helpBtn2"/>
 		    </div>
