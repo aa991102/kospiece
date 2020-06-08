@@ -1,0 +1,43 @@
+.sim{
+	width:1000px;
+	margin:0 auto;
+	}
+.sim-search{
+	width:1000px;
+	margin:0 auto;
+	}
+.side_buttonR{float:right}
+.side_buttonL{float:left}
+
+.scroll_div{
+	overflow:auto;
+	width:1000px;
+	height:400px;
+	position:relative;
+	text-align: center;
+}
+.scroll_div table{
+	width:1000px;
+	margin:0 auto;
+}
+
+.sim table{
+	width:1000px;
+	margin:0 auto;
+	text-align: center;
+}
+
+.sim-TH{
+	font-size:1.6rem;
+	font-weight:bold;
+	border-top:2px solid #486587;
+	border-bottom:1px solid #2b476b; 
+	border-top:none;
+}
+
+.sim-TH2{
+	font-size:1.6rem;
+	font-weight:bold;
+	border-bottom:2px solid #486587;
+	border-top:none;
+}

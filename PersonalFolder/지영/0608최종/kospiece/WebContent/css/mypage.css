@@ -1,0 +1,206 @@
+/* ���������� ������ */
+.TH {border-bottom:1px solid #2b476b;
+     border-collapse: collapse;
+     background-color:#2b476b;
+     text-align:center;
+     padding:15px;
+     }
+.TH:hover{background-color:#486587;
+					border-bottom:1px solid #486587;
+					} 
+.TH > a {color:white;
+		     font-weight:bold;
+		     font-size:1.7rem;
+		     }
+.my {margin:0 auto 30px auto;
+     width:900px;
+     }
+.myT {
+		  border-collapse: collapse;
+		  width:100%;
+		  margin:0 0 20px 0;
+		  font-size:1.5rem;
+		  }  
+					  
+.myInfo {
+				 border:1px solid #2b476b;
+				 width:900px;
+				 margin:0 auto 20px;
+				 align:center;
+				 text-align:center;
+				 padding:40px;
+				 background-color:#2b476b;
+				 }
+.myInfo:hover{
+			background-color:#486587;
+			border:1px solid #486587;
+			}
+.myInfo > a {font-weight:bold;
+			 			 color:white;}
+
+.helpDiv{display:none;}
+.helpShow{background-color: white; 
+					position:absolute; 
+					top:200px; 
+					left:50%; 
+					height:200px;
+					width:400px;
+					border:1px solid #1a3f69;
+					margin:140px 0 0 -200px;
+					text-align:center;
+					font-size:1.6rem;
+					}
+.helpDiv2{display:none;}
+.helpShow2{background-color: white; 
+					position:absolute; 
+					top:200px; 
+					left:50%; 
+					height:300px;
+					width:400px;
+					border:1px solid #1a3f69;
+					margin: 0 0 0 -200px;
+					line-height:30px;
+					text-align:left;
+					font-size:1.4rem;
+					padding:0 0 0 30px;}
+#helpClose{float:right;
+					 background-color: white;
+					 border:none;
+					 padding:10px;}
+#helpBtn {background-color:#f7f7f7;
+		border:1px solid #7c9bb9;
+		width:20px; height:20px;
+		border-radius:10px;
+		text-align:center;
+		margin:0 auto;
+		font-size:12px;
+		vertical-align:middle;
+		line-height:10px;}
+#helpBtn:hover{background-color:white;}
+#helpBtn2 {background-color:#f7f7f7;
+		border:1px solid #7c9bb9;
+		width:20px; height:20px;
+		border-radius:10px;
+		text-align:center;
+		margin:0 auto;
+		font-size:12px;
+		vertical-align:middle;
+		line-height:10px;}
+#helpBtn2:hover{background-color:white;}
+
+ /* �� ���� ������ */
+.myDiv {margin:0 auto;
+	    	width:550px;
+	    	text-align:center;
+	    }
+	    .infoH {background-color:white;border-bottom:none;border-right: 1px solid black;}
+.infoH {
+		 		width:150px;
+		 		padding:20px;
+		 		border-right:2px solid #7c9bb9;
+		 		border-top:1px solid #c1d1e0;
+		 		border-bottom:1px solid #c1d1e0;
+		 		text-align:center;
+		 		color:#173f5f;
+		 		}
+ 		
+.infoContent {border-top:1px solid #c1d1e0;
+	border-bottom:1px solid #c1d1e0;
+						  padding:0 40px;
+						  text-align:left;
+						  }
+.toMyPointBtn {
+							 border:1px solid #1A3F69;
+							 color:#1A3F69;
+							 padding:5px;
+						 	 }
+.infoBtn-wrapper {
+				  text-align:center;
+				  }
+.infoBtn {display:inline-block;
+				  border:1px solid #173f5f;
+				  background-color:#1A3F69;
+				  color:white;
+				  width:157px;
+				  height:60px;
+				  margin:45px 10px;
+				  padding:20px;
+				  text-align:center;
+				  font-size:1.5rem;
+				  font-weight:bold;
+				  }
+.smbtn{display:inline-block;
+				  border:1px solid #173f5f;
+				  background-color:#1A3F69;
+				  color:white;
+				  width:157px;
+				  height:60px;
+				  margin:45px 10px;
+				  padding:20px;
+				  text-align:center;
+				  font-size:1.5rem;
+				  font-weight:bold;
+	
+}
+/*.deleteCurBtn {background-color:white;}
+.deleteCurBtn:hover {border:1px solid black;}*/
+/* �����ֽ� ������*/
+.interest {margin:0 auto;
+     width:1000px;}
+
+.insertFavorite {
+				 margin:10px 0;
+				 float:right;
+}
+.inlineDiv {
+			display:inline;
+			}
+			
+.myDivT {
+	  border-collapse: collapse;
+	  width:100%;
+	  margin:0 0 20px 0;
+	  font-size:1.5rem;
+	  padding:10px;
+	  }
+.center {text-align:center;
+		 font-weight:bold;
+		 }
+.center2{text-align:center;
+}
+.empty{
+		 text-align:center;
+		 font-weight:bold;
+		 color:#505050;
+		 padding:100px;
+		 }
+.td5 {border-bottom:1px solid #486587;}		 
+		 
+		 
+.button{background-color:white;
+			  border: 1px solid #7c9bb9;
+			  border-radius:2px;
+			  padding:5px 12px;
+			  font-size:1.7rem;
+			  color:#4a4a4a;
+			  }
+.button:hover{background-color:#eef6ff;
+				border: 1px solid #486587;
+				}
+.button2{background-color:white;
+			  border: 1px solid #7c9bb9;
+			  border-radius:2px;
+			  padding:5px 12px;
+			  font-size:1.7rem;
+			  color:#ff5656;
+			  }
+.button2:hover{
+				border: 1px solid #b33d3d;
+				}
+
+.interestTd{
+		border-bottom:none;
+		border-collapse: collapse;
+		padding:10px;
+		}
+}

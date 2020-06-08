@@ -1,0 +1,335 @@
+/*梨낇삦�샍梨숉삨占쎄퐪梨숋옙�뭼苑볦콉�삦�샍梨숉삨占쎄퐪梨숋옙�뭼苑� 梨낇삦�샍梨숉삨占쎄퐪梨숋옙�뭼苑볦콉�삦�샍梨숉삨占쎄퐪梨숋옙�뭼苑볦콉�삦�샍梨숉삨占쎄퐪梨숋옙�뭼苑�*/
+.clear{clear:both;}
+
+a {text-decoration:none;}
+* {box-sizing:border-box;}
+
+html{font-size:10px}
+body{
+	min-width:1060px;
+	font-size:1.8em;
+	font-family: Roboto, sans-serif;
+	}
+
+/*1.header 梨낇삦�샍梨숉삨占쎄퐪梨숋옙�뭼苑볦콉�삦�샍梨숉삨占쎄퐪梨숋옙�뭼苑볦콉�삦�샍梨숉삨占쎄퐪梨숋옙�뭼苑�*/
+.header {
+	background:#173f5f;
+    height:80px;
+    min-width:1600px;
+    padding:15px 10px;
+    }
+/* 梨낇삦�샍梨숋옙裕ㅻ㎕�걿�깉�뀚占쏙옙�뭼苑� */
+.header .logo {
+	position:absolute;
+    top:22px;
+    left:50px;
+    margin:0;
+    color:white;
+    }
+/* 梨낇삦�샍梨숉삨占쎄퐪梨숋옙�뭼苑볦콌吏숋옙�뵚�뵎�삩沅곊믩쓨議쀯옙�삨占쎄퐪梨숋옙�뭼苑볦콉�삦�샍梨�姨붿찉 */
+.header .nav {text-align:left;}
+.header .list {
+	position:absolute;
+    text_align:center;
+    width:900px;
+    top:15px;
+    left:200px;
+    margin:20px 50px;
+    }
+.header .list:after {
+		content:'';
+    display:block;
+    clear:both;
+    }
+.header .list-item {
+		display:inline;
+    font-size:1.6rem;
+    font-weight:700;
+    padding:25px;
+    width:100px
+    }
+.header .sub-list-virtual {
+		display:block;
+    position:absolute;
+    top:45px;
+    left:458px;
+    }
+.header .sub-item-virtual {
+		display:block;
+    background-color: rgba( 255, 255, 255, 0.8 );
+    padding:10px;
+    border-top-style:solid;
+    border-width: 2px;
+    border-color:#1a3f69d1;
+    text-align:center;
+    width:110px;
+    position:relative;
+    z-index:1;
+    }
+.header .sub-list-my {
+		display:block;
+    position:absolute;
+    top:45px;
+    left:574px;
+    }
+.header .sub-item-my {
+		display:block;
+    background-color: rgba( 255, 255, 255, 0.8 );
+    padding:10px;
+    border-top-style:solid;
+    border-width: 2px;
+    border-color:#1a3f69d1;
+    text-align:center;
+    width:110px;
+    position:relative;
+    z-index:1;
+    }
+.header a.a-item {text-decoration:none; 
+									color:#1A3F69;}
+
+.header .list2 { 
+		position:absolute;
+    top:15px;
+    left:1170px;
+    width:320px;
+    list-style-type: none;
+    }
+.header .list-item2 {display:inline;
+										 position:relative;
+										 }
+.header .list2:after {
+		content:'';
+    display:block;
+    clear:both;
+}
+/* 梨낇삦�샍梨숉삨占쎄퐪梨숋옙�뭼苑볦콉�삦�샍梨�姨붿찉-梨낇삦�샍梨숉삨占쎄퐪梨숋옙�뭼苑볦콉�삦�샍梨숉삨占쎄퐪梨숋옙�뭼苑볦콬�엹夷띿콉�삦�샍梨숉삨占쎄퐪梨숋옙�뭼苑볦콉�삦�샍梨숉삨占쎄퐪梨숋옙�뭼苑�-梨낇삦�샍梨숉삨占쎄퐪梨숋옙�뭼苑볦콉�삦�샍梨숉삨占쎄퐪梨숋옙�뭼苑볦콉�삦�샍梨숉삨占쎄퐪梨숋옙�뭼苑� 梨낇삦�샍梨숋옙裕ㅻ㎕�걿裕ㅻ쓪占쏙옙�뭼苑볦콉�삦�샍梨숉삨占쎄퐪梨숋옙�뭼苑� 梨낇삦�샍梨숉삨占쎄퐪梨숋옙�뭼苑볦콉�삦�샍梨숉삨占쎄퐪梨숋옙�뭼苑볦콉�삦�샍梨숉삨占쎄퐪梨숋옙�뭼苑�  */
+.header .rank {position:absolute;
+		top:0;
+		right:-70px;
+		line-height:inherit;
+    width:170px;
+    height:22px;
+    color:white;
+    border-bottom-style:solid;
+    border-color:white;
+    border-width:1px;
+    }
+/* 梨낇삦�샍梨숉삨占쎄퐪梨숋옙�뭼苑볦콉�삦�샍梨�姨붿찉-梨낇삦�샍梨숉삨占쎄퐪梨숋옙�뭼苑볦콉�삦�샍梨숉삨占쎄퐪梨숋옙�뭼苑볦콬�엹夷띿콉�삦�샍梨숉삨占쎄퐪梨숋옙�뭼苑볦콉�삦�샍梨숉삨占쎄퐪梨숋옙�뭼苑�-梨낇삦�샍梨숉삨占쎄퐪梨숋옙�뭼苑볦콉�삦�샍梨숉삨占쎄퐪梨숋옙�뭼苑볦콉�삦�샍梨숉삨占쎄퐪梨숋옙�뭼苑� 梨낇삦�샍梨숋옙裕ㅻ㎕�걿裕ㅻ쓪占쏙옙�뭼苑볦콉�삦�샍梨숉삨占쎄퐪梨숋옙�뭼苑� 梨낇삦�샍梨숉삨占쎄퐪梨숋옙�뭼苑볦콉�삦�샍梨숉삨占쎄퐪梨숋옙�뭼苑볦콉�삦�샍梨숉삨占쎄퐪梨숋옙�뭼苑볦콉�삦�샍梨숉삨占쎄퐪梨숋옙�뭼苑�  */
+.header .rank2 {position:absolute;
+		top:0;
+		right:35px;
+		line-height:inherit;
+    width:170px;
+    height:22px;
+    color:white;
+    border-bottom-style:solid;
+    border-color:white;
+    border-width:1px;
+    }
+.header .rankTitle {
+		font-size:1.6rem;
+		font-weight:700;
+		color:#8EE8B7;
+}
+.header .rankNum {
+	font-size:1.8rem;
+    font-weight:700;
+    color:#8EE8B7;
+    }
+.header .rankNick {
+	font-size:1.6rem;
+    font-weight:500;
+    color:white;
+    }
+.header rank.a {text-decoration:none;}
+#rank-list {
+				    overflow: hidden;
+				    width: 160px;
+				    height: 20px;
+				    margin: 0;
+						}	
+#rank-list dt {display: none;}
+#rank-list dd {position: relative;
+						   margin: 0;
+							}
+#rank-list ol {position: absolute;
+						   top: 0;
+						   left: 0;
+						   margin: 0;
+						   padding: 0;
+						   list-style-type: none;
+							}
+#rank-list li {height: 20px;
+						   line-height: 20px;
+							}
+/* 梨낇삦�샍梨숉삨占쎄퐪梨숋옙�뭼苑볦콉�삦�샍梨�姨붿찉-梨좏걚�씤梨낇삦�샍梨숉삨占쎄퐪梨숋옙�뭼苑볦콉�삦�샍梨숋옙裕ㅺ턿�긾�겈裕쇽옙占쎌뭼苑� */
+.myNick {position:relative;
+				 float:right;
+				 width:max-content;}
+.myNick >a {position:relative;
+						color:white;
+						border-bottom:1px solid white;
+						font-size:1.6rem;}
+.joinPlz {position:relative;
+				 float:right;
+				 width:max-content;}
+.joinPlz >a {position:relative;
+						color:#ccc;
+						font-weight:bold;
+						font-size:1.5rem;}
+.joinPlz >a:hover{color:white;}
+
+.header .list-item_log{
+		position:absolute;
+		top:-5px;
+		left:335px;
+    }
+    
+.loginout {
+		color:white;
+    width:100px;
+    position:relative;
+    color:#486587;
+    background:white;
+    padding:6px 20px;
+    margin:0 auto;
+    text-align:center;
+    font-size:1.7rem;
+    font-weight:700;
+	font-family: Roboto, sans-serif;
+	border:none;
+    }
+.header .loginout:hover{background:#D1D9E1;}
+.header .list-item>a{color:#D1D9E1;}
+.header .list-item>a:hover{color:white;}
+
+/*2.main 梨낇삦�샍梨숉삨占쎄퐪梨숋옙�뭼苑볦콉�삦�샍梨숉삨占쎄퐪梨숋옙�뭼苑볦콉�삦�샍梨숉삨占쎄퐪梨숋옙�뭼苑�*/
+.main{min-height:750px;}
+.main .title{
+						width:280px;
+						height:125px;
+						text-align: center;
+						line-height:125px;
+						font-size:25px;
+						font-weight:bold;
+						color:#385170;
+						display:inline-block;
+						background-color:#f6f6f6;
+						margin:0 0 20px 0;
+}
+.main .title > a {color:#385170;}
+.main .title-sub{display:inline;
+								 color:gray;
+								 margin:5px 0 5px 20px;input {height:30px;}
+.selectCss {vertical-align: top;height:30px;}
+								 text-decoration:none;
+								 }
+.main .title-sub >a{text-decoration:none;
+										color:#486587b8;
+										font-weight:600;}
+										
+										
+th {border-top:1px solid #4865877d;
+		border-bottom:2px solid #486587;
+		border-collapse: collapse;
+		
+		padding:10px;
+		font-size:1.5rem;
+		text-align:left;
+		}
+td {border-bottom:1px solid #c1d1e0;
+		border-collapse: collapse;
+		padding:10px;
+		}
+td > a {color:black;}
+input {height:30px;}
+.selectCss {vertical-align:top;
+	height:30px;}
+.selectDiv{display:inline;
+	line-height:33px;
+	padding:5px;}
+
+/*3.footer 책혥혻챙혧�꽓챙�쒋꽓책혥혻챙혧�꽓챙�쒋꽓책혥혻챙혧�꽓챙�쒋꽓*/
+.footer{
+    background: #848484;
+    color: white;
+    height: 180px;
+    min-width:1600px;
+    display:flex;
+		justify-content:center;
+		margin-top:60px;
+	}
+
+.footer .developer{
+		margin:28px 0px;
+		width: 140px;
+    height: 130px;
+    padding:15px;
+    line-height:177%;
+    text-align:center;
+}
+.footer .name{
+		margin:28px 0px;
+		width: 100px;
+    height: 130px;
+    padding: 0px 15px;
+    line-height:177%;
+    text-align:right;
+    border-left:1.5px solid white;
+}
+.footer .member{
+		margin:28px 0px;
+    width: 250px;
+    height: 130px;
+    padding: 0px 15px;
+    line-height:177%;
+   
+}
+.footer img{
+	width:15px;
+	height:15px;
+}
+.footer .gear{
+	width:40px;
+	height:40px;
+	margin:0 auto;
+}
+
+
+/*4.home梨좑옙苑볩옙�뵵�믩쓨議쀯옙�삨占쎄퐪梨숋옙�뭼苑� 梨낇삦�샍梨숉삨占쎄퐪梨숋옙�뭼苑볦콉�삦�샍梨숉삨占쎄퐪梨숋옙�뭼苑볦콉�삦�샍梨숉삨占쎄퐪梨숋옙�뭼苑�*/
+.map{
+	width:1000px;
+	height:600px;
+	/*border:1px solid black;*/
+	margin:50px auto;
+	}
+.map-detail{
+	width:800px;
+	margin:0 auto;
+	}
+.company-inform{float:right;margin:10px 13px;}
+.company-detail tr:nth-child(1),.company-detail tr:nth-child(5){text-align:left;}
+.company-detail tr:nth-child(1) img{
+	width:15px;
+	height:15px;
+	float:right;
+	margin:0 10px;
+	}
+.company-detail tr:nth-child(1) a{
+	float:right;
+	margin:0 10px;
+	}
+	
+.mainTH{border-top:none;
+	border-bottom:2px solid #486587;
+	}
+
+
+
+
+
+
+
+
+
+

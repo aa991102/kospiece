@@ -1,0 +1,37 @@
+/*1.濡쒓렇�씤 �솕硫�*/
+.login form{
+	width:500px;
+	height:300px;
+	margin:0 auto;
+	border:1px solid #173f5f;
+	padding:50px 100px;
+	}
+	
+/*2.�쉶�썝媛��엯 �솕硫�*/
+.join form{
+	width:600px;
+	height:550px;
+	margin:0 auto;
+	border:1px solid #173f5f;
+	padding:50px 100px;
+}
+
+.loginBtns > a{
+	color:gray;
+}
+
+.findId{
+	width:600px;
+	height:300px;
+	margin:0 auto;
+	border:1px solid #173f5f;
+	padding:50px 100px;
+}
+
+.findPw{
+	width:600px;
+	height:360px;
+	margin:0 auto;
+	border:1px solid #173f5f;
+	padding:50px 100px;
+}

@@ -1,0 +1,110 @@
+.board{
+	width:1000px;
+	margin:0 auto;
+	padding:10px;
+	}
+	
+.board-search .board-searchbar{
+	float : right;
+}
+
+.boardContent{
+	width:1000px;
+	margin:0 auto;
+	align:center;
+	padding:10px;
+}
+.likeandhate{
+	height:20px;
+	width:20px;
+}
+.boardContent-buttons{
+	align:center;
+	padding:10px 40px;
+}
+
+.board-title{
+	font-size:2.2rem;
+	font-weight:500;
+	border-top:2px solid #486587;
+	border-bottom:none; 
+	padding:40px 40px 20px 40px;
+}
+.board-info{
+	border-bottom:none; 
+	padding:0 40px;
+}
+.board-info-nick{
+	font-size:1.4rem; 
+	font-weight:bold;
+}
+.board-info-others{
+	font-size:1.4rem;
+	color:gray;
+}
+.board-content{
+	padding:40px; 
+	vertical-align:text-top;
+}
+.board-content-div{
+	min-height:130px;
+}
+
+
+.boardContent-Comment {
+	padding:20px 40px;
+}
+.boardContent-Comment .boardContent-Comment-comment{
+	float : left;
+	display : inline-block;
+
+}
+
+.boardContent-Comment .boardContent-Comment-input{
+	align:center;
+	height: 50px;
+	margin:20px 0;
+}
+.boardContent-Comment .boardContent-Comment-input .input{
+	width: 85%;
+    float:left;
+    height: 50px;
+    padding:10px;
+}
+.boardContent-Comment .boardContent-Comment-input .button{
+	width:15%;
+	float : right;
+	height: 50px;
+	padding:10px;
+}
+
+.boardContent-Comment-Table{
+	font-size:1.6rem;
+}
+.board-comment-info{
+	border:none; 
+	padding:10px 10px 0 10px;
+}
+
+
+
+.boardWrite{
+	width:800px;
+	margin:0 auto;
+	align:center;
+	padding:10px;
+}
+
+.boardModify{
+	width:800px;
+	margin:0 auto;
+	align:center;
+	padding:10px;
+}
+
+.boardWrite .boardWrite-Input{
+}
+.boardWrite-Inputbutton{
+	text-align:center;
+	margin:20px;
+}
