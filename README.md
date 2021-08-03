@@ -1,24 +1,25 @@
 # 코스피 200 기업을 시각화(Map)한 주식 커뮤니티 웹 사이트
 
-## 벤치마킹 사이트: https://finviz.com/map.ashx
+## 벤치마킹 사이트
+> https://finviz.com/map.ashx
 
 ## 주제와 목적
-##### 1. 투자자가 한국 주식시장을 빠르게 파악하고 빠르게 대처하도록 코스피200을 Map으로 시각화
-##### 2. 투자자들이 서로 의견을 나누고 모의투자를 해볼 수 있는 커뮤니티 개발
+1. 투자자가 한국 주식시장을 빠르게 파악하고 빠르게 대처하도록 코스피200을 Map으로 시각화
+2. 투자자들이 서로 의견을 나누고 모의투자를 해볼 수 있는 커뮤니티 개발
 
 ## 개발환경
-  1. 하드웨어 : 데스크탑, 64비트 윈도우즈 8.1 플랫폼, 프로세서-인텔 코어
-  2. 개발 언어 : JSP(2.3), Servlet(3.1), JAVA(1.8.0_241), Python(3.8.1)
-  3. 개발 툴 : eclipse (버전 2019-03, 4.11.0), PyCharm (버전 2019-03-04)
-  4. DBMS : MySQL MariaDB (10.3.22)
-  5. DBMS 연결 툴 : mySQL workbench, HeidiSQL 
-  6. 웹서버(WAS) : tomcat 8.5
-  7. 브라우저 : chrome 80.0
-  8. 웹프로그램 기술 : HTML, CSS, javascript, jQuery
-  9. 형상화 도구 : Git
+1. 하드웨어 : 데스크탑, 64비트 윈도우즈 8.1 플랫폼, 프로세서-인텔 코어
+2. 개발 언어 : JSP(2.3), Servlet(3.1), JAVA(1.8.0_241), Python(3.8.1)
+3. 개발 툴 : eclipse (버전 2019-03, 4.11.0), PyCharm (버전 2019-03-04)
+4. DBMS : MySQL MariaDB (10.3.22)
+5. DBMS 연결 툴 : mySQL workbench, HeidiSQL 
+6. 웹서버(WAS) : tomcat 8.5
+7. 브라우저 : chrome 80.0
+8. 웹프로그램 기술 : HTML, CSS, javascript, jQuery
+9. 형상화 도구 : Git
 
 ## 개발자
-강동혁 김태경 오지영 유태우 이준 신나진
+> 강동혁 김태경 오지영 유태우 이준 신나진
 
 ## 전체 개발내용
 ### 1. 빅데이터 수집 및 분석
@@ -53,8 +54,17 @@
   - 관심주식 : 회원은 주식을 자신의 관심주식에 편입할 수 있다.
 
 ## 나의 기여 항목
-### 1. 회원정보 관리 기능 구현 (Back-end)
-개인정보 조회, 수정, 회원탈퇴
-### 2. 관심주식 관리 기능 구현 (Back-end)
-관심주식 조회, 추가, 삭제
-### 3. 페이지 CSS 총괄 (Front-end)
+### 1. 마이페이지 (Front-End, Back-End)
+- 관심주식, 가상투자, 내 게시글 각각 최대 5개까지 미리보기<br>
+![마이페이지 첫 화면](https://user-images.githubusercontent.com/63843905/128097697-fa2022f1-e161-4d29-9f72-d4be966a7f0b.png)
+### 2. 관심주식 관리 기능 구현 (Front-End, Back-End)
+- 관심주식 조회·추가·삭제<br>
+![관심주식 화면](https://user-images.githubusercontent.com/63843905/128097837-b505997f-81e9-41bc-8b8a-7db87015d8cf.png)
+### 3. 내 게시글 관리 기능 구현 (Front-End, Back-End)
+- 내 게시글 조회·수정·삭제, 댓글 작성·삭제, 댓글 좋아요/싫어요 선택·취소<br>
+![내 게시글 목록 화면](https://user-images.githubusercontent.com/63843905/128098538-938d0004-394d-4ddc-acbe-baeadd8454fb.png)
+![내 게시글 상세 화면](https://user-images.githubusercontent.com/63843905/128098609-3e51def4-17f4-46f8-8e55-370bc44c1765.png)
+### 4. 회원정보 관리 기능 구현 (Front-End, Back-End)
+- 개인정보 조회, 수정, 회원탈퇴<br>
+![내 정보 화면](https://user-images.githubusercontent.com/63843905/128098659-b1711bc4-4656-4b6c-b535-41fbb995ada6.png)
+### 5. 페이지 CSS 총괄 (Front-end)
