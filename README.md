@@ -1,4 +1,6 @@
-# 코스피 200 기업을 시각화(Map)한 주식 커뮤니티 웹 사이트
+# kospiece
+> kospi(코스피200) + piece(조각)
+코스피 200 기업을 시각화(Map)한 주식 커뮤니티 웹 사이트
 
 ## 벤치마킹 사이트
 > https://finviz.com/map.ashx
